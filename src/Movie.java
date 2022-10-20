@@ -1,42 +1,82 @@
 public class Movie {
+    // counter to keep track of total movies and auto assign movie ID
+    private static int numMovies = 0;
+
+    // crucial information: movie id (automatically set), title
     private int movieId;
     private String title;
     
+    // other movie properties
+    private int durationMinutes;
     private String director;
     private String cast;
 
-    // coming soon, preview, now showing, end of showing enum??
-    // allow booking -> preview, now showing
-    private String showStatus; 
-    private String ageRating; // enum -> G, PG, PG13, NC16, M18, R21
+    public enum showStatusOptions {
+        COMING_SOON, PREVIEW, NOW_SHOWING, END_OF_SHOWING
+    }
+    private showStatusOptions showStatus;
+    public enum ageRatingOptions { G, PG, PG13, NC16, M18, R21 };
 
+    private ageRatingOptions ageRating;
     private boolean is3D;
     private boolean isBlockbuster;
 
-    private int duration; // duration in minutes
-
-    private static int numMovies = 0;
-
-    public Movie(int id, String title) { // TODO - initialize everything
+    public Movie(
+            int id, String title, int durationMinutes,
+            String director, String cast,
+            showStatusOptions showStatus, ageRatingOptions ageRating,
+            boolean is3D, boolean isBlockbuster
+        ) {
         numMovies++;
         this.movieId = numMovies;
         this.title = title;
-        // todo: initialize other variables
-        // provide all var in constructor?? or make some default values?
+        this.durationMinutes = durationMinutes;
+        this.director = director;
+        this.cast = cast;
+        this.showStatus = showStatus;
+        this.ageRating = ageRating;
+        this.is3D = is3D;
+        this.isBlockbuster = isBlockbuster;
     }
 
-    // mutators - todo: add more
+    // mutators for all properties
     public void setMovieId(int id) { this.movieId = id;}
     public void setTitle(String title) { this.title = title;}
+    public void setDurationMinutes(int durationMinutes) { this.durationMinutes = durationMinutes;}
+    public void setDirector(String director) { this.director = director;}
+    public void setCast(String cast) { this.cast = cast;}
+    public void setShowStatus(showStatusOptions showStatus) { this.showStatus = showStatus;}
+    public void setAgeRating(ageRatingOptions ageRating) { this.ageRating = ageRating;}
+    public void setIs3D(boolean is3D) { this.is3D = is3D;}
+    public void setIsBlockbuster(boolean isBlockbuster) { this.isBlockbuster = isBlockbuster;}
 
-    // accessors - todo: add more
+    // accessors, can add more if needed
     public int getMovieId() { return this.movieId;}
     public String getTitle() { return this.title;}
+    public String getIs3D() {
+        return this.is3D ? "yes" : "no";
+    }
+    public String getIsBlockbuster() {
+        return this.isBlockbuster ? "yes": "no";
+    }
 
-    // todo - add more information
+    // print basic movie information
     public void printMovieInfo() {
         System.out.println("Movie ID: " + this.movieId);
         System.out.println("Movie Title: " + this.title);
+        System.out.println("");
+    }
+
+    public void printMovieInfoComplete() {
+        System.out.println("Movie ID: " + this.movieId);
+        System.out.println("Movie Title: " + this.title);
+        System.out.println("Duration: " + this.durationMinutes);
+        System.out.println("Director: " + this.director);
+        System.out.println("Cast: " + this.cast);
+        System.out.println("Show Status: " + this.showStatus);
+        System.out.println("Age Rating: " + this.ageRating);
+        System.out.println("3D: " + this.getIs3D());
+        System.out.println("Blockbuster: " + this.getIsBlockbuster());
         System.out.println("");
     }
 }

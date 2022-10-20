@@ -19,7 +19,7 @@ public class Cineplex {
     public int getCineplexId() { return this.cineplexId;}
     public String getLocation() { return this.location;}
     public Cinema getCinema(int code) {
-        return this.cinemas.get(code);
+        return this.cinemas.get(code - 1);
     }
 
     // print basic information
