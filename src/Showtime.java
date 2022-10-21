@@ -1,5 +1,14 @@
+/*
+    'Showtime' class
+
+    - Contain the date & time, movie ID, 2D array of seat objects
+    - Methods to book seat(s) in a showtime
+*/
+
+import java.util.ArrayList;
+
 public class Showtime {
-    private String datetime; // todo - change to datetime
+    private String datetime; // TODO - change to datetime
     private int movieId;
     private Seat[][] seats;
     
@@ -21,7 +30,15 @@ public class Showtime {
         }
     }
 
+    // TODO - accessors & mutators
+
     // method to book the seats ??
+    // public boolean bookSeats(User user, ArrayList seatsCodes) {
+    //     TODO
+    // }
 
     // method to show all the seats (2D)
+    // public void showSeats() {
+    //     TODO
+    // }
 }

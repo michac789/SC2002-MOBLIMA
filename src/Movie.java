@@ -1,6 +1,13 @@
+/*
+    'Movie' class
+
+    - Stores information about a single movie
+    - Print methods to display information of a movie
+*/
+
 public class Movie {
     // counter to keep track of total movies and auto assign movie ID
-    private static int numMovies = 0;
+    public static int numMovies = 0;
 
     // crucial information: movie id (automatically set), title
     private int movieId;
@@ -15,15 +22,16 @@ public class Movie {
         COMING_SOON, PREVIEW, NOW_SHOWING, END_OF_SHOWING
     }
     private showStatusOptions showStatus;
-    public enum ageRatingOptions { G, PG, PG13, NC16, M18, R21 };
-
+    public enum ageRatingOptions {
+        G, PG, PG13, NC16, M18, R21
+    };
     private ageRatingOptions ageRating;
+
     private boolean is3D;
     private boolean isBlockbuster;
 
     public Movie(
-            int id, String title, int durationMinutes,
-            String director, String cast,
+            String title, int durationMinutes, String director, String cast,
             showStatusOptions showStatus, ageRatingOptions ageRating,
             boolean is3D, boolean isBlockbuster
         ) {
@@ -60,13 +68,14 @@ public class Movie {
         return this.isBlockbuster ? "yes": "no";
     }
 
-    // print basic movie information
+    // print basic movie information (id & title)
     public void printMovieInfo() {
-        System.out.println("Movie ID: " + this.movieId);
-        System.out.println("Movie Title: " + this.title);
-        System.out.println("");
+        System.out.println(
+            String.format("ID %d: %s", this.movieId, this.title)
+        );
     }
 
+    // print complete movie information
     public void printMovieInfoComplete() {
         System.out.println("Movie ID: " + this.movieId);
         System.out.println("Movie Title: " + this.title);

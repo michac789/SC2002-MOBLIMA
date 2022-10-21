@@ -1,3 +1,5 @@
+// TODO - still messy, please fix
+
 public class Review {
     private int userId;
     private int rating; // range limit??
