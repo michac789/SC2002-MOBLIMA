@@ -30,6 +30,7 @@ public class Movie {
     private boolean is3D;
     private boolean isBlockbuster;
 
+    private ReviewsController reviews;
     public Movie(
             String title, int durationMinutes, String director, String cast,
             showStatusOptions showStatus, ageRatingOptions ageRating,
@@ -45,6 +46,9 @@ public class Movie {
         this.ageRating = ageRating;
         this.is3D = is3D;
         this.isBlockbuster = isBlockbuster;
+
+//        this.reviews = new ReviewsController(numMovies); //Temp Commented Out
+//        reviews.getMovieReviews();
     }
 
     // mutators for all properties
