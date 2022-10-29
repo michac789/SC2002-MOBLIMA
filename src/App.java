@@ -5,6 +5,7 @@
 */
 
 import java.util.Scanner;
+import User.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -53,7 +54,12 @@ public class App {
         Cinema c3 = cx1.getCinema(3);
         c3.addShowtime("12:00", 3);
         c3.addShowtime("15:00", 2);
-        c3.addShowtime("18:00", 2);
+        c3.addShowtime("18:00", 2); 
+
+        // add simple admin: 
+        
+
+
 
         int choice;
         Scanner sc = new Scanner(System.in);
@@ -160,8 +166,62 @@ public class App {
         // add options to add review for movies watched
     }
 
-    private static void adminFlow() {
-        // TODO
-        // maybe can create seperate class for admin
+    private static void adminFlow() {  
+        // temporary admin creation, should've find a way to store the data later 
+        // for now I am gonna use dummy admin user 
+
+        Admin admin1 = new Admin("kristian", "kristian123"); 
+        Scanner sc  = new Scanner(System.in); 
+        System.out.println("Enter your username: ");  
+        String username = sc.nextLine();  
+        System.out.println("Enter your password: "); 
+        String password = sc.nextLine(); 
+        
+        while (!admin1.login(password)){ 
+            System.out.println("Incorrect password!"); 
+            System.out.println("Enter your username: ");  
+            username = sc.nextLine();  
+            System.out.println("Enter your password: "); 
+            password = sc.nextLine(); 
+        }
+
+        System.out.println("Successfully logged in");
+        System.out.println("1. Create/Update/Remove movie listing"); 
+        System.out.println("2. Create/Update/Remove cinema showtimes and the movies shown");
+        System.out.println("3. Configure system settings");
+
+        int choice = sc.nextInt(); 
+
+        switch(choice){ 
+            case 1: 
+                crudMovieListing(); 
+                break; 
+            case 2:
+                crudShowtimes(); 
+                break; 
+            case 3: 
+                configureSystemSettings(); 
+                break; 
+            default: 
+                System.out.println("Quitting...");
+                System.exit(0); 
+
+
+        }
+        
+        
     }
+    
+    private static void crudMovieListing(){
+
+    };         
+    private static void crudShowtimes(){
+
+
+    }
+    private static void configureSystemSettings(){
+
+    }
+    // TODO
+    // maybe can create seperate class for admin
 }
