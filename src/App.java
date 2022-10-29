@@ -148,7 +148,7 @@ public class App {
         System.out.println("Enter (-1) to go back");
 
         int movieId = sc.nextInt();
-        if (movieId == -1) { return;}
+        if (movieId == -1) {return;}
 
         // TODO... continue
         // maybe consider creating CineplexController class??
@@ -205,7 +205,6 @@ public class App {
             default: 
                 System.out.println("Quitting...");
                 System.exit(0); 
-
 
         }
         
