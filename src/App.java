@@ -144,6 +144,9 @@ public class App {
         int movieId = sc.nextInt();
         if (movieId == -1) { return;}
 
+        // show cinema seats
+        // get and validate the user input for seats
+        
         // TODO... continue
         // maybe consider creating CineplexController class??
         // to stores an array of cineplexes, then
