@@ -5,7 +5,8 @@ public class Admin extends User {
     private String password; 
 
     public Admin (String username, String password) { 
-        super(username); 
+        super(username);  
+        setType(UserType.ADMIN);
         this.password = password; 
     }
 

@@ -6,19 +6,19 @@ enum Category {
 }; 
 
 public class MovieGoer extends User {
+    private String email; 
     private String phoneNumber; 
     private Category ageCategory; 
-    // need email check? 
-    private String email; 
+
+
     public MovieGoer (String username, String phoneNumber, String email, Category ageCategory){ 
         super(username);
+        setType(UserType.MOVIEGOER); 
         this.phoneNumber = phoneNumber; 
         this.ageCategory = ageCategory; 
         this.email = email; 
     }
 
-    public boolean hasAdminAccess() {
-        return true; 
-    }
+    
 
 }
