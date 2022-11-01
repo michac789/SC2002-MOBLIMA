@@ -27,11 +27,6 @@ public class App {
             false, false
         );
         mc.displayAllMovies();
-        ReviewsController mr = new ReviewsController(0); //Uncomment the init at Movie.java ltr
-//        mr.createReview("movie2", 1);
-        mr.displayReviews(1);
-
-        System.exit(0);
 
         // sample cineplexes
         Cineplex cx1 = new Cineplex("location1");
