@@ -6,7 +6,7 @@
 
 import java.util.Scanner;
 
-import Controller.AdminController;
+import Boundaries.AdminUI;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -163,13 +163,8 @@ public class App {
         // add options to add review for movies watched
     }
     public static void adminFlow() { 
-        AdminController adminController = new AdminController();  
-        // logging in
-        boolean isLoggedIn = adminController.main(); 
-        while(isLoggedIn){ 
-            // return type: true --> still want to do more action. false --> already done
-            isLoggedIn = adminController.administratorAction(); 
-        }
+        AdminUI adminUI = new AdminUI(); 
+        adminUI.main(); 
     }
  
 }
