@@ -11,7 +11,10 @@ import java.util.*;
 public class MoviesController {
     private List<Movie> movies = new ArrayList<Movie>();
 
-    public MoviesController() {}
+    private Scanner sc;
+    public MoviesController() {
+        sc = new Scanner(System.in);
+    }
 
     // add new movie to list of movies
     public void addMovie(
@@ -38,6 +41,10 @@ public class MoviesController {
         System.out.println("");
     }
 
+    public void createMovie() {
+
+
+    }
     // TODO
     // display all movies that has 'title' as a substring
     // or can improve with other better search algorithm

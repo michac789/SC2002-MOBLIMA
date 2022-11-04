@@ -21,6 +21,7 @@ public class DAO {
             try {
                 for (int i=0; i < text.length; i++) {
                     bw.write(text[i]);
+                    bw.newLine();
                 }
             } catch (FileNotFoundException e) {
                 return;
@@ -34,6 +35,7 @@ public class DAO {
         if (bw != null) {
             try {
                 bw.write(text);
+                bw.newLine();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

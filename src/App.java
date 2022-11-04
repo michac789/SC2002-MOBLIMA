@@ -47,15 +47,8 @@ public class App {
 
         // get cinemas and add showtimes
         Cinema c1 = cx1.getCinema(1);
-        c1.addShowtime("14:00", 1);
-        c1.addShowtime("17:00", 1);
         Cinema c2 = cx1.getCinema(2);
-        c2.addShowtime("15:00", 1);
-        c2.addShowtime("18:00", 1);
         Cinema c3 = cx1.getCinema(3);
-        c3.addShowtime("12:00", 3);
-        c3.addShowtime("15:00", 2);
-        c3.addShowtime("18:00", 2);
 
         int choice;
         Scanner sc = new Scanner(System.in);
