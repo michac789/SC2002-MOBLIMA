@@ -1,23 +1,16 @@
-/*
-    'MoviesController' class
-
-    - Stores a list of all movies
-    - Contain utility functions to perform tasks related to
-    searching, querying, etc., from a list of all movies
-*/
-
+package movie;
 import java.util.*;
 
 public class MoviesController {
     private ArrayList<Movie> movies = new ArrayList<Movie>();
-    private MovieDAO movieDao = new MovieDAO();
+    private MoviesDAO moviesDao = new MoviesDAO();
 
     public MoviesController() {
-        movies = this.movieDao.loadMovies();
+        movies = this.moviesDao.loadMovies();
     }
     
     public void save() {
-        this.movieDao.saveMovies(movies);
+        this.moviesDao.saveMovies(movies);
     }
 
     // add new movie to list of movies

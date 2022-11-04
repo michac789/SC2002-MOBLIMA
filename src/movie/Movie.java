@@ -1,9 +1,4 @@
-/*
-    'Movie' class
-
-    - Stores information about a single movie
-    - Print methods to display information of a movie
-*/
+package movie;
 
 public class Movie {
     // counter to keep track of total movies and auto assign movie ID
@@ -30,7 +25,7 @@ public class Movie {
     private boolean is3D;
     private boolean isBlockbuster;
 
-    private ReviewsController reviews;
+    // private ReviewsController reviews;
     public Movie(
             String title, int durationMinutes, String director, String cast,
             showStatusOptions showStatus, ageRatingOptions ageRating,
@@ -104,7 +99,7 @@ public class Movie {
 //        System.out.println("");
 //    }
 
-    public void getReviews() {
-        reviews.displayReviews(1);
-    }
+    // public void getReviews() {
+    //     reviews.displayReviews(1);
+    // }
 }

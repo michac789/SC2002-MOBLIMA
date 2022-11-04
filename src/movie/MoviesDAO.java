@@ -1,8 +1,9 @@
+package movie;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class MovieDAO {
+public class MoviesDAO {
     String FILEPATH = "database/movies.csv";
 
     public void saveMovies(ArrayList<Movie> movies) {
@@ -35,7 +36,7 @@ public class MovieDAO {
         }
     }
 
-    public LinkedList<String> getMovie() {
+    public LinkedList<String> getData() {
         BufferedReader br;
         try {
             br = new BufferedReader(new FileReader(FILEPATH));
@@ -52,12 +53,12 @@ public class MovieDAO {
     }
 
     public ArrayList<Movie> loadMovies() {
-        LinkedList<String> movies = this.getMovie();
+        LinkedList<String> movies = this.getData();
         ArrayList<Movie> retMovies = new ArrayList<Movie>();
         for (int i = 0; i < movies.size(); i++) {
             System.out.println(movies.get(i));
-            String movieInfo = movies.get(i);
-            String[] x = movieInfo.split(",");
+            String singleData = movies.get(i);
+            String[] x = singleData.split(",");
             Movie movie = new Movie(
                 x[1], Integer.parseInt(x[2]), x[3], x[4],
                 Movie.showStatusOptions.valueOf(x[5]),

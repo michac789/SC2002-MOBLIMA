@@ -7,15 +7,24 @@
 import java.util.Date;
 import java.util.Scanner;
 
+import cineplex.Cineplex;
+import cineplex.CineplexesController;
+import movie.MoviesController;
+
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
         Date todaysDate = new Date();
         System.out.println(todaysDate);
 
-        // create sample movies
+        // load models: movies, cineplexes, cinemas
         MoviesController moviesController = new MoviesController();
+        CineplexesController cineplexesController = new CineplexesController();
+        
+
         moviesController.save();
+        cineplexesController.save();
+        
         
         System.exit(1);
 
@@ -26,18 +35,18 @@ public class App {
         cx2.printCineplexInfo();
 
         // add sample cinemas to cineplex
-        cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        cx1.addCinema(8, 12, Cinema.showClassOptions.CLASS1);
-        cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS2);
-        cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS3);
+        // cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
+        // cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
+        // cx1.addCinema(8, 12, Cinema.showClassOptions.CLASS1);
+        // cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS2);
+        // cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS3);
         cx1.printCinemasList();
         cx2.printCinemasList();
 
         // get cinemas and add showtimes
-        Cinema c1 = cx1.getCinema(1);
-        Cinema c2 = cx1.getCinema(2);
-        Cinema c3 = cx1.getCinema(3);
+        // Cinema c1 = cx1.getCinema(1);
+        // Cinema c2 = cx1.getCinema(2);
+        // Cinema c3 = cx1.getCinema(3);
 
         int choice;
         Scanner sc = new Scanner(System.in);
