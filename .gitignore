@@ -1,5 +1,0 @@
-*.class
-.vscode
-bin
-out 
-venv

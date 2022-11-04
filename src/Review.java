@@ -11,18 +11,20 @@ public class Review {
         this.comment = comment;
     }
 
-    public void printReview() {
-        System.out.println("User ID: " + this.userId);
-        System.out.println("Rating: " + this.rating);
-        System.out.println("Comment: " + this.comment);
-        System.out.println("text");
-    }
+//    public void printReview() {
+//        System.out.println("User ID: " + this.userId);
+//        System.out.println("Rating: " + this.rating);
+//        System.out.println("Comment: " + this.comment);
+//        System.out.println("text");
+//    }
 
     public void setRating(int rating) { this.rating = rating;}
     public void setComment(String comment) { this.comment = comment;}
 
     public int getRating() { return this.rating;}
     public String getComment() { return this.comment;}
+
+    public int getUserId() { return this.userId;}
 
     // Returns a String to save into csv
     public String savetoCSV() {

@@ -11,13 +11,13 @@ public class ReviewsController {
     private int sorted = 0;
     private LinkedList<Review> reviews;
 
-    private ReviewDAO dao;
+    private static ReviewDAO reviewDao = new ReviewDAO();
+
     public ReviewsController(int movieId) {
         this.movieId = movieId;
         sc = new Scanner(System.in);
         reviews = new LinkedList<Review>();
-        dao = new ReviewDAO();
-        dao.getReviews(movieId, reviews);
+        reviewDao.getReviews(movieId, reviews);
         sortByRating();
         System.out.println("Review for movieId " + movieId + " loaded.");
     }
@@ -26,13 +26,13 @@ public class ReviewsController {
         int reviewScore = -1;
         String reviewText = "";
         //Temporary Take in moviename, will use movie id ltr? Or implementation of creating review can take in moviename instead?
-
+        // Do we need a exit parameter???
         System.out.printf("Creating Review for %s\n", movieName);
         do {
-            System.out.print("Enter Movie Rating (0-5): ");
+            System.out.print("Enter Movie Rating (1-5): ");
             reviewScore = sc.nextInt();
             sc.nextLine(); // Scanner Skipping reviewText Scanner
-            if (reviewScore < 0 || reviewScore > 5) {
+            if (reviewScore < 1 || reviewScore > 5) {
                 System.out.println("Invalid Entry!");
             }else {
                 break;
@@ -40,11 +40,11 @@ public class ReviewsController {
         } while (true);
         System.out.print("Enter Review: \n");
         reviewText = sc.nextLine(); // Do i have to read comments that have newline??, if so need replace this
-        reviewText = reviewText.replace(",", "\\comma");
         Review newReview = new Review(userId, reviewScore, reviewText);
         addReview(newReview);
+        this.rating += reviewScore;
 
-        dao.saveReview(newReview, this.movieId);
+        reviewDao.saveReview(newReview, this.movieId);
     }
 
     // Keeps reviews linkedlist sorted at all times
@@ -59,39 +59,6 @@ public class ReviewsController {
             }
         }
     }
-//    public void saveReview(Review r) {
-//        String filename = movieId + "_Reviews.csv";
-//        try {
-//            BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true));
-//            String line = r.savetoCSV();
-//            bw.write(line);
-//            bw.close();
-//        } catch (FileNotFoundException e) {
-//            return;
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//    public void getReviews() {
-//        String filename = this.movieId + "_Reviews.csv";
-//        try {
-//            BufferedReader br = new BufferedReader(new FileReader(filename));
-//            String line;
-//            String[] values;
-//            Review r;
-//            while ((line = br.readLine()) != null) {
-//                values = line.split(",");
-//                values[2] = values[2].substring(1, values[2].length()-1); // Remove first and last char, which are "" added for CSV purposes
-//                values[2] = values[2].replace("\\comma", ",");
-//                r = new Review(Integer.parseInt(values[0]), Integer.parseInt(values[1]), values[2]);
-//                reviews.add(r);
-//            }
-//        } catch (FileNotFoundException e) {
-//            return;
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     public void displayReviews(int displayBy) {
         if (sorted == 0) {sortByRating();}
@@ -114,8 +81,10 @@ public class ReviewsController {
         // Need by Alphabetical???
         Review temp;
 
+        this.rating += reviews.get(0).getRating();
         // Insertion Sort
         for (int i=1; i < reviews.size(); i++) {
+            this.rating += reviews.get(i).getRating();
             for (int j=i; j > 0; j--) {
                 if (reviews.get(j).compareTo(reviews.get(j - 1)) > 0) {
                     temp = reviews.get(j - 1);
@@ -129,5 +98,9 @@ public class ReviewsController {
 
         // Quicksort?
 
+    }
+
+    public double getRating() {
+        return ((this.rating/ 1.0) / reviews.size()); //Force typecast to double then divide by int;
     }
 }
