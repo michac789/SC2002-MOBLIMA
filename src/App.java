@@ -7,6 +7,7 @@
 import java.util.Date;
 import java.util.Scanner;
 
+import cinema.CinemasController;
 import cineplex.Cineplex;
 import cineplex.CineplexesController;
 import movie.MoviesController;
@@ -17,36 +18,18 @@ public class App {
         Date todaysDate = new Date();
         System.out.println(todaysDate);
 
-        // load models: movies, cineplexes, cinemas
+        // load models: movies, cineplexes, cinemas, TODO - showtimes, seats
         MoviesController moviesController = new MoviesController();
         CineplexesController cineplexesController = new CineplexesController();
-        
+        CinemasController cinemasController = new CinemasController();
 
         moviesController.save();
         cineplexesController.save();
+        cinemasController.save();
         
         
         System.exit(1);
 
-        // sample cineplexes
-        Cineplex cx1 = new Cineplex("location1");
-        Cineplex cx2 = new Cineplex("location2");
-        cx1.printCineplexInfo();
-        cx2.printCineplexInfo();
-
-        // add sample cinemas to cineplex
-        // cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        // cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        // cx1.addCinema(8, 12, Cinema.showClassOptions.CLASS1);
-        // cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS2);
-        // cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS3);
-        cx1.printCinemasList();
-        cx2.printCinemasList();
-
-        // get cinemas and add showtimes
-        // Cinema c1 = cx1.getCinema(1);
-        // Cinema c2 = cx1.getCinema(2);
-        // Cinema c3 = cx1.getCinema(3);
 
         int choice;
         Scanner sc = new Scanner(System.in);
