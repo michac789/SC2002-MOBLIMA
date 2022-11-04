@@ -25,7 +25,7 @@ public class ShowtimeController {
 
         int timeslot, cinemaHall;
         String movieDate;
-        DateFormat checkValidDate = new SimpleDateFormat("ddmmyyyy");
+        DateFormat checkValidDate = new SimpleDateFormat("ddMMyyyy");
         checkValidDate.setLenient(false); //Strict date interpretation, falsely entered date results in null obj
 
         Date testDate;
@@ -61,7 +61,7 @@ public class ShowtimeController {
             System.out.println("Invalid movie time entered.");
         }
 
-        DateFormat formatDate = new SimpleDateFormat("ddmmyyyy:hhmm");
+        DateFormat formatDate = new SimpleDateFormat("ddMMyyyy:HHmm");
 
         String parseStr = movieDate + ":" + Integer.toString(timeslot);
         Date formattedDate;
@@ -81,14 +81,15 @@ public class ShowtimeController {
     }
 
     public void getShowtime() {
-        showtimeDAO.getShowtimes(this.movieId, showtimes);
+        showtimeDAO.getShowtimes(this.movieId, this.showtimes);
+        sortShowtimes();
     }
 
 
     public void displayShowtime() {
         // Display Today's Date
         Date todayDate = new Date();
-        DateFormat df = new SimpleDateFormat("hh:mm");
+        DateFormat df = new SimpleDateFormat("HH:mm");
         int[] range = findShowtimes(todayDate);
         Date showDate;
         if (range[0] != -1) {
@@ -102,7 +103,7 @@ public class ShowtimeController {
     // Is there a way to dont duplicate the code???
     public void displayShowtime(Date d) {
         // Display based on Date
-        DateFormat df = new SimpleDateFormat("hh:mm");
+        DateFormat df = new SimpleDateFormat("HH:mm");
         int[] range = findShowtimes(d);
         Date showDate;
         if (range[0] != -1) {
@@ -119,7 +120,7 @@ public class ShowtimeController {
         rtn[1] = showtimes.size();
         Date nextDay = new Date(d.getYear(), d.getMonth(), d.getDate()+1);
         for (int i = 0; i < showtimes.size(); i++) {
-            if (d.compareTo(showtimes.get(i).getDate()) >= 0) {
+            if (d.compareTo(showtimes.get(i).getDate()) <= 0) {
                 //Same or After Current Time
                 rtn[0] = i;
                 break;
@@ -127,7 +128,7 @@ public class ShowtimeController {
         }
 
         for (int i=rtn[0]+1; i < showtimes.size(); i++) {
-            if (nextDay.compareTo(showtimes.get(i).getDate()) < 0) {
+            if (nextDay.compareTo(showtimes.get(i).getDate()) <= 0) {
                 //Same or After Current Time
                 rtn[1] = i;
                 break;
@@ -139,21 +140,25 @@ public class ShowtimeController {
     //1) << 12 Nov  | 13 Nov | 2) 14 Nov>>
     // Sort Showtimes and cleanup invalid showtimes(those that are before today's date)
     public void sortShowtimes(){
+        if (this.showtimes.size() == 0) {
+            return;
+        }
+
         Date todaysDate = new Date();
         Showtime temp;
 
         // Ensure first showtime is not invalid
-        while (true) {
-            if (todaysDate.before(showtimes.get(0).getDate())) {
-                showtimes.remove(0);
-            }else {
-                break;
-            }
-        }
+//        while (true) {
+//            if (todaysDate.before(showtimes.get(0).getDate())) {
+//                showtimes.remove(0);
+//            }else {
+//                break;
+//            }
+//        }
 
         for (int i=1; i < showtimes.size(); i++) {
             for (int j=i; j > 0; j--) {
-                if (showtimes.get(j).compareTo(showtimes.get(j - 1)) > 0) {
+                if (showtimes.get(j).compareTo(showtimes.get(j - 1)) == -1) {
                     temp = showtimes.get(j - 1);
                     showtimes.set(j - 1, showtimes.get(j));
                     showtimes.set(j, temp);
@@ -170,7 +175,9 @@ public class ShowtimeController {
         for (int i=0; i < showtimes.size(); i++) {
             if (s.compareTo(showtimes.get(i)) < 0 ) {
                 showtimes.add(i, s);
+                return;
             }
         }
+        showtimes.addLast(s);
     }
 }

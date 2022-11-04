@@ -4,11 +4,29 @@
     Master file to be executed to launch the program
 */
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
+        Date d = new Date();
+        Date dt = new Date(2022, 11, 05, 2, 30);
+        int f = d.compareTo(dt);
+        // Testing Area
+        ShowtimeController stc = new ShowtimeController(0);
+        stc.getShowtime();
+//        stc.createShowtime();
+
+        stc.displayShowtime();
+
+
+
+        System.exit(0);
+        // Testing Area End
+
 
         // create sample movies
         MoviesController mc = new MoviesController();
