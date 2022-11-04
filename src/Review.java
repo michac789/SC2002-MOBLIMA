@@ -24,6 +24,8 @@ public class Review {
     public int getRating() { return this.rating;}
     public String getComment() { return this.comment;}
 
+    public int getUserId() { return this.userId;}
+
     // Returns a String to save into csv
     public String savetoCSV() {
         String rtn = String.format("%d,%d,\"%s\"\n", this.userId, this.rating, this.comment);

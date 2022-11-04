@@ -11,13 +11,13 @@ public class ReviewsController {
     private int sorted = 0;
     private LinkedList<Review> reviews;
 
-    private ReviewDAO dao;
+    private static ReviewDAO reviewDao = new ReviewDAO();
+
     public ReviewsController(int movieId) {
         this.movieId = movieId;
         sc = new Scanner(System.in);
         reviews = new LinkedList<Review>();
-        dao = new ReviewDAO();
-        dao.getReviews(movieId, reviews);
+        reviewDao.getReviews(movieId, reviews);
         sortByRating();
         System.out.println("Review for movieId " + movieId + " loaded.");
     }
@@ -40,11 +40,10 @@ public class ReviewsController {
         } while (true);
         System.out.print("Enter Review: \n");
         reviewText = sc.nextLine(); // Do i have to read comments that have newline??, if so need replace this
-        reviewText = reviewText.replace(",", "\\comma");
         Review newReview = new Review(userId, reviewScore, reviewText);
         addReview(newReview);
 
-        dao.saveReview(newReview, this.movieId);
+        reviewDao.saveReview(newReview, this.movieId);
     }
 
     // Keeps reviews linkedlist sorted at all times
@@ -59,39 +58,6 @@ public class ReviewsController {
             }
         }
     }
-//    public void saveReview(Review r) {
-//        String filename = movieId + "_Reviews.csv";
-//        try {
-//            BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true));
-//            String line = r.savetoCSV();
-//            bw.write(line);
-//            bw.close();
-//        } catch (FileNotFoundException e) {
-//            return;
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//    public void getReviews() {
-//        String filename = this.movieId + "_Reviews.csv";
-//        try {
-//            BufferedReader br = new BufferedReader(new FileReader(filename));
-//            String line;
-//            String[] values;
-//            Review r;
-//            while ((line = br.readLine()) != null) {
-//                values = line.split(",");
-//                values[2] = values[2].substring(1, values[2].length()-1); // Remove first and last char, which are "" added for CSV purposes
-//                values[2] = values[2].replace("\\comma", ",");
-//                r = new Review(Integer.parseInt(values[0]), Integer.parseInt(values[1]), values[2]);
-//                reviews.add(r);
-//            }
-//        } catch (FileNotFoundException e) {
-//            return;
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     public void displayReviews(int displayBy) {
         if (sorted == 0) {sortByRating();}

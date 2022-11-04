@@ -8,6 +8,10 @@
 import java.util.ArrayList;
 
 public class Showtime {
+    private Date date;
+
+    private int timeslot;
+
     private String datetime; // TODO - change to datetime
     private int movieId;
     private Seat[][] seats;
