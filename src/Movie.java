@@ -49,6 +49,7 @@ public class Movie {
 
 //        this.reviews = new ReviewsController(numMovies); //Temp Commented Out
 //        reviews.getMovieReviews();
+
     }
 
     // mutators for all properties
@@ -79,17 +80,23 @@ public class Movie {
         );
     }
 
+    //Method Override
     // print complete movie information
-    public void printMovieInfoComplete() {
-        System.out.println("Movie ID: " + this.movieId);
-        System.out.println("Movie Title: " + this.title);
-        System.out.println("Duration: " + this.durationMinutes);
-        System.out.println("Director: " + this.director);
-        System.out.println("Cast: " + this.cast);
-        System.out.println("Show Status: " + this.showStatus);
-        System.out.println("Age Rating: " + this.ageRating);
-        System.out.println("3D: " + this.getIs3D());
-        System.out.println("Blockbuster: " + this.getIsBlockbuster());
-        System.out.println("");
+//    public String toString() {
+//        String rtn;
+//        System.out.println("Movie ID: " + this.movieId);
+//        System.out.println("Movie Title: " + this.title);
+//        System.out.println("Duration: " + this.durationMinutes);
+//        System.out.println("Director: " + this.director);
+//        System.out.println("Cast: " + this.cast);
+//        System.out.println("Show Status: " + this.showStatus);
+//        System.out.println("Age Rating: " + this.ageRating);
+//        System.out.println("3D: " + this.getIs3D());
+//        System.out.println("Blockbuster: " + this.getIsBlockbuster());
+//        System.out.println("");
+//    }
+
+    public void getReviews() {
+        reviews.displayReviews(1);
     }
 }

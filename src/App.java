@@ -4,12 +4,14 @@
     Master file to be executed to launch the program
 */
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
-
+        Date todaysDate = new Date();
+        System.out.println(todaysDate);
         // create sample movies
         MoviesController mc = new MoviesController();
         mc.addMovie(

@@ -26,13 +26,13 @@ public class ReviewsController {
         int reviewScore = -1;
         String reviewText = "";
         //Temporary Take in moviename, will use movie id ltr? Or implementation of creating review can take in moviename instead?
-
+        // Do we need a exit parameter???
         System.out.printf("Creating Review for %s\n", movieName);
         do {
-            System.out.print("Enter Movie Rating (0-5): ");
+            System.out.print("Enter Movie Rating (1-5): ");
             reviewScore = sc.nextInt();
             sc.nextLine(); // Scanner Skipping reviewText Scanner
-            if (reviewScore < 0 || reviewScore > 5) {
+            if (reviewScore < 1 || reviewScore > 5) {
                 System.out.println("Invalid Entry!");
             }else {
                 break;
@@ -42,6 +42,7 @@ public class ReviewsController {
         reviewText = sc.nextLine(); // Do i have to read comments that have newline??, if so need replace this
         Review newReview = new Review(userId, reviewScore, reviewText);
         addReview(newReview);
+        this.rating += reviewScore;
 
         reviewDao.saveReview(newReview, this.movieId);
     }
@@ -80,8 +81,10 @@ public class ReviewsController {
         // Need by Alphabetical???
         Review temp;
 
+        this.rating += reviews.get(0).getRating();
         // Insertion Sort
         for (int i=1; i < reviews.size(); i++) {
+            this.rating += reviews.get(i).getRating();
             for (int j=i; j > 0; j--) {
                 if (reviews.get(j).compareTo(reviews.get(j - 1)) > 0) {
                     temp = reviews.get(j - 1);
@@ -95,5 +98,9 @@ public class ReviewsController {
 
         // Quicksort?
 
+    }
+
+    public double getRating() {
+        return ((this.rating/ 1.0) / reviews.size()); //Force typecast to double then divide by int;
     }
 }
