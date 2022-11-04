@@ -10,12 +10,6 @@ public class Admin extends User {
         this.password = password; 
     }
 
-    public boolean login (String password){ 
-        if ((this.password).compareTo(password) == 1){ 
-            return true; 
-        }
-        return false; 
-    }
 
     public boolean hasAdminAccess() { 
         return true; 

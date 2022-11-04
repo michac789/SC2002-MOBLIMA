@@ -6,10 +6,11 @@
 
 import java.util.Scanner;
 
+import Controller.AdminController;
+
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
-
         // create sample movies
         MoviesController mc = new MoviesController();
         mc.addMovie(
@@ -121,8 +122,10 @@ public class App {
                     historyFlow(); // TODO
                     break;
 
-                case 6:
-                    adminFlow(); // TODO
+                case 6: 
+                    adminFlow(); 
+                    break; 
+
             }
         }
         while (choice != 7);
@@ -159,9 +162,14 @@ public class App {
         // show a list of booking history for that user
         // add options to add review for movies watched
     }
-
-    private static void adminFlow() {
-        // TODO
-        // maybe can create seperate class for admin
+    public static void adminFlow() { 
+        AdminController adminController = new AdminController();  
+        // logging in
+        boolean isLoggedIn = adminController.main(); 
+        while(isLoggedIn){ 
+            // return type: true --> still want to do more action. false --> already done
+            isLoggedIn = adminController.administratorAction(); 
+        }
     }
+ 
 }
