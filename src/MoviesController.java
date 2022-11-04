@@ -9,11 +9,15 @@
 import java.util.*;
 
 public class MoviesController {
-    private List<Movie> movies = new ArrayList<Movie>();
+    private ArrayList<Movie> movies = new ArrayList<Movie>();
+    private MovieDAO movieDao = new MovieDAO();
 
-    private Scanner sc;
     public MoviesController() {
-        sc = new Scanner(System.in);
+        movies = this.movieDao.loadMovies();
+    }
+    
+    public void save() {
+        this.movieDao.saveMovies(movies);
     }
 
     // add new movie to list of movies
@@ -41,10 +45,6 @@ public class MoviesController {
         System.out.println("");
     }
 
-    public void createMovie() {
-
-
-    }
     // TODO
     // display all movies that has 'title' as a substring
     // or can improve with other better search algorithm
@@ -63,5 +63,4 @@ public class MoviesController {
     public void rankMovieByRating(int num) {
         System.out.println("TODO");
     }
-
 }

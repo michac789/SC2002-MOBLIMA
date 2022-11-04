@@ -12,23 +12,12 @@ public class App {
         System.out.println("Welcome to MOBLIMA !!!\n");
         Date todaysDate = new Date();
         System.out.println(todaysDate);
+
         // create sample movies
-        MoviesController mc = new MoviesController();
-        mc.addMovie(
-            "movie1", 90,
-            "dir1", "cast1",
-            Movie.showStatusOptions.NOW_SHOWING,
-            Movie.ageRatingOptions.G,
-            false, false
-        );
-        mc.addMovie(
-            "movie2", 100,
-            "dir2", "cast2",
-            Movie.showStatusOptions.NOW_SHOWING,
-            Movie.ageRatingOptions.G,
-            false, false
-        );
-        mc.displayAllMovies();
+        MoviesController moviesController = new MoviesController();
+        moviesController.save();
+        
+        System.exit(1);
 
         // sample cineplexes
         Cineplex cx1 = new Cineplex("location1");
@@ -91,24 +80,24 @@ public class App {
 
             switch (choice) {
                 case 1:
-                    mc.displayAllMovies();
+                moviesController.displayAllMovies();
                     bookingFlow(sc);
                     break;
                 
                 case 2:
                     System.out.println("Type movie title");
                     String searchQuery = sc.nextLine();
-                    mc.searchMovie(searchQuery); // TODO
+                    moviesController.searchMovie(searchQuery); // TODO
                     bookingFlow(sc);
                     break;
                 
                 case 3:
-                    mc.rankMovieBySales(5); // TODO
+                    moviesController.rankMovieBySales(5); // TODO
                     bookingFlow(sc);
                     break;
                 
                 case 4:
-                    mc.rankMovieByRating(5); // TODO
+                    moviesController.rankMovieByRating(5); // TODO
                     bookingFlow(sc);
                     break;
                 

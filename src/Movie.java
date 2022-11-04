@@ -7,7 +7,7 @@
 
 public class Movie {
     // counter to keep track of total movies and auto assign movie ID
-    public static int numMovies = 0;
+    static int numMovies = 0;
 
     // crucial information: movie id (automatically set), title
     private int movieId;
@@ -66,12 +66,20 @@ public class Movie {
     // accessors, can add more if needed
     public int getMovieId() { return this.movieId;}
     public String getTitle() { return this.title;}
-    public String getIs3D() {
-        return this.is3D ? "yes" : "no";
-    }
-    public String getIsBlockbuster() {
-        return this.isBlockbuster ? "yes": "no";
-    }
+    public int getDurationMinutes() { return this.durationMinutes;}
+    public String getDirector() { return this.director;}
+    public String getCast() { return this.cast;}
+    public showStatusOptions getShowStatus() { return this.showStatus;}
+    public ageRatingOptions getAgeRating() { return this.ageRating;}
+    public boolean getIs3D() { return this.is3D;}
+    public boolean getIsBlockbuster() { return this.isBlockbuster;}
+
+    // public String getIs3D() {
+    //     return this.is3D ? "yes" : "no";
+    // }
+    // public String getIsBlockbuster() {
+    //     return this.isBlockbuster ? "yes": "no";
+    // }
 
     // print basic movie information (id & title)
     public void printMovieInfo() {
