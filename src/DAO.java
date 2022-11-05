@@ -10,7 +10,7 @@ public class DAO {
 
     public static void openFile(String filepath, boolean append) {
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, append));
+            bw = new BufferedWriter(new FileWriter(filepath, append));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -21,6 +21,7 @@ public class DAO {
             try {
                 for (int i=0; i < text.length; i++) {
                     bw.write(text[i]);
+                    bw.newLine();
                 }
             } catch (FileNotFoundException e) {
                 return;
@@ -34,6 +35,7 @@ public class DAO {
         if (bw != null) {
             try {
                 bw.write(text);
+                bw.newLine();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -60,8 +62,11 @@ public class DAO {
             }
             br.close();
             return rtnList;
+        } catch (FileNotFoundException e) {
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 }

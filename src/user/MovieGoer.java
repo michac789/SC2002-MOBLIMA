@@ -1,4 +1,4 @@
-package User;
+package user;
 enum Category { 
     ADULT, 
     SENIOR_CITIZEN, 

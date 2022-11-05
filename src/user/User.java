@@ -1,4 +1,4 @@
-package User;
+package user;
 public abstract class User { 
     private String username; 
     protected enum UserType { MOVIEGOER, ADMIN }; 

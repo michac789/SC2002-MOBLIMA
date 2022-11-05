@@ -1,4 +1,4 @@
-package User;
+package user;
 
 public class Admin extends User { 
     // do we need to use ***** instead ? 

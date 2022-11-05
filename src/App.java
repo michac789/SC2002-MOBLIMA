@@ -4,6 +4,8 @@
     Master file to be executed to launch the program
 */
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -12,22 +14,25 @@ public class App {
         System.out.println("Welcome to MOBLIMA !!!\n");
         Date todaysDate = new Date();
         System.out.println(todaysDate);
+        // Testing Area
+//        MovieController mct = new MovieController();
+//        mct.getMovies();
+//        mct.createMovie();
+
+//        ShowtimeController stc = new ShowtimeController(0);
+//        stc.getShowtime();
+//        stc.createShowtime();
+//
+//        stc.displayShowtime();
+
+
+
+//        System.exit(0);
+        // Testing Area End
+
+
         // create sample movies
-        MoviesController mc = new MoviesController();
-        mc.addMovie(
-            "movie1", 90,
-            "dir1", "cast1",
-            Movie.showStatusOptions.NOW_SHOWING,
-            Movie.ageRatingOptions.G,
-            false, false
-        );
-        mc.addMovie(
-            "movie2", 100,
-            "dir2", "cast2",
-            Movie.showStatusOptions.NOW_SHOWING,
-            Movie.ageRatingOptions.G,
-            false, false
-        );
+        MovieController mc = new MovieController();
         mc.displayAllMovies();
 
         // sample cineplexes
@@ -47,15 +52,8 @@ public class App {
 
         // get cinemas and add showtimes
         Cinema c1 = cx1.getCinema(1);
-        c1.addShowtime("14:00", 1);
-        c1.addShowtime("17:00", 1);
         Cinema c2 = cx1.getCinema(2);
-        c2.addShowtime("15:00", 1);
-        c2.addShowtime("18:00", 1);
         Cinema c3 = cx1.getCinema(3);
-        c3.addShowtime("12:00", 3);
-        c3.addShowtime("15:00", 2);
-        c3.addShowtime("18:00", 2);
 
         int choice;
         Scanner sc = new Scanner(System.in);

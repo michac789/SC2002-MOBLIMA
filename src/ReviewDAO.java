@@ -8,7 +8,7 @@ public class ReviewDAO {
         String formatComment = r.getComment();
         formatComment = formatComment.replace(",", "\\comma");
 
-        String writeStr = String.format("%d,%d,\"%s\"\n", r.getUserId(), r.getRating(), formatComment);
+        String writeStr = String.format("%d,%d,\"%s\"", r.getUserId(), r.getRating(), formatComment);
 
         AppController.dao.openFile(filename, true);
         AppController.dao.writeText(writeStr);
