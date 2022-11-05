@@ -3,20 +3,24 @@ import java.io.*;
 import java.util.LinkedList;
 
 public class BaseDAO {
-    String FILEPATH; // you should specify the file path
+    /*
+        You should specify the file path on where to store the database
+        in form of csv files.
+    */
+    // String FILEPATH = "some-path";
 
     /*
         The 'save' method saves all the changes from objects into database.
-        You should define this method and change 'Object' with whatever your
+        You should define this method and change 'BaseModel' with whatever your
         class name is. Then, replace the string 'todo' with the accessors
         from the object instance using csv format. The commented code below
         provides a template for you to copy paste this method defintion.
     */
-    // public void save(ArrayList<Object> instances) {
+    // public void save(ArrayList<BaseModel> instances) {
     //     emptyFile(FILEPATH);
     //     String writeStr = "";
     //     for (int i = 0; i < instances.size(); i++) {
-    //         Object instance = instances.get(i);
+    //         BaseModel instance = instances.get(i);
     //         writeStr = String.format(
     //             "todo", instance
     //         );
@@ -26,20 +30,19 @@ public class BaseDAO {
 
     /*
         The 'load' method loads all the data from the database into objects.
-        You should define this method and change 'Object' with whatever
+        You should define this method and change 'BaseModel' with whatever
         your class name is. Then, replace the string 'todo' with creating
         your new class, converting however many fields you have from string
         to the appropriate data types. The commented code below provides a
         template for you to copy paste this method defintion.
     */
-    // public ArrayList<Object> load() {
+    // public ArrayList<BaseModel> load() {
     //     LinkedList<String> instances = this.getData(FILEPATH);
-    //     ArrayList<Object> returnList = new ArrayList<Object>();
+    //     ArrayList<BaseModel> returnList = new ArrayList<BaseModel>();
     //     for (int i = 0; i < instances.size(); i++) {
     //         System.out.println(instances.get(i));
-    //         String singleData = instances.get(i);
-    //         String[] x = singleData.split(",");
-    //         Object new_instance = "todo" + singleField[0];
+    //         String[] x = instances.get(i).split(",");
+    //         BaseModel new_instance = "todo" + singleField[0];
     //         returnList.add(new_instance);
     //     }
     //     return returnList;

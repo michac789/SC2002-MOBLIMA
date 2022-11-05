@@ -2,38 +2,34 @@ package movie;
 import java.util.*;
 
 public class MoviesController {
-    private ArrayList<Movie> movies = new ArrayList<Movie>();
-    private MoviesDAO moviesDao = new MoviesDAO();
+    private ArrayList<Movie> instances = new ArrayList<Movie>();
+    private MoviesDAO dao = new MoviesDAO();
 
     public MoviesController() {
-        movies = this.moviesDao.load();
+        instances = this.dao.load();
     }
     
     public void save() {
-        this.moviesDao.save(movies);
+        this.dao.save(instances);
     }
 
-    // add new movie to list of movies
-    public void addMovie(
+    public void add(
         String title, int durationMinutes, String director, String cast,
         Movie.showStatusOptions showStatus, Movie.ageRatingOptions ageRating,
         boolean is3D, boolean isBlockbuster
     ) {
         Movie newMovie = new Movie(
-            "movie2", 100,
-            "dir2", "cast2",
-            Movie.showStatusOptions.NOW_SHOWING,
-            Movie.ageRatingOptions.G,
-            false, false
+            title, durationMinutes, director, cast,
+            showStatus, ageRating, is3D, isBlockbuster
         );
-        movies.add(newMovie);
+        instances.add(newMovie);
     }
 
     // display a list of all movies (id & title only)
     public void displayAllMovies() {
         System.out.println("Showing all " + Movie.numMovies + " movies:");
-        for (int i = 0; i < this.movies.size(); i++) {
-            this.movies.get(i).printMovieInfo();
+        for (int i = 0; i < this.instances.size(); i++) {
+            this.instances.get(i).printMovieInfo();
         }
         System.out.println("");
     }

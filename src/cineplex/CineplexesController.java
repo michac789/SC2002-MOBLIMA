@@ -6,11 +6,11 @@ public class CineplexesController {
     private CineplexesDAO cineplexDao = new CineplexesDAO();
 
     public CineplexesController() {
-        cineplexes = this.cineplexDao.loadMovies();
+        cineplexes = this.cineplexDao.load();
     }
 
     public void save() {
-        this.cineplexDao.saveCineplexes(cineplexes);
+        this.cineplexDao.save(cineplexes);
     }
 
     // TODO - add more functionality ???

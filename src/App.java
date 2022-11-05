@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 import cinema.CinemasController;
-import cineplex.Cineplex;
 import cineplex.CineplexesController;
 import movie.MoviesController;
 
@@ -18,17 +17,11 @@ public class App {
         Date todaysDate = new Date();
         System.out.println(todaysDate);
 
-        // load models: movies, cineplexes, cinemas, TODO - showtimes, seats
+        // load models: movies, cineplexes, cinemas
         MoviesController moviesController = new MoviesController();
         CineplexesController cineplexesController = new CineplexesController();
         CinemasController cinemasController = new CinemasController();
-
-        moviesController.save();
-        cineplexesController.save();
-        cinemasController.save();
-        
-        
-        System.exit(1);
+        // TODO - showtimes, reviews, users, tickets
 
 
         int choice;
@@ -103,6 +96,9 @@ public class App {
         }
         while (choice != 7);
         sc.close();
+        moviesController.save();
+        cineplexesController.save();
+        cinemasController.save();
     }
 
     private static void bookingFlow(Scanner sc) {

@@ -1,5 +1,8 @@
+package review;
 import java.io.*;
 import java.util.LinkedList;
+
+import AppController;
 
 public class ReviewDAO {
     public void saveReview(Review r, int movieId) {

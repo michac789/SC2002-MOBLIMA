@@ -6,10 +6,10 @@ public class CinemasController {
     private CinemasDAO cinemasDao = new CinemasDAO();
 
     public CinemasController() {
-        cinemas = this.cinemasDao.loadMovies();
+        cinemas = this.cinemasDao.load();
     }
 
     public void save() {
-        this.cinemasDao.saveCinemas(cinemas);
+        this.cinemasDao.save(cinemas);
     }
 }
