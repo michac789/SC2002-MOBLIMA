@@ -18,6 +18,7 @@ public class Movie {
     private String director;
     private String cast;
 
+    private int sales;
     public enum showStatusOptions {
         COMING_SOON, PREVIEW, NOW_SHOWING, END_OF_SHOWING
     }
@@ -49,6 +50,19 @@ public class Movie {
 
 //        this.reviews = new ReviewsController(numMovies); //Temp Commented Out
 //        reviews.getMovieReviews();
+
+    }
+
+    public Movie(int movieId, String title, int durationMinutes, String director, String cast, showStatusOptions showStatus, ageRatingOptions ageRating, boolean is3D, boolean isBlockbuster) {
+        this.movieId = movieId;
+        this.title = title;
+        this.durationMinutes = durationMinutes;
+        this.director = director;
+        this.cast = cast;
+        this.showStatus = showStatus;
+        this.ageRating = ageRating;
+        this.is3D = is3D;
+        this.isBlockbuster = isBlockbuster;
     }
 
     // mutators for all properties
@@ -65,12 +79,41 @@ public class Movie {
     // accessors, can add more if needed
     public int getMovieId() { return this.movieId;}
     public String getTitle() { return this.title;}
-    public String getIs3D() {
-        return this.is3D ? "yes" : "no";
+
+    public String getDirector() {
+        return director;
     }
-    public String getIsBlockbuster() {
-        return this.isBlockbuster ? "yes": "no";
+
+    public String getCast() {
+        return cast;
     }
+
+    public int getDurationMinutes() {
+        return durationMinutes;
+    }
+
+    public showStatusOptions getShowStatus() {
+        return showStatus;
+    }
+
+    public ageRatingOptions getAgeRating() {
+        return ageRating;
+    }
+
+    public boolean is3D() {
+        return is3D;
+    }
+
+    public boolean isBlockbuster() {
+        return isBlockbuster;
+    }
+
+    //    public String getIs3D() {
+//        return this.is3D ? "yes" : "no";
+//    }
+//    public String getIsBlockbuster() {
+//        return this.isBlockbuster ? "yes": "no";
+//    }
 
     // print basic movie information (id & title)
     public void printMovieInfo() {
@@ -79,17 +122,23 @@ public class Movie {
         );
     }
 
+    //Method Override
     // print complete movie information
-    public void printMovieInfoComplete() {
-        System.out.println("Movie ID: " + this.movieId);
-        System.out.println("Movie Title: " + this.title);
-        System.out.println("Duration: " + this.durationMinutes);
-        System.out.println("Director: " + this.director);
-        System.out.println("Cast: " + this.cast);
-        System.out.println("Show Status: " + this.showStatus);
-        System.out.println("Age Rating: " + this.ageRating);
-        System.out.println("3D: " + this.getIs3D());
-        System.out.println("Blockbuster: " + this.getIsBlockbuster());
-        System.out.println("");
+//    public String toString() {
+//        String rtn;
+//        System.out.println("Movie ID: " + this.movieId);
+//        System.out.println("Movie Title: " + this.title);
+//        System.out.println("Duration: " + this.durationMinutes);
+//        System.out.println("Director: " + this.director);
+//        System.out.println("Cast: " + this.cast);
+//        System.out.println("Show Status: " + this.showStatus);
+//        System.out.println("Age Rating: " + this.ageRating);
+//        System.out.println("3D: " + this.getIs3D());
+//        System.out.println("Blockbuster: " + this.getIsBlockbuster());
+//        System.out.println("");
+//    }
+
+    public void getReviews() {
+        reviews.displayReviews(1);
     }
 }

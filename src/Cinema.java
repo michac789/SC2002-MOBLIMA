@@ -35,11 +35,6 @@ public class Cinema {
     // because it will affect all showtimes class and seats inside it
 
     // add new showtime to a cinema
-    public void addShowtime(String dt, int movieId) {
-        Showtime newSt = new Showtime(dt, movieId, this.height, this.width);
-        this.showtimes.add(newSt);
-    }
-
     // get all showtimes
     // TODO
 
