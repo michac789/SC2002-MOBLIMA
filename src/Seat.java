@@ -13,6 +13,11 @@ public class Seat {
         this.booked = false;
     }
 
+    public Seat(String code, boolean booked) {
+        this.code = code;
+        this.booked = booked;
+    }
+
     // mutators
     public void setCode(String code) { this.code = code;}
     public void bookSeat() { this.booked = true;}
