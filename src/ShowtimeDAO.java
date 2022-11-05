@@ -19,7 +19,7 @@ public class ShowtimeDAO {
         String formatTime = timeFormat.format(sDate);
 
         // CSV Data format
-        // showtimeId, movieId, cinemaId, dd/mm/yy, hh:mm
+        // showtimeId, movieId, cinemaId, dd/mm/yy, HH:mm
         String writeStr = String.format("%d,%d,%d,%s,%s", s.getShowtimeId(), s.getMovieId(), s.getCinemaId(), formatDate, formatTime);
 
         AppController.dao.openFile(filename, true);
@@ -44,7 +44,7 @@ public class ShowtimeDAO {
             }
             s = new Showtime(Integer.parseInt(values[0]), Integer.parseInt(values[1]), Integer.parseInt(values[2]), d);
             showtimes.add(s);
-            AppController.showtimeIdMax++; //Add Count to track showtimeId
+            Showtime.numOfShowtime++; //Add Count to track showtimeId
         }
     }
 }

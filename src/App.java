@@ -12,38 +12,25 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
-        Date d = new Date();
-        Date dt = new Date(2022, 11, 05, 2, 30);
-        int f = d.compareTo(dt);
         // Testing Area
-        ShowtimeController stc = new ShowtimeController(0);
-        stc.getShowtime();
+//        MovieController mct = new MovieController();
+//        mct.getMovies();
+//        mct.createMovie();
+
+//        ShowtimeController stc = new ShowtimeController(0);
+//        stc.getShowtime();
 //        stc.createShowtime();
+//
+//        stc.displayShowtime();
 
-        stc.displayShowtime();
 
 
-
-        System.exit(0);
+//        System.exit(0);
         // Testing Area End
 
 
         // create sample movies
-        MoviesController mc = new MoviesController();
-        mc.addMovie(
-            "movie1", 90,
-            "dir1", "cast1",
-            Movie.showStatusOptions.NOW_SHOWING,
-            Movie.ageRatingOptions.G,
-            false, false
-        );
-        mc.addMovie(
-            "movie2", 100,
-            "dir2", "cast2",
-            Movie.showStatusOptions.NOW_SHOWING,
-            Movie.ageRatingOptions.G,
-            false, false
-        );
+        MovieController mc = new MovieController();
         mc.displayAllMovies();
 
         // sample cineplexes

@@ -2,20 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67a5899a-62e8-40c7-b5ae-5ecae3ef2cfd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Movies.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieDAO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MovieController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MovieDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/0_Showtimes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/0_Showtimes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/DAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/DAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ShowtimeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ShowtimeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$ageRatingOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$ageRatingOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$showStatusOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$showStatusOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MoviesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Showtime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Showtime.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ShowtimeDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ShowtimeDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShowtimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShowtimeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MoviesController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Showtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Showtime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ShowtimeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShowtimeDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -28,12 +45,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -45,6 +62,17 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -52,6 +80,17 @@
           <url>file://$PROJECT_DIR$/src/ShowtimeController.java</url>
           <line>90</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MovieDAO.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/Movie.java</url>
+          <line>24</line>
+          <properties field="showStatus" class="Movie" />
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

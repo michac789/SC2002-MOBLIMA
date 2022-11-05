@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Showtime {
+    public static int numOfShowtime = 0;
     private int showtimeId;
     private int movieId;
     private int cinemaId;
@@ -17,7 +18,7 @@ public class Showtime {
 
     // For creating new showtime
     public Showtime(int movieId, int cinemaId, Date date) {
-        this.showtimeId = ++AppController.showtimeIdMax;
+        this.showtimeId = ++Showtime.numOfShowtime;
         this.movieId = movieId;
         this.cinemaId = cinemaId;
         this.date = date;
