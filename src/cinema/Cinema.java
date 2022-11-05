@@ -6,8 +6,8 @@ public class Cinema {
     static int numCinema = 0;
 
     // information of a cinema
-    private int fkCineplex;
     private int cinemaId;
+    private int fkCineplex;
     private int cinemaCode;
     private int height;
     private int width;

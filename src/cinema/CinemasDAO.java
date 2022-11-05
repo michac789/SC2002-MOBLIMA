@@ -22,8 +22,8 @@ public class CinemasDAO {
                 throw new RuntimeException(e);
             }
             Cinema cinema = cinemas.get(i);
-            String writeStr = String.format("%d,%d,%d,%d,%s",
-                cinema.getCinemaId(), cinema.getCinemaCode(),
+            String writeStr = String.format("%d,%d,%d,%d,%d,%s",
+                cinema.getCinemaId(), cinema.getfkCineplex(), cinema.getCinemaCode(),
                 cinema.getHeight(), cinema.getWidth(), cinema.getCinemaClass());
             try {
                 bw.write(writeStr);

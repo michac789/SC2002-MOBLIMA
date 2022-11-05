@@ -6,11 +6,11 @@ public class MoviesController {
     private MoviesDAO moviesDao = new MoviesDAO();
 
     public MoviesController() {
-        movies = this.moviesDao.loadMovies();
+        movies = this.moviesDao.load();
     }
     
     public void save() {
-        this.moviesDao.saveMovies(movies);
+        this.moviesDao.save(movies);
     }
 
     // add new movie to list of movies

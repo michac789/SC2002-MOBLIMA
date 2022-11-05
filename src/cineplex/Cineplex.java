@@ -1,15 +1,4 @@
 package cineplex;
-/*
-    'Cineplex' class
-
-    - Stores information about a cineplex
-    - Contain a list of cinemas in the cineplex
-*/
-
-import java.util.*;
-
-// import Cinema;
-// import Cinema.showClassOptions;
 
 public class Cineplex {
     // counter to keep track of total cineplex and auto assign ID
