@@ -13,7 +13,6 @@ public class AdminUI {
         // dummy data 
         ArrayList<String> user = new ArrayList<> ();  
         
-        // dummy data 
         user.add("kristian"); 
         user.add("kristian123"); 
         adminController.adminList = new ArrayList<> (); 
@@ -74,8 +73,6 @@ public class AdminUI {
                     break;
             }
         }   
-        
-
     }
 
     public void createAdminAccount(){

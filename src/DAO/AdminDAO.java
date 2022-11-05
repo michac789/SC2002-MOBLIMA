@@ -8,7 +8,7 @@ public class AdminDAO extends DAO {
         String path = "database/AdminUsers.csv";
         try {
             openFile(path, true);
-            writeText("kristian,1,2,3");
+            writeText(username + "," + password);
             System.out.println("Successfully create the account");
             closeFile();
         } catch (IOException e) {

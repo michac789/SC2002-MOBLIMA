@@ -10,7 +10,6 @@ public class Admin extends User {
         this.password = password; 
     }
 
-
     public boolean hasAdminAccess() { 
         return true; 
     }

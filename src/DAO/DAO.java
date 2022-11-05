@@ -1,5 +1,3 @@
-package DAO;
-
 import java.io.*;
 import java.util.LinkedList;
 
@@ -10,8 +8,12 @@ public class DAO {
         bw = null;
     }
 
-    public static void openFile(String filepath, boolean append) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, append));
+    public static void openFile(String filepath, boolean append) {
+        try {
+            bw = new BufferedWriter(new FileWriter(filepath, append));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void writeText(String[] text) {
@@ -19,6 +21,7 @@ public class DAO {
             try {
                 for (int i=0; i < text.length; i++) {
                     bw.write(text[i]);
+                    bw.newLine();
                 }
             } catch (FileNotFoundException e) {
                 return;
@@ -32,8 +35,7 @@ public class DAO {
         if (bw != null) {
             try {
                 bw.write(text);
-            } catch (FileNotFoundException e) {
-                return;
+                bw.newLine();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
