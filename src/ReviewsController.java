@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ReviewsController {
     private int movieId;
-    private double rating;
+    private int rating;
 
     private Scanner sc;
 
@@ -14,6 +14,7 @@ public class ReviewsController {
     private static ReviewDAO reviewDao = new ReviewDAO();
 
     public ReviewsController(int movieId) {
+        this.rating = 0;
         this.movieId = movieId;
         sc = new Scanner(System.in);
         reviews = new LinkedList<Review>();
@@ -81,9 +82,8 @@ public class ReviewsController {
         // Need by Alphabetical???
         Review temp;
 
-        this.rating += reviews.get(0).getRating();
         // Insertion Sort
-        for (int i=1; i < reviews.size(); i++) {
+        for (int i=0; i < reviews.size(); i++) {
             this.rating += reviews.get(i).getRating();
             for (int j=i; j > 0; j--) {
                 if (reviews.get(j).compareTo(reviews.get(j - 1)) > 0) {
@@ -101,6 +101,8 @@ public class ReviewsController {
     }
 
     public double getRating() {
+        if (reviews.size() == 0) {return -1;} // No Reviews
+
         return ((this.rating/ 1.0) / reviews.size()); //Force typecast to double then divide by int;
     }
 }

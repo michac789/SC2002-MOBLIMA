@@ -16,6 +16,16 @@ public class DAO {
         }
     }
 
+    public static void clearFile(String filepath) {
+        try {
+            bw = new BufferedWriter(new FileWriter(filepath, false));
+            bw.write("");
+            bw.close();
+            bw = null;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void writeText(String[] text) {
         if (bw != null) {
             try {
@@ -53,10 +63,10 @@ public class DAO {
         }
     }
     public static LinkedList<String> readText(String filepath) {
+        LinkedList<String> rtnList = new LinkedList<String>();
         try {
             br = new BufferedReader(new FileReader(filepath));
             String line;
-            LinkedList<String> rtnList = new LinkedList<String>();
             while ((line = br.readLine()) != null) {
                 rtnList.add(line);
             }
@@ -67,6 +77,6 @@ public class DAO {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return rtnList;
     }
 }

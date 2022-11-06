@@ -1,3 +1,5 @@
+import sun.awt.image.ImageWatched;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,7 +21,11 @@ public class ShowtimeController {
         sc = new Scanner(System.in);
     }
 
+    // Cinema is linked to showtime
+    // Showtime is linked to movie
+    // CinemaController creates showtimes
     public void createShowtime() {
+        // Maybe have user
         String movieTitle = "Batman";
         System.out.println("Creating new showtime for " + movieTitle);
 
@@ -74,12 +80,93 @@ public class ShowtimeController {
         System.out.println("Enter cinema hall:");
         cinemaHall = sc.nextInt();  //Check if cinema hall valid
 
+        if (checkDuplicateShowtime(formattedDate, cinemaHall)) {
+            //Repeat??
+        }
+
         Showtime s = new Showtime(this.movieId, cinemaHall, formattedDate);
         addShowtime(s);
 
         showtimeDAO.saveShowtime(this.movieId, s);
     }
 
+    public void updateShowtime() throws ParseException {
+        System.out.println("Select Showtime");
+        Date todayDate = new Date();
+        Date formattedDate;
+        LinkedList<Date> dateList = new LinkedList<Date>();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Get Unique Dates, After today's Date
+        for (Showtime s: this.showtimes) {
+            if (s.getDate().compareTo(todayDate) >= 0 ) {
+                formattedDate = dateFormat.parse(dateFormat.format(s.getDate()));
+                // After or Equsl to Curr time
+                if (dateList.size() == 0) {
+                    dateList.add(formattedDate);
+                }else {
+                    if (formattedDate.compareTo(dateList.getLast()) > 0) {
+                        // Greater than last of dateList = new Date
+                        dateList.add(formattedDate);
+                    }
+                }
+            }
+        }
+        int i=0;
+        System.out.println("Select a date to view showtimes:");
+        for (Date d: dateList) {
+            System.out.printf("%d: %s\n",i, dateFormat.format(d));
+            i++;
+        }
+        int dateOption = sc.nextInt();
+        int[] range = findShowtimes(dateList.get(dateOption));
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        int k=0;
+        for (int j=range[0]; j < range[1];j++) {
+            System.out.printf("%d: %s\t",k, timeFormat.format(showtimes.get(j)));
+            k++;
+        }
+        int showtimeOption = sc.nextInt();
+
+        System.out.printf("Editing showtime %s:\n", timeFormat.format(showtimes.get(showtimeOption)));
+        System.out.printf("1. Edit showtime\n" +
+                "2. Edit Movie shown\n" +
+                "3. Remove Showtime\n");
+        int editOption = sc.nextInt();
+
+        DateFormat showtimeDateFormat = new SimpleDateFormat("dd/MM/yyyy:HHmm");
+        switch(editOption) {
+            case 1:
+                System.out.print("Enter new showtime(hhmm):");
+                int showtime = sc.nextInt();
+                Date newDate = showtimeDateFormat.parse(dateFormat.format(dateList.get(dateOption)) + ":" + Integer.valueOf(showtime));
+                this.showtimes.get(showtimeOption).setDate(newDate);
+                break;
+            case 2:
+                Movie m = AppController.mc.movieSelection();
+                this.showtimes.get(showtimeOption).setMovieId(m.getMovieId());
+                break;
+            case 3:
+                System.out.printf("Confirm removal of %s showtime?(Yes,No):", timeFormat.format(this.showtimes.get(showtimeOption).getDate());
+                String selection = sc.nextLine();
+                if (selection.toLowerCase() == "yes") {
+                    this.showtimes.remove(showtimeOption);
+                    System.out.println("Successfully removed showtime.");
+                    break;
+                }
+                break;
+        }
+
+        showtimeDAO.saveShowtime(this.showtimes);
+    }
+
+    public boolean checkDuplicateShowtime(Date d, int cinemaHall) {
+        for (Showtime s: this.showtimes) {
+            if (s.getCinemaId() == cinemaHall && s.getDate() == d) {
+                return true;
+            }
+        }
+    }
     public void getShowtime() {
         showtimeDAO.getShowtimes(this.movieId, this.showtimes);
         sortShowtimes();

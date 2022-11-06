@@ -1,6 +1,12 @@
 public class AppController {
     public static DAO dao = new DAO();
 
-    public static int showtimeIdMax = 0;
+    public static MovieController mc;
+    public AppController() {
+    }
 
+    public void initControllers() {
+        mc = new MovieController();
+        mc.getMovies();
+    }
 }

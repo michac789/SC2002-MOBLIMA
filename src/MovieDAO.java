@@ -14,8 +14,21 @@ public class MovieDAO {
         AppController.dao.closeFile();
     }
 
+    public void saveMovie(LinkedList<Movie> movies) {
+        String filename = "Movies.csv";
+        AppController.dao.clearFile(filename);
+        AppController.dao.openFile(filename, true);
+        for (Movie m: movies) {
+            // movieId, title, duration, director, cast, status, age rating, is3D, isBlockbuster
+            String writeStr = String.format("%d,%s,%d,%s,%s,%s,%s,%d,%d",
+                    m.getMovieId(), m.getTitle(), m.getDurationMinutes(), m.getDirector(), m.getCast(),
+                    m.getShowStatus(), m.getAgeRating(), (m.is3D() ? 1 : 0), (m.isBlockbuster() ? 1 : 0));
+            AppController.dao.writeText(writeStr);
+        }
+        AppController.dao.closeFile();
+    }
     public void getMovie(LinkedList<Movie> movieList) {
-        String filename = "Movie.csv";
+        String filename = "Movies.csv";
 
         LinkedList<String> movieStr = AppController.dao.readText(filename);
         if (movieStr==null || movieStr.size() == 0) {return;}

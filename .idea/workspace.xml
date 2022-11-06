@@ -2,24 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67a5899a-62e8-40c7-b5ae-5ecae3ef2cfd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Movies.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieDAO.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MovieController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MovieDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/0_Showtimes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/0_Showtimes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/0_Reviews.csv" beforeDir="false" afterPath="$PROJECT_DIR$/0_Reviews.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Movies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Movies.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$ageRatingOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$ageRatingOptions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$showStatusOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$showStatusOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/AppController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/AppController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/DAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/DAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MoviesController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Showtime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Showtime.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ShowtimeDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ShowtimeDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MoviesController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Showtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Showtime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MovieDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ReviewDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReviewDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ReviewsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReviewsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ShowtimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShowtimeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ShowtimeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShowtimeDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,9 +50,19 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="SC2002-MOBLIMA" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -77,22 +89,25 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ShowtimeController.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/App.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/MovieDAO.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/src/MovieController.java</url>
+          <line>306</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/Movie.java</url>
-          <line>24</line>
-          <properties field="showStatus" class="Movie" />
-          <option name="timeStamp" value="13" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MovieController.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

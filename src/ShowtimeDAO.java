@@ -27,6 +27,24 @@ public class ShowtimeDAO {
         AppController.dao.closeFile();
     }
 
+    public void saveShowtime(LinkedList<Showtime> showtimes) {
+        String filename = "0_Showtimes.csv";
+
+        AppController.dao.clearFile(filename);
+        AppController.dao.openFile(filename, true);
+        Date sDate;
+        String formatDate, formatTime;
+        for (Showtime s: showtimes) {
+            sDate = s.getDate();
+            formatDate = dateFormat.format(sDate);
+            formatTime = timeFormat.format(sDate);
+
+            // showtimeId, movieId, cinemaId, dd/mm/yy, HH:mm
+            String writeStr = String.format("%d,%d,%d,%s,%s", s.getShowtimeId(), s.getMovieId(), s.getCinemaId(), formatDate, formatTime);
+            AppController.dao.writeText(writeStr);
+        }
+        AppController.dao.closeFile();
+    }
     public void getShowtimes(int movieId, LinkedList<Showtime> showtimes) {
         String filename = movieId + "_Showtimes.csv";
 

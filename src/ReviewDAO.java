@@ -20,6 +20,7 @@ public class ReviewDAO {
         LinkedList<String> reviewStr = AppController.dao.readText(filename);
 
         String[] values;
+        if (reviewStr == null) {return;}
         Review r;
         for (int i=0; i < reviewStr.size(); i++) {
             values = reviewStr.get(i).split(",");

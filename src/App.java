@@ -13,8 +13,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
         // Testing Area
-//        MovieController mct = new MovieController();
-//        mct.getMovies();
+        MovieController mct = new MovieController();
+        mct.getMovies();
+        mct.editMovies();
 //        mct.createMovie();
 
 //        ShowtimeController stc = new ShowtimeController(0);
@@ -23,15 +24,17 @@ public class App {
 //
 //        stc.displayShowtime();
 
+//        AppController ac = new AppController();
+        System.exit(0);
 
-
-//        System.exit(0);
         // Testing Area End
 
 
         // create sample movies
         MovieController mc = new MovieController();
-        mc.displayAllMovies();
+        mc.getMovies();
+        mc.displayReviews(0);
+        mc.rankMovieByRating();
 
         // sample cineplexes
         Cineplex cx1 = new Cineplex("location1");
@@ -91,17 +94,19 @@ public class App {
             System.out.println("(7) Exit Application");
 
             choice = sc.nextInt();
+            sc.nextLine();
 
             switch (choice) {
                 case 1:
-                    mc.displayAllMovies();
+//                    mc.displayAllMovies();
                     bookingFlow(sc);
                     break;
                 
                 case 2:
-                    System.out.println("Type movie title");
+                    System.out.print("Enter movie title:");
                     String searchQuery = sc.nextLine();
-                    mc.searchMovie(searchQuery); // TODO
+                    int movieId = mc.searchMovie(searchQuery);
+                    // Navigate to movieOptions, Booking etc.
                     bookingFlow(sc);
                     break;
                 
@@ -111,7 +116,7 @@ public class App {
                     break;
                 
                 case 4:
-                    mc.rankMovieByRating(5); // TODO
+                    mc.rankMovieByRating(); // TODO
                     bookingFlow(sc);
                     break;
                 

@@ -138,7 +138,14 @@ public class Movie {
 //        System.out.println("");
 //    }
 
-    public void getReviews() {
+    public void loadReviews() {
+        reviews = new ReviewsController(this.movieId);
+    }
+
+    public double getRating() {
+        return reviews.getRating();
+    }
+    public void displayReviews() {
         reviews.displayReviews(1);
     }
 }
