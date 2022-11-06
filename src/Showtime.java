@@ -12,23 +12,20 @@ public class Showtime {
     public static int numOfShowtime = 0;
     private int showtimeId;
     private int movieId;
-    private int cinemaId;
 
     private Date date;
 
     // For creating new showtime
-    public Showtime(int movieId, int cinemaId, Date date) {
+    public Showtime(int movieId, Date date) {
         this.showtimeId = ++Showtime.numOfShowtime;
         this.movieId = movieId;
-        this.cinemaId = cinemaId;
         this.date = date;
     }
 
     // For existing showtime (From DAO)
-    public Showtime(int showtimeId, int movieId, int cinemaId, Date date) {
+    public Showtime(int showtimeId, int movieId, Date date) {
         this.showtimeId = showtimeId;
         this.movieId = movieId;
-        this.cinemaId = cinemaId;
         this.date = date;
     }
 
@@ -40,9 +37,6 @@ public class Showtime {
         return movieId;
     }
 
-    public int getCinemaId() {
-        return cinemaId;
-    }
 
     public int getShowtimeId() {
         return showtimeId;
@@ -54,10 +48,6 @@ public class Showtime {
 
     public void setMovieId(int movieId) {
         this.movieId = movieId;
-    }
-
-    public void setCinemaId(int cinemaId) {
-        this.cinemaId = cinemaId;
     }
 
     public void setShowtimeId(int showtimeId) {

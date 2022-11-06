@@ -1,4 +1,5 @@
 import java.io.*;
+
 import java.util.LinkedList;
 
 public class DAO {
@@ -60,6 +61,15 @@ public class DAO {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    public static void deleteFile(String filepath) {
+        File deleteFile = new File(filepath);
+        if (deleteFile.delete()) {
+            // Deleted Successfully
+        } else {
+            // Failed to delete
         }
     }
     public static LinkedList<String> readText(String filepath) {

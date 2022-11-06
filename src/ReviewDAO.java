@@ -3,7 +3,7 @@ import java.util.LinkedList;
 
 public class ReviewDAO {
     public void saveReview(Review r, int movieId) {
-        String filename = movieId + "_Reviews.csv";
+        String filename = "movie" + movieId + "_Reviews.csv";
 
         String formatComment = r.getComment();
         formatComment = formatComment.replace(",", "\\comma");
@@ -15,7 +15,7 @@ public class ReviewDAO {
         AppController.dao.closeFile();
     }
     public void getReviews(int movieId, LinkedList<Review> reviews) {
-        String filename = movieId + "_Reviews.csv";
+        String filename = "movie" + movieId + "_Reviews.csv";
 
         LinkedList<String> reviewStr = AppController.dao.readText(filename);
 

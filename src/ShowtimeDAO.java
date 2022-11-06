@@ -11,24 +11,24 @@ public class ShowtimeDAO {
 
     private static DateFormat daoFormat = new SimpleDateFormat("dd/MM/yy,HH:mm");
 
-    public void saveShowtime(int movieId, Showtime s) {
-        String filename = s.getMovieId() + "_Showtimes.csv";
+    public void saveShowtime(int cinemaId, Showtime s) {
+        String filename = "cinema" + cinemaId + "_Showtimes.csv";
 
         Date sDate = s.getDate();
         String formatDate = dateFormat.format(sDate);
         String formatTime = timeFormat.format(sDate);
 
         // CSV Data format
-        // showtimeId, movieId, cinemaId, dd/mm/yy, HH:mm
-        String writeStr = String.format("%d,%d,%d,%s,%s", s.getShowtimeId(), s.getMovieId(), s.getCinemaId(), formatDate, formatTime);
+        // showtimeId, movieId, dd/mm/yy, HH:mm
+        String writeStr = String.format("%d,%d,%s,%s", s.getShowtimeId(), s.getMovieId(), formatDate, formatTime);
 
         AppController.dao.openFile(filename, true);
         AppController.dao.writeText(writeStr);
         AppController.dao.closeFile();
     }
 
-    public void saveShowtime(LinkedList<Showtime> showtimes) {
-        String filename = "0_Showtimes.csv";
+    public void saveShowtime(int cinemaId, LinkedList<Showtime> showtimes) {
+        String filename = "cinema" + cinemaId + "_Showtimes.csv";
 
         AppController.dao.clearFile(filename);
         AppController.dao.openFile(filename, true);
@@ -39,14 +39,14 @@ public class ShowtimeDAO {
             formatDate = dateFormat.format(sDate);
             formatTime = timeFormat.format(sDate);
 
-            // showtimeId, movieId, cinemaId, dd/mm/yy, HH:mm
-            String writeStr = String.format("%d,%d,%d,%s,%s", s.getShowtimeId(), s.getMovieId(), s.getCinemaId(), formatDate, formatTime);
+            // showtimeId, movieId, dd/mm/yy, HH:mm
+            String writeStr = String.format("%d,%d,%s,%s", s.getShowtimeId(), s.getMovieId(), formatDate, formatTime);
             AppController.dao.writeText(writeStr);
         }
         AppController.dao.closeFile();
     }
-    public void getShowtimes(int movieId, LinkedList<Showtime> showtimes) {
-        String filename = movieId + "_Showtimes.csv";
+    public void getShowtimes(int cinemaId, LinkedList<Showtime> showtimes) {
+        String filename = "cinema" + cinemaId + "_Showtimes.csv";
 
         LinkedList<String> showtimeStr = AppController.dao.readText(filename);
         if (showtimeStr == null || showtimeStr.size() == 0) {return;};
@@ -56,11 +56,11 @@ public class ShowtimeDAO {
             values = showtimeStr.get(i).split(",");
             Date d = null;
             try {
-                d = daoFormat.parse(String.format("%s,%s",values[3], values[4]));
+                d = daoFormat.parse(String.format("%s,%s",values[2], values[3]));
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-            s = new Showtime(Integer.parseInt(values[0]), Integer.parseInt(values[1]), Integer.parseInt(values[2]), d);
+            s = new Showtime(Integer.parseInt(values[0]), Integer.parseInt(values[1]), d);
             showtimes.add(s);
             Showtime.numOfShowtime++; //Add Count to track showtimeId
         }

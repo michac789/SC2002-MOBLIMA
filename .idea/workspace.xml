@@ -3,24 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="67a5899a-62e8-40c7-b5ae-5ecae3ef2cfd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/0_Reviews.csv" beforeDir="false" afterPath="$PROJECT_DIR$/0_Reviews.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Movies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Movies.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/AppController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/AppController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/DAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/DAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ReviewDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReviewDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ReviewsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReviewsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Showtime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Showtime.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ShowtimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShowtimeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ShowtimeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ShowtimeDAO.java" afterDir="false" />
     </list>
@@ -90,7 +83,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/App.java</url>
-          <line>34</line>
+          <line>35</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

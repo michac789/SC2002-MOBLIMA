@@ -12,19 +12,20 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
+        AppController ac = new AppController();
         // Testing Area
-        MovieController mct = new MovieController();
-        mct.getMovies();
-        mct.editMovies();
+//        MovieController mct = new MovieController();
+//        mct.getMovies();
+//        mct.editMovies();
 //        mct.createMovie();
 
-//        ShowtimeController stc = new ShowtimeController(0);
-//        stc.getShowtime();
+        ShowtimeController stc = new ShowtimeController(0);
+        stc.getShowtime();
 //        stc.createShowtime();
 //
+        stc.updateShowtime();
 //        stc.displayShowtime();
 
-//        AppController ac = new AppController();
         System.exit(0);
 
         // Testing Area End

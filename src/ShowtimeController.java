@@ -1,5 +1,3 @@
-import sun.awt.image.ImageWatched;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,14 +7,12 @@ import java.util.Scanner;
 
 public class ShowtimeController {
     private LinkedList<Showtime> showtimes;
-
-    private int movieId;
-
+    private int cinemaId;
     private static ShowtimeDAO showtimeDAO = new ShowtimeDAO();
 
     private Scanner sc;
-    public ShowtimeController(int movieId) {
-        this.movieId = movieId;
+    public ShowtimeController(int cinemaId) {
+        this.cinemaId = cinemaId;
         showtimes = new LinkedList<Showtime>();
         sc = new Scanner(System.in);
     }
@@ -25,11 +21,11 @@ public class ShowtimeController {
     // Showtime is linked to movie
     // CinemaController creates showtimes
     public void createShowtime() {
-        // Maybe have user
-        String movieTitle = "Batman";
-        System.out.println("Creating new showtime for " + movieTitle);
+        // Cinemahall should be given
+        System.out.println("Creating new showtime:");
+        Movie m = AppController.mc.movieSelection();
 
-        int timeslot, cinemaHall;
+        int timeslot;
         String movieDate;
         DateFormat checkValidDate = new SimpleDateFormat("ddMMyyyy");
         checkValidDate.setLenient(false); //Strict date interpretation, falsely entered date results in null obj
@@ -77,30 +73,70 @@ public class ShowtimeController {
             throw new RuntimeException(e);
         }
 
-        System.out.println("Enter cinema hall:");
-        cinemaHall = sc.nextInt();  //Check if cinema hall valid
 
-        if (checkDuplicateShowtime(formattedDate, cinemaHall)) {
+        if (checkDuplicateShowtime(formattedDate)) {
             //Repeat??
         }
 
-        Showtime s = new Showtime(this.movieId, cinemaHall, formattedDate);
+        Showtime s = new Showtime(m.getMovieId(), this.cinemaId, formattedDate);
         addShowtime(s);
 
-        showtimeDAO.saveShowtime(this.movieId, s);
+        showtimeDAO.saveShowtime(this.cinemaId, s);
     }
 
     public void updateShowtime() throws ParseException {
-        System.out.println("Select Showtime");
-        Date todayDate = new Date();
-        Date formattedDate;
-        LinkedList<Date> dateList = new LinkedList<Date>();
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
+        int showtimeIndex = (int) showtimeSelection(true);
+        boolean exit = false;
+        while (!exit) {
+            System.out.printf("Editing showtime %s:\n", timeFormat.format(showtimes.get(showtimeIndex).getDate()));
+            System.out.printf("1. Edit showtime\n" +
+                    "2. Edit Movie shown\n" +
+                    "3. Remove Showtime\n" +
+                    "4. Exit\n");
+            int editOption = sc.nextInt();
+            if (editOption == 4) {break;} //Exit
+
+            DateFormat showtimeDateFormat = new SimpleDateFormat("dd/MM/yyyy:HHmm");
+            switch (editOption) {
+                case 1:
+                    System.out.print("Enter new showtime(hhmm):");
+                    int showtime = sc.nextInt();
+                    Date newDate = showtimeDateFormat.parse(dateFormat.format(this.showtimes.get(showtimeIndex).getDate()) + ":" + Integer.valueOf(showtime));
+                    this.showtimes.get(showtimeIndex).setDate(newDate);
+                    break;
+                case 2:
+                    Movie m = AppController.mc.movieSelection();
+                    this.showtimes.get(showtimeIndex).setMovieId(m.getMovieId());
+                    break;
+                case 3:
+                    System.out.printf("Confirm removal of %s showtime?(Yes,No):", timeFormat.format(this.showtimes.get(showtimeIndex).getDate()));
+                    String selection = sc.nextLine();
+                    if (selection.toLowerCase() == "yes") {
+                        this.showtimes.remove(showtimeIndex);
+                        System.out.println("Successfully removed showtime.");
+                        exit = true;
+                    }
+                    break;
+            }
+        }
+
+        showtimeDAO.saveShowtime(this.cinemaId, this.showtimes);
+    }
+
+    public void getUniqueDates(Date todayDate, LinkedList<Date> dateList) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date formattedDate;
         // Get Unique Dates, After today's Date
         for (Showtime s: this.showtimes) {
             if (s.getDate().compareTo(todayDate) >= 0 ) {
-                formattedDate = dateFormat.parse(dateFormat.format(s.getDate()));
+                try {
+                    formattedDate = dateFormat.parse(dateFormat.format(s.getDate()));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
                 // After or Equsl to Curr time
                 if (dateList.size() == 0) {
                     dateList.add(formattedDate);
@@ -112,6 +148,43 @@ public class ShowtimeController {
                 }
             }
         }
+    }
+
+    public boolean checkDuplicateShowtime(Date d) {
+        for (Showtime s: this.showtimes) {
+            if (s.getDate().compareTo(d) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void getShowtime() {
+        showtimeDAO.getShowtimes(this.cinemaId, this.showtimes);
+        sortShowtimes();
+    }
+
+    // Do displayShowtime(new Date()) instead
+//    public void displayShowtime() {
+//        // Display Today's Date
+//        Date todayDate = new Date();
+//        DateFormat df = new SimpleDateFormat("HH:mm");
+//        int[] range = findShowtimes(todayDate);
+//        Date showDate;
+//        if (range[0] != -1) {
+//            for (int i=range[0]; i < range[1];i++) {
+//                showDate = showtimes.get(i).getDate();
+//                System.out.printf("%s\t", df.format(showDate));
+//            }
+//        }
+//    }
+    public Object showtimeSelection(boolean returnIndex) {
+        System.out.println("Selecting showtimes from cinema " + this.cinemaId);
+        System.out.println("Select Showtime");
+        LinkedList<Date> dateList = new LinkedList<Date>();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        getUniqueDates(new Date(), dateList);
+
         int i=0;
         System.out.println("Select a date to view showtimes:");
         for (Date d: dateList) {
@@ -123,72 +196,22 @@ public class ShowtimeController {
         DateFormat timeFormat = new SimpleDateFormat("HH:mm");
         int k=0;
         for (int j=range[0]; j < range[1];j++) {
-            System.out.printf("%d: %s\t",k, timeFormat.format(showtimes.get(j)));
+            System.out.printf("%d: %s\t",k, timeFormat.format(showtimes.get(j).getDate()));
             k++;
         }
+        System.out.printf("\nSelect Showtime: ");
         int showtimeOption = sc.nextInt();
 
-        System.out.printf("Editing showtime %s:\n", timeFormat.format(showtimes.get(showtimeOption)));
-        System.out.printf("1. Edit showtime\n" +
-                "2. Edit Movie shown\n" +
-                "3. Remove Showtime\n");
-        int editOption = sc.nextInt();
-
-        DateFormat showtimeDateFormat = new SimpleDateFormat("dd/MM/yyyy:HHmm");
-        switch(editOption) {
-            case 1:
-                System.out.print("Enter new showtime(hhmm):");
-                int showtime = sc.nextInt();
-                Date newDate = showtimeDateFormat.parse(dateFormat.format(dateList.get(dateOption)) + ":" + Integer.valueOf(showtime));
-                this.showtimes.get(showtimeOption).setDate(newDate);
-                break;
-            case 2:
-                Movie m = AppController.mc.movieSelection();
-                this.showtimes.get(showtimeOption).setMovieId(m.getMovieId());
-                break;
-            case 3:
-                System.out.printf("Confirm removal of %s showtime?(Yes,No):", timeFormat.format(this.showtimes.get(showtimeOption).getDate());
-                String selection = sc.nextLine();
-                if (selection.toLowerCase() == "yes") {
-                    this.showtimes.remove(showtimeOption);
-                    System.out.println("Successfully removed showtime.");
-                    break;
-                }
-                break;
-        }
-
-        showtimeDAO.saveShowtime(this.showtimes);
-    }
-
-    public boolean checkDuplicateShowtime(Date d, int cinemaHall) {
-        for (Showtime s: this.showtimes) {
-            if (s.getCinemaId() == cinemaHall && s.getDate() == d) {
-                return true;
-            }
-        }
-    }
-    public void getShowtime() {
-        showtimeDAO.getShowtimes(this.movieId, this.showtimes);
-        sortShowtimes();
-    }
-
-
-    public void displayShowtime() {
-        // Display Today's Date
-        Date todayDate = new Date();
-        DateFormat df = new SimpleDateFormat("HH:mm");
-        int[] range = findShowtimes(todayDate);
-        Date showDate;
-        if (range[0] != -1) {
-            for (int i=range[0]; i < range[1];i++) {
-                showDate = showtimes.get(i).getDate();
-                System.out.printf("%s\t", df.format(showDate));
-            }
+        if (returnIndex) {
+            return range[0]+showtimeOption;
+        }else {
+            return showtimes.get(showtimeOption);
         }
     }
 
-    // Is there a way to dont duplicate the code???
     public void displayShowtime(Date d) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+        System.out.printf("%s:\n", dateFormat.format(d));
         // Display based on Date
         DateFormat df = new SimpleDateFormat("HH:mm");
         int[] range = findShowtimes(d);
@@ -233,15 +256,6 @@ public class ShowtimeController {
 
         Date todaysDate = new Date();
         Showtime temp;
-
-        // Ensure first showtime is not invalid
-//        while (true) {
-//            if (todaysDate.before(showtimes.get(0).getDate())) {
-//                showtimes.remove(0);
-//            }else {
-//                break;
-//            }
-//        }
 
         for (int i=1; i < showtimes.size(); i++) {
             for (int j=i; j > 0; j--) {
