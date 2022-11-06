@@ -10,7 +10,11 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class App {
+
     public static void main(String[] args) throws Exception {
+        AppController ac = new AppController();
+        ac.initControllers();
+
         System.out.println("Welcome to MOBLIMA !!!\n");
         Date todaysDate = new Date();
         System.out.println(todaysDate);
@@ -26,14 +30,12 @@ public class App {
 //        stc.displayShowtime();
 
 
-
 //        System.exit(0);
         // Testing Area End
 
 
         // create sample movies
-        MovieController mc = new MovieController();
-        mc.displayAllMovies();
+        ac.mcDisplayAllMovies();
 
         // sample cineplexes
         Cineplex cx1 = new Cineplex("location1");
@@ -96,24 +98,25 @@ public class App {
 
             switch (choice) {
                 case 1:
-                    mc.displayAllMovies();
+                    ac.mcDisplayAllMovies();
                     bookingFlow(sc);
                     break;
                 
                 case 2:
-                    System.out.println("Type movie title");
+                    System.out.print("Enter movie title:");
                     String searchQuery = sc.nextLine();
-                    mc.searchMovie(searchQuery); // TODO
+                    int movieId = ac.mcSearchMovie(searchQuery);
+                    // Navigate to movieOptions, Booking etc.
                     bookingFlow(sc);
                     break;
                 
                 case 3:
-                    mc.rankMovieBySales(5); // TODO
+                    ac.mcRankMovieBySales(5); // TODO
                     bookingFlow(sc);
                     break;
                 
                 case 4:
-                    mc.rankMovieByRating(5); // TODO
+                    ac.mcRankMovieByRating(); // TODO
                     bookingFlow(sc);
                     break;
                 
