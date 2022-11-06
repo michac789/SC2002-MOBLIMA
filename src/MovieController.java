@@ -48,18 +48,18 @@ public class MovieController {
         System.out.println("Adding new Movie: ");
 
         System.out.print("Enter Movie Title: ");
-        String title = sc.next();
+        String title = sc.nextLine();
 
         System.out.print("Enter Movie duration(mins): ");
         int duration = sc.nextInt();
 
+        sc.nextLine();
         System.out.print("Enter Movie Director: ");
-        String director = sc.next();
+        String director = sc.nextLine();
 
         // use comma to seperate? so need do comma parsing like in reviews
         System.out.print("Enter Movie Cast: ");
         String cast = sc.nextLine();
-        sc.nextLine();
 
         System.out.println("Select Movie Status: ");
         int i=0;
@@ -87,6 +87,8 @@ public class MovieController {
 
         Movie m = new Movie(title, duration, director, cast, Movie.showStatusOptions.values()[status], Movie.ageRatingOptions.values()[ageRating],is3D, blockbuster);
         movies.add(m);
+
+        movieDAO.saveMovie(m);
     }
 
     public void editMovies() {
@@ -121,6 +123,7 @@ public class MovieController {
                     "10. Exit\n");
             option = sc.nextInt();
             if (option == 10) {break;}
+            sc.nextLine();
 
             String strSc;
             int intSc;
@@ -261,7 +264,9 @@ public class MovieController {
         }
 
         int i=1;
-        for (Movie m: sortedRating) {
+        int maxListings = 5;
+        for (int j=0; j < maxListings; j++) {
+            Movie m = sortedRating.get(j);
             if (m.getRating() != -1) {
                 System.out.printf("%d: %-15s| Rating: %.1f\n", i, m.getTitle(), m.getRating());
             }else {
@@ -300,10 +305,5 @@ public class MovieController {
                 break;
             }
         }
-    }
-
-    protected void finalize()
-    {
-        saveMovies();
     }
 }
