@@ -25,9 +25,11 @@ public class MovieController {
     public void createMovie(Movie m) {
         movies.add(m);
     }
+
     public int getNumMovies() {
         return Movie.getNumMovies();
     }
+
     public void editTitle(String title, int movieSelected) {
         this.movies.get(movieSelected).setTitle(title);
     }
@@ -39,22 +41,21 @@ public class MovieController {
     public void editDirector(String director, int movieSelected){
         this.movies.get(movieSelected).setDirector(director);
     }
-
-    public void editCast(String cast, int movieSelected){
+    
+    public void editCast(String cast, int movieSelected) {
         this.movies.get(movieSelected).setCast(cast);
     }
 
-    public void editShowingStatus(int status, int movieSelected){
+    public void editShowingStatus(int status, int movieSelected) {
         this.movies.get(movieSelected).setShowStatus(Movie.showStatusOptions.values()[status]);
 
     }
-    public void editAgeRating(int ageRating, int movieSelected){
-        this.movies.get(movieSelected).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
 
+    public void editAgeRating(int ageRating, int movieSelected) {
+        this.movies.get(movieSelected).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
     }
 
-
-    public void editIs3D (boolean is3D, int movieSelected){
+    public void editIs3D(boolean is3D, int movieSelected) {
         this.movies.get(movieSelected).setIs3D(is3D);
     }
 
@@ -62,7 +63,7 @@ public class MovieController {
         this.movies.get(movieSelected).setIsBlockbuster(isBlockBuster);
     }
 
-    public String removeMovie(int movieSelected){
+    public String removeMovie(int movieSelected) {
         String title = this.movies.get(movieSelected).getTitle();
         movies.remove(movieSelected);
         return title;
@@ -82,18 +83,18 @@ public class MovieController {
     }
 
      public int displayShowingMovies() {
-         int i = 0;
-         int[] movieIdList = new int[movies.size()];
-         for (int j = 0; j < movies.size(); j++) {
-             if (movies.get(j).getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
-                 System.out.printf("%d: %s\n", i, movies.get(j).getTitle());
-                 movieIdList[i] = j;
-                 i++;
-             }
-         }
-         this.movieIdList = movieIdList;
+        int i = 0;
+        int[] movieIdList = new int[movies.size()];
+        for (int j = 0; j < movies.size(); j++) {
+            if (movies.get(j).getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
+                System.out.printf("%d: %s\n", i, movies.get(j).getTitle());
+                movieIdList[i] = j;
+                i++;
+            }
+        }
+        this.movieIdList = movieIdList;
 
-         return i;
+        return i;
      }
 
 
@@ -114,7 +115,7 @@ public class MovieController {
         sortedRating.add(movies.get(0));
         for (int i=1; i < movies.size();i++) {
             for (int j=i-1; j >= 0; j--) {
-                if (movies.get(i).getRating() > sortedRating.get(j).getRating()) {
+                if (movies.get(i).getRating() > sortedRating.get(j).getRating()) { // TODO
                     if (j==0) {
                         sortedRating.add(j, movies.get(i));
                         break;

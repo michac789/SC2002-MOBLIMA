@@ -1,22 +1,15 @@
 package model;
+import controller.ReviewController;
+
 public class Movie {
     private static int numMovies = 0;
-    // private ReviewsController reviews;
+    private ReviewController reviewController;
 
     private int movieId;
     private String title;
     private int durationMinutes;
     private String director;
     private String cast;
-
-    public int getRating() {
-        // TODO
-        return -1;
-    }
-
-    public String displayReviews() {
-        return "NO REVIEWS YET";
-    }
 
     public enum showStatusOptions {
         COMING_SOON, PREVIEW, NOW_SHOWING, END_OF_SHOWING
@@ -44,6 +37,7 @@ public class Movie {
         this.ageRating = ageRating;
         this.is3D = is3D;
         this.isBlockbuster = isBlockbuster;
+        this.reviewController = new ReviewController(movieId);
     }
 
     public void setMovieId(int id) { this.movieId = id;}
@@ -68,6 +62,10 @@ public class Movie {
     public String getIs3D() { return this.is3D ? "yes" : "no";}
     public String getIsBlockbuster() { return this.isBlockbuster ? "yes": "no";}
     public static int getNumMovies() { return numMovies;}
+    public ReviewController getController() { return this.reviewController;}
+
+    public int getRating() { return 5;} // TODO arbitrary placeholder for movie controller
+    public void displayReviews() {} // TODO
     
     public String toString() {
         return "Movie ID: " + this.movieId + "\n" +
@@ -80,15 +78,4 @@ public class Movie {
             "3D: " + this.getIs3D() + "\n" +
             "Blockbuster: " + this.getIsBlockbuster() + "\n\n";
     }
-
-    // public void loadReviews() {
-    //     reviews = new ReviewsController(this.movieId);
-    // }
-
-    // public double getRating() {
-    //     return reviews.getRating();
-    // }
-    // public void displayReviews() {
-    //     reviews.displayReviews(1);
-    // }
 }

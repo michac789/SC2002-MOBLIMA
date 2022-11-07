@@ -2,7 +2,7 @@ package model;
 
 public class Review {
     private int userId;
-    private int rating; // range limit??
+    private int rating;
     private String comment;
 
     public Review(int userId, int rating, String comment) {
@@ -11,21 +11,13 @@ public class Review {
         this.comment = comment;
     }
 
-//    public void printReview() {
-//        System.out.println("User ID: " + this.userId);
-//        System.out.println("Rating: " + this.rating);
-//        System.out.println("Comment: " + this.comment);
-//        System.out.println("text");
-//    }
-
     public void setRating(int rating) { this.rating = rating;}
     public void setComment(String comment) { this.comment = comment;}
 
+    public int getUserId() { return this.userId;}
     public int getRating() { return this.rating;}
     public String getComment() { return this.comment;}
-
-    public int getUserId() { return this.userId;}
-
+    
     // Returns a String to save into csv
     public String savetoCSV() {
         String rtn = String.format("%d,%d,\"%s\"\n", this.userId, this.rating, this.comment);
@@ -38,7 +30,7 @@ public class Review {
         if (this.rating ==  r.getRating()) {
 //            return (r.userId - this.userId);
             return -1; // Btr to return this so dont need do any swaps
-        }else {
+        } else {
             return (this.rating - r.getRating());
         }
     }
