@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class MovieUI {
     private static Scanner sc = new Scanner(System.in);
     private static MovieController mc = new MovieController();
-
+    private static int movieId;
     public static void searchMovies() {
         System.out.print("Enter movie title:");
         String searchQuery = sc.nextLine();
@@ -160,4 +160,43 @@ public class MovieUI {
             System.out.println("Success in editing!");
         }
     }
+    public static void displayReviews(){
+        mc.displayReviews(movieId);
+    }
+
+    public static void searchMovie(){
+
+        System.out.println("Search movie by name: ");
+        String title = sc.nextLine();
+        movieId = mc.searchMovie(title);
+
+    }
+
+    public static void displayShowingMovies () {
+        mc.displayShowingMovies();
+
+    }
+
+    public static void movieSelection(){
+        int option;
+        int i = mc.displayShowingMovies();
+        while (true) {
+            System.out.print("Select a movie: ");
+            option = sc.nextInt();
+            if (!(option < 0 || option >= i)) {
+                break;
+            }
+            System.out.println("Invalid Option.");
+        }
+        int selectedMovie = sc.nextInt();
+        mc.movieSelection(selectedMovie);
+
+    }
+    public static void rankMovieByRating(){
+        mc.rankMovieByRating();
+    }
+    public static void rankMovieBySales(){
+        mc.rankMovieBySales(5);
+    }
+
 }
