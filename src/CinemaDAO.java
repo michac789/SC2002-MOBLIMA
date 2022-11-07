@@ -11,7 +11,7 @@ public class CinemaDAO extends BaseDAO {
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
             Cinema instance = instances.get(i);
-            writeStr = String.format("%d,%d,%s,%s",
+            writeStr = String.format("%d,%d,%d,%s,%s",
                 instance.getCineplexId(), instance.getCinemaCode(),
                 instance.getHeight(), instance.getWidth(),
                 instance.getCinemaClass()

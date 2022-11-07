@@ -14,7 +14,7 @@ public class ShowtimeDAO extends BaseDAO {
     private static DateFormat daoFormat = new SimpleDateFormat("dd/MM/yy,HH:mm");
 
     public void save(ArrayList<Showtime> instances, int cineplexId, int cinemaId) {
-        FILEPATH = BASEPATH + cineplexId + "/Showtimes_" + cinemaId + ".csv";
+        FILEPATH = BASEPATH + cineplexId + "/Showtime_" + cinemaId + ".csv";
         emptyFile(FILEPATH);
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
