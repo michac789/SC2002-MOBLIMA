@@ -29,7 +29,7 @@ public class ShowtimeDAO extends BaseDAO {
         }
     }
     
-    public ArrayList<Showtime> load(int cineplexId, int cinemaId) {
+    public ArrayList<Showtime> load(int cineplexId, int cinemaId, int height, int width) {
         FILEPATH = BASEPATH + cineplexId + "/Showtime_" + cinemaId + ".csv";
         LinkedList<String> instances = this.getData(FILEPATH);
         ArrayList<Showtime> returnList = new ArrayList<Showtime>();
@@ -43,8 +43,10 @@ public class ShowtimeDAO extends BaseDAO {
                 throw new RuntimeException(e);
             }
             Showtime new_instance = new Showtime(
-                Integer.parseInt(x[0]), date
+                Integer.parseInt(x[0]), date, height, width
             );
+            // load seats
+
             returnList.add(new_instance);
         }
         return returnList;

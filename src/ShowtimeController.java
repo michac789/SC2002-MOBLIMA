@@ -1,10 +1,4 @@
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class ShowtimeController {
@@ -16,10 +10,11 @@ public class ShowtimeController {
     // seat controller
 
     private Scanner sc;
-    public ShowtimeController(int cineplexId, int cinemaId) {
+
+    public ShowtimeController(int cineplexId, int cinemaId, int height, int width) {
         this.cineplexId = cineplexId;
         this.cinemaId = cinemaId;
-        showtimes = this.showtimeDao.load(cineplexId, cinemaId);
+        showtimes = this.showtimeDao.load(cineplexId, cinemaId, height, width);
         sc = new Scanner(System.in);
     }
 

@@ -15,7 +15,7 @@ public class Cinema {
         this.height = height;
         this.width = width;
         this.cinemaClass = c;
-        this.showtimeController = new ShowtimeController(cineplexId, cinemaCode);
+        this.showtimeController = new ShowtimeController(cineplexId, cinemaCode, height, width);
     }
 
     public int getCineplexId() { return this.cineplexId;}

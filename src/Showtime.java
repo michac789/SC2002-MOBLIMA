@@ -3,11 +3,12 @@ import java.util.Date;
 public class Showtime {
     private int movieId;
     private Date date;
-    // seat controller ???
+    SeatController seatController;
 
-    public Showtime(int movieId, Date date) {
+    public Showtime(int movieId, Date date, int height, int width) {
         this.movieId = movieId;
         this.date = date;
+        seatController = new SeatController(height, width);
     }
     
     public int getMovieId() { return this.movieId;}

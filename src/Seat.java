@@ -1,24 +1,19 @@
-/*
-    'Seat' class
-
-    - Stores whether the seat is booked or not
-*/
-
 public class Seat {
     private String code;
-    private boolean booked;
+    private boolean isBooked;
+    private boolean isSeat;
 
-    public Seat(String code) {
+    public Seat(String code, boolean isBooked, boolean isSeat) {
         this.code = code;
-        this.booked = false;
+        this.isBooked = isBooked;
+        this.isSeat = isSeat;
     }
 
-    // mutators
     public void setCode(String code) { this.code = code;}
-    public void bookSeat() { this.booked = true;}
-    public void unbookSeat() {this.booked = false;}
+    public void bookSeat() { this.isBooked = true;}
+    public void unbookSeat() {this.isBooked = false;}
 
-    // accessors
     public String getSeatCode() { return this.code;}
-    public boolean isBooked() { return this.booked;}
+    public boolean getIsBooked() { return this.isBooked;}
+    public boolean getIsSeat() { return this.isSeat;}
 }

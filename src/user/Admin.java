@@ -10,6 +10,8 @@ public class Admin extends User {
         this.password = password; 
     }
 
+    public String getPassword() { return this.password;}
+
     public boolean hasAdminAccess() { 
         return true; 
     }
