@@ -12,4 +12,14 @@ public class MovieGoerController {
     public void save() {
         this.movieGoerDao.save(movieGoers);
     }
+    public boolean isMoviegoerExist(String username) {
+        for(int i = 0; i<movieGoers.size(); i++){
+            if (movieGoers.get(i).getUsername() == username){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
