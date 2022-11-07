@@ -7,6 +7,16 @@ public class Movie {
     private int durationMinutes;
     private String director;
     private String cast;
+
+    public int getRating() {
+        // TODO
+        return -1;
+    }
+
+    public String displayReviews() {
+        return "NO REVIEWS YET";
+    }
+
     public enum showStatusOptions {
         COMING_SOON, PREVIEW, NOW_SHOWING, END_OF_SHOWING
     }
