@@ -1,6 +1,4 @@
-import java.io.*;
 import java.util.LinkedList;
-import java.util.ArrayList;
 
 public class SeatDAO extends BaseDAO {
     String BASEPATH = "src/database/Cineplex/";
@@ -19,25 +17,24 @@ public class SeatDAO extends BaseDAO {
     //     }
     // }
 
-    public ArrayList<Seat> load(int height, int width) {
+    public Seat[][] load(int height, int width) {
         LinkedList<String> instances = this.getData(FILEPATH);
-        ArrayList<Seat> returnList = new ArrayList<Seat>();
+        Seat[][] returnSeats = new Seat[height][width];
         for (int i = 0; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String seats = instances.get(i).split(",")[3];
-            for (int j = 0; i < height; i++) {
-                for (int k = 0; j < width; j++) {
-                    // TODO
-                    // System.out.println(seats.getChars(1));
-                    
-                }
+            int h = 0, w = 0;
+            for (int j = 0; j < seats.length(); j++) {
+                h = (h + 1) % height;
+                w = (w + 1) % width;
+                returnSeats[h][w] = new Seat(
+                    "someSeatCodeTODO",
+                    (seats.charAt(i) == 'F' ? true : false),
+                    (seats.charAt(i) == 'X' ? false : true)
+                );
             }
-            // Seat new_instance = Seat(
-
-            // );
-            returnList.add(new_instance);
         }
-        // return returnList;
+        return returnSeats;
     }
 }
 

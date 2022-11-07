@@ -13,7 +13,7 @@ public class AdminController {
         this.adminDao.save(adminList);
     }
 
-    public boolean login (String username, String password){  
+    public boolean login(String username, String password){  
         for(int i = 0; i < this.adminList.size(); i++){ 
             if (username.equals(this.adminList.get(i).getUsername()) &&
                     password.equals(this.adminList.get(i).getPassword())){

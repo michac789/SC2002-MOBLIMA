@@ -1,9 +1,5 @@
-package boundaries;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import controller.AdminController;
 // import DAO.AdminDAO;
 
 public class AdminUI { 
