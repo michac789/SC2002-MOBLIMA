@@ -14,10 +14,18 @@ public class App {
         System.out.println("Welcome to MOBLIMA !!!\n");
 
         // AppController ac = new AppController();
+        // AppController.mc.getMovies(); --
+        // AppController.mc.displayShowingMovies(); --
 
-        AppController.mc.getMovies();
-        AppController.mc.displayShowingMovies();
+        // load cinemas
+        MovieController mc = new MovieController();
+        // mc.createMovie();
+        // mc.editMovies();
+        CineplexController cc = new CineplexController();
 
+        mc.save();
+        cc.save();
+        
 
         System.exit(1);
 

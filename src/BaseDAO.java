@@ -1,4 +1,3 @@
-package base;
 import java.io.*;
 import java.util.LinkedList;
 
@@ -24,8 +23,8 @@ public class BaseDAO {
     //         writeStr = String.format(
     //             "todo", instance
     //         );
+    //         writeLine(FILEPATH, writeStr);
     //     }
-    //     writeLine(FILEPATH, writeStr);
     // }
 
     /*

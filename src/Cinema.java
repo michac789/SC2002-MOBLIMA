@@ -1,18 +1,9 @@
-/*
-    'Cinema' class
-
-    - Stores information of a cinema: code, height, width, class
-    - Contain a list of different showtimes
-*/
-
-import java.util.*;
-
 public class Cinema {
     // information of a cinema
     private int cinemaCode;
     private int height;
     private int width;
-    private List<Showtime> showtimes = new ArrayList<Showtime>();;
+    // private List<Showtime> showtimes = new ArrayList<Showtime>();;
 
     public enum showClassOptions {
         // TODO - change these placeholders

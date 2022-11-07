@@ -10,14 +10,14 @@ public class ReviewDAO {
 
         String writeStr = String.format("%d,%d,\"%s\"", r.getUserId(), r.getRating(), formatComment);
 
-        AppController.dao.openFile(filename, true);
-        AppController.dao.writeText(writeStr);
-        AppController.dao.closeFile();
+        DAO.openFile(filename, true);
+        DAO.writeText(writeStr);
+        DAO.closeFile();
     }
     public void getReviews(int movieId, LinkedList<Review> reviews) {
         String filename = "movie" + movieId + "_Reviews.csv";
 
-        LinkedList<String> reviewStr = AppController.dao.readText(filename);
+        LinkedList<String> reviewStr = DAO.readText(filename);
 
         String[] values;
         if (reviewStr == null) {return;}
