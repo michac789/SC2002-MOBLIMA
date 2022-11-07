@@ -43,10 +43,9 @@ public class ShowtimeDAO extends BaseDAO {
                 throw new RuntimeException(e);
             }
             Showtime new_instance = new Showtime(
-                Integer.parseInt(x[0]), date, height, width
+                Integer.parseInt(x[0]), date, height, width,
+                cineplexId, cinemaId
             );
-            // load seats
-
             returnList.add(new_instance);
         }
         return returnList;

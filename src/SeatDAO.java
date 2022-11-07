@@ -17,7 +17,8 @@ public class SeatDAO extends BaseDAO {
     //     }
     // }
 
-    public Seat[][] load(int height, int width) {
+    public Seat[][] load(int height, int width, int cineplexId, int cinemaId) {
+        FILEPATH = BASEPATH + cineplexId + "/Showtime_" + cinemaId + ".csv";
         LinkedList<String> instances = this.getData(FILEPATH);
         Seat[][] returnSeats = new Seat[height][width];
         for (int i = 0; i < instances.size(); i++) {

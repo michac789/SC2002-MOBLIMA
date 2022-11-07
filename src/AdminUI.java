@@ -65,7 +65,7 @@ public class AdminUI {
                     System.out.println("Invalid action, try again!");
                     break;
             }
-        }   
+        }
     }
 
     public static void createAdminAccount(){

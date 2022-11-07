@@ -11,9 +11,9 @@ public class SeatController {
     private static final String ANSI_GREEN = "\u001b[32m";  // green = seat available
     private static final String ANSI_RESET = "\u001B[0m";  // original command line text colour
 
-    public SeatController(int height, int width) {
+    public SeatController(int height, int width, int cineplexId, int cinemaId) {
         // this.showtimeId = showtimeId;
-        seats = this.seatDao.load(height, width);
+        seats = this.seatDao.load(height, width, cineplexId, cinemaId);
     }
 
     // // create seats
