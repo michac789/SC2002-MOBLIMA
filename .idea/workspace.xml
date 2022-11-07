@@ -2,52 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9c51bc1-3c6c-4e71-aa1b-06f41568193a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Movies.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/AppController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Cinema$showClassOptions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Cinema.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Cineplex.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/DAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$ageRatingOptions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie$showStatusOptions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Movie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/MovieDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Review.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ReviewsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Seat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/Showtime.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ShowtimeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/ShowtimeDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/user/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/user/Category.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/user/MovieGoer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/user/User$UserType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SC2002-MOBLIMA/user/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cinema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CinemaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CinemaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cineplex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cineplex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CineplexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CineplexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CineplexDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CineplexDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovieDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/Cineplex/1/Cinemas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Cineplex/1/Cinemas.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/Cineplex/1/Cinemass.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/Cineplex/2/Cinemas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Cineplex/2/Cinemas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MovieUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovieUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -60,14 +29,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/My Files/MY REPOSITORIES/SC2002-MOBLIMA",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/My Files/MY REPOSITORIES/SC2002-MOBLIMA&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

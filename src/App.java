@@ -91,36 +91,31 @@ public class App {
 
             System.out.println("(6) Admin Login");
             // login as admin to admin module
-            
-            System.out.println("(7) Exit Application");
+            System.out.println("(7) Booking a ticket");
+            System.out.println("(8) Exit Application");
 
             choice = sc.nextInt();
             sc.nextLine();
 
             switch (choice) {
                 case 1:
-//                    mc.displayAllMovies();
-                    AppController.mc.displayShowingMovies();
-                    
+                    MovieUI.displayAllMovies();
+
                     bookingFlow(sc);
                     break;
                 
                 case 2:
-                    System.out.print("Enter movie title:");
                     String searchQuery = sc.nextLine();
                     int movieId = mc.searchMovie(searchQuery);
                     // Navigate to movieOptions, Booking etc.
-                    bookingFlow(sc);
                     break;
                 
                 case 3:
                     mc.rankMovieBySales(5); // TODO
-                    bookingFlow(sc);
                     break;
                 
                 case 4:
                     mc.rankMovieByRating(); // TODO
-                    bookingFlow(sc);
                     break;
                 
                 case 5:
@@ -130,9 +125,12 @@ public class App {
                 case 6:
                     adminFlow(); // TODO
                     break;
+                case 7:
+                    bookingFlow(sc);
+                    break;
             }
         }
-        while (choice != 7);
+        while (choice != 8);
         sc.close();
     }
 
