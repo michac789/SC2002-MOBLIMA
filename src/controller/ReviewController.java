@@ -4,7 +4,7 @@ import java.util.Scanner;
 import DAO.ReviewDAO;
 import model.Review;
 
-public class ReviewsController {
+public class ReviewController {
     private int movieId;
     private int rating;
 
@@ -15,7 +15,7 @@ public class ReviewsController {
 
     private static ReviewDAO reviewDao = new ReviewDAO();
 
-    public ReviewsController(int movieId) {
+    public ReviewController(int movieId) {
         this.rating = 0;
         this.movieId = movieId;
         sc = new Scanner(System.in);
@@ -37,7 +37,7 @@ public class ReviewsController {
             sc.nextLine(); // Scanner Skipping reviewText Scanner
             if (reviewScore < 1 || reviewScore > 5) {
                 System.out.println("Invalid Entry!");
-            }else {
+            } else {
                 break;
             }
         } while (true);

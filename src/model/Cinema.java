@@ -27,12 +27,4 @@ public class Cinema {
     public int getWidth() { return this.width;}
     public showClassOptions getCinemaClass() { return this.cinemaClass;}
     public ShowtimeController getController() { return this.showtimeController;}
-
-    public void printCinemaInfo() {
-        System.out.println("Cinema Code: " + this.cinemaCode);
-        System.out.println("Height: " + this.height);
-        System.out.println("Width: " + this.width);
-        System.out.println("Class: " + this.cinemaClass);
-        System.out.println("");
-    }
 }

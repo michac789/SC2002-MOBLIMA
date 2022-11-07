@@ -6,7 +6,9 @@ import DAO.SeatDAO;
 import model.Seat;
 
 public class SeatController {
-    private int showtimeId; 
+    private int showtimeId;
+    private int height;
+    private int width;
     private Seat[][] seats;
     private Scanner sc = new Scanner(System.in);
     private SeatDAO seatDao = new SeatDAO();
@@ -17,8 +19,23 @@ public class SeatController {
 
     public SeatController(int height, int width, int cineplexId, int cinemaId) {
         // this.showtimeId = showtimeId;
+        this.height = height;
+        this.width = width;
         seats = this.seatDao.load(height, width, cineplexId, cinemaId);
     }
+
+    public String serializeSeats() {
+        String s = "";
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                s = s + (!this.seats[i][j].getIsSeat() ? "X" :
+                    (this.seats[i][j].getIsBooked() ? "F" : "E"));
+            }
+        }
+        return s;
+    }
+
+    public 
 
     // // create seats
     // public void createSeats(int h, int w) {
@@ -36,43 +53,43 @@ public class SeatController {
     //     seatDao.saveSeats(seats, this.showtimeId);
     // }
 
-    // // print seat with colour according to whether it has been booked or not
-    // public void printSeat(Seat seat) {
-    //     if (seat.getIsSeat() && seat.isBooked()) {  // booked seat
-    //         System.out.print(ANSI_RED + seat.getSeatCode() + ANSI_RESET);
-    //     } else if (seat.getIsSeat() && !seat.isBooked()) {  // unbooked seat
-    //         System.out.print(ANSI_GREEN + seat.getSeatCode() + ANSI_RESET);
-    //     } else {  // stairwell or aisle
-    //         for (int i = 0; i < seat.getSeatCode().length(); i++) { System.out.print(" "); }
-    //     }
-    // }
+    // print seat with colour according to whether it has been booked or not
+    public void printSeat(Seat seat) {
+        if (seat.getIsSeat() && seat.getIsBooked()) {  // booked seat
+            System.out.print(ANSI_RED + seat.getSeatCode() + ANSI_RESET);
+        } else if (seat.getIsSeat() && !seat.getIsBooked()) {  // unbooked seat
+            System.out.print(ANSI_GREEN + seat.getSeatCode() + ANSI_RESET);
+        } else {  // stairwell or aisle
+            for (int i = 0; i < seat.getSeatCode().length(); i++) { System.out.print(" "); }
+        }
+    }
 
-    // // get number of available seats
-    // public int availSeats() {
-    //     int counter = 0;
-    //     for (int i = 0; i < seats.length; i++) {
-    //         for (int j = 0; j < seats[0].length; j++) {
-    //             if (seats[i][j].getIsSeat() && !seats[i][j].isBooked()) { counter++; }
-    //         }
-    //     }
-    //     return counter;
-    // }
+    // get number of available seats
+    public int availSeats() {
+        int counter = 0;
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[0].length; j++) {
+                if (seats[i][j].getIsSeat() && !seats[i][j].getIsBooked()) { counter++; }
+            }
+        }
+        return counter;
+    }
 
-    // // display seats
-    // public void displaySeats() {
-    //     if (availSeats() == 0) {   // showtime fully booked
-    //         System.out.println("No available seats left.");
-    //     } else {   // there are still available seats
-    //         for (int i = 0; i < seats.length; i++) {
-    //             for (int j = 0; j < seats[0].length; j++) {
-    //                 printSeat(seats[i][j]);
-    //                 System.out.print(" ");
-    //             }
-    //             System.out.println();
-    //         }
-    //     }
-    //     System.out.println("Legend: Green seats are available. Red seats are not available.");
-    // }
+    // display seats
+    public void displaySeats() {
+        if (availSeats() == 0) {   // showtime fully booked
+            System.out.println("No available seats left.");
+        } else {   // there are still available seats
+            for (int i = 0; i < seats.length; i++) {
+                for (int j = 0; j < seats[0].length; j++) {
+                    printSeat(seats[i][j]);
+                    System.out.print(" ");
+                }
+                System.out.println();
+            }
+        }
+        System.out.println("Legend: Green seats are available. Red seats are not available.");
+    }
 
     // // book seats
     // public void bookSeats() {

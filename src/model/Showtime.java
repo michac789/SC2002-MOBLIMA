@@ -1,12 +1,11 @@
 package model;
 import java.util.Date;
-
 import controller.SeatController;
 
 public class Showtime {
     private int movieId;
     private Date date;
-    SeatController seatController;
+    private SeatController seatController;
 
     public Showtime(int movieId, Date date, int height, int width, int cineplexId, int cinemaId) {
         this.movieId = movieId;
@@ -16,15 +15,10 @@ public class Showtime {
     
     public int getMovieId() { return this.movieId;}
     public Date getDate() { return this.date;}
-
-
-    // public int getShowtimeId() {
-    //     return showtimeId;
-    // }
+    public SeatController getController() { return this.seatController;}
 
     public void setMovieId(int movieId) { this.movieId = movieId;}
     public void setDate(Date date) { this.date = date;}
-
 
     //Method Override
     public int compareTo(Object o) {
