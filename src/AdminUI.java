@@ -1,24 +1,18 @@
-package boundaries;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import controller.AdminController;
 // import DAO.AdminDAO;
 
 public class AdminUI { 
-    AdminController adminController; 
-    public void main () {
-        adminController = new AdminController(); 
-        // dummy data 
-        ArrayList<String> user = new ArrayList<> ();  
+    static AdminController adminController;
 
-        user.add("kristian"); 
-        user.add("kristian123"); 
-        adminController.adminList = new ArrayList<> (); 
-        adminController.adminList.add(user);  
-        String username = "", password = ""; 
-        Scanner sc = new Scanner(System.in); 
+    public static void main () {
+        adminController = new AdminController();
+
+        // dummy data 
+
+        String username, password;
+        Scanner sc = new Scanner(System.in);
         while(true) { 
             System.out.println("|=========|Admin Login|=========|");
             System.out.println("Enter your username: ");
@@ -31,11 +25,11 @@ public class AdminUI {
         }
         System.out.println("Successfully logged in!"); 
         System.out.println("Welcome " + username);
-        this.administratorAction();
+        administratorAction();
         // sc.close(); but hv to comment since it makes error 
     } 
 
-    public void administratorAction() { 
+    public static void administratorAction() {
         Scanner sc = new Scanner(System.in); 
 
         while (true){
@@ -63,7 +57,7 @@ public class AdminUI {
                 case 5:
                     break;
                 case 6: 
-                    this.createAdminAccount(); 
+                    createAdminAccount();
                     break; 
                 case 7:
                     System.out.println("Logged out successfully!");  
@@ -75,9 +69,9 @@ public class AdminUI {
         }   
     }
 
-    public void createAdminAccount(){
+    public static void createAdminAccount(){
         Scanner sc = new Scanner(System.in);
-        String username = "", password = "", confirmationPassword = "";
+        String username, password, confirmationPassword;
         do {
             System.out.println("Please enter admin username: ");
             username = sc.nextLine().trim();
@@ -88,8 +82,7 @@ public class AdminUI {
 
 
             if (!adminController.isAdminExist(username) && password.equals(confirmationPassword)){
-                // AdminDAO adminDAO = new AdminDAO();
-                // adminDAO.createAdmin(username, password);
+                adminController.createAccount(username,password);
                 break;
             }
             System.out.println("Cannot make the account. Either the admin user" +

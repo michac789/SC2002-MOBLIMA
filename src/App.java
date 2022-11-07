@@ -4,11 +4,7 @@
     Master file to be executed to launch the program
 */
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
-import boundaries.AdminUI;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -18,7 +14,7 @@ public class App {
         // AppController.mc.getMovies(); --
         // AppController.mc.displayShowingMovies(); --
 
-        // load cinemas
+        // load cinema
         MovieController mc = new MovieController();
         // mc.createMovie();
         // mc.editMovies();
@@ -132,6 +128,11 @@ public class App {
         }
         while (choice != 8);
         sc.close();
+        AdminUI.adminController.save();
+
+
+
+
     }
 
     private static void bookingFlow(Scanner sc) {
@@ -166,7 +167,6 @@ public class App {
     }
 
     private static void adminFlow() {
-        AdminUI adminUI = new AdminUI();
-        adminUI.main();
+        AdminUI.main();
     }
 }

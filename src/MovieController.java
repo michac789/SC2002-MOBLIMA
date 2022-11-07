@@ -110,14 +110,14 @@ public class MovieController {
 
         sortedRating.add(movies.get(0));
         for (int i=1; i < movies.size();i++) {
-            for (int j=i-1; j >= 0;j--) {
+            for (int j=i-1; j >= 0; j--) {
                 if (movies.get(i).getRating() > sortedRating.get(j).getRating()) {
                     if (j==0) {
                         sortedRating.add(j, movies.get(i));
                         break;
                     }
                     continue;
-                }else {
+                } else {
                     sortedRating.add(j+1, movies.get(i));
                 }
             }
@@ -137,11 +137,11 @@ public class MovieController {
     }
     public int searchMovie(String title) {
          int i = 0;
-         int[] id = new int[movies.size()];
+         int[] movieIdList = new int[movies.size()];
          for (int j=0; j < movies.size();j++) {
              if (movies.get(j).getTitle().contains(title)) {
                  System.out.printf("%d: %s\n", i, movies.get(j).getTitle());
-                 id[i] = j;
+                 movieIdList[i] = j;
                  i++;
              }
          }
@@ -160,7 +160,7 @@ public class MovieController {
          }
 
          // Navigate to movie
-         return id[option]; // Return Movie Id
+         return movieIdList[option]; // Return Movie Id
      }
 
     public void displayReviews(int movieId) {
