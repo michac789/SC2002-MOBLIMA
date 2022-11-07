@@ -18,147 +18,53 @@ public class MovieController {
         this.movieDAO.save(movies);
     }
 
-    public void createMovie() {
-        // title, duration, director, cast, status, age rating, is3D, isBlockbuster
-        System.out.println("Adding new Movie: ");
-
-        System.out.print("Enter Movie Title: ");
-        String title = sc.nextLine();
-
-        System.out.print("Enter Movie duration(mins): ");
-        int duration = sc.nextInt();
-
-        sc.nextLine();
-        System.out.print("Enter Movie Director: ");
-        String director = sc.nextLine();
-
-        // use comma to seperate? so need do comma parsing like in reviews
-        System.out.print("Enter Movie Cast: ");
-        String cast = sc.nextLine();
-
-        System.out.println("Select Movie Status: ");
-        int i=0;
-        for (Movie.showStatusOptions m: Movie.showStatusOptions.values()) {
-            System.out.print(i + ":" + m + "\t");
-            i++;
-        }
-        System.out.println();
-        int status = sc.nextInt();
-
-        System.out.println("Enter Movie Age Rating: ");
-        i=0;
-        for (Movie.ageRatingOptions m: Movie.ageRatingOptions.values()) {
-            System.out.print(i + ":" + m + "\t");
-            i++;
-        }
-        System.out.println();
-        int ageRating = sc.nextInt();
-
-        System.out.print("Is Movie 3D(true,false): ");
-        boolean is3D = sc.nextBoolean();
-
-        System.out.print("Is Movie Blockbuster(true,false): ");
-        boolean blockbuster = sc.nextBoolean();
-
-        Movie m = new Movie(title, duration, director, cast, Movie.showStatusOptions.values()[status], Movie.ageRatingOptions.values()[ageRating],is3D, blockbuster);
+    public void createMovie(Movie m) {
         movies.add(m);
     }
-
-    public void editMovies() {
-        int movieSelected;
-        while (true) {
-            System.out.print("Enter a movie ID: ");
-            movieSelected = sc.nextInt();
-            if (!(movieSelected <= 0 || movieSelected >= Movie.getNumMovies())) {
-                break;
-            }
-            System.out.println("Invalid Option.");
-        }
-        movieSelected -= 1;
-
-        int option;
-        while (true) {
-            System.out.print("1. Edit Title\n" +
-                    "2. Edit Duration\n" +
-                    "3. Edit Director\n" +
-                    "4. Edit Cast\n" +
-                    "5. Edit Showing Status\n" +
-                    "6. Edit Age Rating\n" +
-                    "7. Edit is3D\n" +
-                    "8. Edit is Blockbuster\n" +
-                    "9. Remove Movie\n" +
-                    "10. Exit\n");
-            option = sc.nextInt();
-            if (option == 10) {break;}
-            sc.nextLine();
-
-            String strSc;
-            int intSc;
-            boolean booleanSc;
-            switch (option) {
-                case 1:
-                    System.out.println("Enter new Title: ");
-                    strSc = sc.nextLine();
-                    this.movies.get(movieSelected).setTitle(strSc);
-                    break;
-                case 2:
-                    System.out.println("Enter new duration: ");
-                    intSc = sc.nextInt();
-                    this.movies.get(movieSelected).setDurationMinutes(intSc);
-                    break;
-                case 3:
-                    System.out.println("Enter new Director: ");
-                    strSc = sc.nextLine();
-                    this.movies.get(movieSelected).setDirector(strSc);
-                    break;
-                case 4:
-                    System.out.println("Enter new Cast: ");
-                    strSc = sc.nextLine();
-                    this.movies.get(movieSelected).setCast(strSc);
-                    break;
-                case 5:
-                    int j=0;
-                    for (Movie.showStatusOptions m: Movie.showStatusOptions.values()) {
-                        System.out.print(j + ":" + m + "\t");
-                        j++;
-                    }
-                    System.out.println();
-                    int status = sc.nextInt();
-                    this.movies.get(movieSelected).setShowStatus(Movie.showStatusOptions.values()[status]);
-                    break;
-                case 6:
-                    System.out.println("Enter Movie Age Rating: ");
-                    int i=0;
-                    for (Movie.ageRatingOptions m: Movie.ageRatingOptions.values()) {
-                        System.out.print(i + ":" + m + "\t");
-                        i++;
-                    }
-                    System.out.println();
-                    int ageRating = sc.nextInt();
-                    this.movies.get(movieSelected).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
-                    break;
-                case 7:
-                    System.out.print("Enter new is3D(true,false): ");
-                    booleanSc = sc.nextBoolean();
-                    this.movies.get(movieSelected).setIs3D(booleanSc);
-                    break;
-                case 8:
-                    System.out.print("Is Movie Blockbuster(true,false): ");
-                    booleanSc = sc.nextBoolean();
-                    this.movies.get(movieSelected).setIsBlockbuster(booleanSc);
-                    break;
-                case 9:
-                    System.out.printf("Confirm remove \"%s\"(Yes,No): ", this.movies.get(movieSelected).getTitle());
-                    strSc = sc.nextLine();
-                    if (strSc.toLowerCase() == "yes") {
-                        movies.remove(movieSelected);
-                        System.out.printf("Removed movie:\"%s\"", this.movies.get(movieSelected).getTitle());
-                        break;
-                    }
-            }
-        }
-        // saveMovies();
+    public int getNumMovies() {
+        return Movie.getNumMovies();
     }
+    public void editTitle(String title, int movieSelected) {
+        this.movies.get(movieSelected).setTitle(title);
+    }
+
+    public void editDuration(int duration, int movieSelected) {
+        this.movies.get(movieSelected).setDurationMinutes(duration);
+    }
+
+    public void editDirector(String director, int movieSelected){
+        this.movies.get(movieSelected).setDirector(director);
+    }
+
+    public void editCast(String cast, int movieSelected){
+        this.movies.get(movieSelected).setCast(cast);
+    }
+
+    public void editShowingStatus(int status, int movieSelected){
+        this.movies.get(movieSelected).setShowStatus(Movie.showStatusOptions.values()[status]);
+
+    }
+    public void editAgeRating(int ageRating, int movieSelected){
+        this.movies.get(movieSelected).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
+
+    }
+
+
+    public void editIs3D (boolean is3D, int movieSelected){
+        this.movies.get(movieSelected).setIs3D(is3D);
+    }
+
+    public void editBlockBuster(boolean isBlockBuster, int movieSelected) {
+        this.movies.get(movieSelected).setIsBlockbuster(isBlockBuster);
+    }
+
+    public String removeMovie(int movieSelected){
+        String title = this.movies.get(movieSelected).getTitle();
+        movies.remove(movieSelected);
+        return title;
+
+    }
+
 
     public Movie movieSelection() {
         System.out.println("Select Movie:");
