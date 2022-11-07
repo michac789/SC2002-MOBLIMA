@@ -25,7 +25,16 @@ public class ShowtimeController {
     public void save() {
         this.showtimeDao.save(showtimes, cineplexId, cinemaId);
     }
+    public boolean isMovieExist(int movieId) {
+        for(int i = 0; i<showtimes.size(); i++){
+            Showtime showtime = showtimes.get(i);
+            if(showtime.getMovieId() == movieId){
+                return true;
+            }
+        }
+        return false;
 
+    }
     // Cinema is linked to showtime
     // Showtime is linked to movie
     // CinemaController creates showtimes

@@ -24,8 +24,32 @@ public class CinemaController {
     public void create() {
         
     }
+    public boolean isMovieExist(int movieId) {
+        for(int i = 0; i<cinemas.size(); i++){
+            Cinema cinema = cinemas.get(i);
+            ShowtimeController showtimeController = cinema.getShowtimeController();
+            if(showtimeController.isMovieExist(movieId)){
+                return true;
+            };
+        }
 
-    public void edit() {
-        
+        return false;
     }
+//    public void edit() {
+//
+//    }
+//
+    public void displayCinemaByMovie(int movieId){
+        for(int i = 0; i < cinemas.size(); i++) {
+            Cinema cinema = cinemas.get(i);
+            ShowtimeController showtimeController = cinema.getShowtimeController();
+            if(showtimeController.isMovieExist(movieId)){
+                System.out.println("Cinema " + cinema.getCinemaCode());
+            }
+
+        }
+
+    }
+
+
 }
