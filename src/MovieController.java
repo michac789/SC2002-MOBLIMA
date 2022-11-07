@@ -5,6 +5,10 @@ public class MovieController {
     private MovieDAO movieDAO = new MovieDAO();
     private Scanner sc;
 
+
+    public ArrayList<Movie> getAllMovies () {
+        return movies;
+    }
     public MovieController() {
         movies = this.movieDAO.load();
         sc = new Scanner(System.in);
