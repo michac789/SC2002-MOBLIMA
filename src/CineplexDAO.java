@@ -1,15 +1,15 @@
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class CineplexDAO extends BaseDAO {
-    String FILEPATH = "database/Cineplexes.csv";
+    String FILEPATH = "database/Cineplex/Cineplexes.csv";
     
     public void save(ArrayList<Cineplex> instances) {
         emptyFile(FILEPATH);
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
             Cineplex instance = instances.get(i);
+            instance.getController().save();
             writeStr = String.format("%d,%s",
                 instance.getCineplexId(), instance.getLocation()
             );

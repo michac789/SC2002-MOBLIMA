@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import boundaries.AdminUI;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -22,11 +23,11 @@ public class App {
         // mc.createMovie();
         // mc.editMovies();
         CineplexController cc = new CineplexController();
+        
 
         mc.save();
         cc.save();
         
-
         System.exit(1);
 
         // // create sample movies
@@ -127,6 +128,7 @@ public class App {
 
                 case 6:
                     adminFlow(); // TODO
+                    break;
             }
         }
         while (choice != 7);
@@ -165,7 +167,7 @@ public class App {
     }
 
     private static void adminFlow() {
-        // TODO
-        // maybe can create seperate class for admin
+        AdminUI adminUI = new AdminUI();
+        adminUI.main();
     }
 }

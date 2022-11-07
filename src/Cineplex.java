@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Cineplex {
@@ -6,21 +5,24 @@ public class Cineplex {
 
     private int cineplexId;
     private String location;
-    private List<Cinema> cinemas = new ArrayList<Cinema>();
+    // private List<Cinema> cinemas = new ArrayList<Cinema>();
+    private CinemaController cinemaController;
 
     public Cineplex(String location) {
         numCineplex++;
         this.cineplexId = numCineplex;
         this.location = location;
+        this.cinemaController = new CinemaController(cineplexId);
     }
 
     public void setLocation(String location) { this.location = location;}
 
     public int getCineplexId() { return this.cineplexId;}
     public String getLocation() { return this.location;}
-    public Cinema getCinema(int code) {
-        return this.cinemas.get(code - 1);
-    }
+    public CinemaController getController() { return this.cinemaController;}
+    // public Cinema getCinema(int code) {
+    //     return this.cinemas.get(code - 1);
+    // }
 
     // create new cinema and add it to this cineplex
     // public void addCinema(int height, int width, Cinema.showClassOptions c) {
