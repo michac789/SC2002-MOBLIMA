@@ -1,5 +1,7 @@
+package DAO;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import model.Movie;
 
 public class MovieDAO extends BaseDAO {
     String FILEPATH = "src/database/Movie/Movies.csv";

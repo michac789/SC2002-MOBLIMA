@@ -1,9 +1,12 @@
+package boundary;
 import java.util.Scanner;
+
+import controller.AdminController;
 
 // import DAO.AdminDAO;
 
 public class AdminUI { 
-    static AdminController adminController;
+    public static AdminController adminController;
 
     public static void main () {
         adminController = new AdminController();

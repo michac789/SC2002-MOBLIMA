@@ -1,3 +1,4 @@
+package DAO;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import user.MovieGoer;
@@ -11,8 +12,8 @@ public class MovieGoerDAO extends BaseDAO {
         for (int i = 0; i < instances.size(); i++) {
             MovieGoer instance = instances.get(i);
             writeStr = String.format(
-                "%s,%s,%s,%d",
-                instance.getUsername(), instance.getEmail(),
+                "%d,%s,%s,%s,%d",
+                instance.getId(), instance.getUsername(), instance.getEmail(),
                 instance.getPhoneNumber(), instance.getAge()
             );
             writeLine(FILEPATH, writeStr);
@@ -26,7 +27,7 @@ public class MovieGoerDAO extends BaseDAO {
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
             MovieGoer new_instance = new MovieGoer(
-                x[0], x[1], x[2], Integer.parseInt(x[3])
+                x[1], x[2], x[3], Integer.parseInt(x[4])
             );
             returnList.add(new_instance);
         }

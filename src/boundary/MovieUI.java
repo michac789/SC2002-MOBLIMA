@@ -1,5 +1,8 @@
+package boundary;
 import java.util.ArrayList;
 import java.util.Scanner;
+import controller.MovieController;
+import model.Movie;
 
 public class MovieUI {
     private static Scanner sc = new Scanner(System.in);

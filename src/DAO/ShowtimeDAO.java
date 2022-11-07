@@ -1,4 +1,6 @@
+package DAO;
 import java.util.LinkedList;
+import model.Showtime;
 import java.util.ArrayList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

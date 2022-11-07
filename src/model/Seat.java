@@ -1,3 +1,5 @@
+package model;
+
 public class Seat {
     private String code;
     private boolean isBooked;

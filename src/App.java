@@ -5,6 +5,10 @@
 */
 
 import java.util.Scanner;
+import boundary.AdminUI;
+import boundary.MovieUI;
+import controller.CineplexController;
+import controller.MovieController;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -97,7 +101,7 @@ public class App {
                 case 1:
                     MovieUI.displayAllMovies();
 
-                    bookingFlow(sc);
+                    bookingFlow();
                     break;
                 
                 case 2:
@@ -147,8 +151,8 @@ public class App {
         System.out.println("Enter Movie ID: ");
         System.out.println("Enter (-1) to go back");
 
-        int movieId = sc.nextInt();
-        if (movieId == -1) { return;}
+        // int movieId = sc.nextInt();
+        // if (movieId == -1) { return;}
 
         // TODO... continue
         // maybe consider creating CineplexController class??

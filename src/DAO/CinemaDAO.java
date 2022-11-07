@@ -1,5 +1,7 @@
+package DAO;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import model.Cinema;
 
 public class CinemaDAO extends BaseDAO {
     String BASEPATH = "src/database/Cineplex/";

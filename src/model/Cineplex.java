@@ -1,3 +1,6 @@
+package model;
+import controller.CinemaController;
+
 public class Cineplex {
     static int numCineplex = 0;
 

@@ -1,4 +1,4 @@
-// TODO - still messy, please fix
+package model;
 
 public class Review {
     private int userId;

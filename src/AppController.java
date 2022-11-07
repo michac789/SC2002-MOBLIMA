@@ -1,3 +1,8 @@
+import DAO.DAO;
+import controller.CineplexController;
+import controller.MovieController;
+
+
 public class AppController {
     public static DAO dao = new DAO();
     public static MovieController mc = new MovieController();

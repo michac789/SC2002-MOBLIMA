@@ -1,5 +1,6 @@
-import java.io.*;
+package DAO;
 import java.util.LinkedList;
+import model.Review;
 
 public class ReviewDAO {
     public void saveReview(Review r, int movieId) {

@@ -1,4 +1,7 @@
+package controller;
 import java.util.*;
+import DAO.CinemaDAO;
+import model.Cinema;
 
 public class CinemaController {
     private ArrayList<Cinema> cinemas = new ArrayList<Cinema>();

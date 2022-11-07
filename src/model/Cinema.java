@@ -1,3 +1,6 @@
+package model;
+import controller.ShowtimeController;
+
 public class Cinema {
     private int cineplexId;
     private int cinemaCode;

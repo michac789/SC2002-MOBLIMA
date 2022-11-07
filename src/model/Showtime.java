@@ -1,4 +1,7 @@
+package model;
 import java.util.Date;
+
+import controller.SeatController;
 
 public class Showtime {
     private int movieId;

@@ -1,6 +1,8 @@
-import java.io.*;
+package controller;
 import java.util.LinkedList;
 import java.util.Scanner;
+import DAO.ReviewDAO;
+import model.Review;
 
 public class ReviewsController {
     private int movieId;

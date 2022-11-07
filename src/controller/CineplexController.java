@@ -1,4 +1,7 @@
+package controller;
 import java.util.*;
+import DAO.CineplexDAO;
+import model.Cineplex;
 
 public class CineplexController {
     private ArrayList<Cineplex> cineplexes = new ArrayList<Cineplex>();

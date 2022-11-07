@@ -1,4 +1,6 @@
+package controller;
 import java.util.*;
+import DAO.MovieGoerDAO;
 import user.MovieGoer;
 
 public class MovieGoerController {

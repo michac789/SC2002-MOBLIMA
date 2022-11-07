@@ -1,3 +1,4 @@
+package model;
 public class Movie {
     private static int numMovies = 0;
     // private ReviewsController reviews;

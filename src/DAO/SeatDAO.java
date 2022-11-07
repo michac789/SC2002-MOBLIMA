@@ -1,4 +1,6 @@
+package DAO;
 import java.util.LinkedList;
+import model.Seat;
 
 public class SeatDAO extends BaseDAO {
     String BASEPATH = "src/database/Cineplex/";

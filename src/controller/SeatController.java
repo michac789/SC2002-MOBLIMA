@@ -1,5 +1,9 @@
+package controller;
 import java.io.*;
 import java.util.*;
+
+import DAO.SeatDAO;
+import model.Seat;
 
 public class SeatController {
     private int showtimeId; 
