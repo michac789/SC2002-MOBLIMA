@@ -203,5 +203,3 @@ public class MovieController {
 
 //     // TODO
 //     // display the first 'num' movies with highest rating
-
-

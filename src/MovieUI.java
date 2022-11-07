@@ -5,13 +5,13 @@ public class MovieUI {
     private static Scanner sc = new Scanner(System.in);
     private static MovieController mc = new MovieController();
 
-    public static void searchMovies () {
+    public static void searchMovies() {
         System.out.print("Enter movie title:");
         String searchQuery = sc.nextLine();
         int movieId = mc.searchMovie(searchQuery);
     }
 
-    public static void displayAllMovies () {
+    public static void displayAllMovies() {
         System.out.println("Displaying all movies...");
         ArrayList<Movie> movies = mc.getAllMovies();
         for(int i = 0; i<movies.size(); i++){
@@ -94,10 +94,6 @@ public class MovieUI {
             if (option == 10) {break;}
             sc.nextLine();
 
-            String strSc;
-            int intSc;
-            boolean booleanSc;
-
             switch (option) {
                 case 1:
                     System.out.println("Enter new Title: ");
@@ -110,7 +106,6 @@ public class MovieUI {
                     mc.editDuration(duration, movieSelected);
                     break;
                 case 3:
-
                     System.out.println("Enter new Director: ");
                     String director = sc.nextLine();
                     mc.editDirector(director, movieSelected);
@@ -161,17 +156,8 @@ public class MovieUI {
                         System.out.printf("Removed movie:\"%s\"", removedMovie);
                     }
                     break;
-
             }
             System.out.println("Success in editing!");
         }
-        // saveMovies();
-
-
     }
-
-
-
-
-
 }
