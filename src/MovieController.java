@@ -5,6 +5,7 @@ public class MovieController {
     private MovieDAO movieDAO = new MovieDAO();
     private Scanner sc;
 
+    private int[] movieIdList;
 
     public ArrayList<Movie> getAllMovies () {
         return movies;
@@ -65,23 +66,11 @@ public class MovieController {
 
     }
 
+    public Movie movieSelection(int selectedMovie) {
 
-    public Movie movieSelection() {
-        System.out.println("Select Movie:");
-        Movie.showStatusOptions option = Movie.showStatusOptions.NOW_SHOWING;
-        int i=0;
-        int[] movieList = new int[this.movies.size()];
-        for (Movie m: this.movies) {
-            if(m.getShowStatus() == option) {
-                System.out.printf("%d: %s\n", i, m.getTitle());
-                movieList[i] = m.getMovieId();
-                i++;
-            }
-        }
-        int selectedMovie = sc.nextInt();
 
         for (Movie m: this.movies) {
-            if (m.getMovieId() == movieList[selectedMovie]) {
+            if (m.getMovieId() == movieIdList[selectedMovie]) {
                 return m;
             }
         }
@@ -91,31 +80,25 @@ public class MovieController {
 
      public int displayShowingMovies() {
          int i = 0;
-         int[] id = new int[movies.size()];
+         int[] movieIdList = new int[movies.size()];
          for (int j = 0; j < movies.size(); j++) {
              if (movies.get(j).getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
                  System.out.printf("%d: %s\n", i, movies.get(j).getTitle());
-                 id[i] = j;
+                 movieIdList[i] = j;
                  i++;
              }
          }
+         this.movieIdList = movieIdList;
 
-         int option;
-         while (true) {
-             System.out.print("Select a movie: ");
-             option = sc.nextInt();
-             if (!(option < 0 || option >= i)) {
-                 break;
-             }
-             System.out.println("Invalid Option.");
-         }
-
-         return id[option];
+         return i;
      }
 
 
     public void rankMovieBySales(int num) {
 
+        for(Movie m: this.movies){
+
+        }
     }
 
     public void rankMovieByRating() {
