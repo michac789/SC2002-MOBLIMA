@@ -12,33 +12,40 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
-        AppController ac = new AppController();
 
-        // create sample movies
-        MovieController mc = new MovieController();
-        mc.getMovies();
-        mc.displayReviews(0);
-        mc.rankMovieByRating();
+        // AppController ac = new AppController();
 
-        // sample cineplexes
-        Cineplex cx1 = new Cineplex("location1");
-        Cineplex cx2 = new Cineplex("location2");
-        cx1.printCineplexInfo();
-        cx2.printCineplexInfo();
+        AppController.mc.getMovies();
+        AppController.mc.displayShowingMovies();
 
-        // add sample cinemas to cineplex
-        cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        cx1.addCinema(8, 12, Cinema.showClassOptions.CLASS1);
-        cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS2);
-        cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS3);
-        cx1.printCinemasList();
-        cx2.printCinemasList();
 
-        // get cinemas and add showtimes
-        Cinema c1 = cx1.getCinema(1);
-        Cinema c2 = cx1.getCinema(2);
-        Cinema c3 = cx1.getCinema(3);
+        System.exit(1);
+
+        // // create sample movies
+        // MovieController mc = new MovieController();
+        // mc.getMovies();
+        // mc.displayReviews(0);
+        // mc.rankMovieByRating();
+
+        // // sample cineplexes
+        // Cineplex cx1 = new Cineplex("location1");
+        // Cineplex cx2 = new Cineplex("location2");
+        // cx1.printCineplexInfo();
+        // cx2.printCineplexInfo();
+
+        // // add sample cinemas to cineplex
+        // cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
+        // cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
+        // cx1.addCinema(8, 12, Cinema.showClassOptions.CLASS1);
+        // cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS2);
+        // cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS3);
+        // cx1.printCinemasList();
+        // cx2.printCinemasList();
+
+        // // get cinemas and add showtimes
+        // Cinema c1 = cx1.getCinema(1);
+        // Cinema c2 = cx1.getCinema(2);
+        // Cinema c3 = cx1.getCinema(3);
 
         int choice;
         Scanner sc = new Scanner(System.in);
@@ -83,6 +90,8 @@ public class App {
             switch (choice) {
                 case 1:
 //                    mc.displayAllMovies();
+                    AppController.mc.displayShowingMovies();
+                    
                     bookingFlow(sc);
                     break;
                 

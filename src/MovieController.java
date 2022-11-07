@@ -1,12 +1,3 @@
-/*
-    'MoviesController' class
-
-    - Stores a list of all movies
-    - Contain utility functions to perform tasks related to
-    searching, querying, etc., from a list of all movies
-*/
-
-import javax.sound.midi.SysexMessage;
 import java.util.*;
 
 public class MovieController {
