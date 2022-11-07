@@ -122,7 +122,7 @@ public class App {
                     adminFlow(); // TODO
                     break;
                 case 7:
-                    bookingFlow(sc);
+                    bookingFlow();
                     break;
             }
         }
@@ -135,7 +135,7 @@ public class App {
 
     }
 
-    private static void bookingFlow(Scanner sc) {
+    private static void bookingFlow() {
         // prompt the user for a movie id or exit,
         // display all cineplex & cinema & date & showtime & type of cinema/seats that shows that movie with that id,
         // prompt the user to click on a cineplex or exit,
@@ -160,6 +160,8 @@ public class App {
     }
 
     private static void historyFlow() {
+
+
         // TODO
         // enter user id / name
         // show a list of booking history for that user
