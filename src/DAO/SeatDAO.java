@@ -13,10 +13,13 @@ public class SeatDAO extends BaseDAO {
         for (int i = 0; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String seats = instances.get(i).split(",")[3];
-            int h = 0, w = 0;
+            int h = 0, w = -1;
             for (int j = 0; j < seats.length(); j++) {
-                h = (h + 1) % height;
-                w = (w + 1) % width;
+                w = w + 1;
+                if (w >= width) {
+                    h = h + 1;
+                    w = w % width;
+                }
                 returnSeats[h][w] = new Seat(
                     "someSeatCodeTODO",
                     (seats.charAt(i) == 'F' ? true : false),

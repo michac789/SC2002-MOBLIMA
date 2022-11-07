@@ -35,8 +35,6 @@ public class SeatController {
         return s;
     }
 
-    public 
-
     // // create seats
     // public void createSeats(int h, int w) {
     //     seats = new Seat[h][w];
