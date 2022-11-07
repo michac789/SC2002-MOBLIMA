@@ -3,7 +3,6 @@ public class Cineplex {
 
     private int cineplexId;
     private String location;
-    // private List<Cinema> cinemas = new ArrayList<Cinema>();
     private CinemaController cinemaController;
 
     public Cineplex(String location) {
