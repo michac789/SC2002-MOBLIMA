@@ -21,10 +21,15 @@ public class Cinema {
         this.showtimeController = new ShowtimeController(cineplexId, cinemaCode, height, width);
     }
 
+    public ShowtimeController getShowtimeController() {
+        return showtimeController;
+    }
+
     public int getCineplexId() { return this.cineplexId;}
     public int getCinemaCode() { return this.cinemaCode;}
     public int getHeight() { return this.height;}
     public int getWidth() { return this.width;}
     public showClassOptions getCinemaClass() { return this.cinemaClass;}
     public ShowtimeController getController() { return this.showtimeController;}
+
 }
