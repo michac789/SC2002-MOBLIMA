@@ -24,7 +24,8 @@ public class App {
         // mc.editMovies();
         CineplexController cc = new CineplexController();
         
-
+        System.out.println("TESTERRR");
+        
         mc.save();
         cc.save();
         

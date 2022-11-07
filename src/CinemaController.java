@@ -2,15 +2,19 @@ import java.util.*;
 
 public class CinemaController {
     private ArrayList<Cinema> cinemas = new ArrayList<Cinema>();
-    private CinemaDAO cinemasDao = new CinemaDAO();
+    private CinemaDAO cinemaDao = new CinemaDAO();
+    private int cinemasCount = 0;
     private int cineplexId;
     
     public CinemaController(int cineplexId) {
         this.cineplexId = cineplexId;
-        cinemas = this.cinemasDao.load(cineplexId);
+        this.cinemasCount++;
+        cinemas = this.cinemaDao.load(cineplexId);
     }
 
     public void save() {
-        this.cinemasDao.save(cinemas, cineplexId);
+        this.cinemaDao.save(cinemas, cineplexId);
     }
+
+    // public getCinemas
 }

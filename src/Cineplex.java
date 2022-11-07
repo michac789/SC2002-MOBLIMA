@@ -1,7 +1,5 @@
-import java.util.*;
-
 public class Cineplex {
-    private static int numCineplex = 0;
+    static int numCineplex = 0;
 
     private int cineplexId;
     private String location;

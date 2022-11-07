@@ -156,6 +156,29 @@ public class MovieController {
         // saveMovies();
     }
 
+    public Movie movieSelection() {
+        System.out.println("Select Movie:");
+        Movie.showStatusOptions option = Movie.showStatusOptions.NOW_SHOWING;
+        int i=0;
+        int[] movieList = new int[this.movies.size()];
+        for (Movie m: this.movies) {
+            if(m.getShowStatus() == option) {
+                System.out.printf("%d: %s\n", i, m.getTitle());
+                movieList[i] = m.getMovieId();
+                i++;
+            }
+        }
+        int selectedMovie = sc.nextInt();
+
+        for (Movie m: this.movies) {
+            if (m.getMovieId() == movieList[selectedMovie]) {
+                return m;
+            }
+        }
+
+        return null;
+    }
+
     public void displayShowingMovies() {
 
     }

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MovieDAO extends BaseDAO {
-    String FILEPATH = "database/Movie/Movies.csv";
+    String FILEPATH = "src/database/Movie/Movies.csv";
 
     public void save(ArrayList<Movie> instances) {
         emptyFile(FILEPATH);
