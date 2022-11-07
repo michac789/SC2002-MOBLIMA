@@ -16,5 +16,13 @@ public class CinemaController {
         this.cinemaDao.save(cinemas, cineplexId);
     }
 
-    // public getCinemas
+    public int getCinemasCount() { return this.cinemasCount;}
+
+    public void create() {
+        
+    }
+
+    public void edit() {
+        
+    }
 }

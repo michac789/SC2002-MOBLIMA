@@ -57,29 +57,18 @@ public class Movie {
     public String getIs3D() { return this.is3D ? "yes" : "no";}
     public String getIsBlockbuster() { return this.isBlockbuster ? "yes": "no";}
     public static int getNumMovies() { return numMovies;}
-
-    // print basic movie information (id & title)
-    public void printMovieInfo() {
-        System.out.println(
-            String.format("ID %d: %s", this.movieId, this.title)
-        );
+    
+    public String toString() {
+        return "Movie ID: " + this.movieId + "\n" +
+            "Movie Title: " + this.title + "\n" +
+            "Duration: " + this.durationMinutes + "\n" +
+            "Director: " + this.director + "\n" +
+            "Cast: " + this.cast + "\n" +
+            "Show Status:" + this.showStatus + "\n" +
+            "Age Rating: " + this.ageRating + "\n" +
+            "3D: " + this.getIs3D() + "\n" +
+            "Blockbuster: " + this.getIsBlockbuster() + "\n\n";
     }
-
-    //Method Override
-    // print complete movie information
-//    public String toString() {
-//        String rtn;
-//        System.out.println("Movie ID: " + this.movieId);
-//        System.out.println("Movie Title: " + this.title);
-//        System.out.println("Duration: " + this.durationMinutes);
-//        System.out.println("Director: " + this.director);
-//        System.out.println("Cast: " + this.cast);
-//        System.out.println("Show Status: " + this.showStatus);
-//        System.out.println("Age Rating: " + this.ageRating);
-//        System.out.println("3D: " + this.getIs3D());
-//        System.out.println("Blockbuster: " + this.getIsBlockbuster());
-//        System.out.println("");
-//    }
 
     // public void loadReviews() {
     //     reviews = new ReviewsController(this.movieId);

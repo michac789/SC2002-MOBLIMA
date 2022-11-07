@@ -180,7 +180,7 @@ public class MovieController {
     }
 
     public void displayShowingMovies() {
-
+        
     }
 
     public int searchMovie(String query) {
