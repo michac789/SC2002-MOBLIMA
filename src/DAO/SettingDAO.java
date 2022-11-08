@@ -10,7 +10,7 @@ public class SettingDAO extends BaseDAO {
         emptyFile(FILEPATH);
         String header = "class1Price,class2Price,class3Price,charge3D,chargeBlockbuster,chargeHoliday";
         writeLine(FILEPATH, header);
-        String writeStr = String.format("%d,%d,%d,%d,%d,%d",
+        String writeStr = String.format("%.2f,%.2f,%.2f,%.2f,%.2f,%.2f",
             a, b, c, d, e, f
         );
         writeLine(FILEPATH, writeStr);

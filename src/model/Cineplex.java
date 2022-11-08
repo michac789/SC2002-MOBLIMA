@@ -17,6 +17,7 @@ public class Cineplex {
 
     public void setLocation(String location) { this.location = location;}
 
+    public static int getNumCineplex() { return numCineplex;}
     public int getCineplexId() { return this.cineplexId;}
     public String getLocation() { return this.location;}
     public CinemaController getController() { return this.cinemaController;}

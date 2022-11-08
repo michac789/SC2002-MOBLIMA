@@ -1,4 +1,5 @@
 package user;
+
 public abstract class User { 
     private String username; 
     protected enum UserType { MOVIEGOER, ADMIN }; 
@@ -13,5 +14,4 @@ public abstract class User {
 
     public boolean hasAdminAccess () { return this.userType == UserType.ADMIN ? true : false;} 
     protected void setType(UserType userType) { this.userType = userType; }
-
 }

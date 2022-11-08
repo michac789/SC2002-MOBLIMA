@@ -7,7 +7,7 @@ public class Cinema {
     private int height;
     private int width;
     public enum showClassOptions {
-        CLASS1, CLASS2, CLASS3
+        CLASS1, CLASS2, CLASS3 // REGULAR, PREMIERE
     }
     private showClassOptions cinemaClass;
     private ShowtimeController showtimeController;

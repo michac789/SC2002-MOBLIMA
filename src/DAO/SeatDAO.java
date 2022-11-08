@@ -22,8 +22,8 @@ public class SeatDAO extends BaseDAO {
                 }
                 returnSeats[h][w] = new Seat(
                     "someSeatCodeTODO",
-                    (seats.charAt(i) == 'F' ? true : false),
-                    (seats.charAt(i) == 'X' ? false : true)
+                    (seats.charAt(j) == 'F' ? true : false),
+                    (seats.charAt(j) == 'X' ? false : true)
                 );
             }
         }

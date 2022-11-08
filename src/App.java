@@ -11,11 +11,13 @@ import controller.CineplexController;
 import controller.MovieController;
 import controller.SettingsController;
 import model.Settings;
+import java.io.File;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Welcome to MOBLIMA !!!\n");
+        System.out.println("Welcome to MOBLIMAA !!!\n");
 
+        File myObj = new File("C:\\Users\\MyName\\filename.txt");
 
         // AppController ac = new AppController();
         // AppController.mc.getMovies(); --

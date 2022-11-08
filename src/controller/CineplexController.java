@@ -1,5 +1,6 @@
 package controller;
-import java.util.*;
+import java.io.File;
+import java.util.ArrayList;
 import DAO.CineplexDAO;
 import model.Cineplex;
 
@@ -11,10 +12,18 @@ public class CineplexController {
         cineplexes = this.cineplexDao.load();
     }
 
+    public void create(String location) {
+        System.out.println("CREATEEE");
+        int id = Cineplex.getNumCineplex() + 1;
+        new Cineplex(location);
+        String PATH = "src/database/Cineplex/" + id;
+        new File(PATH).mkdirs();
+        new File(PATH + id + "/Cinemas.java");
+    }
 
     public void displayCineplexesByMovieId (int movieId){
         int count = 0;
-        for(int i = 0; i<cineplexes.size(); i++){
+        for(int i = 0; i < cineplexes.size(); i++){
             Cineplex cineplex = cineplexes.get(i);
             CinemaController cinemaController = new CinemaController(cineplex.getCineplexId());
             if(cinemaController.isMovieExist(movieId)){
@@ -25,20 +34,19 @@ public class CineplexController {
         if (count == 0){
             System.out.println("No cinema are currently showing this movie");
         }
-
     }
 
     public int getCineplexIdByLocation(String location){
-        for(int i = 0; i <cineplexes.size() ; i++){
+        for (int i = 0; i <cineplexes.size() ; i++) {
             Cineplex cineplex = cineplexes.get(i);
-            if(cineplex.getLocation().equals(location)){
+            if (cineplex.getLocation().equals(location)) {
                 return cineplex.getCineplexId();
             }
 
         }
-
         return -1;
     }
+
     public void save() {
         this.cineplexDao.save(cineplexes);
     }

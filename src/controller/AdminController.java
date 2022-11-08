@@ -22,7 +22,7 @@ public class AdminController {
                 return true;
             }
         }
-        return false; 
+        return false;
     }
 
     public boolean isAdminExist(String username) {
