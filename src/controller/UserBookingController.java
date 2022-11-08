@@ -1,11 +1,11 @@
 package controller;
 
-import model.UserBooking;
+import model.Booking;
 
 import java.util.ArrayList;
 
 public class UserBookingController {
-    private ArrayList <UserBooking> bookingList;
+    private ArrayList <Booking> bookingList;
 
 
     

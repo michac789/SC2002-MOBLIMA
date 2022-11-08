@@ -4,7 +4,7 @@ import user.Admin;
 import java.util.ArrayList;
 
 public class AdminDAO extends BaseDAO {
-    String FILEPATH = "src/database/Users/Admins.csv";
+    String FILEPATH = "src/database/User/Admins.csv";
 
     public void save(ArrayList<Admin> instances) {
         emptyFile(FILEPATH);

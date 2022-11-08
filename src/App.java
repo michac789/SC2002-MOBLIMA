@@ -9,10 +9,13 @@ import boundary.AdminUI;
 import boundary.MovieUI;
 import controller.CineplexController;
 import controller.MovieController;
+import controller.SettingsController;
+import model.Settings;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMA !!!\n");
+
 
         // AppController ac = new AppController();
         // AppController.mc.getMovies(); --
@@ -23,40 +26,11 @@ public class App {
         // mc.createMovie();
         // mc.editMovies();
         CineplexController cc = new CineplexController();
+        SettingsController sec = new SettingsController();
         
         System.out.println("TESTERRR");
         
-        mc.save();
-        cc.save();
-        
-        System.exit(1);
-
-        // // create sample movies
-        // MovieController mc = new MovieController();
-        // mc.getMovies();
-        // mc.displayReviews(0);
-        // mc.rankMovieByRating();
-
-        // // sample cineplexes
-        // Cineplex cx1 = new Cineplex("location1");
-        // Cineplex cx2 = new Cineplex("location2");
-        // cx1.printCineplexInfo();
-        // cx2.printCineplexInfo();
-
-        // // add sample cinemas to cineplex
-        // cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        // cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        // cx1.addCinema(8, 12, Cinema.showClassOptions.CLASS1);
-        // cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS2);
-        // cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS3);
-        // cx1.printCinemasList();
-        // cx2.printCinemasList();
-
-        // // get cinemas and add showtimes
-        // Cinema c1 = cx1.getCinema(1);
-        // Cinema c2 = cx1.getCinema(2);
-        // Cinema c3 = cx1.getCinema(3);
-
+        // System.exit(1);
         int choice;
         Scanner sc = new Scanner(System.in);
 
@@ -123,7 +97,7 @@ public class App {
                     break;
 
                 case 6:
-                    adminFlow(); // TODO
+                    AdminUI.main();
                     break;
                 case 7:
                     bookingFlow();
@@ -132,11 +106,11 @@ public class App {
         }
         while (choice != 8);
         sc.close();
-        AdminUI.adminController.save();
 
-
-
-
+        // save all the changes to database (csv)
+        mc.save();
+        cc.save();
+        sec.save();
     }
 
     private static void bookingFlow() {
@@ -170,9 +144,5 @@ public class App {
         // enter user id / name
         // show a list of booking history for that user
         // add options to add review for movies watched
-    }
-
-    private static void adminFlow() {
-        AdminUI.main();
     }
 }
