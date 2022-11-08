@@ -8,6 +8,20 @@ public class MovieUI {
     private static Scanner sc = new Scanner(System.in);
     private static MovieController mc = new MovieController();
     private static int movieId;
+
+    public static void admin() {
+        // TODO
+        // prompt admin to choose between:
+        // display all movies (id and title; list view)
+        // display a particular movie info completely (detailed view)
+        // create new movie
+        // edit existing movie based on id
+        // delete??? (NOT IMPLEMENTED YET, A BIT DIFFICULT TO DO)
+        // please change the admin methods to private instead,
+        // only access thoe private methods through this admin method
+        // so you do not accidentally call the method anywhere else
+    }
+
     public static void searchMovies() {
         System.out.print("Enter movie title:");
         String searchQuery = sc.nextLine();
@@ -68,7 +82,7 @@ public class MovieUI {
         mc.createMovie(m);
     }
 
-    public void editMovies() {
+    public void editMovie() {
         int movieSelected;
         while (true) {
             System.out.print("Enter a movie ID: ");
@@ -201,5 +215,4 @@ public class MovieUI {
     public static void rankMovieBySales(){
         mc.rankMovieBySales(5);
     }
-
 }

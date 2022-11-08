@@ -1,7 +1,7 @@
 package controller;
-import java.io.File;
 import java.util.ArrayList;
 import DAO.CineplexDAO;
+import DAO.DAO;
 import model.Cineplex;
 
 public class CineplexController {
@@ -11,17 +11,30 @@ public class CineplexController {
     public CineplexController() {
         cineplexes = this.cineplexDao.load();
     }
-
-    public void create(String location) {
-        System.out.println("CREATEEE");
-        int id = Cineplex.getNumCineplex() + 1;
-        new Cineplex(location);
-        String PATH = "src/database/Cineplex/" + id;
-        new File(PATH).mkdirs();
-        new File(PATH + id + "/Cinemas.java");
+    
+    public void save() {
+        this.cineplexDao.save(cineplexes);
     }
 
-    public void displayCineplexesByMovieId (int movieId){
+    public void createCineplex(String location) {
+        String BASEPATH = "database/Cineplex/";
+        int newCineplexId = Cineplex.getNumCineplex() + 1;
+        DAO.createFolder(BASEPATH + newCineplexId);
+        DAO.createFile(BASEPATH + newCineplexId + "/Cinemas.csv");
+        DAO.writeFile(
+            BASEPATH + "Cineplexes.csv",
+            String.format("%d,%s", newCineplexId, location),
+            true
+        );
+        Cineplex newCineplex = new Cineplex(location);
+        this.cineplexes.add(newCineplex);
+    }
+
+    public void editLocation(int cineplexId, String newLocation) {
+        this.cineplexes.get(cineplexId - 1).setLocation(newLocation);
+    }
+
+    public void displayCineplexesByMovieId(int movieId) {
         int count = 0;
         for(int i = 0; i < cineplexes.size(); i++){
             Cineplex cineplex = cineplexes.get(i);
@@ -45,9 +58,5 @@ public class CineplexController {
 
         }
         return -1;
-    }
-
-    public void save() {
-        this.cineplexDao.save(cineplexes);
     }
 }

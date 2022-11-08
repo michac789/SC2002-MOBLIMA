@@ -13,7 +13,10 @@ public class MovieController {
     public ArrayList<Movie> getAllMovies () {
         return movies;
     }
+    
     public MovieController() {
+        System.out.println("CALLEDDD");
+        
         movies = this.movieDAO.load();
         sc = new Scanner(System.in);
     }

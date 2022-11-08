@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import model.Movie;
 
 public class MovieDAO extends BaseDAO {
-    String FILEPATH = "src/database/Movie/Movies.csv";
+    String FILEPATH = "database/Movie/Movies.csv";
 
     public void save(ArrayList<Movie> instances) {
         emptyFile(FILEPATH);

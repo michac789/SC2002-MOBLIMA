@@ -30,20 +30,22 @@ public class AdminUI {
         while (true){
             System.out.println("|=========================================|");
             System.out.println("|=========|MOBLIMA Administrator|=========|");
-            System.out.println("|=========================================|\n" + 
-                        "1. Create/Update/Remove movie\n"+
-                        "2. Create/Update/Remove showtime\n"+
-                        "3. Configure system settings\n" +
-                        "4. Search/List movies\n" + // TODO ???
-                        "5. View movie details\n" + // TODO ???
-                        "6. Create another admin account\n" +
-                        "7. Log out\n");
+            System.out.println("|=========================================|\n" +
+                        "1. View/Create/Edit Movie\n" +
+                        "2. View/Create/Edit Cineplex\n" + // remove quite difficult to implement
+                        "3. View/Create/Edit Cinema\n" +
+                        "4. View/Create/Edit Showtime\n" +
+                        "5. Configure System Settings\n" +
+                        "6. Create Another Admin Account\n" +
+                        "7. Log Out\n");
             System.out.print("Select action: ");  
             int choice = sc.nextInt();  
             switch(choice){ 
-                case 1: 
+                case 1:
+                    MovieUI.admin();
                     break;
                 case 2:
+                    CineplexUI.admin();
                     break;
                 case 3:
                     break;

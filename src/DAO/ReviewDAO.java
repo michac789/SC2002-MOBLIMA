@@ -4,7 +4,7 @@ import model.Review;
 
 public class ReviewDAO {
     public void saveReview(Review r, int movieId) {
-        String filename = "src/database/Movie/Review/" + movieId + ".csv";
+        String filename = "database/Movie/Review/" + movieId + ".csv";
 
         String formatComment = r.getComment();
         formatComment = formatComment.replace(",", "\\comma");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import user.MovieGoer;
 
 public class MovieGoerDAO extends BaseDAO {
-    String FILEPATH = "src/database/User/MovieGoers.csv";
+    String FILEPATH = "database/User/MovieGoers.csv";
 
     public void save(ArrayList<MovieGoer> instances) {
         emptyFile(FILEPATH);

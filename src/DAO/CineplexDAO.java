@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import model.Cineplex;
 
 public class CineplexDAO extends BaseDAO {
-    String FILEPATH = "src/database/Cineplex/Cineplexes.csv";
+    String FILEPATH = "database/Cineplex/Cineplexes.csv";
     
     public void save(ArrayList<Cineplex> instances) {
         emptyFile(FILEPATH);

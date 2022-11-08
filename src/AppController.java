@@ -4,12 +4,16 @@ import controller.MovieController;
 
 
 public class AppController {
-    public static DAO dao = new DAO();
-    public static MovieController mc = new MovieController();
-    public static CineplexController cc = new CineplexController();
+    // public static DAO dao = new DAO();
+    // public static MovieController mc = new MovieController();
+    // public static CineplexController cc = new CineplexController();
+
+    private MovieController mc;
+    private CineplexController cc;
     
     public AppController() {
-        initControllers();
+        mc = new MovieController();
+        cc = new CineplexController();
     }
 
     public void initControllers() {

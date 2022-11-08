@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import model.Settings;
 
 public class SettingDAO extends BaseDAO {
-    String FILEPATH = "src/database/Settings/Price.csv";
+    String FILEPATH = "database/Settings/Price.csv";
 
     public void save(double a, double b, double c, double d, double e, double f) {
         System.out.println("TEST");

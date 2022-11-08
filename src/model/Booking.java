@@ -18,7 +18,13 @@ public class Booking {
         this.seat = seat;
     }
 
-
+    public int getUserId() { return this.userId;}
+    public String getTitle() { return this.title;}
+    public String getLocation() { return this.location;}
+    public int getCinemaCode() { return this.cinemaCode;}
+    public String getDatetime() { return this.datetime;}
+    public String getSeat() { return this.seat;}
+    public int getPrice() { return this.price;}
 
 
 

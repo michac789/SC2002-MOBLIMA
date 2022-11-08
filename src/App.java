@@ -10,14 +10,23 @@ import boundary.MovieUI;
 import controller.CineplexController;
 import controller.MovieController;
 import controller.SettingsController;
-import model.Settings;
 import java.io.File;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMAA !!!\n");
 
-        File myObj = new File("C:\\Users\\MyName\\filename.txt");
+        // File file1 = new File("test.txt");
+        // File folder = new File("Trial");
+        // boolean y = folder.mkdir();
+        // boolean x = file1.createNewFile();
+        // System.out.println(x);
+        // System.out.println(y);
+        
+        // System.exit(1);
+        
+
+        // File myObj = new File("C:\\Users\\MyName\\filename.txt");
 
         // AppController ac = new AppController();
         // AppController.mc.getMovies(); --
@@ -28,6 +37,10 @@ public class App {
         // mc.createMovie();
         // mc.editMovies();
         CineplexController cc = new CineplexController();
+        cc.createCineplex("test_location");
+        cc.createCineplex("another sample loc");
+        cc.editLocation(3, "test_loc2");
+
         SettingsController sec = new SettingsController();
         
         System.out.println("TESTERRR");

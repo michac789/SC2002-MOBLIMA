@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import model.Cinema;
 
 public class CinemaDAO extends BaseDAO {
-    String BASEPATH = "src/database/Cineplex/";
+    String BASEPATH = "database/Cineplex/";
     String FILEPATH;
 
     public void save(ArrayList<Cinema> instances, int cineplexId) {
