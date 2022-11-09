@@ -9,7 +9,7 @@ public class CineplexUI {
 
     public static void admin() {
         while (true) {
-            System.out.println("|=========|Cineplex Admin|=========|");
+            System.out.println("|=========|Cineplex Admin Panel|=========|");
             System.out.print(
                 "1. Display All Cineplexes\n" +
                 "2. Create New Cineplex\n" +

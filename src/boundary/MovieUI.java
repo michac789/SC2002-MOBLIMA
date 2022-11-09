@@ -8,19 +8,48 @@ import model.Movie;
 public class MovieUI {
     private static Scanner sc = new Scanner(System.in);
     private static MovieController mc = AppController.mc;
-    private static int movieId;
 
+    // TODO
+    // prompt admin to choose between:
+    // display all movies (id and title; list view)
+    // display a particular movie info completely (detailed view)
+    // create new movie
+    // edit existing movie based on id
+    // delete??? (NOT IMPLEMENTED YET, A BIT DIFFICULT TO DO)
+    // please change the admin methods to private instead,
+    // only access thoe private methods through this admin method
+    // so you do not accidentally call the method anywhere else
     public static void admin() {
-        // TODO
-        // prompt admin to choose between:
-        // display all movies (id and title; list view)
-        // display a particular movie info completely (detailed view)
-        // create new movie
-        // edit existing movie based on id
-        // delete??? (NOT IMPLEMENTED YET, A BIT DIFFICULT TO DO)
-        // please change the admin methods to private instead,
-        // only access thoe private methods through this admin method
-        // so you do not accidentally call the method anywhere else
+        while (true) {
+            System.out.println("|=========|Movie Admin Panel|=========|");
+            System.out.print(
+                "1. Display All Movies\n" +
+                "2. Movie Detailed View\n" +
+                "3. Create Movie\n" +
+                "4. Edit Movie\n" +
+                "5. Exit\n");
+            System.out.print("Select action: ");  
+            int choice = sc.nextInt();
+            switch (choice) { 
+                case 1:
+                    displayAllMovies();
+                    break;
+                case 2:
+                    displayDetailMovie();
+                    break;
+                case 3:
+                    createMovie();
+                    break;
+                case 4:
+                    editMovie();
+                    break;
+                case 5:
+                    return;
+                default:
+                    System.out.println("Invalid action, try again!");
+                    break;
+            }
+        }
     }
 
     public static void searchMovies() {
@@ -29,16 +58,30 @@ public class MovieUI {
         int movieId = mc.searchMovie(searchQuery);
     }
 
-    public static void displayAllMovies() {
+    private static void displayAllMovies() {
         System.out.println("Displaying all movies...");
         ArrayList<Movie> movies = mc.getAllMovies();
         for(int i = 0; i<movies.size(); i++){
             Movie movie = movies.get(i);
-            System.out.println("ID: " + movie.getMovieId() + " Title: " + movie.getTitle());
+            System.out.println("Movie ID " + movie.getMovieId() + ": " + movie.getTitle());
         }
+        System.out.println("");
+    }
+
+    private static void displayDetailMovie() {
+        int id;
+        while (true) {
+            System.out.println("Enter cineplex ID:");
+            id = sc.nextInt();
+            if (id > 0 && id <= Movie.getNumMovies()) {
+                break;
+            }
+            System.out.println("Invalid ID");
+        }
+        System.out.println(AppController.mc.getMovieById(id));
     }
     
-    public static void createMovie() {
+    private static void createMovie() {
         // title, duration, director, cast, status, age rating, is3D, isBlockbuster
         System.out.println("Adding new Movie: ");
 
@@ -84,7 +127,7 @@ public class MovieUI {
         mc.createMovie(m);
     }
 
-    public void editMovie() {
+    private static void editMovie() {
         int movieSelected;
         while (true) {
             System.out.print("Enter a movie ID: ");
@@ -179,17 +222,18 @@ public class MovieUI {
             System.out.println("Success in editing!");
         }
     }
-    public static void displayReviews(){
-        mc.displayReviews(movieId);
-    }
+    
+    // public static void displayReviews(){
+    //     mc.displayReviews(movieId);
+    // }
 
-    public static void searchMovie(){
+    // public static void searchMovie(){
 
-        System.out.println("Search movie by name: ");
-        String title = sc.nextLine();
-        movieId = mc.searchMovie(title);
+    //     System.out.println("Search movie by name: ");
+    //     String title = sc.nextLine();
+    //     movieId = mc.searchMovie(title);
 
-    }
+    // }
 
     public static void displayShowingMovies () {
         mc.displayShowingMovies();

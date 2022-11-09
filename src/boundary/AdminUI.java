@@ -31,8 +31,8 @@ public class AdminUI {
             System.out.println("|=========================================|");
             System.out.println("|=========|MOBLIMA Administrator|=========|");
             System.out.println("|=========================================|\n" +
-                        "1. View/Create/Edit Movie\n" + // IN PROGRESS
-                        "2. View/Create/Edit Cineplex\n" + // remove quite difficult to implement // IN PROGRESS
+                        "1. View/Create/Edit Movie\n" +
+                        "2. View/Create/Edit Cineplex\n" +
                         "3. View/Create/Edit Cinema\n" + // IN PROGRESS
                         "4. View/Create/Edit Showtime\n" + // IN PROGRESS
                         "5. Configure System Settings\n" +
@@ -48,12 +48,12 @@ public class AdminUI {
                     CineplexUI.admin();
                     break;
                 case 3:
+                    // TODO
                     break;
                 case 4:
                     break;
                 case 5:
-                    SettingsUI.displayPriceSettings();
-                    Settings.charge3D = 1.5;
+                    SettingsUI.admin();
                     break;
                 case 6: 
                     createAdminAccount();

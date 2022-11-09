@@ -13,6 +13,10 @@ public class MovieController {
     public ArrayList<Movie> getAllMovies () {
         return movies;
     }
+
+    public Movie getMovieById(int id) {
+        return movies.get(id - 1);
+    }
     
     public MovieController() {
         movies = this.movieDAO.load();
