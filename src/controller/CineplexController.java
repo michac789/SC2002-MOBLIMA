@@ -21,6 +21,8 @@ public class CineplexController {
     }
 
     public Cineplex getCineplexById(int id) {
+        System.out.println(id);
+        
         return this.cineplexes.get(id - 1);
     }
 

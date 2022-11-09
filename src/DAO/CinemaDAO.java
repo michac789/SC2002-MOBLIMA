@@ -13,10 +13,10 @@ public class CinemaDAO extends BaseDAO {
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
             Cinema instance = instances.get(i);
-            writeStr = String.format("%d,%d,%d,%s,%s",
+            writeStr = String.format("%d,%d,%d,%s,%s,%s",
                 instance.getCineplexId(), instance.getCinemaCode(),
                 instance.getHeight(), instance.getWidth(),
-                instance.getCinemaClass()
+                instance.getCinemaClass(), instance.getSeatConfiguration()
             );
             writeLine(FILEPATH, writeStr);
             instance.getController().save();
@@ -35,7 +35,8 @@ public class CinemaDAO extends BaseDAO {
                 Integer.parseInt(x[1]),
                 Integer.parseInt(x[2]),
                 Integer.parseInt(x[3]),
-                Cinema.showClassOptions.valueOf(x[4])
+                Cinema.showClassOptions.valueOf(x[4]),
+                x[5]
             );
             returnList.add(new_instance);
         }

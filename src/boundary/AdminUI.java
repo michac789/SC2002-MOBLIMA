@@ -32,7 +32,7 @@ public class AdminUI {
             System.out.println("|=========================================|\n" +
                         "1. View/Create/Edit Movie\n" +
                         "2. View/Create/Edit Cineplex\n" +
-                        "3. View/Create/Edit Cinema\n" + // IN PROGRESS
+                        "3. View/Create/Edit Cinema\n" +
                         "4. View/Create/Edit Showtime\n" + // IN PROGRESS
                         "5. Display & Configure System Settings\n" +
                         "6. Create Another Admin Account\n" +
@@ -47,7 +47,7 @@ public class AdminUI {
                     CineplexUI.admin();
                     break;
                 case 3:
-                    // TODO
+                    CinemaUI.admin();
                     break;
                 case 4:
                     // TODO
@@ -85,6 +85,6 @@ public class AdminUI {
             }
             System.out.println("Cannot make the account. Either the admin user" +
                 " already exists or password and confirmation password does not match");
-        } while(true);
+        } while (true);
     }
 }

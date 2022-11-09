@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import boundary.AdminUI;
-import boundary.MovieUI;
+// import boundary.MovieUI;
+// import controller.CinemaController;
+// import model.Cinema.showClassOptions;
 import controller.AppController;
 
 public class App {
@@ -8,21 +10,6 @@ public class App {
         System.out.println("Welcome to MOBLIMAA !!!\n");
 
         AppController.init();
-        
-
-        // AppController ac = new AppController();
-        // AppController.mc.getMovies(); --
-        // AppController.mc.displayShowingMovies(); --
-
-        // // load cinema
-        // MovieController mc = new MovieController();
-        // // mc.createMovie();
-        // // mc.editMovies();
-        // CineplexController cc = new CineplexController();
-        // cc.createCineplex("test_location");
-        // cc.createCineplex("another sample loc");
-        // cc.editLocation(3, "test_loc2");
-        // SettingsController sec = new SettingsController();
     
         System.out.println("TESTERRR");
         
