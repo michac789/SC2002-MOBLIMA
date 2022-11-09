@@ -27,7 +27,7 @@ public class CineplexController {
     }
 
     public void createCineplex(String location) {
-        String BASEPATH = "database/Cineplex/";
+        String BASEPATH = "src/database/Cineplex/";
         int newCineplexId = Cineplex.getNumCineplex() + 1;
         DAO.createFolder(BASEPATH + newCineplexId);
         DAO.createFile(BASEPATH + newCineplexId + "/Cinemas.csv");

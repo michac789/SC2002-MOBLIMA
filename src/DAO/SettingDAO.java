@@ -8,8 +8,8 @@ import java.text.ParseException;
 import model.Settings;
 
 public class SettingDAO extends BaseDAO {
-    private static String FILEPATH1 = "database/Settings/Price.csv";
-    private static String FILEPATH2 = "database/Settings/Holiday.csv";
+    private static String FILEPATH1 = "src/database/Settings/Price.csv";
+    private static String FILEPATH2 = "src/database/Settings/Holiday.csv";
     private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public void savePriceSettings(double a, double b, double c, double d, double e, double f) {

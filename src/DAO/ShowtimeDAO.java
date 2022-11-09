@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 public class ShowtimeDAO extends BaseDAO {
-    String BASEPATH = "database/Cineplex/";
+    String BASEPATH = "src/database/Cineplex/";
     String FILEPATH;
 
     private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import model.Seat;
 
 public class SeatDAO extends BaseDAO {
-    String BASEPATH = "database/Cineplex/";
+    String BASEPATH = "src/database/Cineplex/";
     String FILEPATH;
 
     public Seat[][] load(int height, int width, int cineplexId, int cinemaId) {
