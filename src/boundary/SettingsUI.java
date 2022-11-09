@@ -12,8 +12,8 @@ public class SettingsUI {
                 "1. Display Price Settings\n" +
                 "2. Display Holiday Dates\n" +
                 "3. Edit Price Settings\n" +
-                "4. Edit Holiday Settings\n" +
-                "5. Exit");
+                "4. Edit Holiday Dates\n" +
+                "5. Exit\n");
             System.out.print("Select action: ");  
             int choice = sc.nextInt();
             switch (choice) { 
@@ -21,13 +21,13 @@ public class SettingsUI {
                     displayPriceSettings();
                     break;
                 case 2:
-                    // TODO
+                    displayHolidayDates();
                     break;
                 case 3:
                     editPriceSettings();
                     break;
                 case 4:
-                    // TODO
+                    editHolidayDates();
                     break;
                 case 5:
                     return;
@@ -54,6 +54,10 @@ public class SettingsUI {
         );
     }
 
+    private static void displayHolidayDates() {
+        // TODO
+    }
+
     private static void editPriceSettings() {
         System.out.println("Settings");
         while (true) {
@@ -65,10 +69,10 @@ public class SettingsUI {
                 "4. Edit 3D Movie Extra Charge\n" +
                 "5. Edit Blockbuster Movie Extra Charge\n" +
                 "6. Edit Holiday Extra Charge\n" +
-                "7. Exit");
+                "7. Exit\n");
             System.out.print("Select action: ");  
             int choice = sc.nextInt();
-            int newPrice;
+            Double newPrice;
             switch (choice) { 
                 case 1:
                     System.out.println(String.format(
@@ -76,7 +80,7 @@ public class SettingsUI {
                         Settings.class1Price
                     ));
                     System.out.println("Enter new price: ");
-                    newPrice = sc.nextInt();
+                    newPrice = sc.nextDouble();
                     Settings.class1Price = newPrice;
                     break;
                 case 2:
@@ -85,7 +89,7 @@ public class SettingsUI {
                         Settings.class2Price
                     ));
                     System.out.println("Enter new price: ");
-                    newPrice = sc.nextInt();
+                    newPrice = sc.nextDouble();
                     Settings.class2Price = newPrice;
                     break;
                 case 3:
@@ -94,7 +98,7 @@ public class SettingsUI {
                         Settings.class3Price
                     ));
                     System.out.println("Enter new price: ");
-                    newPrice = sc.nextInt();
+                    newPrice = sc.nextDouble();
                     Settings.class3Price = newPrice;
                     break;
                 case 4:
@@ -103,7 +107,7 @@ public class SettingsUI {
                         Settings.charge3D
                     ));
                     System.out.println("Enter new price: ");
-                    newPrice = sc.nextInt();
+                    newPrice = sc.nextDouble();
                     Settings.charge3D = newPrice;
                     break;
                 case 5:
@@ -112,7 +116,7 @@ public class SettingsUI {
                         Settings.chargeBlockbuster
                     ));
                     System.out.println("Enter new price: ");
-                    newPrice = sc.nextInt();
+                    newPrice = sc.nextDouble();
                     Settings.chargeBlockbuster = newPrice;
                     break;
                 case 6:
@@ -121,7 +125,7 @@ public class SettingsUI {
                         Settings.chargeHoliday
                     ));
                     System.out.println("Enter new price: ");
-                    newPrice = sc.nextInt();
+                    newPrice = sc.nextDouble();
                     Settings.chargeHoliday = newPrice;
                     break;
                 case 7:
@@ -130,6 +134,11 @@ public class SettingsUI {
                     System.out.println("Invalid action, try again!");
                     break;
             }
+            System.out.println("Changes saved\n");
         }
+    }
+
+    private static void editHolidayDates() {
+        // TODO
     }
 }

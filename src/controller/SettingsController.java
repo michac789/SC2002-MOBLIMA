@@ -10,7 +10,7 @@ public class SettingsController {
     }
 
     public void save() {
-        settingsDao.save(
+        settingsDao.savePriceSettings(
             Settings.class1Price,
             Settings.class2Price,
             Settings.class3Price,

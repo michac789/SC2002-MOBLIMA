@@ -17,11 +17,12 @@ public class SeatController {
     private static final String ANSI_GREEN = "\u001b[32m";  // green = seat available
     private static final String ANSI_RESET = "\u001B[0m";  // original command line text colour
 
-    public SeatController(int height, int width, int cineplexId, int cinemaId) {
+    public SeatController(int height, int width, int cineplexId, int cinemaId, Seat[][] seats) {
         // this.showtimeId = showtimeId;
         this.height = height;
         this.width = width;
-        seats = this.seatDao.load(height, width, cineplexId, cinemaId);
+        this.seats = seats;
+        // seats = this.seatDao.load(height, width, cineplexId, cinemaId);
     }
 
     public String serializeSeats() {
@@ -75,17 +76,24 @@ public class SeatController {
 
     // display seats
     public void displaySeats() {
-        if (availSeats() == 0) {   // showtime fully booked
-            System.out.println("No available seats left.");
-        } else {   // there are still available seats
-            for (int i = 0; i < seats.length; i++) {
-                for (int j = 0; j < seats[0].length; j++) {
-                    printSeat(seats[i][j]);
-                    System.out.print(" ");
-                }
-                System.out.println();
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[0].length; j++) {
+                printSeat(seats[i][j]);
+                System.out.print(" ");
             }
+            System.out.println();
         }
+        // if (availSeats() == 0) {   // showtime fully booked
+        //     System.out.println("No available seats left.");
+        // } else {   // there are still available seats
+        //     for (int i = 0; i < seats.length; i++) {
+        //         for (int j = 0; j < seats[0].length; j++) {
+        //             printSeat(seats[i][j]);
+        //             System.out.print(" ");
+        //         }
+        //         System.out.println();
+        //     }
+        // }
         System.out.println("Legend: Green seats are available. Red seats are not available.");
     }
 

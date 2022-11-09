@@ -7,10 +7,10 @@ public class Showtime {
     private Date date;
     private SeatController seatController;
 
-    public Showtime(int movieId, Date date, int height, int width, int cineplexId, int cinemaId) {
+    public Showtime(int movieId, Date date, int height, int width, int cineplexId, int cinemaId, Seat[][] seats) {
         this.movieId = movieId;
         this.date = date;
-        seatController = new SeatController(height, width, cineplexId, cinemaId);
+        this.seatController = new SeatController(height, width, cineplexId, cinemaId, seats);
     }
     
     public int getMovieId() { return this.movieId;}

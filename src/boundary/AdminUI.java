@@ -1,7 +1,6 @@
 package boundary;
 import java.util.Scanner;
 import controller.AdminController;
-import model.Settings;
 
 public class AdminUI { 
     public static AdminController adminController;
@@ -51,6 +50,7 @@ public class AdminUI {
                     // TODO
                     break;
                 case 4:
+                    // TODO
                     break;
                 case 5:
                     SettingsUI.admin();
@@ -71,6 +71,7 @@ public class AdminUI {
     
     public static void createAdminAccount(){
         String username, password, confirmationPassword;
+        sc.nextLine();
         do {
             System.out.println("Please enter admin username: ");
             username = sc.nextLine().trim();
@@ -79,7 +80,7 @@ public class AdminUI {
             System.out.println("Password again to confirm: ");
             confirmationPassword = sc.nextLine().trim();
             if (!adminController.isAdminExist(username) && password.equals(confirmationPassword)) {
-                adminController.createAccount(username,password);
+                adminController.createAccount(username, password);
                 break;
             }
             System.out.println("Cannot make the account. Either the admin user" +

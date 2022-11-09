@@ -1,6 +1,7 @@
 package DAO;
 import java.util.LinkedList;
 import model.Showtime;
+import model.Seat;
 import java.util.ArrayList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,7 +25,6 @@ public class ShowtimeDAO extends BaseDAO {
             Date sDate = instance.getDate();
             String formatDate = dateFormat.format(sDate);
             String formatTime = timeFormat.format(sDate);
-            String seats = instance.getController().serializeSeats();
             writeStr = String.format("%d,%s,%s,%s",
                 instance.getMovieId(), formatDate, formatTime, seats
             );
@@ -37,6 +37,7 @@ public class ShowtimeDAO extends BaseDAO {
         LinkedList<String> instances = this.getData(FILEPATH);
         ArrayList<Showtime> returnList = new ArrayList<Showtime>();
         for (int i = 0; i < instances.size(); i++) {
+            Seat[][] returnSeats = new Seat[height][width];
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
             Date date = null;
@@ -45,11 +46,26 @@ public class ShowtimeDAO extends BaseDAO {
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
-            Showtime new_instance = new Showtime(
+            String seats = instances.get(i).split(",")[3];
+            int h = 0, w = -1;
+            for (int j = 0; j < seats.length(); j++) {
+                w = w + 1;
+                if (w >= width) {
+                    h = h + 1;
+                    w = w % width;
+                }
+                returnSeats[h][w] = new Seat(
+                    "someSeatCodeTODO",
+                    (seats.charAt(j) == 'F' ? true : false),
+                    (seats.charAt(j) == 'X' ? false : true)
+                );
+            }
+            Showtime newShowtime = new Showtime(
                 Integer.parseInt(x[0]), date, height, width,
-                cineplexId, cinemaId
+                cineplexId, cinemaId, returnSeats
             );
-            returnList.add(new_instance);
+            newShowtime.getController().displaySeats();
+            returnList.add(newShowtime);
         }
         return returnList;
     }

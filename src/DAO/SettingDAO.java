@@ -3,10 +3,9 @@ import java.util.LinkedList;
 import model.Settings;
 
 public class SettingDAO extends BaseDAO {
-    String FILEPATH = "database/Settings/Price.csv";
+    private static String FILEPATH = "database/Settings/Price.csv";
 
-    public void save(double a, double b, double c, double d, double e, double f) {
-        System.out.println("TEST");
+    public void savePriceSettings(double a, double b, double c, double d, double e, double f) {
         emptyFile(FILEPATH);
         String header = "class1Price,class2Price,class3Price,charge3D,chargeBlockbuster,chargeHoliday";
         writeLine(FILEPATH, header);

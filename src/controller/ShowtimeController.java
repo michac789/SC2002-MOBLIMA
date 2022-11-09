@@ -18,13 +18,14 @@ public class ShowtimeController {
     public ShowtimeController(int cineplexId, int cinemaId, int height, int width) {
         this.cineplexId = cineplexId;
         this.cinemaId = cinemaId;
-        showtimes = this.showtimeDao.load(cineplexId, cinemaId, height, width);
+        this.showtimes = this.showtimeDao.load(cineplexId, cinemaId, height, width);
         sc = new Scanner(System.in);
     }
 
     public void save() {
-        this.showtimeDao.save(showtimes, cineplexId, cinemaId);
+        this.showtimeDao.save(this.showtimes, cineplexId, cinemaId);
     }
+
     public boolean isMovieExist(int movieId) {
         for(int i = 0; i<showtimes.size(); i++){
             Showtime showtime = showtimes.get(i);

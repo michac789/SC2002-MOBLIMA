@@ -67,8 +67,8 @@ public class App {
 
             switch (choice) {
                 case 1:
-                    MovieUI.displayAllMovies();
-
+                    // MovieUI.displayAllMovies();
+                    System.out.println("TODO");
                     bookingFlow();
                     break;
                 
