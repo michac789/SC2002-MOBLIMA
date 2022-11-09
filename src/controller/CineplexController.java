@@ -16,6 +16,14 @@ public class CineplexController {
         this.cineplexDao.save(cineplexes);
     }
 
+    public ArrayList<Cineplex> getAllCineplexes() {
+        return this.cineplexes;
+    }
+
+    public Cineplex getCineplexById(int id) {
+        return this.cineplexes.get(id - 1);
+    }
+
     public void createCineplex(String location) {
         String BASEPATH = "database/Cineplex/";
         int newCineplexId = Cineplex.getNumCineplex() + 1;

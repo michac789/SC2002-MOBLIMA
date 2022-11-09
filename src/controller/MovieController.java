@@ -15,8 +15,6 @@ public class MovieController {
     }
     
     public MovieController() {
-        System.out.println("CALLEDDD");
-        
         movies = this.movieDAO.load();
         sc = new Scanner(System.in);
     }
@@ -51,7 +49,6 @@ public class MovieController {
 
     public void editShowingStatus(int status, int movieSelected) {
         this.movies.get(movieSelected).setShowStatus(Movie.showStatusOptions.values()[status]);
-
     }
 
     public void editAgeRating(int ageRating, int movieSelected) {
@@ -70,18 +67,14 @@ public class MovieController {
         String title = this.movies.get(movieSelected).getTitle();
         movies.remove(movieSelected);
         return title;
-
     }
 
     public Movie movieSelection(int selectedMovie) {
-
-
         for (Movie m: this.movies) {
             if (m.getMovieId() == movieIdList[selectedMovie]) {
                 return m;
             }
         }
-
         return null;
     }
 

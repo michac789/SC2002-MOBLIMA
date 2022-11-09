@@ -1,48 +1,27 @@
-/*
-    'App' class
-
-    Master file to be executed to launch the program
-*/
-
 import java.util.Scanner;
 import boundary.AdminUI;
 import boundary.MovieUI;
-import controller.CineplexController;
-import controller.MovieController;
-import controller.SettingsController;
-import java.io.File;
+import controller.AppController;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to MOBLIMAA !!!\n");
 
-        // File file1 = new File("test.txt");
-        // File folder = new File("Trial");
-        // boolean y = folder.mkdir();
-        // boolean x = file1.createNewFile();
-        // System.out.println(x);
-        // System.out.println(y);
-        
-        // System.exit(1);
-        
-
-        // File myObj = new File("C:\\Users\\MyName\\filename.txt");
-
+        AppController.init();
         // AppController ac = new AppController();
         // AppController.mc.getMovies(); --
         // AppController.mc.displayShowingMovies(); --
 
-        // load cinema
-        MovieController mc = new MovieController();
-        // mc.createMovie();
-        // mc.editMovies();
-        CineplexController cc = new CineplexController();
-        cc.createCineplex("test_location");
-        cc.createCineplex("another sample loc");
-        cc.editLocation(3, "test_loc2");
-
-        SettingsController sec = new SettingsController();
-        
+        // // load cinema
+        // MovieController mc = new MovieController();
+        // // mc.createMovie();
+        // // mc.editMovies();
+        // CineplexController cc = new CineplexController();
+        // cc.createCineplex("test_location");
+        // cc.createCineplex("another sample loc");
+        // cc.editLocation(3, "test_loc2");
+        // SettingsController sec = new SettingsController();
+    
         System.out.println("TESTERRR");
         
         // System.exit(1);
@@ -95,16 +74,16 @@ public class App {
                 
                 case 2:
                     String searchQuery = sc.nextLine();
-                    int movieId = mc.searchMovie(searchQuery);
+                    int movieId = AppController.mc.searchMovie(searchQuery);
                     // Navigate to movieOptions, Booking etc.
                     break;
                 
                 case 3:
-                    mc.rankMovieBySales(5); // TODO
+                    AppController.mc.rankMovieBySales(5); // TODO
                     break;
                 
                 case 4:
-                    mc.rankMovieByRating(); // TODO
+                    AppController.mc.rankMovieByRating(); // TODO
                     break;
                 
                 case 5:
@@ -123,9 +102,7 @@ public class App {
         sc.close();
 
         // save all the changes to database (csv)
-        mc.save();
-        cc.save();
-        sec.save();
+        AppController.save();
     }
 
     private static void bookingFlow() {

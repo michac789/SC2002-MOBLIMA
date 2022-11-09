@@ -21,4 +21,8 @@ public class Cineplex {
     public int getCineplexId() { return this.cineplexId;}
     public String getLocation() { return this.location;}
     public CinemaController getController() { return this.cinemaController;}
+
+    public String toString() {
+        return "Cineplex ID " + this.cineplexId + ": " + this.location;
+    }
 }

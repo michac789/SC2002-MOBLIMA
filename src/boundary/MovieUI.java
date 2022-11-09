@@ -1,12 +1,13 @@
 package boundary;
 import java.util.ArrayList;
 import java.util.Scanner;
+import controller.AppController;
 import controller.MovieController;
 import model.Movie;
 
 public class MovieUI {
     private static Scanner sc = new Scanner(System.in);
-    private static MovieController mc = new MovieController();
+    private static MovieController mc = AppController.mc;
     private static int movieId;
 
     public static void admin() {
@@ -36,6 +37,7 @@ public class MovieUI {
             System.out.println("ID: " + movie.getMovieId() + " Title: " + movie.getTitle());
         }
     }
+    
     public static void createMovie() {
         // title, duration, director, cast, status, age rating, is3D, isBlockbuster
         System.out.println("Adding new Movie: ");

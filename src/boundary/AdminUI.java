@@ -10,7 +10,7 @@ public class AdminUI {
     public static void main() {
         adminController = new AdminController();
         String username, password;
-        while(true) { 
+        while (true) { 
             System.out.println("|=========|Admin Login|=========|");
             System.out.println("Enter your username: ");
             username = sc.nextLine().trim(); 
@@ -27,14 +27,14 @@ public class AdminUI {
     } 
 
     public static void administratorAction() {
-        while (true){
+        while (true) {
             System.out.println("|=========================================|");
             System.out.println("|=========|MOBLIMA Administrator|=========|");
             System.out.println("|=========================================|\n" +
-                        "1. View/Create/Edit Movie\n" +
-                        "2. View/Create/Edit Cineplex\n" + // remove quite difficult to implement
-                        "3. View/Create/Edit Cinema\n" +
-                        "4. View/Create/Edit Showtime\n" +
+                        "1. View/Create/Edit Movie\n" + // IN PROGRESS
+                        "2. View/Create/Edit Cineplex\n" + // remove quite difficult to implement // IN PROGRESS
+                        "3. View/Create/Edit Cinema\n" + // IN PROGRESS
+                        "4. View/Create/Edit Showtime\n" + // IN PROGRESS
                         "5. Configure System Settings\n" +
                         "6. Create Another Admin Account\n" +
                         "7. Log Out\n");
