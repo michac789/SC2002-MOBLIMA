@@ -1,6 +1,6 @@
 package controller;
 import java.util.*;
-import DAO.DAO;
+import DAO.UtilDAO;
 import DAO.CinemaDAO;
 import model.Cinema;
 import model.Cinema.showClassOptions;
@@ -44,7 +44,7 @@ public class CinemaController {
     public void createCinema(int height, int width, showClassOptions c, String s) {
         String BASEPATH = "src/database/Cineplex/" + cineplexId + "/Showtime_";
         int newCode = this.cinemas.size() + 1;
-        DAO.createFile(BASEPATH + newCode + ".csv");
+        UtilDAO.createFile(BASEPATH + newCode + ".csv");
         Cinema cinema = new Cinema(cineplexId, newCode, height, width, c, s);
         this.cinemas.add(cinema);
     }

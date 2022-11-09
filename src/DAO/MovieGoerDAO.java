@@ -26,10 +26,10 @@ public class MovieGoerDAO extends BaseDAO {
         for (int i = 0; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
-            MovieGoer new_instance = new MovieGoer(
+            MovieGoer newInstance = new MovieGoer(
                 x[1], x[2], x[3], Integer.parseInt(x[4])
             );
-            returnList.add(new_instance);
+            returnList.add(newInstance);
         }
         return returnList;
     }

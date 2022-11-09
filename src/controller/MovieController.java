@@ -1,6 +1,7 @@
 package controller;
 import java.util.*;
 import DAO.MovieDAO;
+import DAO.UtilDAO;
 import model.Movie;
 
 public class MovieController {
@@ -8,78 +9,46 @@ public class MovieController {
     private MovieDAO movieDAO = new MovieDAO();
     private Scanner sc;
 
-    private int[] movieIdList;
+    private int[] movieIdList; //??
 
-    public ArrayList<Movie> getAllMovies () {
-        return movies;
-    }
-
-    public Movie getMovieById(int id) {
-        return movies.get(id - 1);
-    }
-    
     public MovieController() {
-        movies = this.movieDAO.load();
-        sc = new Scanner(System.in);
+        this.movies = this.movieDAO.load();
+        this.sc = new Scanner(System.in);
     }
-    
+
     public void save() {
         this.movieDAO.save(movies);
     }
 
-    public void createMovie(Movie m) {
-        movies.add(m);
+    public ArrayList<Movie> getAllMovies() {
+        return movies;
     }
 
-    public int getNumMovies() {
-        return Movie.getNumMovies();
-    }
-
-    public void editTitle(String title, int movieSelected) {
-        this.movies.get(movieSelected).setTitle(title);
-    }
-
-    public void editDuration(int duration, int movieSelected) {
-        this.movies.get(movieSelected).setDurationMinutes(duration);
-    }
-
-    public void editDirector(String director, int movieSelected){
-        this.movies.get(movieSelected).setDirector(director);
-    }
-    
-    public void editCast(String cast, int movieSelected) {
-        this.movies.get(movieSelected).setCast(cast);
-    }
-
-    public void editShowingStatus(int status, int movieSelected) {
-        this.movies.get(movieSelected).setShowStatus(Movie.showStatusOptions.values()[status]);
-    }
-
-    public void editAgeRating(int ageRating, int movieSelected) {
-        this.movies.get(movieSelected).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
-    }
-
-    public void editIs3D(boolean is3D, int movieSelected) {
-        this.movies.get(movieSelected).setIs3D(is3D);
-    }
-
-    public void editBlockBuster(boolean isBlockBuster, int movieSelected) {
-        this.movies.get(movieSelected).setIsBlockbuster(isBlockBuster);
-    }
-
-    public String removeMovie(int movieSelected) {
-        String title = this.movies.get(movieSelected).getTitle();
-        movies.remove(movieSelected);
-        return title;
-    }
-
-    public Movie movieSelection(int selectedMovie) {
+    public Movie getMovieById(int id) {
         for (Movie m: this.movies) {
-            if (m.getMovieId() == movieIdList[selectedMovie]) {
+            if (m.getMovieId() == m.getMovieId()) {
                 return m;
             }
         }
         return null;
+    }
+    
+    public void createMovie(
+            String title, int durationMinutes, String director, String cast,
+            Movie.showStatusOptions showStatus, Movie.ageRatingOptions ageRating,
+            boolean is3D, boolean isBlockbuster) {
+        String BASEPATH = "src/database/Movie/Review/";
+        int newMovieId = movies.size() + 1;
+        UtilDAO.createFile(BASEPATH + newMovieId + ".csv");
+        Movie m = new Movie(title, durationMinutes, director, cast,
+            showStatus, ageRating, is3D, isBlockbuster);
+        movies.add(m);
+    }
+
+    public String removeMovie(int movieSelected) { // TODO - still buggy for ID count now
+        String title = this.movies.get(movieSelected).getTitle();
+        movies.remove(movieSelected);
+        return title;
     }
 
      public int displayShowingMovies() {

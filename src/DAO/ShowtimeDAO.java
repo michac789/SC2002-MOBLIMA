@@ -40,29 +40,33 @@ public class ShowtimeDAO extends BaseDAO {
         for (int i = 0; i < instances.size(); i++) {
             Seat[][] returnSeats = new Seat[height][width];
             System.out.println(instances.get(i));
-            String[] x = instances.get(i).split(",");
+            String[] s = instances.get(i).split(",");
             Date date = null;
             try {
-                date = daoFormat.parse(String.format("%s,%s", x[1], x[2]));
+                date = daoFormat.parse(String.format("%s,%s", s[1], s[2]));
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
             String seats = instances.get(i).split(",")[3];
             int h = 0, w = -1;
+            int x = 0, y = 65;
             for (int j = 0; j < seats.length(); j++) {
                 w = w + 1;
+                x = x + 1;
                 if (w >= width) {
                     h = h + 1;
                     w = w % width;
+                    x = 1;
+                    y = y + 1;
                 }
                 returnSeats[h][w] = new Seat(
-                    "someSeatCodeTODO",
+                    Character.toString(y) + x,
                     (seats.charAt(j) == 'F' ? true : false),
                     (seats.charAt(j) == 'X' ? false : true)
                 );
             }
             Showtime newShowtime = new Showtime(
-                Integer.parseInt(x[0]), date, height, width,
+                Integer.parseInt(s[0]), date, height, width,
                 cineplexId, cinemaId, returnSeats
             );
             newShowtime.getController().displaySeats();

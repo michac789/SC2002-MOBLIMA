@@ -1,8 +1,6 @@
 package controller;
 import java.io.*;
 import java.util.*;
-
-import DAO.SeatDAO;
 import model.Seat;
 
 public class SeatController {
@@ -11,7 +9,6 @@ public class SeatController {
     private int width;
     private Seat[][] seats;
     private Scanner sc = new Scanner(System.in);
-    private SeatDAO seatDao = new SeatDAO();
 
     private static final String ANSI_RED = "\u001b[31m";  // red = seat taken
     private static final String ANSI_GREEN = "\u001b[32m";  // green = seat available
@@ -22,7 +19,6 @@ public class SeatController {
         this.height = height;
         this.width = width;
         this.seats = seats;
-        // seats = this.seatDao.load(height, width, cineplexId, cinemaId);
     }
 
     public String serializeSeats() {

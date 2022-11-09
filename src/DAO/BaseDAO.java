@@ -42,8 +42,8 @@ public class BaseDAO {
     //     for (int i = 0; i < instances.size(); i++) {
     //         System.out.println(instances.get(i));
     //         String[] x = instances.get(i).split(",");
-    //         BaseModel new_instance = "todo" + singleField[0];
-    //         returnList.add(new_instance);
+    //         BaseModel newInstance = "todo" + singleField[0];
+    //         returnList.add(newInstance);
     //     }
     //     return returnList;
     // }

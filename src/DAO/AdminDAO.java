@@ -24,10 +24,10 @@ public class AdminDAO extends BaseDAO {
         for (int i = 0; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
-            Admin new_instance = new Admin(
+            Admin newInstance = new Admin(
                 x[0], x[1]
             );
-            returnList.add(new_instance);
+            returnList.add(newInstance);
         }
         return returnList;
     }

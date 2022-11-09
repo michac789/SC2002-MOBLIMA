@@ -25,8 +25,8 @@ public class CineplexDAO extends BaseDAO {
         for (int i = 0; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
-            Cineplex new_instance = new Cineplex(x[1]);
-            returnList.add(new_instance);
+            Cineplex newInstance = new Cineplex(x[1]);
+            returnList.add(newInstance);
         }
         return returnList;
     }

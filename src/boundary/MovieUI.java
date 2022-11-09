@@ -71,6 +71,7 @@ public class MovieUI {
     }
 
     private static void displayDetailMovie() {
+        // TODO - buggy
         int id;
         while (true) {
             System.out.println("Enter cineplex ID:");
@@ -123,23 +124,24 @@ public class MovieUI {
         boolean is3D = sc.nextBoolean();
 
         System.out.print("Is Movie Blockbuster(true,false): ");
-        boolean blockbuster = sc.nextBoolean();
+        boolean isBlockbuster = sc.nextBoolean();
 
-        Movie m = new Movie(title, duration, director, cast, Movie.showStatusOptions.values()[status], Movie.ageRatingOptions.values()[ageRating],is3D, blockbuster);
-        mc.createMovie(m);
+        mc.createMovie(
+            title, duration, director, cast, Movie.showStatusOptions.values()[status],
+            Movie.ageRatingOptions.values()[ageRating], is3D, isBlockbuster
+        );
     }
 
     private static void editMovie() {
-        int movieSelected;
+        int movieId;
         while (true) {
             System.out.print("Enter a movie ID: ");
-            movieSelected = sc.nextInt();
-            if (!(movieSelected <= 0 || movieSelected >= mc.getNumMovies())) {
+            movieId = sc.nextInt();
+            if (!(movieId <= 0 || movieId >= Movie.getNumMovies())) {
                 break;
             }
             System.out.println("Invalid Option.");
         }
-        movieSelected -= 1;
 
         int option;
         while (true) {
@@ -162,63 +164,62 @@ public class MovieUI {
                 case 1:
                     System.out.println("Enter new Title: ");
                     String title = sc.nextLine();
-                    mc.editTitle(title, movieSelected);
+                    mc.getMovieById(movieId).setTitle(title);
                     break;
                 case 2:
                     System.out.println("Enter new duration: ");
                     int duration = sc.nextInt();
-                    mc.editDuration(duration, movieSelected);
+                    mc.getMovieById(movieId).setDurationMinutes(duration);
                     break;
                 case 3:
                     System.out.println("Enter new Director: ");
                     String director = sc.nextLine();
-                    mc.editDirector(director, movieSelected);
+                    mc.getMovieById(movieId).setDirector(director);
                     break;
                 case 4:
                     System.out.println("Enter new Cast: ");
                     String cast = sc.nextLine();
-                    mc.editCast(cast, movieSelected);
+                    mc.getMovieById(movieId).setCast(cast);
                     break;
                 case 5:
-                    int j=0;
+                    int j = 0;
                     for (Movie.showStatusOptions m: Movie.showStatusOptions.values()) {
-                        System.out.print(j + ":" + m + "\t");
+                        System.out.print(j + ": " + m + "\t");
                         j++;
                     }
-                    System.out.println("Select option to change: " + "(integer from 0 to " + (j-1) + ")");
+                    System.out.println("Select option to change: " + "(integer from 0 to " + (j - 1) + ")");
                     int status = sc.nextInt();
-                    mc.editShowingStatus(status, movieSelected);
+                    mc.getMovieById(movieId).setShowStatus(Movie.showStatusOptions.values()[status]);
                     break;
                 case 6:
                     System.out.println("Enter Movie Age Rating: ");
-                    int i=0;
+                    int i = 0;
                     for (Movie.ageRatingOptions m: Movie.ageRatingOptions.values()) {
-                        System.out.print(i + ":" + m + "\t");
+                        System.out.print(i + ": " + m + "\t");
                         i++;
                     }
-                    System.out.println("Select option to change: " + "(integer from 0 to " + (i-1) + ")");
+                    System.out.println("Select option to change: " + "(integer from 0 to " + (i - 1) + ")");
                     int ageRating = sc.nextInt();
-                    mc.editAgeRating(ageRating, movieSelected);
+                    mc.getMovieById(movieId).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
                     break;
                 case 7:
                     System.out.print("Enter new is3D (true/false): ");
                     boolean is3D = sc.nextBoolean();
-                    mc.editIs3D(is3D, movieSelected);
-
+                    mc.getMovieById(movieId).setIs3D(is3D);
                     break;
                 case 8:
                     System.out.print("Is Movie Blockbuster (true/false): ");
                     boolean isBlockbuster = sc.nextBoolean();
-                    mc.editBlockBuster(isBlockbuster, movieSelected);
-
+                    mc.getMovieById(movieId).setIsBlockbuster(isBlockbuster);
                     break;
                 case 9:
-                    System.out.printf("Confirm remove \"%s\"(Yes,No): " + mc.getAllMovies().get(movieSelected).getTitle());
-                    String choice = sc.nextLine();
-                    if (choice.toLowerCase() == "yes") {
-                        String removedMovie = mc.removeMovie(movieSelected);
-                        System.out.printf("Removed movie:\"%s\"", removedMovie);
-                    }
+                // TODO
+                    // System.out.printf("Confirm remove \"%s\"(Yes,No): " + mc.getAllMovies().get(movieSelected).getTitle());
+                    // String choice = sc.nextLine();
+                    // if (choice.toLowerCase() == "yes") {
+                    //     String removedMovie = mc.removeMovie(movieSelected);
+                    //     System.out.printf("Removed movie:\"%s\"", removedMovie);
+                    // }
                     break;
             }
             System.out.println("Success in editing!");
@@ -253,8 +254,8 @@ public class MovieUI {
             }
             System.out.println("Invalid Option.");
         }
-        int selectedMovie = sc.nextInt();
-        mc.movieSelection(selectedMovie);
+        int selectedMovieId = sc.nextInt();
+        mc.getMovieById(selectedMovieId);
 
     }
     public static void rankMovieByRating(){

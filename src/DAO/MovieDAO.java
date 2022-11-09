@@ -18,6 +18,7 @@ public class MovieDAO extends BaseDAO {
                 (instance.is3D() ? 1 : 0), (instance.isBlockbuster() ? 1 : 0)
             );
             writeLine(FILEPATH, writeStr);
+            instance.getController().save();
         }
     }
 
@@ -27,13 +28,13 @@ public class MovieDAO extends BaseDAO {
         for (int i = 0; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
-            Movie new_instance = new Movie(
+            Movie newInstance = new Movie(
                 x[1], Integer.parseInt(x[2]), x[3], x[4],
                 Movie.showStatusOptions.valueOf(x[5]),
                 Movie.ageRatingOptions.valueOf(x[6]),
                 Boolean.valueOf(x[7]), Boolean.valueOf(x[8])
             );
-            returnList.add(new_instance);
+            returnList.add(newInstance);
         }
         return returnList;
     }

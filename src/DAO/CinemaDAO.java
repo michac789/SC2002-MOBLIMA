@@ -30,7 +30,7 @@ public class CinemaDAO extends BaseDAO {
         for (int i = 0; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
-            Cinema new_instance = new Cinema(
+            Cinema newInstance = new Cinema(
                 Integer.parseInt(x[0]),
                 Integer.parseInt(x[1]),
                 Integer.parseInt(x[2]),
@@ -38,7 +38,7 @@ public class CinemaDAO extends BaseDAO {
                 Cinema.showClassOptions.valueOf(x[4]),
                 x[5]
             );
-            returnList.add(new_instance);
+            returnList.add(newInstance);
         }
         return returnList;
     }

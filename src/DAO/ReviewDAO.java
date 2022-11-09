@@ -1,35 +1,40 @@
 package DAO;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Review;
 
-public class ReviewDAO {
-    public void saveReview(Review r, int movieId) {
-        String filename = "src/database/Movie/Review/" + movieId + ".csv";
+public class ReviewDAO extends BaseDAO {
+    String BASEPATH = "src/database/Movie/Review/";
 
-        String formatComment = r.getComment();
-        formatComment = formatComment.replace(",", "\\comma");
-
-        String writeStr = String.format("%d,%d,\"%s\"", r.getUserId(), r.getRating(), formatComment);
-
-        DAO.openFile(filename, true);
-        DAO.writeText(writeStr);
-        DAO.closeFile();
-    }
-    
-    public void getReviews(int movieId, LinkedList<Review> reviews) {
-        String filename = "src/database/Movie/Review/" + movieId + ".csv";
-
-        LinkedList<String> reviewStr = DAO.readText(filename);
-
-        String[] values;
-        if (reviewStr == null) {return;}
-        Review r;
-        for (int i=0; i < reviewStr.size(); i++) {
-            values = reviewStr.get(i).split(",");
-            values[2] = values[2].substring(1, values[2].length()-1); // Remove first and last char, which are "" added for CSV purposes
-            values[2] = values[2].replace("\\comma", ",");
-            r = new Review(Integer.parseInt(values[0]), Integer.parseInt(values[1]), values[2]);
-            reviews.add(r);
+    public void save(ArrayList<Review> instances, int movieId) {
+        String FILEPATH = BASEPATH + movieId + ".csv";
+        emptyFile(FILEPATH);
+        String writeStr = "";
+        for (int i = 0; i < instances.size(); i++) {
+            Review instance = instances.get(i);
+            writeStr = String.format(
+                "%d,%d,\"%s\"",
+                instance.getUserId(), instance.getRating(),
+                instance.getComment().replace(",", "\\comma")
+            );
+            writeLine(FILEPATH, writeStr);
         }
+    }
+
+    public ArrayList<Review> load(int movieId) {
+        String FILEPATH = BASEPATH + movieId + ".csv";
+        LinkedList<String> instances = this.getData(FILEPATH);
+        ArrayList<Review> returnList = new ArrayList<Review>();
+        for (int i = 0; i < instances.size(); i++) {
+            System.out.println(instances.get(i));
+            String[] x = instances.get(i).split(",");
+            x[2] = x[2].substring(1, x[2].length() - 1)
+                .replace("\\comma", ",");
+            Review newInstance = new Review(
+                Integer.parseInt(x[0]), Integer.parseInt(x[1]), x[2]
+            );
+            returnList.add(newInstance);
+        }
+        return returnList;
     }
 }
