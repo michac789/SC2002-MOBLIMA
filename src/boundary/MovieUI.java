@@ -28,8 +28,10 @@ public class MovieUI {
                 "3. Create Movie\n" +
                 "4. Edit Movie\n" +
                 "5. Exit\n");
-            System.out.print("Select action: ");  
+            System.out.print("Select action: ");
             int choice = sc.nextInt();
+            // cleaner
+            sc.nextLine();
             switch (choice) { 
                 case 1:
                     displayAllMovies();

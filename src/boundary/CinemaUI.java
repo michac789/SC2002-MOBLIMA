@@ -47,7 +47,7 @@ public class CinemaUI {
             System.out.println("Enter cineplex ID (or enter -1 to exit):");
             id = sc.nextInt();
             if (id == -1) { return -1;}
-            if (1 <= id && id < Cineplex.getNumCineplex()) {
+            if (1 <= id && id <= Cineplex.getNumCineplex()) {
                 break;
             }
             System.out.println("Invalid cineplex ID");
