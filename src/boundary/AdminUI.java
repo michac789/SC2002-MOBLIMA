@@ -34,12 +34,12 @@ public class AdminUI {
                         "2. View/Create/Edit Cineplex\n" +
                         "3. View/Create/Edit Cinema\n" + // IN PROGRESS
                         "4. View/Create/Edit Showtime\n" + // IN PROGRESS
-                        "5. Configure System Settings\n" +
+                        "5. Display & Configure System Settings\n" +
                         "6. Create Another Admin Account\n" +
                         "7. Log Out\n");
             System.out.print("Select action: ");  
             int choice = sc.nextInt();  
-            switch(choice){ 
+            switch (choice) { 
                 case 1:
                     MovieUI.admin();
                     break;

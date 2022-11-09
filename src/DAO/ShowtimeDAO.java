@@ -25,6 +25,7 @@ public class ShowtimeDAO extends BaseDAO {
             Date sDate = instance.getDate();
             String formatDate = dateFormat.format(sDate);
             String formatTime = timeFormat.format(sDate);
+            String seats = instance.getController().serializeSeats();
             writeStr = String.format("%d,%s,%s,%s",
                 instance.getMovieId(), formatDate, formatTime, seats
             );

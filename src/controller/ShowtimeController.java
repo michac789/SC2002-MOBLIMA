@@ -1,7 +1,6 @@
 package controller;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import DAO.ShowtimeDAO;
 import model.Showtime;
 

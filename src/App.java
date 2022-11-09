@@ -8,6 +8,8 @@ public class App {
         System.out.println("Welcome to MOBLIMAA !!!\n");
 
         AppController.init();
+        
+
         // AppController ac = new AppController();
         // AppController.mc.getMovies(); --
         // AppController.mc.displayShowingMovies(); --

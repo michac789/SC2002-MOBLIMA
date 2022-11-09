@@ -1,9 +1,14 @@
 package boundary;
 import java.util.Scanner;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import controller.SettingsController;
 import model.Settings;
 
 public class SettingsUI {
     private static Scanner sc = new Scanner(System.in);
+    private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public static void admin() {
         while (true) {
@@ -13,7 +18,7 @@ public class SettingsUI {
                 "2. Display Holiday Dates\n" +
                 "3. Edit Price Settings\n" +
                 "4. Edit Holiday Dates\n" +
-                "5. Exit\n");
+                "5. Exit\n\n");
             System.out.print("Select action: ");  
             int choice = sc.nextInt();
             switch (choice) { 
@@ -39,7 +44,7 @@ public class SettingsUI {
     }
 
     private static void displayPriceSettings() {
-        System.out.println("### Displaying price settings ###\n" +
+        System.out.println("### Displaying Price Settings ###\n" +
             String.format(
                 "Class1 Cinema Price: $%.2f\n" +
                 "Class2 Cinema Price: $%.2f\n" +
@@ -55,13 +60,16 @@ public class SettingsUI {
     }
 
     private static void displayHolidayDates() {
-        // TODO
+        System.out.println("### Displaying Holiday Dates ###");
+        for (int i = 0; i < Settings.holidayDates.size(); i++) {
+            System.out.println(dateFormat.format(Settings.holidayDates.get(i)));
+        }
+        System.out.println("");
     }
 
     private static void editPriceSettings() {
-        System.out.println("Settings");
         while (true) {
-            System.out.println("Edit Price Configuration:");
+            System.out.println("### Edit Price Configuration ###");
             System.out.print(
                 "1. Edit Class1 Price\n" +
                 "2. Edit Class2 Price\n" +
@@ -69,7 +77,7 @@ public class SettingsUI {
                 "4. Edit 3D Movie Extra Charge\n" +
                 "5. Edit Blockbuster Movie Extra Charge\n" +
                 "6. Edit Holiday Extra Charge\n" +
-                "7. Exit\n");
+                "7. Exit\n\n");
             System.out.print("Select action: ");  
             int choice = sc.nextInt();
             Double newPrice;
@@ -139,6 +147,57 @@ public class SettingsUI {
     }
 
     private static void editHolidayDates() {
-        // TODO
+        while (true) {
+            System.out.println("### Edit Holiday Dates ###");
+            System.out.print(
+                "1. Display All Holiday Dates (with ID)\n" +
+                "2. Add Holiday Date\n" +
+                "3. Remove Holiday Date\n" +
+                "4. Exit\n\n");
+            System.out.print("Select action: ");  
+            int choice = sc.nextInt();
+            switch (choice) { 
+                case 1:
+                    for (int i = 0; i < Settings.holidayDates.size(); i++) {
+                        Date x = Settings.holidayDates.get(i);
+                        System.out.println(String.format("ID %d: %s",
+                            i + 1, dateFormat.format(x)));
+                    }
+                    System.out.println("");
+                    break;
+                case 2:
+                    sc.nextLine();
+                    System.out.println("Enter New Holiday Date (Format DD/MM/YYYY):");
+                    String date = sc.nextLine();
+                    int status = SettingsController.addHoliday(date);
+                    switch (status) {
+                        case 0:
+                            System.out.println("Successfully added");
+                            break;
+                        case 1:
+                            System.out.println("Incorrect format (DD/MM/YY required)");
+                            break;
+                        case 2:
+                            System.out.println("No duplicate dates allowed");
+                            break;
+                    }
+                    break;
+                case 3:
+                    int id;
+                    System.out.println("Enter Date ID (to be deleted): ");
+                    id = sc.nextInt();
+                    if (SettingsController.removeHoliday(id)) {
+                        System.out.println("Date successfully deleted!");
+                    } else {
+                        System.out.println("Invalid holiday ID");
+                    }
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Invalid action, try again!");
+                    break;
+            }
+        }
     }
 }

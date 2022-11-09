@@ -1,4 +1,6 @@
 package model;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Settings {
     public static double class1Price;
@@ -7,4 +9,5 @@ public class Settings {
     public static double charge3D;
     public static double chargeBlockbuster;
     public static double chargeHoliday;
+    public static ArrayList<Date> holidayDates;
 }
