@@ -72,6 +72,9 @@ public class SeatController {
 
     // display seats
     public void displaySeats() {
+        if (availSeats() == 0) {   // showtime fully booked
+            System.out.println("No available seats left.");
+        }
         for (int i = 0; i < seats.length; i++) {
             for (int j = 0; j < seats[0].length; j++) {
                 printSeat(seats[i][j]);
@@ -79,61 +82,50 @@ public class SeatController {
             }
             System.out.println();
         }
-        // if (availSeats() == 0) {   // showtime fully booked
-        //     System.out.println("No available seats left.");
-        // } else {   // there are still available seats
-        //     for (int i = 0; i < seats.length; i++) {
-        //         for (int j = 0; j < seats[0].length; j++) {
-        //             printSeat(seats[i][j]);
-        //             System.out.print(" ");
-        //         }
-        //         System.out.println();
-        //     }
-        // }
         System.out.println("Legend: Green seats are available. Red seats are not available.");
     }
 
-    // // book seats
-    // public void bookSeats() {
-    //     char row;
-    //     int col;
-    //     int counter = 0;  // to exit after 3 unsuccessful attempts to get seat
-    //     String trySeatCode;
-    //     displaySeats(); 
+    // book seats - TODO
+    public void bookSeats() {
+        char row;
+        int col;
+        int counter = 0;  // to exit after 3 unsuccessful attempts to get seat
+        String trySeatCode;
+        displaySeats(); 
 
-    //     do {
-    //         System.out.print("Enter seat row: ");
-    //         row = Character.toUpperCase(sc.next().charAt(0));  // convert input char to upper case
-    //         System.out.print("Enter seat column: ");
-    //         col = sc.nextInt();
-    //         sc.nextLine();  // consume the new line
-    //         trySeatCode = Character.toString(row) + Integer.toString(col);  // convert to seatCode
-    //         if (!seatExists(trySeatCode)) {  // check if the seat exists
-    //             System.out.println("Invalid entry!");
-    //         } else {
-    //             if (seats[((int)row) - 65][col - 1].isBooked()) {  // check if the seat is available
-    //                 System.out.println("The seat is unavailable.");
-    //             } else {
-    //                 seats[((int) row) - 65][col - 1].bookSeat();
-    //                 System.out.println("Seat " + seats[((int) row) - 65][col - 1].getSeatCode() + " successfully booked!");
-    //                 seatDao.saveSeats(seats, this.showtimeId);
-    //                 break;
-    //             }
-    //         }
-    //         counter++;
-    //     } while (counter < 3);
-    //     if (!(counter < 3)) { System.out.println("System exiting after 3 unsuccessful attempts..."); }
-    // }
+        do {
+            System.out.print("Enter seat row: ");
+            row = Character.toUpperCase(sc.next().charAt(0));  // convert input char to upper case
+            System.out.print("Enter seat column: ");
+            col = sc.nextInt();
+            sc.nextLine();  // consume the new line
+            trySeatCode = Character.toString(row) + Integer.toString(col);  // convert to seatCode
+            if (!seatExists(trySeatCode)) {  // check if the seat exists
+                System.out.println("Invalid entry!");
+            } else {
+                if (seats[((int)row) - 65][col - 1].getIsBooked()) {  // check if the seat is available
+                    System.out.println("The seat is unavailable.");
+                } else {
+                    seats[((int) row) - 65][col - 1].bookSeat();
+                    System.out.println("Seat " + seats[((int) row) - 65][col - 1].getSeatCode() + " successfully booked!");
+                    // seatDao.saveSeats(seats, this.showtimeId); TODO
+                    break;
+                }
+            }
+            counter++;
+        } while (counter < 3);
+        if (!(counter < 3)) { System.out.println("System exiting after 3 unsuccessful attempts..."); }
+    }
     
-    // // check if the seatCode corresponds to an actual seat
-    // public boolean seatExists(String trySeatCode) {
-    //     for (int i = 0; i < seats.length; i++) {
-    //         for (int j = 0; j < seats[0].length; j++) {
-    //             if (trySeatCode.equals(seats[i][j].getSeatCode())) {   // object exists
-    //                 if (seats[i][j].getIsSeat()) { return true; }   // is a seat, not stairwell/aisle
-    //             }
-    //         }
-    //     }
-    //     return false;
-    // }
+    // check if the seatCode corresponds to an actual seat
+    public boolean seatExists(String trySeatCode) {
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[0].length; j++) {
+                if (trySeatCode.equals(seats[i][j].getSeatCode())) {   // object exists
+                    if (seats[i][j].getIsSeat()) { return true; }   // is a seat, not stairwell/aisle
+                }
+            }
+        }
+        return false;
+    }
 }

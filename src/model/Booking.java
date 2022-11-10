@@ -24,11 +24,15 @@ public class Booking {
     public int getCinemaCode() { return this.cinemaCode;}
     public String getDatetime() { return this.datetime;}
     public String getSeat() { return this.seat;}
-    public int getPrice() { return this.price;}
+    public int getPrice() { return this.price;} // TODO
 
-
-
-
-
-
+    public String toString() {
+        return "Movie Title: " + this.title + "\n" +
+            "Cineplex Location: " + this.location + "\n" +
+            "Cinema Code: " + this.cinemaCode + "\n" +
+            "Showtime Date & Time: " + this.datetime + "\n" +
+            "Seat Code: " + this.seat + "\n" +
+            "Price: " + this.price + "\n" +
+            "-------------------------\n";
+    }
 }

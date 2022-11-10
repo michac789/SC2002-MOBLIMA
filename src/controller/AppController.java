@@ -4,7 +4,6 @@ public class AppController {
     public static MovieController mc;
     public static CineplexController cc;
     public static MovieGoerController mgc;
-    // booking controller (ticket) - TODO
     public static SettingsController sc;
 
     // initialize all objects from the database, called upon loading

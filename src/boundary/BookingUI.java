@@ -1,12 +1,11 @@
 package boundary;
-
-
+import java.util.ArrayList;
 import java.util.Scanner;
-
 import controller.AppController;
 import controller.CinemaController;
 import controller.SeatController;
 import controller.ShowtimeController;
+import model.Booking;
 
 public class BookingUI {
     static Scanner sc = new Scanner(System.in);
@@ -57,7 +56,6 @@ public class BookingUI {
                             // create booking model, increment sales in movie model
                             // TODO
                         }
-                        
                     }
                 }
             }
@@ -65,6 +63,16 @@ public class BookingUI {
     }
 
     public static void history(int movieGoerId) {
-        // TODO
+        System.out.println("### Booking History ###");
+        ArrayList<Booking> bookings = AppController.mgc
+            .getMovieGoerById(movieGoerId).getController().getBookings();
+        if (bookings.size() == 0) {
+            System.out.println("You haven't made any bookings yet.");
+        } else {
+            System.out.println("Total " + bookings.size() + " bookings:");
+        }
+        for (int i = 0; i < bookings.size(); i++) {
+            System.out.println(bookings.get(i));
+        }
     }
 }

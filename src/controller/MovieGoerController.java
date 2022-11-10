@@ -1,6 +1,7 @@
 package controller;
 import java.util.*;
 import DAO.MovieGoerDAO;
+import DAO.UtilDAO;
 import user.MovieGoer;
 import model.Movie;
 import model.Review;
@@ -33,6 +34,9 @@ public class MovieGoerController {
 
     public void createNewMovieGoer(String username, String email,
             String phoneNumber, int age) {
+        String BASEPATH = "src/database/User/Booking/";
+        int newMovieGoerId = MovieGoer.movieGoerCount + 1;
+        UtilDAO.createFile(BASEPATH + newMovieGoerId + ".csv");
         MovieGoer mg = new MovieGoer(username, phoneNumber, email, age);
         movieGoers.add(mg);
     }

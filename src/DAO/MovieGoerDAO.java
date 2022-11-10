@@ -19,6 +19,7 @@ public class MovieGoerDAO extends BaseDAO {
                 instance.getPhoneNumber(), instance.getAge()
             );
             writeLine(FILEPATH, writeStr);
+            instance.getController().save();
         }
     }
     
