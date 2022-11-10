@@ -9,16 +9,6 @@ public class MovieUI {
     private static Scanner sc = new Scanner(System.in);
     private static MovieController mc = AppController.mc;
 
-    // TODO
-    // prompt admin to choose between:
-    // display all movies (id and title; list view)
-    // display a particular movie info completely (detailed view)
-    // create new movie
-    // edit existing movie based on id
-    // delete??? (NOT IMPLEMENTED YET, A BIT DIFFICULT TO DO)
-    // please change the admin methods to private instead,
-    // only access thoe private methods through this admin method
-    // so you do not accidentally call the method anywhere else
     public static void admin() {
         while (true) {
             System.out.println("|=========|Movie Admin Panel|=========|");
@@ -65,23 +55,26 @@ public class MovieUI {
         ArrayList<Movie> movies = mc.getAllMovies();
         for(int i = 0; i<movies.size(); i++){
             Movie movie = movies.get(i);
-            System.out.println("Movie ID " + movie.getMovieId() + ": " + movie.getTitle());
+            System.out.println("Movie ID " + movie.getMovieId() + ": " +
+                movie.getTitle() + " (" + movie.getShowStatus() + ")");
         }
         System.out.println("");
     }
 
-    private static void displayDetailMovie() {
-        // TODO - buggy
-        int id;
+    public static void displayDetailMovie() {
+        int movieId;
         while (true) {
-            System.out.println("Enter cineplex ID:");
-            id = sc.nextInt();
-            if (id > 0 && id <= Movie.getNumMovies()) {
+            System.out.print("Enter movie ID: (enter -1 to exit) ");
+            movieId = sc.nextInt();
+            if (movieId == -1) { return;}
+            if (movieId > 0 && movieId <= Movie.getNumMovies()) {
                 break;
             }
-            System.out.println("Invalid ID");
+            System.out.println("Invalid movie ID!");
         }
-        System.out.println(AppController.mc.getMovieById(id));
+        Movie m = AppController.mc.getMovieById(movieId);
+        System.out.println(m);
+        m.getController().displayReviews();
     }
     
     private static void createMovie() {
@@ -258,10 +251,10 @@ public class MovieUI {
         mc.getMovieById(selectedMovieId);
 
     }
-    public static void rankMovieByRating(){
-        mc.rankMovieByRating();
-    }
-    public static void rankMovieBySales(){
-        mc.rankMovieBySales(5);
-    }
+    // public static void rankMovieByRating(){
+    //     mc.rankMovieByRating(5);
+    // }
+    // public static void rankMovieBySales(){
+    //     mc.rankMovieBySales(5);
+    // }
 }
