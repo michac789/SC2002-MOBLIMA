@@ -9,14 +9,11 @@ public class Cinema {
     private int height;
     private int width;
     public enum showClassOptions {
-        CLASS1, CLASS2, CLASS3
+        GOLD, PLATINUM, SILVER
     }
     private String seatConfiguration;
     private showClassOptions cinemaClass;
     private ShowtimeController showtimeController;
-    public static void main (String[] args){
-        printCinemaLayout(4, 4, "SSSSXSSSSXSSXSS");
-    }
     public Cinema(int cineplexId, int code, int height, int width,
             showClassOptions c, String seatConfiguration) {
         this.cineplexId = cineplexId;
