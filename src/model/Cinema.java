@@ -7,11 +7,14 @@ public class Cinema {
     private int height;
     private int width;
     public enum showClassOptions {
-        CLASS1, CLASS2, CLASS3
+        SILVER, GOLD, PLATINUM
     }
     private String seatConfiguration;
     private showClassOptions cinemaClass;
     private ShowtimeController showtimeController;
+
+    private static final String ANSI_GREEN = "\u001b[32m";
+    private static final String ANSI_RESET = "\u001B[0m";
 
     public Cinema(int cineplexId, int code, int height, int width,
             showClassOptions c, String seatConfiguration) {
@@ -42,7 +45,15 @@ public class Cinema {
 
     public static void printCinemaLayout(int height, int width, String s) {
         System.out.println("TODOOOOO");
-        // TODO
+        for(int i = 0; i<s.length(); i++){
+            if(s.charAt(i) == 'S'){
+                System.out.print(ANSI_GREEN + 'S' + ANSI_RESET);
+            } else { 
+                System.out.print(" ");
+            }
+            if ((i+1)%width == 0)
+                System.out.println();
+        }
     }
 
     public String toString() {

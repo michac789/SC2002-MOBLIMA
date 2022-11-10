@@ -4,51 +4,55 @@ import boundary.BookingUI;
 import boundary.MovieGoerUI;
 import boundary.MovieUI;
 import boundary.ReviewUI;
+import boundary.WelcomeUI;
 import controller.AppController;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Welcome to MOBLIMA !!!\n");
+        WelcomeUI.printWelcomeMessage();
         AppController.init();
 
         int choice;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("(1) List All Movies");
-            // display a list of all movies with their id,
-            // prompt the user for a movie id or exit,
-            // display all cineplex & cinema & date & showtime & type of cinema/seats that shows that movie with that id,
-            // prompt the user to click on a cineplex or exit,
-            // clicking a cineplex will display the cinemas and showtime,
-            // prompt for a cinema and showtime or exit,
-            // show the available seats
-            // allow user to book tickets or exit
+            // display all movies: id, title, showing status
 
-            System.out.println("(2) Search Movies");
-            // search movie by title, then do the same thing as (1)
+            System.out.println("(2) Movie Detail View");
+            // prompt user for movie id
+            // display complete movie info + rating + review
 
-            System.out.println("(3) Top 5 Movies based on Ticket Sales");
-            System.out.println("(4) Top 5 Movies based on Ratings");
-            // top 5 ratings by:
-            // 1) ticket sales
-            // 2) ratings
-            // then do the same thing as (1)
+            System.out.println("(3) Search Movies");
+            // prompt user for string x
+            // display all movies that has 'x' as a substring
 
-            // list cineplex feature -> NOT REQUIRED
-            // can add later if you want
-            // ...
+            System.out.println("(4) Top 5 Movies based on Ticket Sales");
 
-            System.out.println("(5) Booking History");
-            // see booking history
-            // rate booked tickets
+            System.out.println("(5) Top 5 Movies based on Ratings");
 
             System.out.println("(6) Book Ticket");
-            System.out.println("(7) Review Movie");
-            
+            // ask user to log in
+            // prompt user for movie id
+            // show all cineplex that show that movie
+            // prompt user for cineplex id
+            // show all cinemas and showtime for that movie
+            // prompt for cinema code, than showtime
+            // show all seats, able to book one or more seats
+            // checkout option, price calculation, create booking
 
-            System.out.println("(8) Admin Login");
-            // login as admin to admin module
-            System.out.println("(9) Exit Application");
+            System.out.println("(7) Booking History");
+            // ask user to log in
+            // print booking history of that user
+
+            System.out.println("(8) Review Movie");
+            // ask user to log in
+            // view all reviews of this user
+            // create new review
+
+            System.out.println("(9) Admin Login");
+            // perform various admin functionalities
+
+            System.out.println("(10) Exit Application");
 
             choice = sc.nextInt();
             sc.nextLine();
@@ -57,15 +61,10 @@ public class App {
             switch (choice) {
                 case 1:
                     MovieUI.displayAllMovies();
-                    // TODO - only display NOW_SHOWING movies
                     break;
                 
                 case 2:
-
-
-                    String searchQuery = sc.nextLine();
-                    int movieId = AppController.mc.searchMovie(searchQuery);
-                    // Navigate to movieOptions, Booking etc.
+                    MovieUI.displayDetailMovie();
                     break;
                 
                 case 3:
@@ -99,32 +98,8 @@ public class App {
                     break;
             }
         }
-        while (choice != 9);
+        while (choice != 10);
         sc.close();
         AppController.save();
-    }
-
-    private static void bookingFlow() {
-        // prompt the user for a movie id or exit,
-        // display all cineplex & cinema & date & showtime & type of cinema/seats that shows that movie with that id,
-        // prompt the user to click on a cineplex or exit,
-        // clicking a cineplex will display the cinemas and showtime,
-        // prompt for a cinema and showtime or exit,
-        // show the available seats
-        // allow user to book tickets or exit
-
-        System.out.println("Enter Movie ID: ");
-        System.out.println("Enter (-1) to go back");
-
-        // int movieId = sc.nextInt();
-        // if (movieId == -1) { return;}
-
-        // TODO... continue
-        // maybe consider creating CineplexController class??
-        // to stores an array of cineplexes, then
-        // contain methods to loop through every cineplex
-        // and check stuff
-
-        System.out.println("BLABLABLA");
     }
 }

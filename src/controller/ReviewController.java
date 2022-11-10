@@ -40,6 +40,15 @@ public class ReviewController {
         return (rating / getNumReviews());
     }
 
+    public void displayReviews() {
+        System.out.println("Displaying all " + this.reviews.size() + " reviews:");
+        System.out.println("-------------------------");
+        for (int i = 0; i < this.reviews.size(); i++) {
+            System.out.println(this.reviews.get(i));
+        }
+        System.out.println("");
+    }
+
     // public void createReview(String movieName, int userId) {
     //     int reviewScore = -1;
     //     String reviewText = "";

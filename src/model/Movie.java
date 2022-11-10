@@ -67,9 +67,6 @@ public class Movie {
     public double getRating() {
         return this.reviewController.getAverageRating();
     }
-    public void displayReviews() { // TODO
-        System.out.println("TODO");
-    }
     
     public String toString() {
         return "Movie ID: " + this.movieId + "\n" +
@@ -77,9 +74,12 @@ public class Movie {
             "Duration: " + this.durationMinutes + "\n" +
             "Director: " + this.director + "\n" +
             "Cast: " + this.cast + "\n" +
-            "Show Status:" + this.showStatus + "\n" +
+            "Show Status: " + this.showStatus + "\n" +
             "Age Rating: " + this.ageRating + "\n" +
             "3D: " + this.getIs3D() + "\n" +
-            "Blockbuster: " + this.getIsBlockbuster() + "\n\n";
+            "Blockbuster: " + this.getIsBlockbuster() + "\n" +
+            "Rating: " + this.reviewController.getAverageRating() +
+            " (by " + this.reviewController.getNumReviews() +
+            " users)\n";
     }
 }

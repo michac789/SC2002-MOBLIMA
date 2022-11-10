@@ -39,7 +39,7 @@ public class Review {
         String divider = "-------------------------\n";
         String rtn = String.format("User ID: %d\n" +
                                     "Rating: %d\n" +
-                                    "Comment:\n%s\n",
+                                    "Comment:\n%s",
                                     this.userId, this.rating, this.comment);
         rtn = rtn + divider;
         return rtn;

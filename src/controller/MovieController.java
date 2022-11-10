@@ -139,7 +139,7 @@ public class MovieController {
     public void displayReviews(int movieId) {
         for (Movie m: this.movies) {
             if (m.getMovieId() == movieId) {
-                m.displayReviews();
+                m.getController().displayReviews();
                 break;
             }
         }
