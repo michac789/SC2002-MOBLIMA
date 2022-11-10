@@ -39,4 +39,8 @@ public class BookingUI {
 
 
     }
+
+    public static void history(int movieGoerId) {
+        // TODO
+    }
 }

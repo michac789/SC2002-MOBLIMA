@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Settings {
-    public static double class1Price;
-    public static double class2Price;
-    public static double class3Price;
+    public static double silverPrice;
+    public static double goldPrice;
+    public static double platinumPrice;
     public static double charge3D;
     public static double chargeBlockbuster;
     public static double chargeHoliday;

@@ -51,7 +51,7 @@ public class MovieController {
         return title;
     }
 
-     public int displayShowingMovies() {
+    public int displayShowingMovies() {
         int i = 0;
         int[] movieIdList = new int[movies.size()];
         for (int j = 0; j < movies.size(); j++) {
@@ -64,14 +64,17 @@ public class MovieController {
         this.movieIdList = movieIdList;
 
         return i;
-     }
+    }
 
 
     public void rankMovieBySales(int num) {
         System.out.println("TODO");
-        for(Movie m: this.movies){
 
+        for (int i = 0; i < this.movies.size(); i++) {
+            double rating = this.movies.get(i).getSalesCount();
         }
+        // TODO
+        // display the first 'num' movies based on sales ranking (and display its sales)
     }
 
     public void rankMovieByRating(int num) {
@@ -108,33 +111,34 @@ public class MovieController {
             i++;
         }
     }
-    public int searchMovie(String title) {
-         int i = 0;
-         int[] movieIdList = new int[movies.size()];
-         for (int j=0; j < movies.size();j++) {
-             if (movies.get(j).getTitle().contains(title)) {
-                 System.out.printf("%d: %s\n", i, movies.get(j).getTitle());
-                 movieIdList[i] = j;
-                 i++;
-             }
-         }
-         if (i == 0) {
-             System.out.println("No movies with \"" + title + "\" found.");
-             return -1;
-         }
-         int option;
-         while (true) {
-             System.out.print("Select a movie: ");
-             option = sc.nextInt();
-             if (!(option < 0 || option >= i)) {
-                 break;
-             }
-             System.out.println("Invalid Option.");
-         }
 
-         // Navigate to movie
-         return movieIdList[option]; // Return Movie Id
-     }
+    public int searchMovie(String title) {
+        int i = 0;
+        int[] movieIdList = new int[movies.size()];
+        for (int j=0; j < movies.size();j++) {
+            if (movies.get(j).getTitle().contains(title)) {
+                System.out.printf("%d: %s\n", i, movies.get(j).getTitle());
+                movieIdList[i] = j;
+                i++;
+            }
+        }
+        if (i == 0) {
+            System.out.println("No movies with \"" + title + "\" found.");
+            return -1;
+        }
+        int option;
+        while (true) {
+            System.out.print("Select a movie: ");
+            option = sc.nextInt();
+            if (!(option < 0 || option >= i)) {
+                break;
+            }
+            System.out.println("Invalid Option.");
+        }
+
+        // Navigate to movie
+        return movieIdList[option]; // Return Movie Id
+    }
 
     public void displayReviews(int movieId) {
         for (Movie m: this.movies) {

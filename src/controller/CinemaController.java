@@ -59,10 +59,7 @@ public class CinemaController {
         }
         return false;
     }
-//    public void edit() {
-//
-//    }
-//
+    
     public void displayCinemaByMovie(int movieId){
         for(int i = 0; i < cinemas.size(); i++) {
             Cinema cinema = cinemas.get(i);

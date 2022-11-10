@@ -22,7 +22,7 @@ public class App {
             // prompt user for movie id
             // display complete movie info + rating + review
 
-            System.out.println("(3) Search Movies");
+            System.out.println("(3) Search Movie");
             // prompt user for string x
             // display all movies that has 'x' as a substring
 
@@ -68,17 +68,15 @@ public class App {
                     break;
                 
                 case 3:
-                    AppController.mc.rankMovieBySales(5); // TODO
+                    MovieUI.searchMovie();
                     break;
                 
                 case 4:
-                    AppController.mc.rankMovieByRating(5);
+                    AppController.mc.rankMovieBySales(5); // TODO
                     break;
                 
                 case 5:
-                    movieGoerId = MovieGoerUI.main();
-                    if (movieGoerId == -1) { break;}
-                    // do something here TODO
+                    AppController.mc.rankMovieByRating(5); // functioning correctly ???
                     break;
 
                 case 6:
@@ -90,10 +88,16 @@ public class App {
                 case 7:
                     movieGoerId = MovieGoerUI.main();
                     if (movieGoerId == -1) { break;}
-                    ReviewUI.main(movieGoerId);
+                    BookingUI.history(movieGoerId); // TODO
                     break;
 
                 case 8:
+                    movieGoerId = MovieGoerUI.main();
+                    if (movieGoerId == -1) { break;}
+                    ReviewUI.main(movieGoerId);
+                    break;
+
+                case 9:
                     AdminUI.main();
                     break;
             }

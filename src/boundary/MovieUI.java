@@ -44,10 +44,11 @@ public class MovieUI {
         }
     }
 
-    public static void searchMovies() {
+    public static void searchMovie() {
         System.out.print("Enter movie title: ");
         String searchQuery = sc.nextLine();
         int movieId = mc.searchMovie(searchQuery);
+        displayDetailMovieInfo(movieId);
     }
 
     public static void displayAllMovies() {
@@ -72,6 +73,10 @@ public class MovieUI {
             }
             System.out.println("Invalid movie ID!");
         }
+        displayDetailMovieInfo(movieId);
+    }
+
+    private static void displayDetailMovieInfo(int movieId) {
         Movie m = AppController.mc.getMovieById(movieId);
         System.out.println(m);
         m.getController().displayReviews();

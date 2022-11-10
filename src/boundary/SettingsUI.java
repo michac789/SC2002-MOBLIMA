@@ -46,14 +46,14 @@ public class SettingsUI {
     private static void displayPriceSettings() {
         System.out.println("### Displaying Price Settings ###\n" +
             String.format(
-                "Class1 Cinema Price: $%.2f\n" +
-                "Class2 Cinema Price: $%.2f\n" +
-                "Class3 Cinema Price: $%.2f\n" +
+                "Silver Class Cinema Price: $%.2f\n" +
+                "Gold Class Cinema Price: $%.2f\n" +
+                "Platinum Class Cinema Price: $%.2f\n" +
                 "3D Movie Extra Charge: $%.2f\n" +
                 "Blockbuster Movie Extra Charge: $%.2f\n" +
                 "Holiday Extra Charge: $%.2f\n\n",
-                Settings.class1Price, Settings.class2Price,
-                Settings.class3Price, Settings.charge3D,
+                Settings.silverPrice, Settings.goldPrice,
+                Settings.platinumPrice, Settings.charge3D,
                 Settings.chargeBlockbuster, Settings.chargeHoliday
             )
         );
@@ -85,29 +85,29 @@ public class SettingsUI {
                 case 1:
                     System.out.println(String.format(
                         "Current Class1 Price: $%.2f",
-                        Settings.class1Price
+                        Settings.silverPrice
                     ));
                     System.out.println("Enter new price: ");
                     newPrice = sc.nextDouble();
-                    Settings.class1Price = newPrice;
+                    Settings.silverPrice = newPrice;
                     break;
                 case 2:
                     System.out.println(String.format(
                         "Current Class2 Price: $%.2f",
-                        Settings.class2Price
+                        Settings.goldPrice
                     ));
                     System.out.println("Enter new price: ");
                     newPrice = sc.nextDouble();
-                    Settings.class2Price = newPrice;
+                    Settings.goldPrice = newPrice;
                     break;
                 case 3:
                     System.out.println(String.format(
                         "Current Class3 Price: $%.2f",
-                        Settings.class3Price
+                        Settings.platinumPrice
                     ));
                     System.out.println("Enter new price: ");
                     newPrice = sc.nextDouble();
-                    Settings.class3Price = newPrice;
+                    Settings.platinumPrice = newPrice;
                     break;
                 case 4:
                     System.out.println(String.format(

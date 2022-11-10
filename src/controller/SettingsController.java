@@ -16,9 +16,9 @@ public class SettingsController {
 
     public void save() {
         settingsDao.savePriceSettings(
-            Settings.class1Price,
-            Settings.class2Price,
-            Settings.class3Price,
+            Settings.silverPrice,
+            Settings.goldPrice,
+            Settings.platinumPrice,
             Settings.charge3D,
             Settings.chargeBlockbuster,
             Settings.chargeHoliday
