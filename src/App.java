@@ -30,6 +30,7 @@ public class App {
 
             System.out.println("(2) Search Movies");
 
+
             // search movie by title, then do the same thing as (1)
 
             System.out.println("(3) Top 5 Movies based on Ticket Sales");
