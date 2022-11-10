@@ -2,6 +2,8 @@ package model;
 import controller.ShowtimeController;
 
 public class Cinema {
+    private static final String ANSI_GREEN = "\u001b[32m";  // green = seat available
+    private static final String ANSI_RESET = "\u001B[0m";  
     private int cineplexId;
     private int cinemaCode;
     private int height;
@@ -12,7 +14,9 @@ public class Cinema {
     private String seatConfiguration;
     private showClassOptions cinemaClass;
     private ShowtimeController showtimeController;
-
+    public static void main (String[] args){
+        printCinemaLayout(4, 4, "SSSSXSSSSXSSXSS");
+    }
     public Cinema(int cineplexId, int code, int height, int width,
             showClassOptions c, String seatConfiguration) {
         this.cineplexId = cineplexId;
@@ -23,6 +27,7 @@ public class Cinema {
         this.seatConfiguration = seatConfiguration;
         this.showtimeController = new ShowtimeController(cineplexId, cinemaCode, height, width);
     }
+    
 
     public ShowtimeController getShowtimeController() {
         return showtimeController;
@@ -42,7 +47,19 @@ public class Cinema {
 
     public static void printCinemaLayout(int height, int width, String s) {
         System.out.println("TODOOOOO");
-        // TODO
+        for(int i = 0; i<s.length(); i++){
+            if(s.charAt(i) == 'S'){
+                printSeat(); 
+            } else { 
+                System.out.print(" ");
+            }
+            if ((i+1)%width == 0)
+                System.out.println();
+        }
+    }
+    public static void printSeat() {
+        System.out.print(ANSI_GREEN + 'S' + ANSI_RESET);
+        
     }
 
     public String toString() {
