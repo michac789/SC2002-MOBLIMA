@@ -1,2 +1,3 @@
-1,user1,user1@gmail.com,12345678,19
-2,user2,user2@gmail.com,23456789,22
+1,user1,12345678,user1@gmail.com,19
+2,user2,23456789,user2@gmail.com,22
+3,newuser,blabla@email.com,16382942,56

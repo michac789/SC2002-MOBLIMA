@@ -21,8 +21,6 @@ public class CineplexController {
     }
 
     public Cineplex getCineplexById(int id) {
-        System.out.println(id);
-        
         return this.cineplexes.get(id - 1);
     }
 
@@ -45,7 +43,7 @@ public class CineplexController {
     }
 
     public void displayCineplexesByMovieId(int movieId) {
-        System.out.println("CAUSED BUG");
+        System.out.println("CAUSED BUG"); // TODO - caused bug
         
         // int count = 0;
         // for(int i = 0; i < cineplexes.size(); i++){

@@ -1,13 +1,11 @@
 package controller;
 import java.util.ArrayList;
-// import java.util.Scanner;
 import DAO.ReviewDAO;
 import model.Review;
 
 public class ReviewController {
     private ArrayList<Review> reviews;
     private ReviewDAO reviewDao = new ReviewDAO();
-    // private Scanner sc;
     private int movieId;
     // private int rating;
     // private int sorted = 0;
@@ -21,29 +19,50 @@ public class ReviewController {
         this.reviewDao.save(this.reviews, this.movieId);
     }
 
+    public ArrayList<Review> getAllReviews() {
+        return this.reviews;
+    }
+
+    public void createReview(int movieGoerId, int rating, String comment) {
+        Review newReview = new Review(movieGoerId, rating, comment);
+        reviews.add(newReview);
+    }
+
+    public int getNumReviews() {
+        return this.reviews.size();
+    }
+
+    public double getAverageRating() {
+        double rating = 0;
+        for (int i = 0; i < this.reviews.size(); i++) {
+            rating += this.reviews.get(i).getRating();
+        }
+        return (rating / getNumReviews());
+    }
+
     // public void createReview(String movieName, int userId) {
     //     int reviewScore = -1;
     //     String reviewText = "";
-    //     //Temporary Take in moviename, will use movie id ltr? Or implementation of creating review can take in moviename instead?
-    //     // Do we need a exit parameter???
-    //     System.out.printf("Creating Review for %s\n", movieName);
-    //     do {
-    //         System.out.print("Enter Movie Rating (1-5): ");
-    //         reviewScore = sc.nextInt();
-    //         sc.nextLine(); // Scanner Skipping reviewText Scanner
-    //         if (reviewScore < 1 || reviewScore > 5) {
-    //             System.out.println("Invalid Entry!");
-    //         } else {
-    //             break;
-    //         }
-    //     } while (true);
-    //     System.out.print("Enter Review: \n");
-    //     reviewText = sc.nextLine(); // Do i have to read comments that have newline??, if so need replace this
-    //     Review newReview = new Review(userId, reviewScore, reviewText);
-    //     addReview(newReview);
-    //     this.rating += reviewScore;
+        //Temporary Take in moviename, will use movie id ltr? Or implementation of creating review can take in moviename instead?
+        // Do we need a exit parameter???
+        // System.out.printf("Creating Review for %s\n", movieName);
+        // do {
+        //     System.out.print("Enter Movie Rating (1-5): ");
+        //     reviewScore = sc.nextInt();
+        //     sc.nextLine(); // Scanner Skipping reviewText Scanner
+        //     if (reviewScore < 1 || reviewScore > 5) {
+        //         System.out.println("Invalid Entry!");
+        //     } else {
+        //         break;
+        //     }
+        // } while (true);
+        // System.out.print("Enter Review: \n");
+        // reviewText = sc.nextLine(); // Do i have to read comments that have newline??, if so need replace this
+        // Review newReview = new Review(userId, reviewScore, reviewText);
+        // addReview(newReview);
+        // this.rating += reviewScore;
 
-    //     reviewDao.saveReview(newReview, this.movieId);
+        // reviewDao.saveReview(newReview, this.movieId);
     // }
 
     // // Keeps reviews linkedlist sorted at all times

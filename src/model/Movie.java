@@ -64,8 +64,12 @@ public class Movie {
     public static int getNumMovies() { return numMovies;}
     public ReviewController getController() { return this.reviewController;}
 
-    public int getRating() { return 5;} // TODO arbitrary placeholder for movie controller
-    public void displayReviews() {} // TODO
+    public double getRating() {
+        return this.reviewController.getAverageRating();
+    }
+    public void displayReviews() { // TODO
+        System.out.println("TODO");
+    }
     
     public String toString() {
         return "Movie ID: " + this.movieId + "\n" +

@@ -2,12 +2,12 @@ package DAO;
 import java.io.*;
 import java.util.LinkedList;
 
-public class BaseDAO {
+public abstract class BaseDAO {
     /*
         You should specify the file path on where to store the database
         in form of csv files.
     */
-    // String FILEPATH = "some-path";
+    // private String FILEPATH = "some-path";
 
     /*
         The 'save' method saves all the changes from objects into database.
@@ -16,14 +16,12 @@ public class BaseDAO {
         from the object instance using csv format. The commented code below
         provides a template for you to copy paste this method defintion.
     */
-    // public void save(ArrayList<BaseModel> instances) {
+    // public <T> void save(ArrayList<T> instances) {
     //     emptyFile(FILEPATH);
     //     String writeStr = "";
     //     for (int i = 0; i < instances.size(); i++) {
-    //         BaseModel instance = instances.get(i);
-    //         writeStr = String.format(
-    //             "todo", instance
-    //         );
+    //         T instance = instances.get(i);
+    //         writeStr = String.format("todo", instance);
     //         writeLine(FILEPATH, writeStr);
     //     }
     // }
@@ -36,13 +34,13 @@ public class BaseDAO {
         to the appropriate data types. The commented code below provides a
         template for you to copy paste this method defintion.
     */
-    // public ArrayList<BaseModel> load() {
+    // public <T> ArrayList<T> load(Class<T> obj) {
     //     LinkedList<String> instances = this.getData(FILEPATH);
-    //     ArrayList<BaseModel> returnList = new ArrayList<BaseModel>();
+    //     ArrayList<T> returnList = new ArrayList<T>();
     //     for (int i = 0; i < instances.size(); i++) {
     //         System.out.println(instances.get(i));
     //         String[] x = instances.get(i).split(",");
-    //         BaseModel newInstance = "todo" + singleField[0];
+    //         T newInstance = obj.newInstance("todo");
     //         returnList.add(newInstance);
     //     }
     //     return returnList;

@@ -1,22 +1,18 @@
 import java.util.Scanner;
 import boundary.AdminUI;
-// import boundary.MovieUI;
-// import controller.CinemaController;
-// import model.Cinema.showClassOptions;
+import boundary.BookingUI;
+import boundary.MovieGoerUI;
+import boundary.MovieUI;
+import boundary.ReviewUI;
 import controller.AppController;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Welcome to MOBLIMAA !!!\n");
-
+        System.out.println("Welcome to MOBLIMA !!!\n");
         AppController.init();
-    
-        System.out.println("TESTERRR");
-        
-        // System.exit(1);
+
         int choice;
         Scanner sc = new Scanner(System.in);
-
         do {
             System.out.println("(1) List All Movies");
             // display a list of all movies with their id,
@@ -46,22 +42,27 @@ public class App {
             // see booking history
             // rate booked tickets
 
-            System.out.println("(6) Admin Login");
+            System.out.println("(6) Book Ticket");
+            System.out.println("(7) Review Movie");
+            
+
+            System.out.println("(8) Admin Login");
             // login as admin to admin module
-            System.out.println("(7) Booking a ticket");
-            System.out.println("(8) Exit Application");
+            System.out.println("(9) Exit Application");
 
             choice = sc.nextInt();
             sc.nextLine();
+            int movieGoerId;
 
             switch (choice) {
                 case 1:
-                    // MovieUI.displayAllMovies();
-                    System.out.println("TODO");
-                    bookingFlow();
+                    MovieUI.displayAllMovies();
+                    // TODO - only display NOW_SHOWING movies
                     break;
                 
                 case 2:
+
+
                     String searchQuery = sc.nextLine();
                     int movieId = AppController.mc.searchMovie(searchQuery);
                     // Navigate to movieOptions, Booking etc.
@@ -72,25 +73,34 @@ public class App {
                     break;
                 
                 case 4:
-                    AppController.mc.rankMovieByRating(); // TODO
+                    AppController.mc.rankMovieByRating(5);
                     break;
                 
                 case 5:
-                    historyFlow(); // TODO
+                    movieGoerId = MovieGoerUI.main();
+                    if (movieGoerId == -1) { break;}
+                    // do something here TODO
                     break;
 
                 case 6:
-                    AdminUI.main();
+                    movieGoerId = MovieGoerUI.main();
+                    if (movieGoerId == -1) { break;}
+                    BookingUI.main(movieGoerId); // TODO
                     break;
+
                 case 7:
-                    bookingFlow();
+                    movieGoerId = MovieGoerUI.main();
+                    if (movieGoerId == -1) { break;}
+                    ReviewUI.main(movieGoerId);
+                    break;
+
+                case 8:
+                    AdminUI.main();
                     break;
             }
         }
-        while (choice != 8);
+        while (choice != 9);
         sc.close();
-
-        // save all the changes to database (csv)
         AppController.save();
     }
 
@@ -116,14 +126,5 @@ public class App {
         // and check stuff
 
         System.out.println("BLABLABLA");
-    }
-
-    private static void historyFlow() {
-
-
-        // TODO
-        // enter user id / name
-        // show a list of booking history for that user
-        // add options to add review for movies watched
     }
 }

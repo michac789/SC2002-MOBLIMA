@@ -4,9 +4,9 @@ package boundary;
 import java.util.Scanner;
 
 public class BookingUI {
-
     static Scanner sc = new Scanner(System.in);
-    public static void main(){
+
+    public static void main(int movieGoerId){
         System.out.println("BUGGY");
         
         // MovieController movieController = new MovieController();
@@ -39,5 +39,4 @@ public class BookingUI {
 
 
     }
-
 }

@@ -55,12 +55,12 @@ public class MovieUI {
     }
 
     public static void searchMovies() {
-        System.out.print("Enter movie title:");
+        System.out.print("Enter movie title: ");
         String searchQuery = sc.nextLine();
         int movieId = mc.searchMovie(searchQuery);
     }
 
-    private static void displayAllMovies() {
+    public static void displayAllMovies() {
         System.out.println("Displaying all movies...");
         ArrayList<Movie> movies = mc.getAllMovies();
         for(int i = 0; i<movies.size(); i++){

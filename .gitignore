@@ -1,6 +1,8 @@
 .vscode
 venv
-bin
 .idea
-*.class
+bin
 out
+*.class
+*.iml
+command.txt

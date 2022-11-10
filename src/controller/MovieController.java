@@ -68,13 +68,13 @@ public class MovieController {
 
 
     public void rankMovieBySales(int num) {
-
+        System.out.println("TODO");
         for(Movie m: this.movies){
 
         }
     }
 
-    public void rankMovieByRating() {
+    public void rankMovieByRating(int num) {
         if (movies.size() == 0) {
             System.out.println("No Movies");
             return;
@@ -97,7 +97,7 @@ public class MovieController {
         }
 
         int i=1;
-        int maxListings = 5;
+        int maxListings = num;
         for (int j=0; j < maxListings; j++) {
             Movie m = sortedRating.get(j);
             if (m.getRating() != -1) {
@@ -145,17 +145,3 @@ public class MovieController {
         }
     }
 }
-
-//     // TODO
-//     // display all movies that has 'title' as a substring
-//     // or can improve with other better search algorithm
-//
-
-//     // TODO
-//     // display the first 'num' movies with highest ticket sales
-//     public void rankMovieBySales(int num) {
-//         System.out.println("TODO");
-//     }
-
-//     // TODO
-//     // display the first 'num' movies with highest rating
