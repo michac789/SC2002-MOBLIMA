@@ -6,9 +6,11 @@ import model.Showtime;
 
 public class ShowtimeUI {
     private static Scanner sc = new Scanner(System.in);
-
-    // TODO
-
+    
+    public static void admin() {
+        System.out.println("TODOOOO");
+        // TODO
+    }
     
     public static void displayShowtimes(ShowtimeController shc) {
         ArrayList<Showtime> showtimes = shc.getAllShowtimes();

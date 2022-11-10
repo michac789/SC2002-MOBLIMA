@@ -29,7 +29,6 @@ public class MovieDAO extends BaseDAO {
         LinkedList<String> instances = getData(FILEPATH);
         ArrayList<Movie> returnList = new ArrayList<Movie>();
         for (int i = 1; i < instances.size(); i++) {
-            System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
             Movie newInstance = new Movie(
                 x[1], Integer.parseInt(x[2]), x[3], x[4],

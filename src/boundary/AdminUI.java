@@ -1,20 +1,16 @@
 package boundary;
-import java.util.Scanner;
 import controller.AdminController;
 
 public class AdminUI { 
     public static AdminController adminController;
-    static Scanner sc = new Scanner(System.in);
 
     public static void main() {
         adminController = new AdminController();
         String username, password;
         while (true) { 
             System.out.println("|=========|Admin Login|=========|");
-            System.out.println("Enter your username: ");
-            username = sc.nextLine().trim(); 
-            System.out.println("Enter your password: ");
-            password = sc.nextLine().trim();
+            username = UtilUI.getStr("Enter your username: ");
+            password = UtilUI.getStr("Enter your password: ");
             if (adminController.login(username, password)) {
                 break;
             }
@@ -37,8 +33,7 @@ public class AdminUI {
                         "5. Display & Configure System Settings\n" +
                         "6. Create Another Admin Account\n" +
                         "7. Log Out\n");
-            System.out.print("Select action: ");  
-            int choice = sc.nextInt();  
+            int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
                     MovieUI.admin();
@@ -50,7 +45,7 @@ public class AdminUI {
                     CinemaUI.admin();
                     break;
                 case 4:
-                    // TODO
+                    ShowtimeUI.admin();
                     break;
                 case 5:
                     SettingsUI.admin();
@@ -71,14 +66,10 @@ public class AdminUI {
     
     public static void createAdminAccount(){
         String username, password, confirmationPassword;
-        sc.nextLine();
         do {
-            System.out.println("Please enter admin username: ");
-            username = sc.nextLine().trim();
-            System.out.println("Password: ");
-            password = sc.nextLine().trim();
-            System.out.println("Password again to confirm: ");
-            confirmationPassword = sc.nextLine().trim();
+            username = UtilUI.getStr("Please enter admin username: ");
+            password = UtilUI.getStr("Password: ");
+            confirmationPassword = UtilUI.getStr("Password again to confirm: ");
             if (!adminController.isAdminExist(username) && password.equals(confirmationPassword)) {
                 adminController.createAccount(username, password);
                 break;

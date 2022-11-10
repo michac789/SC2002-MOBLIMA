@@ -1,5 +1,4 @@
 package boundary;
-import java.util.Scanner;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -7,7 +6,6 @@ import controller.SettingsController;
 import model.Settings;
 
 public class SettingsUI {
-    private static Scanner sc = new Scanner(System.in);
     private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public static void admin() {
@@ -19,8 +17,7 @@ public class SettingsUI {
                 "3. Edit Price Settings\n" +
                 "4. Edit Holiday Dates\n" +
                 "5. Exit\n\n");
-            System.out.print("Select action: ");  
-            int choice = sc.nextInt();
+            int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
                     displayPriceSettings();
@@ -78,17 +75,15 @@ public class SettingsUI {
                 "5. Edit Blockbuster Movie Extra Charge\n" +
                 "6. Edit Holiday Extra Charge\n" +
                 "7. Exit\n\n");
-            System.out.print("Select action: ");  
-            int choice = sc.nextInt();
-            Double newPrice;
+            int choice = UtilUI.getInt("Select action: ");
+            float newPrice;
             switch (choice) { 
                 case 1:
                     System.out.println(String.format(
                         "Current Class1 Price: $%.2f",
                         Settings.silverPrice
                     ));
-                    System.out.println("Enter new price: ");
-                    newPrice = sc.nextDouble();
+                    newPrice = UtilUI.getPositiveFloat("Enter new price: ");
                     Settings.silverPrice = newPrice;
                     break;
                 case 2:
@@ -96,8 +91,7 @@ public class SettingsUI {
                         "Current Class2 Price: $%.2f",
                         Settings.goldPrice
                     ));
-                    System.out.println("Enter new price: ");
-                    newPrice = sc.nextDouble();
+                    newPrice = UtilUI.getPositiveFloat("Enter new price: ");
                     Settings.goldPrice = newPrice;
                     break;
                 case 3:
@@ -105,8 +99,7 @@ public class SettingsUI {
                         "Current Class3 Price: $%.2f",
                         Settings.platinumPrice
                     ));
-                    System.out.println("Enter new price: ");
-                    newPrice = sc.nextDouble();
+                    newPrice = UtilUI.getPositiveFloat("Enter new price: ");
                     Settings.platinumPrice = newPrice;
                     break;
                 case 4:
@@ -114,8 +107,7 @@ public class SettingsUI {
                         "Current 3D Movie Extra Charge: $%.2f",
                         Settings.charge3D
                     ));
-                    System.out.println("Enter new price: ");
-                    newPrice = sc.nextDouble();
+                    newPrice = UtilUI.getPositiveFloat("Enter new price: ");
                     Settings.charge3D = newPrice;
                     break;
                 case 5:
@@ -123,8 +115,7 @@ public class SettingsUI {
                         "Current Blockbuster Movie Extra Charge: $%.2f",
                         Settings.chargeBlockbuster
                     ));
-                    System.out.println("Enter new price: ");
-                    newPrice = sc.nextDouble();
+                    newPrice = UtilUI.getPositiveFloat("Enter new price: ");
                     Settings.chargeBlockbuster = newPrice;
                     break;
                 case 6:
@@ -132,8 +123,7 @@ public class SettingsUI {
                         "Current Holiday Extra Charge: $%.2f",
                         Settings.chargeHoliday
                     ));
-                    System.out.println("Enter new price: ");
-                    newPrice = sc.nextDouble();
+                    newPrice = UtilUI.getPositiveFloat("Enter new price: ");
                     Settings.chargeHoliday = newPrice;
                     break;
                 case 7:
@@ -154,8 +144,7 @@ public class SettingsUI {
                 "2. Add Holiday Date\n" +
                 "3. Remove Holiday Date\n" +
                 "4. Exit\n\n");
-            System.out.print("Select action: ");  
-            int choice = sc.nextInt();
+            int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
                     for (int i = 0; i < Settings.holidayDates.size(); i++) {
@@ -166,9 +155,7 @@ public class SettingsUI {
                     System.out.println("");
                     break;
                 case 2:
-                    sc.nextLine();
-                    System.out.println("Enter New Holiday Date (Format DD/MM/YYYY):");
-                    String date = sc.nextLine();
+                    String date = UtilUI.getStr("Enter New Holiday Date (Format DD/MM/YYYY): ");
                     int status = SettingsController.addHoliday(date);
                     switch (status) {
                         case 0:
@@ -183,9 +170,7 @@ public class SettingsUI {
                     }
                     break;
                 case 3:
-                    int id;
-                    System.out.println("Enter Date ID (to be deleted): ");
-                    id = sc.nextInt();
+                    int id = UtilUI.getInt("Enter Date ID (to be deleted): ");
                     if (SettingsController.removeHoliday(id)) {
                         System.out.println("Date successfully deleted!");
                     } else {

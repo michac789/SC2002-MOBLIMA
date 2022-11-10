@@ -24,7 +24,6 @@ public class AdminDAO extends BaseDAO {
         LinkedList<String> instances = this.getData(FILEPATH);
         ArrayList<Admin> returnList = new ArrayList<Admin>();
         for (int i = 1; i < instances.size(); i++) {
-            System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
             Admin newInstance = new Admin(
                 x[0], x[1]

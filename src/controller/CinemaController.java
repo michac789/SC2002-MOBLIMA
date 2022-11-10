@@ -52,7 +52,7 @@ public class CinemaController {
 
     public boolean isMovieExist(int movieId) {
         for (int i = 0; i<cinemas.size(); i++) {
-            ShowtimeController showtimeController = cinemas.get(i).getShowtimeController();
+            ShowtimeController showtimeController = cinemas.get(i).getController();
             if (showtimeController.isMovieExist(movieId)) {
                 return true;
             };

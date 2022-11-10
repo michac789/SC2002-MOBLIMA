@@ -41,7 +41,6 @@ public class ShowtimeDAO extends BaseDAO {
         ArrayList<Showtime> returnList = new ArrayList<Showtime>();
         for (int i = 1; i < instances.size(); i++) {
             Seat[][] returnSeats = new Seat[height][width];
-            System.out.println(instances.get(i));
             String[] s = instances.get(i).split(",");
             Date date = null;
             try {
@@ -71,7 +70,6 @@ public class ShowtimeDAO extends BaseDAO {
                 Integer.parseInt(s[0]), date, height, width,
                 cineplexId, cinemaId, returnSeats
             );
-            newShowtime.getController().displaySeats();
             returnList.add(newShowtime);
         }
         return returnList;
