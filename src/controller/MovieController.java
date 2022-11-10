@@ -75,6 +75,24 @@ public class MovieController {
         }
         // TODO
         // display the first 'num' movies based on sales ranking (and display its sales)
+        ArrayList <Movie> sortedMovies = getAllMovies();
+
+        Collections.sort(sortedMovies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie m1, Movie m2){
+                return - m1.getSalesCount() + m2.getSalesCount();
+            }
+
+        });
+        for(int i = 0; i<num; i++){
+            Movie movie = sortedMovies.get(i);
+            System.out.println(movie.getTitle() + "with the total number sales of " + movie.getSalesCount());
+        }
+
+
+
+
+
     }
 
     public void rankMovieByRating(int num) {

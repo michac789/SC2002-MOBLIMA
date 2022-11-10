@@ -72,7 +72,7 @@ public class App {
                     break;
                 
                 case 4:
-                    AppController.mc.rankMovieBySales(5); // TODO
+                    AppController.mc.rankMovieBySales(5);
                     break;
                 
                 case 5:

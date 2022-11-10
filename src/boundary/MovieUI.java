@@ -259,7 +259,11 @@ public class MovieUI {
     // public static void rankMovieByRating(){
     //     mc.rankMovieByRating(5);
     // }
-    // public static void rankMovieBySales(){
-    //     mc.rankMovieBySales(5);
-    // }
+     public static void rankMovieBySales(){
+         System.out.println("Enter number of movies want to be displayed: ");
+         int quantity = sc.nextInt();
+         sc.nextLine();
+         mc.rankMovieBySales(quantity);
+
+     }
 }
