@@ -9,6 +9,8 @@ public class ReviewDAO extends BaseDAO {
     public void save(ArrayList<Review> instances, int movieId) {
         String FILEPATH = BASEPATH + movieId + ".csv";
         emptyFile(FILEPATH);
+        String header = "movieGoerId,rating,comment";
+        writeLine(FILEPATH, header);
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
             Review instance = instances.get(i);
@@ -25,7 +27,7 @@ public class ReviewDAO extends BaseDAO {
         String FILEPATH = BASEPATH + movieId + ".csv";
         LinkedList<String> instances = this.getData(FILEPATH);
         ArrayList<Review> returnList = new ArrayList<Review>();
-        for (int i = 0; i < instances.size(); i++) {
+        for (int i = 1; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
             x[2] = x[2].substring(1, x[2].length() - 1)

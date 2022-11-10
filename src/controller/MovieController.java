@@ -41,7 +41,7 @@ public class MovieController {
         int newMovieId = movies.size() + 1;
         UtilDAO.createFile(BASEPATH + newMovieId + ".csv");
         Movie m = new Movie(title, durationMinutes, director, cast,
-            showStatus, ageRating, is3D, isBlockbuster);
+            showStatus, ageRating, is3D, isBlockbuster, 0);
         movies.add(m);
     }
 

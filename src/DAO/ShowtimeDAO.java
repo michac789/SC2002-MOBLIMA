@@ -19,6 +19,8 @@ public class ShowtimeDAO extends BaseDAO {
     public void save(ArrayList<Showtime> instances, int cineplexId, int cinemaId) {
         FILEPATH = BASEPATH + cineplexId + "/Showtime_" + cinemaId + ".csv";
         emptyFile(FILEPATH);
+        String header = "movieId,date,time,seats";
+        writeLine(FILEPATH, header);
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
             Showtime instance = instances.get(i);
@@ -37,7 +39,7 @@ public class ShowtimeDAO extends BaseDAO {
         FILEPATH = BASEPATH + cineplexId + "/Showtime_" + cinemaId + ".csv";
         LinkedList<String> instances = this.getData(FILEPATH);
         ArrayList<Showtime> returnList = new ArrayList<Showtime>();
-        for (int i = 0; i < instances.size(); i++) {
+        for (int i = 1; i < instances.size(); i++) {
             Seat[][] returnSeats = new Seat[height][width];
             System.out.println(instances.get(i));
             String[] s = instances.get(i).split(",");

@@ -38,7 +38,6 @@ public abstract class BaseDAO {
     //     LinkedList<String> instances = this.getData(FILEPATH);
     //     ArrayList<T> returnList = new ArrayList<T>();
     //     for (int i = 0; i < instances.size(); i++) {
-    //         System.out.println(instances.get(i));
     //         String[] x = instances.get(i).split(",");
     //         T newInstance = obj.newInstance("todo");
     //         returnList.add(newInstance);

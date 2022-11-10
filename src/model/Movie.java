@@ -21,11 +21,12 @@ public class Movie {
     private ageRatingOptions ageRating;
     private boolean is3D;
     private boolean isBlockbuster;
+    private int sales;
 
     public Movie(
             String title, int durationMinutes, String director, String cast,
             showStatusOptions showStatus, ageRatingOptions ageRating,
-            boolean is3D, boolean isBlockbuster
+            boolean is3D, boolean isBlockbuster, int sales
         ) {
         numMovies++;
         this.movieId = numMovies;
@@ -37,6 +38,7 @@ public class Movie {
         this.ageRating = ageRating;
         this.is3D = is3D;
         this.isBlockbuster = isBlockbuster;
+        this.sales = sales;
         this.reviewController = new ReviewController(movieId);
     }
 
@@ -49,6 +51,7 @@ public class Movie {
     public void setAgeRating(ageRatingOptions ageRating) { this.ageRating = ageRating;}
     public void setIs3D(boolean is3D) { this.is3D = is3D;}
     public void setIsBlockbuster(boolean isBlockbuster) { this.isBlockbuster = isBlockbuster;}
+    public void incrementSales(int n) { this.sales = this.sales + n;}
 
     public int getMovieId() { return this.movieId;}
     public String getTitle() { return this.title;}
@@ -61,6 +64,7 @@ public class Movie {
     public boolean isBlockbuster() { return isBlockbuster;}
     public String getIs3D() { return this.is3D ? "yes" : "no";}
     public String getIsBlockbuster() { return this.isBlockbuster ? "yes": "no";}
+    public int getSalesCount() { return this.sales;}
     public static int getNumMovies() { return numMovies;}
     public ReviewController getController() { return this.reviewController;}
 

@@ -8,6 +8,8 @@ public class CineplexDAO extends BaseDAO {
     
     public void save(ArrayList<Cineplex> instances) {
         emptyFile(FILEPATH);
+        String header = "cineplexId,location";
+        writeLine(FILEPATH, header);
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
             Cineplex instance = instances.get(i);
@@ -22,8 +24,7 @@ public class CineplexDAO extends BaseDAO {
     public ArrayList<Cineplex> load() {
         LinkedList<String> instances = getData(FILEPATH);
         ArrayList<Cineplex> returnList = new ArrayList<Cineplex>();
-        for (int i = 0; i < instances.size(); i++) {
-            System.out.println(instances.get(i));
+        for (int i = 1; i < instances.size(); i++) {
             String[] x = instances.get(i).split(",");
             Cineplex newInstance = new Cineplex(x[1]);
             returnList.add(newInstance);

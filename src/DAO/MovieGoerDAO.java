@@ -8,6 +8,8 @@ public class MovieGoerDAO extends BaseDAO {
 
     public void save(ArrayList<MovieGoer> instances) {
         emptyFile(FILEPATH);
+        String header = "id,username,email,phoneNumber,age";
+        writeLine(FILEPATH, header);
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
             MovieGoer instance = instances.get(i);
@@ -23,7 +25,7 @@ public class MovieGoerDAO extends BaseDAO {
     public ArrayList<MovieGoer> load() {
         LinkedList<String> instances = this.getData(FILEPATH);
         ArrayList<MovieGoer> returnList = new ArrayList<MovieGoer>();
-        for (int i = 0; i < instances.size(); i++) {
+        for (int i = 1; i < instances.size(); i++) {
             System.out.println(instances.get(i));
             String[] x = instances.get(i).split(",");
             MovieGoer newInstance = new MovieGoer(
