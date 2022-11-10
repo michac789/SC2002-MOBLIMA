@@ -29,4 +29,8 @@ public class Showtime {
             return 1;
         }
     }
+
+    public String toString() {
+        return "Showtime " + this.date;
+    }
 }

@@ -3,41 +3,65 @@ package boundary;
 
 import java.util.Scanner;
 
+import controller.AppController;
+import controller.CinemaController;
+import controller.SeatController;
+import controller.ShowtimeController;
+
 public class BookingUI {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(int movieGoerId){
-        System.out.println("BUGGY");
-        
-        // MovieController movieController = new MovieController();
-        // System.out.println("Here are all showing movies: ");
-        // movieController.displayShowingMovies();
-        // System.out.println("Choose movies using ID");
-        // int movieId = sc.nextInt();
-        // System.out.println("Here are all available locations: ");
-        // CineplexController cineplexController = new CineplexController();
-        // cineplexController.displayCineplexesByMovieId(movieId);
-        // System.out.println("Choose cineplex using its location: ");
-        // String location = sc.nextLine().trim();
-        // int cineplexId = cineplexController.getCineplexIdByLocation(location);
-        // System.out.println("Here are available cinemas: ");
-        // CinemaController cinemaController = new CinemaController(cineplexId);
-        // System.out.println("Choose cineplex using its cinema code: ");
-        // int cinemaCode = sc.nextInt();
+        System.out.println("### BOOKING UI ###");
 
+        while (true) {
+            // prompt user for movie id
+            int movieId = MovieUI.promptValidMovieId();
+            if (movieId == -1) { break;}
 
+            while (true) {
+                // show all cineplex that show that movie
+                AppController.cc.displayCineplexesByMovieId(movieId);
+                
+                // prompt user for cineplex id
+                int cineplexId = CineplexUI.promptValidCineplexId();
+                if (cineplexId == -1) { break;}
 
+                while (true) {
+                    // show all cinemas and showtime for that movie
+                    CinemaController cc = AppController.cc.getCineplexById(cineplexId).getController();
+                    cc.displayCinemaAndShowtimeByMovieId(movieId);
 
+                    // prompt for cinema code
+                    int cinemaCode = CinemaUI.promptValidCinemaId(cc);
+                    if (cinemaCode == -1) { break;}
 
+                    while (true) {
+                        // prompt for showtime
+                        ShowtimeController shc = cc.getCinemaByCode(cinemaCode).getController();
+                        ShowtimeUI.displayShowtimes(shc);
+                        int showtimeId = ShowtimeUI.promptValidShowtimeId(shc);
+                        if (showtimeId == -1) { break;}
 
+                        while (true) {
+                            // display seating arrangement
+                            SeatController sec = shc.getShowtimeById(showtimeId).getController();
+                            sec.displaySeats();
 
+                            // prompt for seating position
+                            // TODO
 
+                            // confirm booking and payment option
+                            // TODO
 
-
-
-
-
-
+                            // create booking model, increment sales in movie model
+                            // TODO
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
 
     public static void history(int movieGoerId) {

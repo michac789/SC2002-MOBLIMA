@@ -4,6 +4,7 @@ import DAO.UtilDAO;
 import DAO.CinemaDAO;
 import model.Cinema;
 import model.Cinema.showClassOptions;
+import model.Showtime;
 
 public class CinemaController {
     private ArrayList<Cinema> cinemas = new ArrayList<Cinema>();
@@ -50,22 +51,27 @@ public class CinemaController {
     }
 
     public boolean isMovieExist(int movieId) {
-        for(int i = 0; i<cinemas.size(); i++){
-            Cinema cinema = cinemas.get(i);
-            ShowtimeController showtimeController = cinema.getShowtimeController();
-            if(showtimeController.isMovieExist(movieId)){
+        for (int i = 0; i<cinemas.size(); i++) {
+            ShowtimeController showtimeController = cinemas.get(i).getShowtimeController();
+            if (showtimeController.isMovieExist(movieId)) {
                 return true;
             };
         }
         return false;
     }
     
-    public void displayCinemaByMovie(int movieId){
-        for(int i = 0; i < cinemas.size(); i++) {
-            Cinema cinema = cinemas.get(i);
-            ShowtimeController showtimeController = cinema.getShowtimeController();
-            if(showtimeController.isMovieExist(movieId)){
-                System.out.println("Cinema " + cinema.getCinemaCode());
+    public void displayCinemaAndShowtimeByMovieId(int movieId){
+        for (int i = 0; i < cinemas.size(); i++) {
+            ArrayList<Showtime> showtimes = cinemas.get(i).getController().getAllShowtimes();
+            boolean temp = true;
+            for (int j = 0; j < showtimes.size(); j++) {
+                if (showtimes.get(j).getMovieId() == movieId) {
+                    if (temp) {
+                        System.out.println(cinemas.get(i));
+                        temp = false;
+                    }
+                    System.out.println(showtimes.get(j));
+                }
             }
         }
     }

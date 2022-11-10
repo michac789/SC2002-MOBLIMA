@@ -55,19 +55,26 @@ public class CineplexUI {
     }
 
     private static void editCineplex() {
+        int cineplexId = promptValidCineplexId();
+        if (cineplexId == -1) { return;}
+        sc.nextLine();
+        System.out.println(AppController.cc.getCineplexById(cineplexId));
+        System.out.println("Enter new cineplex location:");
+        String newLocation = sc.nextLine();
+        AppController.cc.editLocation(cineplexId, newLocation);
+    }
+
+    public static int promptValidCineplexId() {
         int id;
         while (true) {
-            System.out.println("Enter cineplex ID:");
+            System.out.println("Enter cineplex ID: (enter -1 to exit)");
             id = sc.nextInt();
+            if (id == -1) { return -1;}
             if (id > 0 && id <= Cineplex.getNumCineplex()) {
                 break;
             }
             System.out.println("Invalid ID");
         }
-        sc.nextLine();
-        System.out.println(AppController.cc.getCineplexById(id));
-        System.out.println("Enter new cineplex location:");
-        String newLocation = sc.nextLine();
-        AppController.cc.editLocation(id, newLocation);
+        return id;
     }
 }

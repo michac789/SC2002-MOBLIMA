@@ -25,6 +25,16 @@ public class ShowtimeController {
         this.showtimeDao.save(this.showtimes, cineplexId, cinemaId);
     }
 
+    public ArrayList<Showtime> getAllShowtimes() {
+        return this.showtimes;
+    }
+
+    public Showtime getShowtimeById(int id) {
+        return this.showtimes.get(id - 1);
+    }
+
+    public int getShowtimeCount() { return this.showtimes.size();}
+
     public boolean isMovieExist(int movieId) {
         for(int i = 0; i<showtimes.size(); i++){
             Showtime showtime = showtimes.get(i);

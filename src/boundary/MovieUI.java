@@ -63,17 +63,23 @@ public class MovieUI {
     }
 
     public static void displayDetailMovie() {
+        int movieId = promptValidMovieId();
+        if (movieId == -1) { return;}
+        displayDetailMovieInfo(movieId);
+    }
+
+    public static int promptValidMovieId() {
         int movieId;
         while (true) {
             System.out.print("Enter movie ID: (enter -1 to exit) ");
             movieId = sc.nextInt();
-            if (movieId == -1) { return;}
+            if (movieId == -1) { return -1;}
             if (movieId > 0 && movieId <= Movie.getNumMovies()) {
                 break;
             }
             System.out.println("Invalid movie ID!");
         }
-        displayDetailMovieInfo(movieId);
+        return movieId;
     }
 
     private static void displayDetailMovieInfo(int movieId) {

@@ -43,20 +43,18 @@ public class CineplexController {
     }
 
     public void displayCineplexesByMovieId(int movieId) {
-        System.out.println("CAUSED BUG"); // TODO - caused bug
-        
-        // int count = 0;
-        // for(int i = 0; i < cineplexes.size(); i++){
-        //     Cineplex cineplex = cineplexes.get(i);
-        //     CinemaController cinemaController = new CinemaController(cineplex.getCineplexId());
-        //     if(cinemaController.isMovieExist(movieId)){
-        //         System.out.println("Cineplex: " + cineplex.getLocation());
-        //         count++;
-        //     }
-        // }
-        // if (count == 0){
-        //     System.out.println("No cinema are currently showing this movie");
-        // }
+        int count = 0;
+        for (int i = 0; i < cineplexes.size(); i++) {
+            Cineplex cineplex = cineplexes.get(i);
+            CinemaController cinemaController = cineplexes.get(i).getController();
+            if (cinemaController.isMovieExist(movieId)) {
+                System.out.println(cineplex);
+                count++;
+            }
+        }
+        if (count == 0){
+            System.out.println("No cinema are currently showing this movie");
+        }
     }
 
     public int getCineplexIdByLocation(String location){

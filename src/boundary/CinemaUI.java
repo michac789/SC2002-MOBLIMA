@@ -9,7 +9,7 @@ public class CinemaUI {
     private static Scanner sc = new Scanner(System.in);
 
     public static void admin() {
-        int id = promptValidCineplexId();
+        int id = CineplexUI.promptValidCineplexId();
         if (id == -1) { return;}
         CinemaController cc = AppController.cc.getCineplexById(id).getController();
         while (true) {
@@ -41,39 +41,34 @@ public class CinemaUI {
         }
     }
 
-    public static int promptValidCineplexId() {
-        int id;
+    public static int promptValidCinemaId(CinemaController cc) {
+        int cinemaCode;
         while (true) {
-            System.out.println("Enter cineplex ID (or enter -1 to exit):");
-            id = sc.nextInt();
-            if (id == -1) { return -1;}
-            if (1 <= id && id <= Cineplex.getNumCineplex()) {
+            System.out.println("Enter cinema code: (enter -1 to exit)");
+            cinemaCode = sc.nextInt();
+            if (cinemaCode == -1) { return -1;}
+            if (1 <= cinemaCode && cinemaCode <= cc.getCinemasCount()) {
                 break;
             }
-            System.out.println("Invalid cineplex ID");
+            System.out.println("Invalid Cinema Code");
         }
-        return id;
+        return cinemaCode;
     }
 
     private static void displayDetailedCinemaInfo(CinemaController cc) {
-        // TODO - view seat config ?? for admin
-        System.out.println("Enter cinema code: ");
-        int cinemaCode = sc.nextInt();
-        if (1 <= cinemaCode && cinemaCode <= cc.getCinemasCount()) {
-            Cinema c = cc.getCinemaByCode(cinemaCode);
-            System.out.println(String.format(
-                "Cineplex ID: %d\n" +
-                "Cinema Code: %d\n" +
-                "Cinema Height: %d\n" +
-                "Cinema Width: %d\n" +
-                "Cinema Class: %d\n",
-                c.getCineplexId(), c.getCinemaCode(),
-                c.getHeight(), c.getWidth(), c.getCinemaClass()
-            ));
-        } else {
-            System.out.println("Invalid Cinema Code");
-            return;
-        }
+        int cinemaCode = promptValidCinemaId(cc);
+        if (cinemaCode == -1) { return;}
+        Cinema c = cc.getCinemaByCode(cinemaCode);
+        System.out.println(String.format(
+            "Cineplex ID: %d\n" +
+            "Cinema Code: %d\n" +
+            "Cinema Height: %d\n" +
+            "Cinema Width: %d\n" +
+            "Cinema Class: %d\n",
+            c.getCineplexId(), c.getCinemaCode(),
+            c.getHeight(), c.getWidth(), c.getCinemaClass()
+        ));
+        Cinema.printCinemaLayout(c.getHeight(), c.getWidth(), c.getSeatConfiguration());
     }
 
     private static void createCinema(CinemaController cc) {
