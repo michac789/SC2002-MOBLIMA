@@ -45,12 +45,6 @@ public class MovieController {
         movies.add(m);
     }
 
-    public String removeMovie(int movieSelected) { // TODO - still buggy for ID count now
-        String title = this.movies.get(movieSelected).getTitle();
-        movies.remove(movieSelected);
-        return title;
-    }
-
     public int displayShowingMovies() {
         int i = 0;
         int[] movieIdList = new int[movies.size()];
