@@ -60,8 +60,10 @@ public class ShowtimeDAO extends BaseDAO {
                     x = 1;
                     y = y + 1;
                 }
+                char yChar = (char) y;
                 returnSeats[h][w] = new Seat(
-                    Character.toString(y) + x,
+//                    Character.toString(y) + x,
+                        yChar + "" + x,
                     (seats.charAt(j) == 'F' ? true : false),
                     (seats.charAt(j) == 'X' ? false : true)
                 );

@@ -8,8 +8,38 @@ public class ShowtimeUI {
     private static Scanner sc = new Scanner(System.in);
     
     public static void admin() {
-        System.out.println("TODOOOO");
-        // TODO
+        while (true) {
+            System.out.println("|=========|Showtime Admin Panel|=========|");
+            System.out.print(
+                    "1. Display All Showtimes\n" +
+                            "2. Create new Showtime\n" +
+                            "3. Edit Showtime\n" +
+                            "4. Edit Movie\n" +
+                            "5. Exit\n");
+            System.out.print("Select action: ");
+            int choice = sc.nextInt();
+            // cleaner
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    displayAllMovies();
+                    break;
+                case 2:
+                    displayDetailMovie();
+                    break;
+                case 3:
+                    createMovie();
+                    break;
+                case 4:
+                    editMovie();
+                    break;
+                case 5:
+                    return;
+                default:
+                    System.out.println("Invalid action, try again!");
+                    break;
+            }
+        }
     }
     
     public static void displayShowtimes(ShowtimeController shc) {

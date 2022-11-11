@@ -90,14 +90,14 @@ public class MovieController {
         sortedRating.add(movies.get(0));
         for (int i=1; i < movies.size();i++) {
             for (int j=i-1; j >= 0; j--) {
-                if (movies.get(i).getRating() > sortedRating.get(j).getRating()) { // TODO
+                if (movies.get(i).getRating() > sortedRating.get(j).getRating()) {
                     if (j==0) {
                         sortedRating.add(j, movies.get(i));
                         break;
                     }
-                    continue;
                 } else {
                     sortedRating.add(j+1, movies.get(i));
+                    break;
                 }
             }
         }
