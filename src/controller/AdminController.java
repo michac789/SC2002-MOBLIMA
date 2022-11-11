@@ -1,7 +1,7 @@
 package controller;
 import java.util.ArrayList;
 import DAO.AdminDAO;
-import user.Admin;
+import model.Admin;
 
 public class AdminController { 
     private ArrayList<Admin> adminList = new ArrayList<Admin>();

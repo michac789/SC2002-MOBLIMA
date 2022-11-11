@@ -1,12 +1,9 @@
 package boundary;
-import java.util.Scanner;
 import java.util.ArrayList;
 import controller.AppController;
 import model.Cineplex;
 
 public class CineplexUI {
-    private static Scanner sc = new Scanner(System.in);
-
     public static void admin() {
         while (true) {
             System.out.println("|=========|Cineplex Admin Panel|=========|");
@@ -15,8 +12,7 @@ public class CineplexUI {
                 "2. Create New Cineplex\n" +
                 "3. Edit Existing Cineplex\n" +
                 "4. Exit\n");
-            System.out.print("Select action: ");  
-            int choice = sc.nextInt();
+            int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
                     displayAllCineplexes();
@@ -47,9 +43,7 @@ public class CineplexUI {
     }
 
     private static void createCineplex() {
-        System.out.println("Enter new cineplex location:");
-        sc.nextLine();
-        String location = sc.nextLine();
+        String location = UtilUI.getStr("Enter cineplex location: ");
         AppController.cc.createCineplex(location);
         System.out.println("Cineplex successfully created!\n");
     }
@@ -57,18 +51,15 @@ public class CineplexUI {
     private static void editCineplex() {
         int cineplexId = promptValidCineplexId();
         if (cineplexId == -1) { return;}
-        sc.nextLine();
         System.out.println(AppController.cc.getCineplexById(cineplexId));
-        System.out.println("Enter new cineplex location:");
-        String newLocation = sc.nextLine();
+        String newLocation = UtilUI.getStr("Enter new cineplex location: ");
         AppController.cc.editLocation(cineplexId, newLocation);
     }
 
     public static int promptValidCineplexId() {
         int id;
         while (true) {
-            System.out.println("Enter cineplex ID: (enter -1 to exit)");
-            id = sc.nextInt();
+            id = UtilUI.getInt("Enter cineplex ID: (enter -1 to exit)");
             if (id == -1) { return -1;}
             if (id > 0 && id <= Cineplex.getNumCineplex()) {
                 break;

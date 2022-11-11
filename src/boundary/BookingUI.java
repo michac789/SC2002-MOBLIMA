@@ -6,6 +6,8 @@ import controller.CinemaController;
 import controller.SeatController;
 import controller.ShowtimeController;
 import model.Booking;
+import model.Cineplex;
+import model.Showtime;
 
 public class BookingUI {
     static Scanner sc = new Scanner(System.in);
@@ -28,7 +30,8 @@ public class BookingUI {
 
                 while (true) {
                     // show all cinemas and showtime for that movie
-                    CinemaController cc = AppController.cc.getCineplexById(cineplexId).getController();
+                    Cineplex cineplex = AppController.cc.getCineplexById(cineplexId);
+                    CinemaController cc = cineplex.getController();
                     cc.displayCinemaAndShowtimeByMovieId(movieId);
 
                     // prompt for cinema code
@@ -44,17 +47,32 @@ public class BookingUI {
 
                         while (true) {
                             // display seating arrangement
-                            SeatController sec = shc.getShowtimeById(showtimeId).getController();
+                            Showtime showtime = shc.getShowtimeById(showtimeId);
+                            SeatController sec = showtime.getController();
                             sec.displaySeats();
 
-                            // prompt for seating position
+                            // prompt a row, column
+
+                            // select how many seats (to the right)
+
+                            // check (validate seat)
                             // TODO
+
+                            // ask the user if they're done, else checkout, if not done reprompt row & col
 
                             // confirm booking and payment option
                             // TODO
 
                             // create booking model, increment sales in movie model
                             // TODO
+
+                            // new Booking(
+                            //     movieGoerId,
+                            //     AppController.mc.getMovieById(showtime.getMovieId()).getTitle(),
+                            //     cineplex.getLocation(), cinemaCode,
+                            //     "DATE TODO", "SEAT TODO"
+                            // );
+                            // AppController.mc
                         }
                     }
                 }

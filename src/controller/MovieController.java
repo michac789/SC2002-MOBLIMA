@@ -26,7 +26,7 @@ public class MovieController {
 
     public Movie getMovieById(int id) {
         for (Movie m: this.movies) {
-            if (m.getMovieId() == m.getMovieId()) {
+            if (m.getMovieId() == id) {
                 return m;
             }
         }
@@ -79,7 +79,7 @@ public class MovieController {
             System.out.println(movie.getTitle() + "with the total number sales of " + movie.getSalesCount());
         }
     }
-
+    
     public void rankMovieByRating(int num) {
         if (movies.size() == 0) {
             System.out.println("No Movies");

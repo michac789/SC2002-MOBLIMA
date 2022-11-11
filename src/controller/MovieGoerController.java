@@ -2,8 +2,8 @@ package controller;
 import java.util.*;
 import DAO.MovieGoerDAO;
 import DAO.UtilDAO;
-import user.MovieGoer;
 import model.Movie;
+import model.MovieGoer;
 import model.Review;
 
 public class MovieGoerController {

@@ -55,7 +55,7 @@ public class SeatController {
         } else if (seat.getIsSeat() && !seat.getIsBooked()) {  // unbooked seat
             System.out.print(ANSI_GREEN + seat.getSeatCode() + ANSI_RESET);
         } else {  // stairwell or aisle
-            for (int i = 0; i < seat.getSeatCode().length(); i++) { System.out.print("  "); }
+            for (int i = 0; i < seat.getSeatCode().length(); i++) { System.out.print(" "); }
         }
     }
 

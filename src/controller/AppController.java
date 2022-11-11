@@ -8,9 +8,9 @@ public class AppController {
 
     // initialize all objects from the database, called upon loading
     public static void init() {
-        mc = new MovieController();
-        cc = new CineplexController();
-        mgc = new MovieGoerController();
+        mc = new MovieController(); // load all movies  -> load all reviews corresponding to each movie
+        cc = new CineplexController(); // cineplex -> cinema -> showtime -> seats
+        mgc = new MovieGoerController(); // user -> bookings
         sc = new SettingsController();
     }
 
