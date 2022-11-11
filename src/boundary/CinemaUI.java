@@ -1,13 +1,9 @@
 package boundary;
-import java.util.Scanner;
 import controller.AppController;
 import controller.CinemaController;
-import model.Cineplex;
 import model.Cinema;
 
 public class CinemaUI {
-    private static Scanner sc = new Scanner(System.in);
-
     public static void admin() {
         int id = CineplexUI.promptValidCineplexId();
         if (id == -1) { return;}
@@ -20,8 +16,7 @@ public class CinemaUI {
                 "2. Cinema Detailed View\n" +
                 "3. Create New Cinema\n" +
                 "4. Exit\n");
-            System.out.print("Select action: ");  
-            int choice = sc.nextInt();
+            int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
                     cc.displayAllCinemas();
@@ -45,7 +40,7 @@ public class CinemaUI {
         int cinemaCode;
         while (true) {
             System.out.println("Enter cinema code: (enter -1 to exit)");
-            cinemaCode = sc.nextInt();
+            cinemaCode = UtilUI.getInt("Enter cinema code: (enter -1 to exit) ");
             if (cinemaCode == -1) { return -1;}
             if (1 <= cinemaCode && cinemaCode <= cc.getCinemasCount()) {
                 break;
@@ -73,17 +68,13 @@ public class CinemaUI {
 
     private static void createCinema(CinemaController cc) {
         System.out.println("### Creating New Cinema ####");
-        System.out.print("Enter height: ");
-        int height = sc.nextInt();
-        System.out.print("Enter width: ");
-        int width = sc.nextInt();
-        sc.nextLine();
+        int height = UtilUI.getInt("Enter height: ");
+        int width = UtilUI.getInt("Enter width: ");
         String cinemaClass;
         do {
-            System.out.print("Enter class (CLASS1/CLASS2/CLASS3): ");
-            cinemaClass = sc.nextLine();
-            if (cinemaClass.equals("CLASS1") || cinemaClass.equals("CLASS2") ||
-                cinemaClass.equals("CLASS3")) { break;}
+            cinemaClass = UtilUI.getStr("Enter class (SILVER/GOLD/PLATINUM): ");
+            if (cinemaClass.equals("SILVER") || cinemaClass.equals("GOLD") ||
+                cinemaClass.equals("PLATINUM")) { break;}
             System.out.println("Invalid cinema class");
         } while (true);
         String seatConfiguration, error = "";
@@ -91,7 +82,7 @@ public class CinemaUI {
             System.out.println("Enter seat configuration below");
             System.out.println("Write 'X' for not a seat, 'S' for seat");
             System.out.println("The length of string should be equal to width times height");
-            seatConfiguration = sc.nextLine();
+            seatConfiguration = UtilUI.getStr("");
             if (seatConfiguration.length() != height * width) {
                 error = "Invalid length";
             }

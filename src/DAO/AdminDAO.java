@@ -1,6 +1,6 @@
 package DAO;
 import java.util.LinkedList;
-import user.Admin;
+import model.Admin;
 import java.util.ArrayList;
 
 public class AdminDAO extends BaseDAO {

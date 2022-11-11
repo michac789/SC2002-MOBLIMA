@@ -2,8 +2,8 @@ package controller;
 import java.util.*;
 import DAO.MovieGoerDAO;
 import DAO.UtilDAO;
-import user.MovieGoer;
 import model.Movie;
+import model.MovieGoer;
 import model.Review;
 
 public class MovieGoerController {
@@ -24,7 +24,6 @@ public class MovieGoerController {
 
     public int getMovieGoerIdByUsername(String username) {
         for (int i = 0; i < movieGoers.size(); i++){
-            System.out.println(movieGoers.get(i).getUsername());
             if (movieGoers.get(i).getUsername().equals(username)){
                 return (i + 1);
             }

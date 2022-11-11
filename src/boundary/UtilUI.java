@@ -7,6 +7,9 @@ public class UtilUI {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
 
     public static void printWelcomeMessage() {
         System.out.println(ANSI_CYAN);
@@ -33,7 +36,7 @@ public class UtilUI {
                 sc.nextLine();
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("Input must be an integer!");
+                printRed("Input must be an integer!");
                 sc.nextLine();
             }
         }
@@ -48,12 +51,12 @@ public class UtilUI {
                 number = sc.nextFloat();
                 sc.nextLine();
                 if (number < 0) {
-                    System.out.println("Number cannot be negative!");
+                    printRed("Number cannot be negative!");
                 } else {
                     break;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Input must be a number!");
+                printRed("Input must be a number!");
                 sc.nextLine();
             }
         }
@@ -64,5 +67,37 @@ public class UtilUI {
         System.out.print(msg);
         String str = sc.nextLine().trim();
         return str;
+    }
+
+    public static boolean getBool(String msg) {
+        boolean bool;
+        while (true) {
+            System.out.print(msg);
+            try {
+                bool = sc.nextBoolean();
+                sc.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                printRed("Input can only be (true/false)!");
+                sc.nextLine();
+            }
+        }
+        return bool;
+    }
+
+    public static void printRed(String msg) {
+        System.out.println(ANSI_RED + msg + ANSI_RESET);
+    }
+
+    public static void printGreen(String msg) {
+        System.out.println(ANSI_GREEN + msg + ANSI_RESET);
+    }
+
+    public static void printPurple(String msg) {
+        System.out.println(ANSI_PURPLE + msg + ANSI_RESET);
+    }
+
+    public static void printBlue(String msg) {
+        System.out.println(ANSI_BLUE + msg + ANSI_RESET);
     }
 }

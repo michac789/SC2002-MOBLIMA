@@ -11,17 +11,14 @@ public class MovieUI {
 
     public static void admin() {
         while (true) {
-            System.out.println("|=========|Movie Admin Panel|=========|");
+            UtilUI.printBlue("|=========|Movie Admin Panel|=========|");
             System.out.print(
                 "1. Display All Movies\n" +
                 "2. Movie Detailed View\n" +
                 "3. Create Movie\n" +
                 "4. Edit Movie\n" +
                 "5. Exit\n");
-            System.out.print("Select action: ");
-            int choice = sc.nextInt();
-            // cleaner
-            sc.nextLine();
+            int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
                     displayAllMovies();
@@ -45,16 +42,15 @@ public class MovieUI {
     }
 
     public static void searchMovie() {
-        System.out.print("Enter movie title: ");
-        String searchQuery = sc.nextLine();
+        String searchQuery = UtilUI.getStr("Enter movie title: ");
         int movieId = mc.searchMovie(searchQuery);
         displayDetailMovieInfo(movieId);
     }
 
     public static void displayAllMovies() {
-        System.out.println("Displaying all movies...");
+        UtilUI.printBlue("Displaying all movies...");
         ArrayList<Movie> movies = mc.getAllMovies();
-        for(int i = 0; i<movies.size(); i++){
+        for(int i = 0; i < movies.size(); i++){
             Movie movie = movies.get(i);
             System.out.println("Movie ID " + movie.getMovieId() + ": " +
                 movie.getTitle() + " (" + movie.getShowStatus() + ")");
@@ -71,8 +67,7 @@ public class MovieUI {
     public static int promptValidMovieId() {
         int movieId;
         while (true) {
-            System.out.print("Enter movie ID: (enter -1 to exit) ");
-            movieId = sc.nextInt();
+            movieId = UtilUI.getInt("Enter movie ID: (enter -1 to exit) ");
             if (movieId == -1) { return -1;}
             if (movieId > 0 && movieId <= Movie.getNumMovies()) {
                 break;
@@ -83,6 +78,7 @@ public class MovieUI {
     }
 
     private static void displayDetailMovieInfo(int movieId) {
+        UtilUI.printBlue("Movie Detail View");
         Movie m = AppController.mc.getMovieById(movieId);
         System.out.println(m);
         m.getController().displayReviews();
@@ -90,45 +86,32 @@ public class MovieUI {
     
     private static void createMovie() {
         // title, duration, director, cast, status, age rating, is3D, isBlockbuster
-        System.out.println("Adding new Movie: ");
+        UtilUI.printBlue("Movie Creation");
 
-        System.out.print("Enter Movie Title: ");
-        String title = sc.nextLine();
-
-        System.out.print("Enter Movie duration(mins): ");
-        int duration = sc.nextInt();
-
-        sc.nextLine();
-        System.out.print("Enter Movie Director: ");
-        String director = sc.nextLine();
-
+        String title = UtilUI.getStr("Enter Movie Title: ");
+        int duration = UtilUI.getInt("Enter Movie Duration (mins): ");
+        String director = UtilUI.getStr("Enter Movie Director: ");
+        String cast = UtilUI.getStr("Enter Movie Cast: ");
         // use comma to seperate? so need do comma parsing like in reviews
-        System.out.print("Enter Movie Cast: ");
-        String cast = sc.nextLine();
 
         System.out.println("Select Movie Status: ");
-        int i=0;
+        int i = 0;
         for (Movie.showStatusOptions m: Movie.showStatusOptions.values()) {
             System.out.print(i + ":" + m + "\t");
             i++;
         }
-        System.out.println();
-        int status = sc.nextInt();
+        int status = UtilUI.getInt("\n");
 
         System.out.println("Enter Movie Age Rating: ");
-        i=0;
+        i = 0;
         for (Movie.ageRatingOptions m: Movie.ageRatingOptions.values()) {
             System.out.print(i + ":" + m + "\t");
             i++;
         }
-        System.out.println();
-        int ageRating = sc.nextInt();
+        int ageRating = UtilUI.getInt("\n");
 
-        System.out.print("Is Movie 3D(true,false): ");
-        boolean is3D = sc.nextBoolean();
-
-        System.out.print("Is Movie Blockbuster(true,false): ");
-        boolean isBlockbuster = sc.nextBoolean();
+        boolean is3D = UtilUI.getBool("Is Movie 3D (true/false): ");
+        boolean isBlockbuster = UtilUI.getBool("Is Movie Blockbuster (true/false): ");
 
         mc.createMovie(
             title, duration, director, cast, Movie.showStatusOptions.values()[status],
@@ -137,15 +120,9 @@ public class MovieUI {
     }
 
     private static void editMovie() {
-        int movieId;
-        while (true) {
-            System.out.print("Enter a movie ID: ");
-            movieId = sc.nextInt();
-            if (!(movieId <= 0 || movieId >= Movie.getNumMovies())) {
-                break;
-            }
-            System.out.println("Invalid Option.");
-        }
+        UtilUI.printBlue("Movie Editing");
+        int movieId = promptValidMovieId();
+        if (movieId == -1) { return;}
 
         int option;
         while (true) {
@@ -158,11 +135,9 @@ public class MovieUI {
                     "6. Edit Age Rating\n" +
                     "7. Edit is3D\n" +
                     "8. Edit is Blockbuster\n" +
-                    "9. Remove Movie\n" +
-                    "10. Exit\n");
-            option = sc.nextInt();
-            if (option == 10) {break;}
-            sc.nextLine();
+                    "9. Exit\n");
+            option = UtilUI.getInt("Select action: ");
+            if (option == 9) {break;}
 
             switch (option) {
                 case 1:
@@ -207,47 +182,21 @@ public class MovieUI {
                     mc.getMovieById(movieId).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
                     break;
                 case 7:
-                    System.out.print("Enter new is3D (true/false): ");
-                    boolean is3D = sc.nextBoolean();
+                    boolean is3D = UtilUI.getBool("Enter new is3D (true/false): ");
                     mc.getMovieById(movieId).setIs3D(is3D);
                     break;
                 case 8:
-                    System.out.print("Is Movie Blockbuster (true/false): ");
-                    boolean isBlockbuster = sc.nextBoolean();
+                    boolean isBlockbuster = UtilUI.getBool("Is Movie Blockbuster (true/false): ");
                     mc.getMovieById(movieId).setIsBlockbuster(isBlockbuster);
                     break;
                 case 9:
-                // TODO
-                    // System.out.printf("Confirm remove \"%s\"(Yes,No): " + mc.getAllMovies().get(movieSelected).getTitle());
-                    // String choice = sc.nextLine();
-                    // if (choice.toLowerCase() == "yes") {
-                    //     String removedMovie = mc.removeMovie(movieSelected);
-                    //     System.out.printf("Removed movie:\"%s\"", removedMovie);
-                    // }
                     break;
             }
             System.out.println("Success in editing!");
         }
     }
-    
-    // public static void displayReviews(){
-    //     mc.displayReviews(movieId);
-    // }
 
-    // public static void searchMovie(){
-
-    //     System.out.println("Search movie by name: ");
-    //     String title = sc.nextLine();
-    //     movieId = mc.searchMovie(title);
-
-    // }
-
-    public static void displayShowingMovies () {
-        mc.displayShowingMovies();
-
-    }
-
-    public static void movieSelection(){
+    public static void movieSelection() {
         int option;
         int i = mc.displayShowingMovies();
         while (true) {
@@ -260,16 +209,5 @@ public class MovieUI {
         }
         int selectedMovieId = sc.nextInt();
         mc.getMovieById(selectedMovieId);
-
     }
-    // public static void rankMovieByRating(){
-    //     mc.rankMovieByRating(5);
-    // }
-     public static void rankMovieBySales(){
-         System.out.println("Enter number of movies want to be displayed: ");
-         int quantity = sc.nextInt();
-         sc.nextLine();
-         mc.rankMovieBySales(quantity);
-
-     }
 }

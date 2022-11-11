@@ -26,7 +26,7 @@ public class MovieController {
 
     public Movie getMovieById(int id) {
         for (Movie m: this.movies) {
-            if (m.getMovieId() == m.getMovieId()) {
+            if (m.getMovieId() == id) {
                 return m;
             }
         }
@@ -43,12 +43,6 @@ public class MovieController {
         Movie m = new Movie(title, durationMinutes, director, cast,
             showStatus, ageRating, is3D, isBlockbuster, 0);
         movies.add(m);
-    }
-
-    public String removeMovie(int movieSelected) { // TODO - still buggy for ID count now
-        String title = this.movies.get(movieSelected).getTitle();
-        movies.remove(movieSelected);
-        return title;
     }
 
     public int displayShowingMovies() {
@@ -76,43 +70,35 @@ public class MovieController {
         });
         for (int i = 0; i < num; i++) {
             Movie movie = sortedMovies.get(i);
-            System.out.println(movie.getTitle() + "with the total number sales of " + movie.getSalesCount());
+            System.out.println(String.format(
+                "Movie ID %d: %s (Total sales: %d)",
+                movie.getMovieId(), movie.getTitle(), movie.getSalesCount()
+            ));
         }
+        System.out.println("");
     }
 
     public void rankMovieByRating(int num) {
-        if (movies.size() == 0) {
-            System.out.println("No Movies");
-            return;
-        }
-        LinkedList<Movie> sortedRating = new LinkedList<Movie>();
-
-        sortedRating.add(movies.get(0));
-        for (int i=1; i < movies.size();i++) {
-            for (int j=i-1; j >= 0; j--) {
-                if (movies.get(i).getRating() > sortedRating.get(j).getRating()) {
-                    if (j==0) {
-                        sortedRating.add(j, movies.get(i));
-                        break;
-                    }
-                } else {
-                    sortedRating.add(j+1, movies.get(i));
-                    break;
-                }
+        ArrayList<Movie> sortedMovies = getAllMovies();
+        Collections.sort(sortedMovies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie m1, Movie m2) {
+                double delta = m2.getRating() - m1.getRating();
+                if (delta > 0.000001) { return 1;} // m2 bigger
+                else if (delta < 0.000001) { return -1;} // m1 bigger
+                else { return 0;} //equal
             }
-        }
+        });
 
-        int i=1;
-        int maxListings = num;
-        for (int j=0; j < maxListings; j++) {
-            Movie m = sortedRating.get(j);
-            if (m.getRating() != -1) {
-                System.out.printf("%d: %-15s| Rating: %.1f\n", i, m.getTitle(), m.getRating());
-            }else {
-                System.out.printf("%d: %-15s| Rating: %s\n", i, m.getTitle(), "No Ratings Yet.");
-            }
-            i++;
+        for (int i = 0; i < num; i++) {
+            Movie movie = sortedMovies.get(i);
+            System.out.println(String.format(
+                "Movie ID %d: %s (Average Rating: %.1f, by %d users)",
+                movie.getMovieId(), movie.getTitle(),
+                movie.getRating(), movie.getController().getNumReviews()
+            ));
         }
+        System.out.println("");
     }
 
     public int searchMovie(String title) {

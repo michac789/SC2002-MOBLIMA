@@ -44,7 +44,7 @@ public class ReviewController {
         System.out.println("Displaying all " + this.reviews.size() + " reviews:");
         System.out.println("-------------------------");
         for (int i = 0; i < this.reviews.size(); i++) {
-            System.out.println(this.reviews.get(i));
+            System.out.print(this.reviews.get(i));
         }
         System.out.println("");
     }

@@ -1,5 +1,4 @@
-package user;
-
+package model;
 import controller.BookingController;
 
 enum Category {

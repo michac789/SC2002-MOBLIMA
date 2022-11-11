@@ -7,6 +7,7 @@ public class AdminUI {
     public static void main() {
         adminController = new AdminController();
         String username, password;
+        int attempt = 0;
         while (true) { 
             System.out.println("|=========|Admin Login|=========|");
             username = UtilUI.getStr("Enter your username: ");
@@ -14,22 +15,24 @@ public class AdminUI {
             if (adminController.login(username, password)) {
                 break;
             }
-            System.out.println("Wrong password or username does not exist");
+            UtilUI.printRed("Wrong password or username does not exist");
+            if (++attempt == 3) { return;}
         }
-        System.out.println("Successfully logged in!"); 
-        System.out.println("Welcome, " + username);
+        UtilUI.printGreen("Successfully logged in!"); 
+        UtilUI.printPurple("Welcome, " + username);
         administratorAction();
     } 
 
     public static void administratorAction() {
         while (true) {
-            System.out.println("|=========================================|");
-            System.out.println("|=========|MOBLIMA Administrator|=========|");
-            System.out.println("|=========================================|\n" +
+            UtilUI.printBlue("|=========================================|");
+            UtilUI.printBlue("|=========|MOBLIMA Administrator|=========|");
+            UtilUI.printBlue("|=========================================|");
+            System.out.println(
                         "1. View/Create/Edit Movie\n" +
                         "2. View/Create/Edit Cineplex\n" +
                         "3. View/Create/Edit Cinema\n" +
-                        "4. View/Create/Edit Showtime\n" + // IN PROGRESS
+                        "4. View/Create/Edit Showtime\n" +
                         "5. Display & Configure System Settings\n" +
                         "6. Create Another Admin Account\n" +
                         "7. Log Out\n");
@@ -54,11 +57,11 @@ public class AdminUI {
                     createAdminAccount();
                     break;
                 case 7:
-                    System.out.println("Logged out successfully!");
+                    UtilUI.printGreen("Logged out successfully!");
                     AdminUI.adminController.save();
                     return; 
                 default:
-                    System.out.println("Invalid action, try again!");
+                    UtilUI.printRed("Invalid action, try again!");
                     break;
             }
         }
@@ -74,7 +77,7 @@ public class AdminUI {
                 adminController.createAccount(username, password);
                 break;
             }
-            System.out.println("Cannot make the account. Either the admin user" +
+            UtilUI.printRed("Cannot make the account. Either the admin user" +
                 " already exists or password and confirmation password does not match");
         } while (true);
     }
