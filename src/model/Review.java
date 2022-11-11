@@ -1,4 +1,5 @@
 package model;
+import controller.AppController;
 
 public class Review {
     private int userId;
@@ -36,12 +37,13 @@ public class Review {
     }
 
     public String toString() {
-        String divider = "-------------------------\n";
-        String rtn = String.format("User ID: %d\n" +
-                                    "Rating: %d\n" +
-                                    "Comment:\n%s\n",
-                                    this.userId, this.rating, this.comment);
-        rtn = rtn + divider;
-        return rtn;
+        return String.format(
+            "Username: %s\n" +
+            "Rating: %d\n" +
+            "Comment:\n%s\n" +
+            "-------------------------\n",
+            AppController.mgc.getMovieGoerById(userId).getUsername(),
+            this.rating, this.comment
+        );
     }
 }

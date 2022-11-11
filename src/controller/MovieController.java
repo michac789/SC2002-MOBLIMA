@@ -76,43 +76,34 @@ public class MovieController {
         });
         for (int i = 0; i < num; i++) {
             Movie movie = sortedMovies.get(i);
-            System.out.println(movie.getTitle() + "with the total number sales of " + movie.getSalesCount());
+            System.out.println(String.format(
+                "Movie ID %d: %s (Total sales: %d)",
+                movie.getMovieId(), movie.getTitle(), movie.getSalesCount()
+            ));
         }
+        System.out.println("");
     }
-    
+
     public void rankMovieByRating(int num) {
-        if (movies.size() == 0) {
-            System.out.println("No Movies");
-            return;
-        }
-        LinkedList<Movie> sortedRating = new LinkedList<Movie>();
-
-        sortedRating.add(movies.get(0));
-        for (int i=1; i < movies.size();i++) {
-            for (int j=i-1; j >= 0; j--) {
-                if (movies.get(i).getRating() > sortedRating.get(j).getRating()) { // TODO
-                    if (j==0) {
-                        sortedRating.add(j, movies.get(i));
-                        break;
-                    }
-                    continue;
-                } else {
-                    sortedRating.add(j+1, movies.get(i));
-                }
+        ArrayList<Movie> sortedMovies = getAllMovies();
+        Collections.sort(sortedMovies, new Comparator<Movie>() {
+            @Override
+            public int compare(Movie m1, Movie m2) {
+                double delta = - m1.getRating() + m2.getRating();
+                if (delta > 0.000001) { return 1;}
+                else if (delta < 0.000001) { return -1;}
+                else { return 0;}
             }
+        });
+        for (int i = 0; i < num; i++) {
+            Movie movie = sortedMovies.get(i);
+            System.out.println(String.format(
+                "Movie ID %d: %s (Average Rating: %.2f, by %d users)",
+                movie.getMovieId(), movie.getTitle(),
+                movie.getRating(), movie.getController().getNumReviews()
+            ));
         }
-
-        int i=1;
-        int maxListings = num;
-        for (int j=0; j < maxListings; j++) {
-            Movie m = sortedRating.get(j);
-            if (m.getRating() != -1) {
-                System.out.printf("%d: %-15s| Rating: %.1f\n", i, m.getTitle(), m.getRating());
-            }else {
-                System.out.printf("%d: %-15s| Rating: %s\n", i, m.getTitle(), "No Ratings Yet.");
-            }
-            i++;
-        }
+        System.out.println("");
     }
 
     public int searchMovie(String title) {

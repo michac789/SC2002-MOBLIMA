@@ -73,7 +73,8 @@ public class Movie {
     }
     
     public String toString() {
-        return "Movie ID: " + this.movieId + "\n" +
+        return "-------------------------\n" +
+            "Movie ID: " + this.movieId + "\n" +
             "Movie Title: " + this.title + "\n" +
             "Duration: " + this.durationMinutes + "\n" +
             "Director: " + this.director + "\n" +
@@ -84,6 +85,7 @@ public class Movie {
             "Blockbuster: " + this.getIsBlockbuster() + "\n" +
             "Rating: " + this.reviewController.getAverageRating() +
             " (by " + this.reviewController.getNumReviews() +
-            " users)\n";
+            " users)\n" +
+            "-------------------------";
     }
 }

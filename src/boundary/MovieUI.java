@@ -18,10 +18,7 @@ public class MovieUI {
                 "3. Create Movie\n" +
                 "4. Edit Movie\n" +
                 "5. Exit\n");
-            System.out.print("Select action: ");
-            int choice = sc.nextInt();
-            // cleaner
-            sc.nextLine();
+            int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
                     displayAllMovies();
@@ -45,8 +42,7 @@ public class MovieUI {
     }
 
     public static void searchMovie() {
-        System.out.print("Enter movie title: ");
-        String searchQuery = sc.nextLine();
+        String searchQuery = UtilUI.getStr("Enter movie title: ");
         int movieId = mc.searchMovie(searchQuery);
         displayDetailMovieInfo(movieId);
     }
@@ -54,7 +50,7 @@ public class MovieUI {
     public static void displayAllMovies() {
         System.out.println("Displaying all movies...");
         ArrayList<Movie> movies = mc.getAllMovies();
-        for(int i = 0; i<movies.size(); i++){
+        for(int i = 0; i < movies.size(); i++){
             Movie movie = movies.get(i);
             System.out.println("Movie ID " + movie.getMovieId() + ": " +
                 movie.getTitle() + " (" + movie.getShowStatus() + ")");
@@ -71,8 +67,7 @@ public class MovieUI {
     public static int promptValidMovieId() {
         int movieId;
         while (true) {
-            System.out.print("Enter movie ID: (enter -1 to exit) ");
-            movieId = sc.nextInt();
+            movieId = UtilUI.getInt("Enter movie ID: (enter -1 to exit) ");
             if (movieId == -1) { return -1;}
             if (movieId > 0 && movieId <= Movie.getNumMovies()) {
                 break;
@@ -92,19 +87,11 @@ public class MovieUI {
         // title, duration, director, cast, status, age rating, is3D, isBlockbuster
         System.out.println("Adding new Movie: ");
 
-        System.out.print("Enter Movie Title: ");
-        String title = sc.nextLine();
-
-        System.out.print("Enter Movie duration(mins): ");
-        int duration = sc.nextInt();
-
-        sc.nextLine();
-        System.out.print("Enter Movie Director: ");
-        String director = sc.nextLine();
-
+        String title = UtilUI.getStr("Enter Movie Title: ");
+        int duration = UtilUI.getInt("Enter Movie Duration (mins): ");
+        String director = UtilUI.getStr("Enter Movie Director: ");
+        String cast = UtilUI.getStr("Enter Movie Cast: ");
         // use comma to seperate? so need do comma parsing like in reviews
-        System.out.print("Enter Movie Cast: ");
-        String cast = sc.nextLine();
 
         System.out.println("Select Movie Status: ");
         int i=0;
@@ -113,7 +100,7 @@ public class MovieUI {
             i++;
         }
         System.out.println();
-        int status = sc.nextInt();
+        int status = UtilUI.getInt("");
 
         System.out.println("Enter Movie Age Rating: ");
         i=0;
