@@ -1,6 +1,8 @@
 package boundary;
 import java.util.ArrayList;
 import java.util.Scanner;
+import controller.AppController;
+import controller.CinemaController;
 import controller.ShowtimeController;
 import model.Showtime;
 
@@ -10,6 +12,25 @@ public class ShowtimeUI {
     public static void admin() {
         System.out.println("TODOOOO");
         // TODO
+
+        while (true) {
+            int cineplexId = CineplexUI.promptValidCineplexId();
+            if (cineplexId == -1) { break;}
+
+            CinemaController cc = AppController.cc.getCineplexById(cineplexId).getController();
+            while (true) {
+                int cinemaId = CinemaUI.promptValidCinemaId(cc);
+                if (cinemaId == -1) { break;}
+
+                ShowtimeController shc = cc.getCinemaByCode(cinemaId).getController();
+                while (true) {
+                    // TODO - create showtime
+
+                    break;
+
+                }
+            }
+        }
     }
     
     public static void displayShowtimes(ShowtimeController shc) {

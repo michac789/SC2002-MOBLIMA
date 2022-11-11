@@ -1,6 +1,5 @@
 package boundary;
 import java.util.ArrayList;
-import java.util.Scanner;
 import controller.AppController;
 import controller.CinemaController;
 import controller.SeatController;
@@ -10,10 +9,8 @@ import model.Cineplex;
 import model.Showtime;
 
 public class BookingUI {
-    static Scanner sc = new Scanner(System.in);
-
     public static void main(int movieGoerId){
-        System.out.println("### BOOKING UI ###");
+        UtilUI.printBlue("### Booking System ###");
 
         while (true) {
             // prompt user for movie id
@@ -51,28 +48,44 @@ public class BookingUI {
                             SeatController sec = showtime.getController();
                             sec.displaySeats();
 
-                            // prompt a row, column
+                            // prompt starting seat code
+                            while (true) {
+                                String seatCode = UtilUI.getStr("Enter starting seat code: (enter 'exit' to cancel)");
+                                if (seatCode.toLowerCase().equals("exit")) { break;}
 
-                            // select how many seats (to the right)
+                                // prompt number of seats to the right of starting seat code to be booked
+                                if (sec.seatExists(seatCode)) {
+                                    int numSeats = UtilUI.getInt("Enter number of seats: ");
 
-                            // check (validate seat)
-                            // TODO
+                                    // validate that seat is valid
+                                    for (int i = 0; i < numSeats; i++) {
+                                        // if (!sec.seatExists(seatCode + ))
+                                        // check if the seats are valid, if not valid then display error and break
+                                        // TODO
+                                    }
 
-                            // ask the user if they're done, else checkout, if not done reprompt row & col
+                                    // display all booking information and confirm booking
+                                    while (true) {
+                                        // TODO - display all booking information
+                                        // TODO - display pricing
+                                        boolean confirm = UtilUI.getBool("Confirm booking? (true/false) ");
+                                        if (!confirm) { break;}
 
-                            // confirm booking and payment option
-                            // TODO
-
-                            // create booking model, increment sales in movie model
-                            // TODO
-
-                            // new Booking(
-                            //     movieGoerId,
-                            //     AppController.mc.getMovieById(showtime.getMovieId()).getTitle(),
-                            //     cineplex.getLocation(), cinemaCode,
-                            //     "DATE TODO", "SEAT TODO"
-                            // );
-                            // AppController.mc
+                                        // create booking model, increment sales in movie model
+                                        System.out.println("TODOOOO CONFIRM BOOKING !!!!!");
+                                        
+                                        new Booking(
+                                            movieGoerId,
+                                            AppController.mc.getMovieById(showtime.getMovieId()).getTitle(),
+                                            cineplex.getLocation(), cinemaCode,
+                                            "DATE TODO", "SEAT TODO"
+                                        );
+                                        AppController.mc.getMovieById(movieId).incrementSales(numSeats);
+                                    }
+                                } else {
+                                    UtilUI.printRed("Invalid seat code!");
+                                }
+                            }
                         }
                     }
                 }
@@ -81,13 +94,13 @@ public class BookingUI {
     }
 
     public static void history(int movieGoerId) {
-        System.out.println("### Booking History ###");
+        UtilUI.printBlue("### Booking History ###");
         ArrayList<Booking> bookings = AppController.mgc
             .getMovieGoerById(movieGoerId).getController().getBookings();
         if (bookings.size() == 0) {
-            System.out.println("You haven't made any bookings yet.");
+            UtilUI.printPurple("You haven't made any bookings yet.");
         } else {
-            System.out.println("Total " + bookings.size() + " bookings:");
+            UtilUI.printPurple("Total " + bookings.size() + " bookings:");
         }
         for (int i = 0; i < bookings.size(); i++) {
             System.out.println(bookings.get(i));
