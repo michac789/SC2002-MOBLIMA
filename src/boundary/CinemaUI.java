@@ -39,7 +39,6 @@ public class CinemaUI {
     public static int promptValidCinemaId(CinemaController cc) {
         int cinemaCode;
         while (true) {
-            System.out.println("Enter cinema code: (enter -1 to exit)");
             cinemaCode = UtilUI.getInt("Enter cinema code: (enter -1 to exit) ");
             if (cinemaCode == -1) { return -1;}
             if (1 <= cinemaCode && cinemaCode <= cc.getCinemasCount()) {

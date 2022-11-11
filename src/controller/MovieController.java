@@ -24,6 +24,26 @@ public class MovieController {
         return movies;
     }
 
+    public ArrayList<Movie> getShowingMovies() {
+        int nowShowingIndex = 0;
+        int previewIndex = 0;
+        ArrayList<Movie> showingMovies = new ArrayList<Movie>();
+        Movie m;
+        for (int i=0; i < movies.size(); i++) {
+            m = movies.get(i);
+            if (m.getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
+                showingMovies.add(nowShowingIndex, m);
+                nowShowingIndex++;
+                previewIndex++;
+            }else if (m.getShowStatus() == Movie.showStatusOptions.PREVIEW) {
+                showingMovies.add(previewIndex, m);
+                previewIndex++;
+            }else if (m.getShowStatus() == Movie.showStatusOptions.COMING_SOON) {
+                showingMovies.add(m); // Add to last index
+            }
+        }
+        return showingMovies;
+    }
     public Movie getMovieById(int id) {
         for (Movie m: this.movies) {
             if (m.getMovieId() == id) {

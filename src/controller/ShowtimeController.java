@@ -1,5 +1,6 @@
 package controller;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import DAO.ShowtimeDAO;
 import model.Showtime;
@@ -52,37 +53,37 @@ public class ShowtimeController {
 //         // Cinemahall should be given
 //         System.out.println("Creating new showtime:");
 //         Movie m = AppController.mc.movieSelection();
-
+//
 //         int timeslot;
 //         String movieDate;
 //         DateFormat checkValidDate = new SimpleDateFormat("ddMMyyyy");
 //         checkValidDate.setLenient(false); //Strict date interpretation, falsely entered date results in null obj
-
+//
 //         Date testDate;
 //         while (true) {
 //             System.out.println("Enter movie date(ddmmyyyy):");
 //             movieDate = sc.next();
-
+//
 //             try {
 //                 testDate = checkValidDate.parse(movieDate);
 //             } catch (ParseException e) {
 //                 throw new RuntimeException(e);
 //             }
-
+//
 //             if (testDate != null) {
 //                 break;
 //             }
 //             System.out.println("Invalid movie date entered.");
 //         }
-
+//
 //         while (true) {
 //             System.out.println("Enter movie showtime(hhmm):");
 //             timeslot = sc.nextInt();
-
+//
 //             int hr,min;
 //             hr = timeslot/100;
 //             min = timeslot - (hr*100);
-
+//
 //             if (hr >= 0 && hr <= 24) {
 //                 if (min >= 0 && min <= 59) {
 //                     break;
@@ -90,9 +91,9 @@ public class ShowtimeController {
 //             }
 //             System.out.println("Invalid movie time entered.");
 //         }
-
+//
 //         DateFormat formatDate = new SimpleDateFormat("ddMMyyyy:HHmm");
-
+//
 //         String parseStr = movieDate + ":" + Integer.toString(timeslot);
 //         Date formattedDate;
 //         try {
@@ -100,15 +101,15 @@ public class ShowtimeController {
 //         } catch (ParseException e) {
 //             throw new RuntimeException(e);
 //         }
-
-
+//
+//
 //         if (checkDuplicateShowtime(formattedDate)) {
 //             //Repeat??
 //         }
-
+//
 //         Showtime s = new Showtime(m.getMovieId(), this.cinemaId, formattedDate);
 //         addShowtime(s);
-
+//
 //         showtimeDAO.saveShowtime(this.cinemaId, s);
 //     }
 
@@ -178,14 +179,14 @@ public class ShowtimeController {
 //         }
 //     }
 
-//     public boolean checkDuplicateShowtime(Date d) {
-//         for (Showtime s: this.showtimes) {
-//             if (s.getDate().compareTo(d) == 0) {
-//                 return true;
-//             }
-//         }
-//         return false;
-//     }
+     public boolean checkDuplicateShowtime(Date d) {
+         for (Showtime s: this.showtimes) {
+             if (s.getDate().compareTo(d) == 0) {
+                 return true;
+             }
+         }
+         return false;
+     }
 //     public void getShowtime() {
 //         showtimeDAO.getShowtimes(this.cinemaId, this.showtimes);
 //         sortShowtimes();
@@ -298,15 +299,19 @@ public class ShowtimeController {
 //         }
 //     }
 
-//     // Add shopwtime into showtimes LinkedList
-//     public void addShowtime(Showtime s) {
-//         // Find where it fits in showtimes LinkedList
-//         for (int i=0; i < showtimes.size(); i++) {
-//             if (s.compareTo(showtimes.get(i)) < 0 ) {
-//                 showtimes.add(i, s);
-//                 return;
-//             }
-//         }
-//         showtimes.addLast(s);
-//     }
+     // Add shopwtime into showtimes LinkedList
+     public void addShowtime(Showtime s) {
+         // Find where it fits in showtimes LinkedList
+         for (int i=0; i < this.showtimes.size(); i++) {
+             if (s.compareTo(this.showtimes.get(i)) < 0 ) {
+                 this.showtimes.add(i, s);
+                 return;
+             }
+         }
+         this.showtimes.add(s);
+     }
+
+    public void removeShowtimeById(int showtimeId) {
+        this.showtimes.remove(showtimeId);
+    }
 }

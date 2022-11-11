@@ -49,11 +49,31 @@ public class MovieUI {
 
     public static void displayAllMovies() {
         UtilUI.printBlue("Displaying all movies...");
-        ArrayList<Movie> movies = mc.getAllMovies();
+        ArrayList<Movie> movies = mc.getShowingMovies();
+        int curr = 0;
+        Movie m;
         for(int i = 0; i < movies.size(); i++){
-            Movie movie = movies.get(i);
-            System.out.println("Movie ID " + movie.getMovieId() + ": " +
-                movie.getTitle() + " (" + movie.getShowStatus() + ")");
+            m = movies.get(i);
+            if (curr < 3) {
+                if (curr == 0) {
+                    if (m.getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
+                        System.out.println("--------Now Showing--------");
+                        curr++;
+                    }
+                } else if (curr == 1) {
+                    if (m.getShowStatus() == Movie.showStatusOptions.PREVIEW) {
+                        System.out.println("--------Preview--------");
+                        curr++;
+                    }
+                } else if (curr == 2) {
+                    if (m.getShowStatus() == Movie.showStatusOptions.COMING_SOON) {
+                        System.out.println("--------Coming Soon--------");
+                        curr++;
+                    }
+                }
+            }
+            System.out.println("Movie ID " + m.getMovieId() + ": " +
+                m.getTitle());
         }
         System.out.println("");
     }
@@ -196,18 +216,16 @@ public class MovieUI {
         }
     }
 
-    public static void movieSelection() {
-        int option;
-        int i = mc.displayShowingMovies();
-        while (true) {
-            System.out.print("Select a movie: ");
-            option = sc.nextInt();
-            if (!(option < 0 || option >= i)) {
-                break;
-            }
-            System.out.println("Invalid Option.");
-        }
-        int selectedMovieId = sc.nextInt();
-        mc.getMovieById(selectedMovieId);
-    }
+//    public static Movie movieSelection() {
+//        int option;
+//        int i = mc.displayShowingMovies();
+//        while (true) {
+//            option = UtilUI.getInt("Select a movie: ");
+//            if (!(option < 0 || option >= i)) {
+//                break;
+//            }
+//            System.out.println("Invalid Option.");
+//        }
+//        return mc.getMovieById(selectedMovieId);
+//    }
 }
