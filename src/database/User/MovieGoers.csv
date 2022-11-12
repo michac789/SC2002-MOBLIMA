@@ -1,13 +1,13 @@
-id,username,email,phoneNumber,age
-1,Kristian,123,82800443,kristian@gmail.com,19
-2,Ivan,123,8234533,ivan@gmail.com,22
-3,Elizabeth,123, 8288382,elizabeth@gmail.com,61
-4,Michael,123,8318382,michael@gmail.com,51
-5,Kevin,123,8383882,kevin@gmail.com,42
-6,Matthew,123,8412834,matthew@gmail.com,55
-7,Jason,123,813838,jason@gmail.com,33
-8,Steven,123,838138,steven@gmail.com,22
-9,Nicky,123,813388,nicky@gmail.com,10
-10,Vincent,123,81238,vincent@gmail.com,15
-11,Abbii,password,87654321,abbii@gmail.com,12
-12,Mark,marker,89760888,mark@gmail.com,30
+id,username,password,email,phoneNumber,age
+1,Kristian,123,kristian@gmail.com,82800443,19
+2,Ivan,123,ivan@gmail.com,8234533,22
+3,Elizabeth,123,elizabeth@gmail.com, 8288382,61
+4,Michael,123,michael@gmail.com,8318382,51
+5,Kevin,123,kevin@gmail.com,8383882,42
+6,Matthew,123,matthew@gmail.com,8412834,55
+7,Jason,123,jason@gmail.com,813838,33
+8,Steven,123,steven@gmail.com,838138,22
+9,Nicky,123,nicky@gmail.com,813388,10
+10,Vincent,123,vincent@gmail.com,81238,15
+11,Abbii,password,abbii@gmail.com,87654321,12
+12,Mark,marker,mark@gmail.com,89760888,30
