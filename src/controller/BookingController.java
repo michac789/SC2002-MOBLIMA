@@ -1,6 +1,8 @@
 package controller;
 import model.Booking;
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import DAO.BookingDAO;
 import model.Cinema;
 import model.Movie;
@@ -27,7 +29,7 @@ public class BookingController {
         return this.bookingList;
     }
 
-    public static float calculatePrice(Cinema c, Showtime s, ArrayList<Seat> seats) {
+    public static float calculatePrice(Cinema c, Showtime s, int seatsCount) {
         float price = 0;
         showClassOptions showClass = c.getCinemaClass();
         if (showClass == showClassOptions.SILVER) {
@@ -44,13 +46,17 @@ public class BookingController {
         if (m.isBlockbuster()) {
             price += Settings.chargeBlockbuster;
         }
+        
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String showtimeDateFormat = dateFormat.format(s.getDate());
         for (int i = 0; i < Settings.holidayDates.size(); i++) {
-            if (s.getDate().equals(Settings.holidayDates.get(i))) {
+            String holidayDateFormat = dateFormat.format(Settings.holidayDates.get(i));
+            if (showtimeDateFormat.equals(holidayDateFormat)) {
                 price += Settings.chargeHoliday;
                 break;
             }
-        } // TODO - might be buggy
-        price = price * seats.size();
+        }
+        price = price * seatsCount;
         return price;
     }
     

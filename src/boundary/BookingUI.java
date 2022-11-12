@@ -1,10 +1,14 @@
 package boundary;
 import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import controller.AppController;
+import controller.BookingController;
 import controller.CinemaController;
 import controller.SeatController;
 import controller.ShowtimeController;
 import model.Booking;
+import model.Cinema;
 import model.Cineplex;
 import model.Showtime;
 
@@ -37,7 +41,8 @@ public class BookingUI {
 
                     while (true) {
                         // prompt for showtime
-                        ShowtimeController shc = cc.getCinemaByCode(cinemaCode).getController();
+                        Cinema cinema = cc.getCinemaByCode(cinemaCode);
+                        ShowtimeController shc = cinema.getController();
                         ShowtimeUI.displayShowtimes(shc);
                         int showtimeId = ShowtimeUI.promptValidShowtimeId(shc);
                         if (showtimeId == -1) { break;}
@@ -57,33 +62,44 @@ public class BookingUI {
                                 if (sec.seatExists(seatCode)) {
                                     int numSeats = UtilUI.getInt("Enter number of seats: ");
 
-                                    // validate that seat is valid
-                                    for (int i = 0; i < numSeats; i++) {
-                                        // if (!sec.seatExists(seatCode + ))
-                                        // check if the seats are valid, if not valid then display error and break
-                                        // TODO
-                                    }
+                                    // validate if all the seats are valid (is a seat, still empty)
+                                    if (sec.validateSeats(seatCode, numSeats)) {
+                                        while (true) {
 
-                                    // display all booking information and confirm booking
-                                    while (true) {
-                                        // TODO - display all booking information
-                                        // TODO - display pricing
-                                        boolean confirm = UtilUI.getBool("Confirm booking? (true/false) ");
-                                        if (!confirm) { break;}
+                                            // display all booking information
+                                            DateFormat dtFormat = new SimpleDateFormat("dd/MM/yy,HH:mm");
+                                            float price = BookingController.calculatePrice(cinema, showtime, numSeats);
+                                            displayBookingInformation(
+                                                AppController.mgc.getMovieGoerById(movieGoerId).getUsername(),
+                                                AppController.mc.getMovieById(showtime.getMovieId()).getTitle(),
+                                                cineplex.getLocation(),
+                                                cinemaCode,
+                                                dtFormat.format(showtime.getDate()),
+                                                generateSeatCodeString(seatCode, numSeats),
+                                                price
+                                            );
 
-                                        // create booking model, increment sales in movie model
-                                        System.out.println("TODOOOO CONFIRM BOOKING !!!!!");
-                                        
-                                        new Booking(
-                                            movieGoerId,
-                                            AppController.mc.getMovieById(showtime.getMovieId()).getTitle(),
-                                            cineplex.getLocation(), cinemaCode,
-                                            "DATE TODO", "SEAT TODO"
-                                        );
-                                        AppController.mc.getMovieById(movieId).incrementSales(numSeats);
+                                            // ask for booking confirmation
+                                            boolean confirm = UtilUI.getBool("Confirm booking? (true/false) ");
+                                            if (!confirm) { break;}
+    
+                                            // if confirmed: create booking model, increment sales in movie model
+                                            new Booking(
+                                                movieGoerId,
+                                                AppController.mc.getMovieById(showtime.getMovieId()).getTitle(),
+                                                cineplex.getLocation(), cinemaCode,
+                                                dtFormat.format(showtime.getDate()),
+                                                generateSeatCodeString(seatCode, numSeats),
+                                                price
+                                            );
+                                            AppController.mc.getMovieById(movieId).incrementSales(numSeats);
+                                            UtilUI.printGreen("Booking successful, please check your booking history!");
+                                        }
+                                    } else {
+                                        UtilUI.printRed("Some seats does not exist or already taken!");
                                     }
                                 } else {
-                                    UtilUI.printRed("Invalid seat code!");
+                                    UtilUI.printRed("Invalid seat code, please try again!");
                                 }
                             }
                         }
@@ -91,6 +107,30 @@ public class BookingUI {
                 }
             }
         }
+    }
+
+    private static String generateSeatCodeString(String startCode, int seatCount) {
+        String rowLetter = startCode.substring(0, 1);
+        String columnNumber = startCode.substring(1);
+        String returnVal = "";
+        for (int i = 0; i < seatCount; i++) {
+            int newColumnNumber = Integer.parseInt(columnNumber) + i;
+            String seatCode = rowLetter + newColumnNumber;
+            if (i == 0) { returnVal = seatCode;}
+            returnVal = returnVal + "/" + seatCode;
+        }
+        return returnVal;
+    }
+
+    private static void displayBookingInformation(String username, String title, String location,
+            int cinemaCode, String dt, String seats, float price) {
+        UtilUI.printPurple("MovieGoer Username: " + username);
+        UtilUI.printPurple("Movie Title: " + title);
+        UtilUI.printPurple("Cineplex Location: " + location);
+        UtilUI.printPurple("Cinema Code: " + cinemaCode);
+        UtilUI.printPurple("Date & Time: " + dt);
+        UtilUI.printPurple("Seats Booked: " + seats);
+        UtilUI.printPurple("Total Price: " + String.format("S$%.2f", price));
     }
 
     public static void history(int movieGoerId) {

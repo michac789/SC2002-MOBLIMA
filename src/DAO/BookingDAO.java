@@ -9,15 +9,15 @@ public class BookingDAO extends BaseDAO {
     public void save(ArrayList<Booking> instances, int movieGoerId) {
         String FILEPATH = BASEPATH + movieGoerId + ".csv";
         emptyFile(FILEPATH);
-        String header = "userId,movieTitle,cineplexLocation,cinemaCode,datetime,seatCode";
+        String header = "userId,movieTitle,cineplexLocation,cinemaCode,datetime,seatCode,price";
         writeLine(FILEPATH, header);
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
             Booking instance = instances.get(i);
-            writeStr = String.format("%d,%s,%s,%d,%s,%s",
+            writeStr = String.format("%d,%s,%s,%d,%s,%s,%.2f",
                 instance.getUserId(), instance.getTitle(),
                 instance.getLocation(), instance.getCinemaCode(),
-                instance.getDatetime(), instance.getSeat()
+                instance.getDatetime(), instance.getSeat(), instance.getPrice()
             );
             writeLine(FILEPATH, writeStr);
         }
@@ -31,7 +31,8 @@ public class BookingDAO extends BaseDAO {
             String[] x = instances.get(i).split(",");
             Booking newInstance = new Booking(
                 Integer.parseInt(x[0]), x[1], x[2],
-                Integer.parseInt(x[3]), x[4], x[5]
+                Integer.parseInt(x[3]), x[4], x[5],
+                Float.parseFloat(x[6])
             );
             returnList.add(newInstance);
         }

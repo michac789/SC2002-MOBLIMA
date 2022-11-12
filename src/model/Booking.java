@@ -7,15 +7,17 @@ public class Booking {
     private int cinemaCode;
     private String datetime;
     private String seat;
-    private int price;
+    private float price;
 
-    public Booking(int userId, String title, String location, int cinemaCode, String datetime, String seat) {
+    public Booking(int userId, String title, String location, int cinemaCode,
+            String datetime, String seat, float price) {
         this.userId = userId;
         this.title = title;
         this.location = location;
         this.cinemaCode = cinemaCode;
         this.datetime = datetime;
         this.seat = seat;
+        this.price = price;
     }
 
     public int getUserId() { return this.userId;}
@@ -24,7 +26,7 @@ public class Booking {
     public int getCinemaCode() { return this.cinemaCode;}
     public String getDatetime() { return this.datetime;}
     public String getSeat() { return this.seat;}
-    public int getPrice() { return this.price;} // TODO
+    public float getPrice() { return this.price;}
 
     public String toString() {
         return "Movie Title: " + this.title + "\n" +

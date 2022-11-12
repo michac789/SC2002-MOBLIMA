@@ -85,6 +85,19 @@ public class SeatController {
         System.out.println("Legend: Green seats are available. Red seats are not available.");
     }
 
+    public boolean validateSeats(String startCode, int seatCount) {
+        String rowLetter = startCode.substring(0, 1);
+        String columnNumber = startCode.substring(1);
+        for (int i = 0; i < seatCount; i++) {
+            int newColumnNumber = Integer.parseInt(columnNumber) + i;
+            String seatCode = rowLetter + newColumnNumber;
+            if (!seatExists(seatCode)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // book seats - TODO
     public void bookSeats() {
         char row;
@@ -117,12 +130,14 @@ public class SeatController {
         if (!(counter < 3)) { System.out.println("System exiting after 3 unsuccessful attempts..."); }
     }
     
-    // check if the seatCode corresponds to an actual seat
+    // check if the seatCode corresponds to an actual seat and not booked yet
     public boolean seatExists(String trySeatCode) {
         for (int i = 0; i < seats.length; i++) {
             for (int j = 0; j < seats[0].length; j++) {
                 if (trySeatCode.equals(seats[i][j].getSeatCode())) {   // object exists
-                    if (seats[i][j].getIsSeat()) { return true; }   // is a seat, not stairwell/aisle
+                    if (seats[i][j].getIsSeat() && !seats[i][j].getIsBooked()) {
+                        return true;
+                    }   // is a seat, not stairwell/aisle, is not booked yet
                 }
             }
         }
