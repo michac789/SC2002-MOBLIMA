@@ -13,7 +13,7 @@ public class Seat {
 
     public void setCode(String code) { this.code = code;}
     public void bookSeat() { this.isBooked = true;}
-    public void unbookSeat() {this.isBooked = false;}
+    public void unbookSeat() { this.isBooked = false;}
 
     public String getSeatCode() { return this.code;}
     public boolean getIsBooked() { return this.isBooked;}

@@ -56,7 +56,7 @@ public class BookingUI {
                             // prompt starting seat code
                             while (true) {
                                 String seatCode = UtilUI.getStr("Enter starting seat code: (enter 'exit' to cancel)");
-                                if (seatCode.toLowerCase().equals("exit")) { break;}
+                                if (seatCode.equals("exit")) { break;}
 
                                 // prompt number of seats to the right of starting seat code to be booked
                                 if (sec.seatExists(seatCode)) {
@@ -83,8 +83,8 @@ public class BookingUI {
                                             boolean confirm = UtilUI.getBool("Confirm booking? (true/false) ");
                                             if (!confirm) { break;}
     
-                                            // if confirmed: create booking model, increment sales in movie model
-                                            new Booking(
+                                            // create booking model and add to users booking
+                                            Booking newBooking = new Booking(
                                                 movieGoerId,
                                                 AppController.mc.getMovieById(showtime.getMovieId()).getTitle(),
                                                 cineplex.getLocation(), cinemaCode,
@@ -92,8 +92,19 @@ public class BookingUI {
                                                 generateSeatCodeString(seatCode, numSeats),
                                                 price
                                             );
+                                            AppController.mgc.getMovieGoerById(movieGoerId).getController()
+                                                .getBookings().add(newBooking);
+
+                                            // increment sales in movie model
                                             AppController.mc.getMovieById(movieId).incrementSales(numSeats);
+
+                                            // mark seats as occupied
+                                            sec.bookSeats(seatCode, numSeats);
+
+                                            // show success, prompt to make another booking or return
                                             UtilUI.printGreen("Booking successful, please check your booking history!");
+                                            boolean anotherBooking = UtilUI.getBool("Create another booking? (true/false) ");
+                                            if (!anotherBooking) { return;}
                                         }
                                     } else {
                                         UtilUI.printRed("Some seats does not exist or already taken!");
@@ -117,7 +128,9 @@ public class BookingUI {
             int newColumnNumber = Integer.parseInt(columnNumber) + i;
             String seatCode = rowLetter + newColumnNumber;
             if (i == 0) { returnVal = seatCode;}
-            returnVal = returnVal + "/" + seatCode;
+            else {
+                returnVal = returnVal + "/" + seatCode;
+            }
         }
         return returnVal;
     }
