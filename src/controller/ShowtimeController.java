@@ -31,6 +31,17 @@ public class ShowtimeController {
 
     public int getShowtimeCount() { return this.showtimes.size();}
 
+    public ArrayList<Integer> displaShowtimeByMovieId(int movieId){
+        ArrayList<Integer> validIds = new ArrayList<Integer>();
+        for (int i = 0; i < showtimes.size(); i++) {
+            if (showtimes.get(i).getMovieId() == movieId) {
+                validIds.add(i + 1);
+                System.out.println("ID " + (i + 1) + ": " + showtimes.get(i));
+            }
+        }
+        return validIds;
+    }
+
     public boolean isMovieExist(int movieId) {
         for(int i = 0; i<showtimes.size(); i++){
             Showtime showtime = showtimes.get(i);

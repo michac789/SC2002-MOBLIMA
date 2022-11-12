@@ -143,13 +143,25 @@ public class MovieUI {
         }
     }
 
+    public static void displayAllShowingMovies() {
+        UtilUI.printBlue("Displaying 'NOW_SHOWING' movies...");
+        ArrayList<Movie> movies = mc.getAllMovies();
+        for (int i = 0; i < movies.size(); i++) {
+            Movie m = movies.get(i);
+            if (m.getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
+                System.out.println("Movie ID " + m.getMovieId() + ": " + m.getTitle());
+            }
+        }
+        System.out.println("");
+    }
+
     /*
      * Utility function that takes in an arraylist of movies,
      * and display basic movie information in a tidy column view
      * (id, title, show status)
      * Used for admin and search feature
      */
-    private static void displayBasicInfoMovies(ArrayList<Movie> movies) {
+    public static void displayBasicInfoMovies(ArrayList<Movie> movies) {
         for(int i = 0; i < movies.size(); i++){
             Movie movie = movies.get(i);
             System.out.println(

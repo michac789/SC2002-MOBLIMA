@@ -42,12 +42,14 @@ public class CineplexController {
         this.cineplexes.get(cineplexId - 1).setLocation(newLocation);
     }
 
-    public void displayCineplexesByMovieId(int movieId) {
+    public ArrayList<Integer> displayCineplexesByMovieId(int movieId) {
+        ArrayList<Integer> validIds = new ArrayList<Integer>();
         int count = 0;
         for (int i = 0; i < cineplexes.size(); i++) {
             Cineplex cineplex = cineplexes.get(i);
             CinemaController cinemaController = cineplexes.get(i).getController();
             if (cinemaController.isMovieExist(movieId)) {
+                validIds.add(i + 1);
                 System.out.println(cineplex);
                 count++;
             }
@@ -55,6 +57,7 @@ public class CineplexController {
         if (count == 0){
             System.out.println("No cinema are currently showing this movie");
         }
+        return validIds;
     }
 
     public int getCineplexIdByLocation(String location){

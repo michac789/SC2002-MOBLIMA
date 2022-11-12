@@ -1,4 +1,5 @@
 package boundary;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -183,5 +184,22 @@ public class UtilUI {
      */
     public static void printPurple(String msg) {
         System.out.println(ANSI_PURPLE + msg + ANSI_RESET);
+    }
+
+    public static void printCyan(String msg) {
+        System.out.println(ANSI_CYAN + msg + ANSI_RESET);
+    }
+
+    public static int promptInt(ArrayList<Integer> list, String str) {
+        list.add(-1);
+        while (true) {
+            int input = getInt(str);
+            for (int i = 0; i < list.size(); i++) {
+                if (input == list.get(i)) {
+                    return input;
+                }
+            }
+            printRed("Invalid input!");
+        }
     }
 }

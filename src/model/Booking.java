@@ -29,12 +29,13 @@ public class Booking {
     public float getPrice() { return this.price;}
 
     public String toString() {
-        return "Movie Title: " + this.title + "\n" +
-            "Cineplex Location: " + this.location + "\n" +
-            "Cinema Code: " + this.cinemaCode + "\n" +
-            "Showtime Date & Time: " + this.datetime + "\n" +
-            "Seat Code: " + this.seat + "\n" +
-            "Price: " + this.price + "\n" +
-            "-------------------------\n";
+        return
+            "Movie Title           : " + this.title + "\n" +
+            "Cineplex Location     : " + this.location + "\n" +
+            "Cinema Code           : " + this.cinemaCode + "\n" +
+            "Showtime Date & Time  : " + this.datetime + "\n" +
+            "Seat Code             : " + this.seat + "\n" +
+            "Price                 : " + String.format("%.2f", this.price)+
+            "\n-------------------------\n";
     }
 }

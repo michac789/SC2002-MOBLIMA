@@ -58,7 +58,8 @@ public class CinemaController {
         return false;
     }
     
-    public void displayCinemaAndShowtimeByMovieId(int movieId){
+    public ArrayList<Integer> displayCinemaAndShowtimeByMovieId(int movieId){
+        ArrayList<Integer> validIds = new ArrayList<Integer>();
         for (int i = 0; i < cinemas.size(); i++) {
             ArrayList<Showtime> showtimes = cinemas.get(i).getController().getAllShowtimes();
             boolean temp = true;
@@ -66,11 +67,13 @@ public class CinemaController {
                 if (showtimes.get(j).getMovieId() == movieId) {
                     if (temp) {
                         System.out.println(cinemas.get(i));
+                        validIds.add(i + 1);
                         temp = false;
                     }
                     System.out.println(showtimes.get(j));
                 }
             }
         }
+        return validIds;
     }
 }

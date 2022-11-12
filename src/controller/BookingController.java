@@ -1,16 +1,15 @@
 package controller;
 import java.util.ArrayList;
-import java.util.Locale.Category;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import DAO.BookingDAO;
+import boundary.UtilUI;
 import model.Booking;
 import model.Cinema;
 import model.Movie;
 import model.MovieGoer;
 import model.Cinema.showClassOptions;
-import model.Seat;
 import model.Settings;
 import model.Showtime;
 
@@ -44,14 +43,17 @@ public class BookingController {
         } else {
             price += Settings.platinumPrice;
         }
+        UtilUI.printCyan("Single Seat Price: " + price);
 
         // extra charge if movie is in 3D or blockbuster
         Movie m = AppController.mc.getMovieById(s.getMovieId());
         if (m.is3D()) {
             price += Settings.charge3D;
+            UtilUI.printCyan("3D Extra Charge (+$" + Settings.charge3D + ")");
         }
         if (m.isBlockbuster()) {
             price += Settings.chargeBlockbuster;
+            UtilUI.printCyan("Blockbuster Extra Charge (+$" + Settings.chargeBlockbuster + ")");
         }
         
         // extra charge if showtime is in holiday date
@@ -61,6 +63,7 @@ public class BookingController {
             String holidayDateFormat = dateFormat.format(Settings.holidayDates.get(i));
             if (showtimeDateFormat.equals(holidayDateFormat)) {
                 price += Settings.chargeHoliday;
+                UtilUI.printCyan("Holiday Date Extra Charge (+$" + Settings.chargeHoliday + ")");
                 break;
             }
         }
@@ -68,27 +71,40 @@ public class BookingController {
         // discount if movie goer is a child or senior citizen
         MovieGoer.Category mgoer = AppController.mgc.getMovieGoerById(movieGoerId).getAgeCategory();
         if (mgoer == MovieGoer.Category.CHILD) {
-            price = price * (1 - Settings.childDiscount / 100);
+            price = price * (1 - (float) Settings.childDiscount / 100);
+            UtilUI.printCyan("Child Discount (" + Settings.childDiscount + "%) (-$" +
+                String.format("%.2f", price * ((float) Settings.childDiscount / 100)) + ")");
         }
         if (mgoer == MovieGoer.Category.SENIOR_CITIZEN) {
-            price = price * (1 - Settings.seniorDiscount / 100);
+            price = price * (1 - (float) Settings.seniorDiscount / 100);
+            UtilUI.printCyan("Senior Citizen Discount (" + Settings.seniorDiscount + "%) (-$" +
+                String.format("%.2f", price * ((float) Settings.seniorDiscount / 100)) + ")");
         }
 
         // afternoon and midnight discount
         if (isAfternoonShowtime(s.getDate())) {
-            price = price * (1 - Settings.afternoonDiscount / 100);
+            price = price * (1 - ((float) Settings.afternoonDiscount / 100));
+            UtilUI.printCyan("Afternoon Showtime Discount (" + Settings.afternoonDiscount + "%) (-$" +
+                String.format("%.2f", price * ((float) Settings.afternoonDiscount / 100)) + ")");
         }
         if (isMidnightShowtime(s.getDate())) {
-            price = price * (1 - Settings.midnightDiscount / 100);
+            price = price * (1 - ((float) Settings.midnightDiscount / 100));
+            UtilUI.printCyan("Midnight Showtime Discount (" + Settings.midnightDiscount + "%) (-$" +
+                String.format("%.2f", price * ((float) Settings.midnightDiscount / 100)) + ")");
         }
 
         // promo code discount
         if (disc) {
-            price = price * (1 - Settings.promoDiscount);
+            price = price * (1 - (float) Settings.promoDiscount / 100);
+            UtilUI.printCyan("Promo Code Discount (" + Settings.seniorDiscount + "%) (-$" +
+                String.format("%.2f", price * (float) Settings.promoDiscount / 100) + ")");
         }
 
-        price = price * seatsCount;
-        return price;
+        // multiply with number of seats
+        UtilUI.printPurple(String.format("Total price = $%.2f × %d = $%.2f",
+            price, seatsCount, price * seatsCount
+        ));
+        return price * seatsCount;
     }
     
     private static boolean isAfternoonShowtime(Date d) {

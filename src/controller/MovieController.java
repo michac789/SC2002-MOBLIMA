@@ -72,6 +72,15 @@ public class MovieController {
         }
         return null;
     }
+
+    public Movie getMovieByTitle(String title) {
+        for (Movie m: this.movies) {
+            if (m.getTitle() == title) {
+                return m;
+            }
+        }
+        return null;
+    }
     
     /*
      * Create new movie given information of the movie
