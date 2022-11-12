@@ -99,7 +99,7 @@ public class MovieController {
     }
 
     public void rankMovieByRating(int num) {
-        ArrayList<Movie> sortedMovies = getAllMovies();
+        ArrayList<Movie> sortedMovies = (ArrayList<Movie>) getAllMovies().clone();
         Collections.sort(sortedMovies, new Comparator<Movie>() {
             @Override
             public int compare(Movie m1, Movie m2) {
