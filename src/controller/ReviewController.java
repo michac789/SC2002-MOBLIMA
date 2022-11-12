@@ -18,7 +18,7 @@ public class ReviewController {
     public void save() {
         this.reviewDao.save(this.reviews, this.movieId);
     }
-
+    
     public ArrayList<Review> getAllReviews() {
         return this.reviews;
     }
