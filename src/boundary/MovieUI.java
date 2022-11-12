@@ -1,12 +1,10 @@
 package boundary;
 import java.util.ArrayList;
-import java.util.Scanner;
 import controller.AppController;
 import controller.MovieController;
 import model.Movie;
 
 public class MovieUI {
-    private static Scanner sc = new Scanner(System.in);
     private static MovieController mc = AppController.mc;
 
     /*
@@ -64,16 +62,19 @@ public class MovieUI {
         int movieId;
         while (true) {
             movieId = UtilUI.getInt("Enter movie ID: (enter -1 to exit) ");
-            if (movieId == -1) { return -1;}
+            if (movieId == -1) {
+                System.out.println("");
+                return -1;
+            }
             Movie m = AppController.mc.getMovieById(movieId);
-            if (!prev && m.getShowStatus() == Movie.showStatusOptions.PREVIEW ||
+            if (movieId <= 0 || movieId > Movie.getNumMovies()) {
+                UtilUI.printRed("Invalid movie ID!");
+            } else if (!prev && m.getShowStatus() == Movie.showStatusOptions.PREVIEW ||
                     !comingSoon && m.getShowStatus() == Movie.showStatusOptions.COMING_SOON ||
                     !end && m.getShowStatus() == Movie.showStatusOptions.END_OF_SHOWING) {
                 UtilUI.printRed("You are not allowed to access this Movie ID!");
-            } else if (movieId > 0 && movieId <= Movie.getNumMovies()) {
-                break;
             } else {
-                UtilUI.printRed("Invalid movie ID!");
+                break;
             }
         }
         return movieId;
@@ -134,26 +135,15 @@ public class MovieUI {
         System.out.println("");
     }
 
-    public static void searchMovie() {
+    public static void searchMovie() { // TODO
         String searchQuery = UtilUI.getStr("Enter movie title: ");
         int movieId = mc.searchMovie(searchQuery);
         displayDetailMovieInfo(movieId);
     }
 
-    // TODO - deprecate this function
-    public static int promptValidMovieId() {
-        int movieId;
-        while (true) {
-            movieId = UtilUI.getInt("Enter movie ID: (enter -1 to exit) ");
-            if (movieId == -1) { return -1;}
-            if (movieId > 0 && movieId <= Movie.getNumMovies()) {
-                break;
-            }
-            System.out.println("Invalid movie ID!");
-        }
-        return movieId;
-    }
-
+    /*
+     * Display detailed movie information and its reviews
+     */
     private static void displayDetailMovieInfo(int movieId) {
         UtilUI.printBlue("Movie Detail View");
         Movie m = AppController.mc.getMovieById(movieId);
@@ -161,15 +151,15 @@ public class MovieUI {
         m.getController().displayReviews();
     }
     
+    /*
+     * Admin function to create new movie
+     */
     private static void createMovie() {
-        // title, duration, director, cast, status, age rating, is3D, isBlockbuster
         UtilUI.printBlue("Movie Creation");
-
         String title = UtilUI.getStr("Enter Movie Title: ");
         int duration = UtilUI.getInt("Enter Movie Duration (mins): ");
         String director = UtilUI.getStr("Enter Movie Director: ");
-        String cast = UtilUI.getStr("Enter Movie Cast: ");
-        // use comma to seperate? so need do comma parsing like in reviews
+        String cast = UtilUI.getStr("Enter Movie Cast: "); // TODO
 
         System.out.println("Select Movie Status: ");
         int i = 0;
@@ -189,30 +179,32 @@ public class MovieUI {
 
         boolean is3D = UtilUI.getBool("Is Movie 3D (true/false): ");
         boolean isBlockbuster = UtilUI.getBool("Is Movie Blockbuster (true/false): ");
-
         mc.createMovie(
             title, duration, director, cast, Movie.showStatusOptions.values()[status],
             Movie.ageRatingOptions.values()[ageRating], is3D, isBlockbuster
         );
     }
 
+    /*
+     * Admin function to edit existing movie
+     */
     private static void editMovie() {
         UtilUI.printBlue("Movie Editing");
-        int movieId = promptValidMovieId();
+        int movieId = promptValidMovieId(true, true, true);
         if (movieId == -1) { return;}
 
         int option;
         while (true) {
             System.out.print(
-                    "1. Edit Title\n" +
-                    "2. Edit Duration\n" +
-                    "3. Edit Director\n" +
-                    "4. Edit Cast\n" +
-                    "5. Edit Showing Status\n" +
-                    "6. Edit Age Rating\n" +
-                    "7. Edit is3D\n" +
-                    "8. Edit is Blockbuster\n" +
-                    "9. Exit\n");
+                    "(1) Edit Title\n" +
+                    "(2) Edit Duration\n" +
+                    "(3) Edit Director\n" +
+                    "(4) Edit Cast\n" +
+                    "(5) Edit Showing Status\n" +
+                    "(6) Edit Age Rating\n" +
+                    "(7) Edit is3D\n" +
+                    "(8) Edit is Blockbuster\n" +
+                    "(9) Exit\n");
             option = UtilUI.getInt("Select action: ");
             if (option == 9) {break;}
 
@@ -226,13 +218,11 @@ public class MovieUI {
                     mc.getMovieById(movieId).setDurationMinutes(duration);
                     break;
                 case 3:
-                    System.out.println("Enter new Director: ");
-                    String director = sc.nextLine();
+                    String director = UtilUI.getStr("Enter new director: ");
                     mc.getMovieById(movieId).setDirector(director);
                     break;
-                case 4: // TODO
-                    System.out.println("Enter new Cast: ");
-                    String cast = sc.nextLine();
+                case 4: // TODO: min 2 or more casts
+                    String cast = UtilUI.getStr("Enter new cast: ");
                     mc.getMovieById(movieId).setCast(cast);
                     break;
                 case 5:
@@ -242,7 +232,7 @@ public class MovieUI {
                         j++;
                     }
                     System.out.println("Select option to change: " + "(integer from 0 to " + (j - 1) + ")");
-                    int status = sc.nextInt();
+                    int status = UtilUI.getInt("");
                     mc.getMovieById(movieId).setShowStatus(Movie.showStatusOptions.values()[status]);
                     break;
                 case 6:
@@ -253,15 +243,15 @@ public class MovieUI {
                         i++;
                     }
                     System.out.println("Select option to change: " + "(integer from 0 to " + (i - 1) + ")");
-                    int ageRating = sc.nextInt();
+                    int ageRating = UtilUI.getInt("");
                     mc.getMovieById(movieId).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
                     break;
                 case 7:
-                    boolean is3D = UtilUI.getBool("Enter new is3D (true/false): ");
+                    boolean is3D = UtilUI.getBool("Is Movie 3D? ");
                     mc.getMovieById(movieId).setIs3D(is3D);
                     break;
                 case 8:
-                    boolean isBlockbuster = UtilUI.getBool("Is Movie Blockbuster (true/false): ");
+                    boolean isBlockbuster = UtilUI.getBool("Is Movie Blockbuster? ");
                     mc.getMovieById(movieId).setIsBlockbuster(isBlockbuster);
                     break;
                 case 9:
@@ -270,17 +260,4 @@ public class MovieUI {
             System.out.println("Success in editing!");
         }
     }
-
-//    public static Movie movieSelection() {
-//        int option;
-//        int i = mc.displayShowingMovies();
-//        while (true) {
-//            option = UtilUI.getInt("Select a movie: ");
-//            if (!(option < 0 || option >= i)) {
-//                break;
-//            }
-//            System.out.println("Invalid Option.");
-//        }
-//        return mc.getMovieById(selectedMovieId);
-//    }
 }

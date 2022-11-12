@@ -40,7 +40,7 @@ public class Cinema {
     }
 
     public static void printCinemaLayout(int height, int width, String s) {
-        System.out.println("TODOOOOO");
+        System.out.println("TODOOOOO"); // TODO
         for(int i = 0; i<s.length(); i++){
             if(s.charAt(i) == 'S'){
                 System.out.print(ANSI_GREEN + 'S' + ANSI_RESET);

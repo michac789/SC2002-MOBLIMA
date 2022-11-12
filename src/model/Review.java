@@ -41,7 +41,7 @@ public class Review {
             "Username: %s\n" +
             "Rating: %d\n" +
             "Comment:\n%s\n" +
-            "-------------------------\n",
+            "-----------------------------------------------------\n",
             AppController.mgc.getMovieGoerById(userId).getUsername(),
             this.rating, this.comment
         );

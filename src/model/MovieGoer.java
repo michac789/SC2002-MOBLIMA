@@ -15,8 +15,8 @@ public class MovieGoer extends User {
     private int age;
     private BookingController bookingController;
 
-    public MovieGoer(String username, String phoneNumber, String email, int age){ 
-        super(username);
+    public MovieGoer(String username, String password, String phoneNumber, String email, int age){ 
+        super(username, password);
         setType(UserType.MOVIEGOER);
         this.id = ++movieGoerCount;
         this.phoneNumber = phoneNumber; 

@@ -80,7 +80,7 @@ public class ShowtimeUI {
                     showtimeId = shc.sortShowtimeEdited(showtimeId) + 1; //Get new sorted index for this showtime, add 1 as we reference showtime index from 1
                     break;
                 case 2:
-                    int movieId = MovieUI.promptValidMovieId();
+                    int movieId = MovieUI.promptValidMovieId(true, true, true); // TODO - careful!
                     shc.getShowtimeById(showtimeId).setMovieId(movieId);
                     break;
                 case 3:
@@ -118,7 +118,7 @@ public class ShowtimeUI {
         // Cinemahall should be given
         System.out.println("Creating new showtime:");
 
-        int movieId = MovieUI.promptValidMovieId();
+        int movieId = MovieUI.promptValidMovieId(true, true, true); // TODO - careful!
         Movie m = AppController.mc.getMovieById(movieId);
 
         Date formattedDate = promptValidShowtimeDate(shc);

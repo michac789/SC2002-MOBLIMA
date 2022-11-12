@@ -1,6 +1,5 @@
 package model;
 import controller.ReviewController;
-
 import static java.lang.Double.isNaN;
 
 public class Movie {
@@ -75,7 +74,7 @@ public class Movie {
     }
     
     public String toString() {
-        return "-------------------------\n" +
+        return "-----------------------------------------------------\n" +
             "Movie ID: " + this.movieId + "\n" +
             "Movie Title: " + this.title + "\n" +
             "Duration: " + this.durationMinutes + "\n" +
@@ -86,7 +85,8 @@ public class Movie {
             "3D: " + this.getIs3D() + "\n" +
             "Blockbuster: " + this.getIsBlockbuster() + "\n" +
             "Rating: " + (isNaN(this.reviewController.getAverageRating()) ? "NA\n" :
-                this.reviewController.getAverageRating() + " (by " + this.reviewController.getNumReviews() + " users)\n") +
-            "-------------------------";
+                String.format("%.1f (by %d users)\n",
+                this.reviewController.getAverageRating(), this.reviewController.getNumReviews())) +
+            "-----------------------------------------------------";
     }
 }

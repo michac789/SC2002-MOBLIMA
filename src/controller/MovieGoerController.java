@@ -22,6 +22,16 @@ public class MovieGoerController {
         return this.movieGoers.get(id - 1);
     }
 
+    public int login(String username, String password){  
+        for(int i = 0; i < this.movieGoers.size(); i++){ 
+            if (username.equals(this.movieGoers.get(i).getUsername()) &&
+                    password.equals(this.movieGoers.get(i).getPassword())) {
+                return this.movieGoers.get(i).getId();
+            }
+        }
+        return -1;
+    }
+
     public int getMovieGoerIdByUsername(String username) {
         for (int i = 0; i < movieGoers.size(); i++){
             if (movieGoers.get(i).getUsername().equals(username)){
@@ -31,12 +41,12 @@ public class MovieGoerController {
         return -1;
     }
 
-    public void createNewMovieGoer(String username, String email,
-            String phoneNumber, int age) {
+    public void createNewMovieGoer(String username, String password,
+            String email, String phoneNumber, int age) {
         String BASEPATH = "src/database/User/Booking/";
         int newMovieGoerId = MovieGoer.movieGoerCount + 1;
         UtilDAO.createFile(BASEPATH + newMovieGoerId + ".csv");
-        MovieGoer mg = new MovieGoer(username, phoneNumber, email, age);
+        MovieGoer mg = new MovieGoer(username, password, phoneNumber, email, age);
         movieGoers.add(mg);
     }
 

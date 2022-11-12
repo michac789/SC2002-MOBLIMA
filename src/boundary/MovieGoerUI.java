@@ -7,6 +7,9 @@ package boundary;
 import controller.AppController;
 
 public class MovieGoerUI {
+    /*
+     * Main UI when asking to login or register as MovieGoer
+     */
     public static int main() {
         while (true) {
             UtilUI.printBlue("|=========|MovieGoer Login/Register UI|=========|");
@@ -26,26 +29,42 @@ public class MovieGoerUI {
                 case 3:
                     return -1;
                 default:
-                    System.out.println("Invalid action, try again!");
+                    UtilUI.printRed("Invalid action, try again!");
                     break;
             }
         }
     }
 
+    /*
+     * Prompts the user for username and password to login
+     * Returns movieGoerId if authentication successful, else return -1
+     * Automatically return after 3 unsuccessful attempts
+     */
     private static int movieGoerLogin() {
-        UtilUI.printBlue("MovieGoer Login");
-        String username = UtilUI.getStr("Enter username: ");
-        int id = AppController.mgc.getMovieGoerIdByUsername(username);
-        if (id == -1) {
-            UtilUI.printRed("This username is not registered yet!");
+        int movieGoerId, attempts = 0;
+        while (true) {
+            UtilUI.printBlue("|=========|Movie Goer Login|=========|");
+            String username = UtilUI.getStr("Enter username: ");
+            String password = UtilUI.getStr("Enter password: ");
+            movieGoerId = AppController.mgc.login(username, password);
+            if (movieGoerId != -1) { break;}
+            UtilUI.printRed("Wrong password or account does not exist!");
+            if (++attempts == 3) {
+                UtilUI.printRed("Automatically exit after 3 unsuccessful attempts!");
+                return -1;
+            }
         }
-        UtilUI.printGreen("Login Successful!");
-        return id;
+        UtilUI.printGreen("Login Successful!\n");
+        return movieGoerId;
     }
 
+    /*
+     * Prompts unique username, password, email, phone number, age
+     * Register the information above as a new Movie Goer User
+     */
     private static void movieGoerRegister() {
         UtilUI.printBlue("MovieGoer Registration");
-        String username;
+        String username, password;
         while (true) {
             username = UtilUI.getStr("Enter username: ");
             if (!AppController.mgc.isMovieGoerExist(username)) {
@@ -53,10 +72,18 @@ public class MovieGoerUI {
             }
             UtilUI.printRed("No duplicate username allowed!");
         }
+        while (true) {
+            password = UtilUI.getStr("Enter password: ");
+            String confirmationPassword = UtilUI.getStr("Password again to confirm: ");
+            if (password.equals(confirmationPassword)) {
+                break;
+            }
+            UtilUI.printRed("Confirmation password and password do not match!");
+        }
         String email = UtilUI.getStr("Enter Email: ");
         String phoneNumber = UtilUI.getStr("Enter Phone Number: ");
         int age = UtilUI.getInt("Enter Age: ");
-        AppController.mgc.createNewMovieGoer(username, email, phoneNumber, age);
-        UtilUI.printGreen("MovieGoer user created!");
+        AppController.mgc.createNewMovieGoer(username, password, email, phoneNumber, age);
+        UtilUI.printGreen("MovieGoer user created!\n");
     }
 }

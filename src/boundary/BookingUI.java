@@ -18,7 +18,7 @@ public class BookingUI {
 
         while (true) {
             // prompt user for movie id
-            int movieId = MovieUI.promptValidMovieId();
+            int movieId = MovieUI.promptValidMovieId(false, false, false);
             if (movieId == -1) { break;}
 
             while (true) {

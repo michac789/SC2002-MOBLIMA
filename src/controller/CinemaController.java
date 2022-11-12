@@ -9,12 +9,10 @@ import model.Showtime;
 public class CinemaController {
     private ArrayList<Cinema> cinemas = new ArrayList<Cinema>();
     private CinemaDAO cinemaDao = new CinemaDAO();
-    private int cinemasCount = 0;
     private int cineplexId;
     
     public CinemaController(int cineplexId) {
         this.cineplexId = cineplexId;
-        this.cinemasCount++;
         cinemas = this.cinemaDao.load(cineplexId);
     }
 
@@ -31,7 +29,7 @@ public class CinemaController {
     }
 
     public int getCinemasCount() {
-        return this.cinemasCount;
+        return this.cinemas.size();
     }
 
     public void displayAllCinemas() {

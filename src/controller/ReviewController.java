@@ -42,8 +42,8 @@ public class ReviewController {
 
     public void displayReviews() {
         if (this.reviews.size() == 0) {
-            System.out.println("No reviews yet.");
-        }else {
+            System.out.println("No reviews yet.\n");
+        } else {
             System.out.println("Displaying all " + this.reviews.size() + " reviews:");
             System.out.println("-----------------------------------------------------");
             for (int i = 0; i < this.reviews.size(); i++) {

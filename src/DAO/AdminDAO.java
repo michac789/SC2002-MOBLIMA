@@ -1,7 +1,7 @@
 package DAO;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Admin;
-import java.util.ArrayList;
 
 public class AdminDAO extends BaseDAO {
     String FILEPATH = "src/database/User/Admins.csv";

@@ -18,8 +18,8 @@ public class App {
                 UtilUI.printPurple("You are currently not logged in.");
                 System.out.println("(0) MovieGoer Login/Register");
             } else {
-                UtilUI.printPurple("You are logged in as " +
-                    AppController.mgc.getMovieGoerById(movieGoerId).getUsername());
+                UtilUI.printPurple("You are logged in as \'" +
+                    AppController.mgc.getMovieGoerById(movieGoerId).getUsername() + "\'");
                 System.out.println("(0) Logout");
             }
             System.out.println("(1) List All Movies");
@@ -40,7 +40,7 @@ public class App {
                         movieGoerId = MovieGoerUI.main();
                     } else {
                         movieGoerId = -1;
-                        UtilUI.printGreen("Successfully Logged Out\n");
+                        UtilUI.printGreen("Successfully Logged Out!\n");
                     }
                     break;
                 

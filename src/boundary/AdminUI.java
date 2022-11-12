@@ -15,7 +15,7 @@ public class AdminUI {
             if (adminController.login(username, password)) {
                 break;
             }
-            UtilUI.printRed("Wrong password or username does not exist");
+            UtilUI.printRed("Wrong password or admin account does not exist!");
             if (++attempt == 3) { return;}
         }
         UtilUI.printGreen("Successfully logged in!"); 
