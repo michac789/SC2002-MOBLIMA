@@ -23,6 +23,10 @@ public class Cineplex {
     public CinemaController getController() { return this.cinemaController;}
 
     public String toString() {
-        return "Cineplex ID " + this.cineplexId + ": " + this.location;
+        return String.format(
+            "Cineplex ID %-2d: %-20s (%d cinemas)",
+            this.cineplexId, this.location,
+            this.getController().getCinemasCount()
+        );
     }
 }

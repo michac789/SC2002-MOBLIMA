@@ -1,11 +1,3 @@
-/*
- * UtilUI.java
- * 
- * This file contains utility functions to:
- * - display welcome & goodbye message
- * - getting and validate various inputs from the user
- * - print message using color
- */
 package boundary;
 import java.util.InputMismatchException;
 import java.util.Scanner;

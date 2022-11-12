@@ -1,11 +1,11 @@
 movieId,title,duration,director,cast,showStatus,ageRating,is3D,isBlockbuster,sales
-1,Batman,300,Bobby Smith,Norman Harvey,NOW_SHOWING,PG,0,0,0
+1,Batman,300,Bobby Smith,Norman Harvey,NOW_SHOWING,PG,0,0,9
 2,a Quiet Place,150,Donald Malan,Kotaro Hans,PREVIEW,PG,0,0,0
-3,The Terrible,180,John Smith,Bobby Junior Sam Smith,NOW_SHOWING,PG,0,0,0
-4,Insidious,120,Brian Yu,Justin T.,NOW_SHOWING,PG,0,0,0
+3,The Terrible,180,John Smith,Bobby Junior Sam Smith,NOW_SHOWING,PG,0,0,1
+4,Insidious,120,Brian Yu,Justin T.,NOW_SHOWING,PG,0,0,2
 5,Anabelle,142,Jamal Crawford,Kevin Love,NOW_SHOWING,PG,0,0,0
 6,Inception,120,Joandy,Kevin K,NOW_SHOWING,M18,0,0,0
-7,True Love,150,Malika Mada,Sean Owen,NOW_SHOWING,NC16,0,0,0
+7,True Love,150,Malika Mada,Sean Owen,NOW_SHOWING,NC16,0,0,5
 8,Animal Crossing,75,Bryan,Kenneth,PREVIEW,R21,0,0,0
 9,Superman,120,Hans Ziemer,Steve Eagle,NOW_SHOWING,NC16,0,0,0
 10,Infinity War,90,Sanderson,Leonrich,COMING_SOON,PG,0,0,0

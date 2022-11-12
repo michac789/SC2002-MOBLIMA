@@ -50,6 +50,18 @@ public class MovieUI {
     }
 
     /*
+     * Prompts user for a searchQuery
+     * Displays all movies whose title is a substring of the searchQuery (case insensitive)
+     * It can search for movies with any show status (including end_of_showing)
+     */
+    public static void searchMovie() {
+        UtilUI.printBlue("Search Feature");
+        String searchQuery = UtilUI.getStr("Search movie by its title: ");
+        ArrayList<Movie> movies = mc.searchMovie(searchQuery);
+        displayBasicInfoMovies(movies);
+    }
+
+    /*
      * Prompt the user for a valid movie ID, and return the movie ID selected
      * Display appropriate error message if movie ID is invalid or if access not allowed
      * It takes three boolean arguments: prev, comingSoon, end
@@ -84,7 +96,7 @@ public class MovieUI {
      * Called from AdminUI, provide admin configuration for movies as follows:
      * 1) Displaying all movies (all show status), and detailed view for each movie
      * 2) Create new movie
-     * 3) Edit existing movie
+     * 3) Edit various information in existing movie
      */
     public static void admin() {
         while (true) {
@@ -121,24 +133,29 @@ public class MovieUI {
     private static void displayAllMovies() {
         UtilUI.printBlue("Displaying all movies...");
         ArrayList<Movie> movies = mc.getAllMovies();
-        for(int i = 0; i < movies.size(); i++){
-            Movie movie = movies.get(i);
-            System.out.println("Movie ID " + movie.getMovieId() + ": " +
-                movie.getTitle() + " (" + movie.getShowStatus() + ")");
-        }
+        displayBasicInfoMovies(movies);
         while (true) {
             UtilUI.printBlue("Enter Movie ID to View Details");
             int movieId = promptValidMovieId(true, true, true);
             if (movieId == -1) { break;}
             displayDetailMovieInfo(movieId);
         }
-        System.out.println("");
     }
 
-    public static void searchMovie() { // TODO
-        String searchQuery = UtilUI.getStr("Enter movie title: ");
-        int movieId = mc.searchMovie(searchQuery);
-        displayDetailMovieInfo(movieId);
+    /*
+     * Utility function that takes in an arraylist of movies,
+     * and display basic movie information in a tidy column view
+     * (id, title, show status)
+     * Used for admin and search feature
+     */
+    private static void displayBasicInfoMovies(ArrayList<Movie> movies) {
+        for(int i = 0; i < movies.size(); i++){
+            Movie movie = movies.get(i);
+            System.out.println(
+                String.format("Movie ID %-3s: %-20s (%s)",
+                movie.getMovieId(), movie.getTitle(), movie.getShowStatus())
+            );
+        }
     }
 
     /*
@@ -257,7 +274,7 @@ public class MovieUI {
                 case 9:
                     break;
             }
-            System.out.println("Success in editing!");
+            UtilUI.printGreen("Movie editing successful!");
         }
     }
 }

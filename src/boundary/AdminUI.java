@@ -3,39 +3,51 @@ import controller.AdminController;
 
 public class AdminUI { 
     public static AdminController adminController;
-
+    
+    /*
+     * Main function that is called when log in as admin
+     * Authenticate admin before calling 'AdministratorAction' function
+     */
     public static void main() {
         adminController = new AdminController();
         String username, password;
         int attempt = 0;
         while (true) { 
-            System.out.println("|=========|Admin Login|=========|");
+            UtilUI.printBlue("|=========|Admin Login|=========|");
             username = UtilUI.getStr("Enter your username: ");
             password = UtilUI.getStr("Enter your password: ");
             if (adminController.login(username, password)) {
                 break;
             }
             UtilUI.printRed("Wrong password or admin account does not exist!");
-            if (++attempt == 3) { return;}
+            if (++attempt == 3) {
+                UtilUI.printRed("Automatically exit after 3 unsuccessful attempts!");
+                return;
+            }
         }
         UtilUI.printGreen("Successfully logged in!"); 
         UtilUI.printPurple("Welcome, " + username);
-        administratorAction();
+        administratorAction(username);
     } 
 
-    public static void administratorAction() {
+    /*
+     * Admin UI dashboard after authentication,
+     * displays list of options to setup as an admin
+     */
+    private static void administratorAction(String username) {
         while (true) {
+            UtilUI.printPurple("\nYou are logged in as '" + username + "' (admin)");
             UtilUI.printBlue("|=========================================|");
             UtilUI.printBlue("|=========|MOBLIMA Administrator|=========|");
             UtilUI.printBlue("|=========================================|");
             System.out.println(
-                        "1. View/Create/Edit Movie\n" +
-                        "2. View/Create/Edit Cineplex\n" +
-                        "3. View/Create/Edit Cinema\n" +
-                        "4. View/Create/Edit Showtime\n" +
-                        "5. Display & Configure System Settings\n" +
-                        "6. Create Another Admin Account\n" +
-                        "7. Log Out\n");
+                        "(1) View/Create/Edit Movie\n" +
+                        "(2) View/Create/Edit Cineplex\n" +
+                        "(3) View/Create/Edit Cinema\n" +
+                        "(4) View/Create/Edit Showtime\n" +
+                        "(5) Display & Configure System Settings\n" +
+                        "(6) Create Another Admin Account\n" +
+                        "(7) Log Out\n");
             int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
@@ -67,10 +79,15 @@ public class AdminUI {
         }
     }
     
-    public static void createAdminAccount(){
+    /*
+     * Create another admin account function
+     */
+    private static void createAdminAccount(){
+        UtilUI.printBlue("Create New Admin Account");
         String username, password, confirmationPassword;
         do {
-            username = UtilUI.getStr("Please enter admin username: ");
+            username = UtilUI.getStr("Please enter admin username: (enter -1 to cancel) ");
+            if (username.equals("-1")) { return;}
             password = UtilUI.getStr("Password: ");
             confirmationPassword = UtilUI.getStr("Password again to confirm: ");
             if (!adminController.isAdminExist(username) && password.equals(confirmationPassword)) {

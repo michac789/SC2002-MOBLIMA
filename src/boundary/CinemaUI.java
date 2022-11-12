@@ -9,13 +9,13 @@ public class CinemaUI {
         if (id == -1) { return;}
         CinemaController cc = AppController.cc.getCineplexById(id).getController();
         while (true) {
-            System.out.println("|=========|Cinema Admin Panel|=========|");
+            System.out.println("\n|=========|Cinema Admin Panel|=========|");
             System.out.println(AppController.cc.getCineplexById(id));
             System.out.print(
-                "1. Display All Cinemas\n" +
-                "2. Cinema Detailed View\n" +
-                "3. Create New Cinema\n" +
-                "4. Exit\n");
+                "(1) Display All Cinemas\n" +
+                "(2) Cinema Detailed View\n" +
+                "(3) Create New Cinema\n" +
+                "(4) Exit\n");
             int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:

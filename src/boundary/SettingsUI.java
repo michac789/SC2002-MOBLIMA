@@ -68,9 +68,9 @@ public class SettingsUI {
         while (true) {
             System.out.println("### Edit Price Configuration ###");
             System.out.print(
-                "1. Edit Class1 Price\n" +
-                "2. Edit Class2 Price\n" +
-                "3. Edit Class3 Price\n" +
+                "1. Edit Silver Class Price\n" +
+                "2. Edit Gold Class Price\n" +
+                "3. Edit Platinum Price\n" +
                 "4. Edit 3D Movie Extra Charge\n" +
                 "5. Edit Blockbuster Movie Extra Charge\n" +
                 "6. Edit Holiday Extra Charge\n" +
