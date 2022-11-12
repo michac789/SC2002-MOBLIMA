@@ -77,11 +77,11 @@ public class ShowtimeUI {
                 case 1:
                     Date formattedDate = promptValidShowtimeDate(shc);
                     shc.getShowtimeById(showtimeId).setDate(formattedDate);
+                    showtimeId = shc.sortShowtimeEdited(showtimeId) + 1; //Get new sorted index for this showtime, add 1 as we reference showtime index from 1
                     break;
                 case 2:
                     int movieId = MovieUI.promptValidMovieId();
                     shc.getShowtimeById(showtimeId).setMovieId(movieId);
-                    shc.sortShowtimeEdited(showtimeId);
                     break;
                 case 3:
                     shc.removeShowtimeById(showtimeId);

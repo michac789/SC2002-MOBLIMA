@@ -1,11 +1,11 @@
 id,username,email,phoneNumber,age
-1,Kristian,82800443,kristian@gmail.com,19
-2,Ivan,8234533,ivan@gmail.com,22
-3,Elizabeth, 8288382,elizabeth@gmail.com,61
-4,Michael,8318382,michael@gmail.com,51
-5,Kevin,8383882,kevin@gmail.com,42
-6,Matthew,8412834,matthew@gmail.com,55
-7,Jason,813838,jason@gmail.com,33
-8,Steven,838138,steven@gmail.com,22
-9,Nicky,813388,nicky@gmail.com,10
-10,Vincent,81238,vincent@gmail.com,15
+1,Kristian,kristian@gmail.com,82800443,19
+2,Ivan,ivan@gmail.com,8234533,22
+3,Elizabeth,elizabeth@gmail.com, 8288382,61
+4,Michael,michael@gmail.com,8318382,51
+5,Kevin,kevin@gmail.com,8383882,42
+6,Matthew,matthew@gmail.com,8412834,55
+7,Jason,jason@gmail.com,813838,33
+8,Steven,steven@gmail.com,838138,22
+9,Nicky,nicky@gmail.com,813388,10
+10,Vincent,vincent@gmail.com,81238,15
