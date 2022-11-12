@@ -9,45 +9,13 @@ public class MovieUI {
     private static Scanner sc = new Scanner(System.in);
     private static MovieController mc = AppController.mc;
 
-    public static void admin() {
-        while (true) {
-            UtilUI.printBlue("|=========|Movie Admin Panel|=========|");
-            System.out.print(
-                "1. Display All Movies\n" +
-                "2. Movie Detailed View\n" +
-                "3. Create Movie\n" +
-                "4. Edit Movie\n" +
-                "5. Exit\n");
-            int choice = UtilUI.getInt("Select action: ");
-            switch (choice) { 
-                case 1:
-                    displayAllMovies();
-                    break;
-                case 2:
-                    displayDetailMovie();
-                    break;
-                case 3:
-                    createMovie();
-                    break;
-                case 4:
-                    editMovie();
-                    break;
-                case 5:
-                    return;
-                default:
-                    System.out.println("Invalid action, try again!");
-                    break;
-            }
-        }
-    }
-
-    public static void searchMovie() {
-        String searchQuery = UtilUI.getStr("Enter movie title: ");
-        int movieId = mc.searchMovie(searchQuery);
-        displayDetailMovieInfo(movieId);
-    }
-
-    public static void displayAllMovies() {
+    /*
+     * Called in App.java to show all movies except sorted by category,
+     * except the category 'END_OF_SHOWING' should not be showed here.
+     * It then prompts the user for a valid movie ID, then show a detailed
+     * view of a particular movie ID.
+     */
+    public static void main() {
         UtilUI.printBlue("Displaying all movies...");
         ArrayList<Movie> movies = mc.getShowingMovies();
         int curr = 0;
@@ -57,17 +25,17 @@ public class MovieUI {
             if (curr < 3) {
                 if (curr == 0) {
                     if (m.getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
-                        System.out.println("--------Now Showing----------------------------------");
+                        UtilUI.printPurple("--------Now Showing----------------------------------");
                         curr++;
                     }
                 } else if (curr == 1) {
                     if (m.getShowStatus() == Movie.showStatusOptions.PREVIEW) {
-                        System.out.println("--------Preview--------------------------------------");
+                        UtilUI.printPurple("--------Preview--------------------------------------");
                         curr++;
                     }
                 } else if (curr == 2) {
                     if (m.getShowStatus() == Movie.showStatusOptions.COMING_SOON) {
-                        System.out.println("--------Coming Soon----------------------------------");
+                        UtilUI.printPurple("--------Coming Soon----------------------------------");
                         curr++;
                     }
                 }
@@ -75,15 +43,104 @@ public class MovieUI {
             System.out.println("Movie ID " + m.getMovieId() + ": " +
                 m.getTitle());
         }
+        while (true) {
+            UtilUI.printBlue("Enter Movie ID to View Details");
+            int movieId = promptValidMovieId(true, true, false);
+            if (movieId == -1) { break;}
+            displayDetailMovieInfo(movieId);
+        }
+    }
+
+    /*
+     * Prompt the user for a valid movie ID, and return the movie ID selected
+     * Display appropriate error message if movie ID is invalid or if access not allowed
+     * It takes three boolean arguments: prev, comingSoon, end
+     * If prev is true, movie with status of 'PREVIEW' can be selected
+     * If comingSoon is true, movie with status of 'COMING_SOON' can be selected
+     * If end is true, movie with status of 'END_OF_SHOWING' can be selected
+     * All movies with status 'NOW_SHOWING' can always be selected
+     */
+    public static int promptValidMovieId(boolean prev, boolean comingSoon, boolean end) {
+        int movieId;
+        while (true) {
+            movieId = UtilUI.getInt("Enter movie ID: (enter -1 to exit) ");
+            if (movieId == -1) { return -1;}
+            Movie m = AppController.mc.getMovieById(movieId);
+            if (!prev && m.getShowStatus() == Movie.showStatusOptions.PREVIEW ||
+                    !comingSoon && m.getShowStatus() == Movie.showStatusOptions.COMING_SOON ||
+                    !end && m.getShowStatus() == Movie.showStatusOptions.END_OF_SHOWING) {
+                UtilUI.printRed("You are not allowed to access this Movie ID!");
+            } else if (movieId > 0 && movieId <= Movie.getNumMovies()) {
+                break;
+            } else {
+                UtilUI.printRed("Invalid movie ID!");
+            }
+        }
+        return movieId;
+    }
+
+    /*
+     * Called from AdminUI, provide admin configuration for movies as follows:
+     * 1) Displaying all movies (all show status), and detailed view for each movie
+     * 2) Create new movie
+     * 3) Edit existing movie
+     */
+    public static void admin() {
+        while (true) {
+            UtilUI.printBlue("|=========|Movie Admin Panel|=========|");
+            System.out.print(
+                "(1) Display All Movies\n" +
+                "(2) Create Movie\n" +
+                "(3) Edit Movie\n" +
+                "(4) Exit\n");
+            int choice = UtilUI.getInt("Select action: ");
+            switch (choice) { 
+                case 1:
+                    displayAllMovies();
+                    break;
+                case 2:
+                    createMovie();
+                    break;
+                case 3:
+                    editMovie();
+                    break;
+                case 4:
+                    return;
+                default:
+                    UtilUI.printRed("Invalid action, try again!");
+                    break;
+            }
+        }
+    }
+
+    /*
+     * Display all movies regardless of the show status, used by admin.
+     * It then prompts the admin for a movie ID to show detailed view.
+     */
+    private static void displayAllMovies() {
+        UtilUI.printBlue("Displaying all movies...");
+        ArrayList<Movie> movies = mc.getAllMovies();
+        for(int i = 0; i < movies.size(); i++){
+            Movie movie = movies.get(i);
+            System.out.println("Movie ID " + movie.getMovieId() + ": " +
+                movie.getTitle() + " (" + movie.getShowStatus() + ")");
+        }
+        while (true) {
+            UtilUI.printBlue("Enter Movie ID to View Details");
+            int movieId = promptValidMovieId(true, true, true);
+            if (movieId == -1) { break;}
+            displayDetailMovieInfo(movieId);
+        }
         System.out.println("");
     }
 
-    public static void displayDetailMovie() {
-        int movieId = promptValidMovieId();
-        if (movieId == -1) { return;}
+    public static void searchMovie() {
+        String searchQuery = UtilUI.getStr("Enter movie title: ");
+        int movieId = mc.searchMovie(searchQuery);
         displayDetailMovieInfo(movieId);
     }
 
+    // TODO - deprecate this function
     public static int promptValidMovieId() {
         int movieId;
         while (true) {
@@ -161,13 +218,11 @@ public class MovieUI {
 
             switch (option) {
                 case 1:
-                    System.out.println("Enter new Title: ");
-                    String title = sc.nextLine();
+                    String title = UtilUI.getStr("Enter new Title: ");
                     mc.getMovieById(movieId).setTitle(title);
                     break;
                 case 2:
-                    System.out.println("Enter new duration: ");
-                    int duration = sc.nextInt();
+                    int duration = UtilUI.getInt("Enter new duration: ");
                     mc.getMovieById(movieId).setDurationMinutes(duration);
                     break;
                 case 3:
@@ -175,7 +230,7 @@ public class MovieUI {
                     String director = sc.nextLine();
                     mc.getMovieById(movieId).setDirector(director);
                     break;
-                case 4:
+                case 4: // TODO
                     System.out.println("Enter new Cast: ");
                     String cast = sc.nextLine();
                     mc.getMovieById(movieId).setCast(cast);

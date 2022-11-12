@@ -10,7 +10,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         UtilUI.printWelcomeMessage();
         AppController.init();
-
+        
         int choice, movieGoerId = -1;
         do {
             UtilUI.printBlue(">>>>> MAIN MENU <<<<<");
@@ -23,16 +23,16 @@ public class App {
                 System.out.println("(0) Logout");
             }
             System.out.println("(1) List All Movies");
-            System.out.println("(2) Movie Detail View");
-            System.out.println("(3) Search Movie");
-            System.out.println("(4) Top 5 Movies based on Ticket Sales");
-            System.out.println("(5) Top 5 Movies based on Ratings");
-            System.out.println("(6) Book Ticket (login required)");
-            System.out.println("(7) Booking History (login required)");
-            System.out.println("(8) Review Movie (login required)");
-            System.out.println("(9) Admin Login");
-            System.out.println("(10) Exit Application");
+            System.out.println("(2) Search Movie");
+            System.out.println("(3) Top 5 Movies based on Ticket Sales");
+            System.out.println("(4) Top 5 Movies based on Ratings");
+            System.out.println("(5) Book Ticket (login required)");
+            System.out.println("(6) Booking History (login required)");
+            System.out.println("(7) Review Movie (login required)");
+            System.out.println("(8) Admin Login");
+            System.out.println("(9) Exit Application");
             choice = UtilUI.getInt("Select action: ");
+            System.out.println("");
 
             switch (choice) {
                 case 0:
@@ -45,55 +45,55 @@ public class App {
                     break;
                 
                 case 1:
-                    MovieUI.displayAllMovies();
+                    MovieUI.main();
                     break;
                 
                 case 2:
-                    MovieUI.displayDetailMovie();
-                    break;
-                
-                case 3:
                     MovieUI.searchMovie();
                     break;
                 
-                case 4:
+                case 3:
                     AppController.mc.rankMovieBySales(5);
                     break;
                 
-                case 5:
+                case 4:
                     AppController.mc.rankMovieByRating(5);
                     break;
                 
+                case 5:
+                    if (movieGoerId == -1) {
+                        UtilUI.printRed("Please login/register first!\n");
+                        movieGoerId = MovieGoerUI.main();
+                    }
+                    if (movieGoerId == -1) { break;}
+                    BookingUI.main(movieGoerId);
+                    break;
+
                 case 6:
                     if (movieGoerId == -1) {
                         UtilUI.printRed("Please login/register first!\n");
-                        break;
+                        movieGoerId = MovieGoerUI.main();
                     }
-                    BookingUI.main(movieGoerId);
+                    if (movieGoerId == -1) { break;}
+                    BookingUI.history(movieGoerId);
                     break;
 
                 case 7:
                     if (movieGoerId == -1) {
                         UtilUI.printRed("Please login/register first!\n");
-                        break;
+                        movieGoerId = MovieGoerUI.main();
                     }
-                    BookingUI.history(movieGoerId);
-                    break;
-
-                case 8:
-                    if (movieGoerId == -1) {
-                        UtilUI.printRed("Please login/register first!\n");
-                        break;
-                    }
+                    if (movieGoerId == -1) { break;}
                     ReviewUI.main(movieGoerId);
                     break;
 
-                case 9:
+                case 8:
                     AdminUI.main();
                     break;
             }
         }
-        while (choice != 10);
+        while (choice != 9);
+        UtilUI.printGoodbyeMessage();
         AppController.save();
     }
 }
