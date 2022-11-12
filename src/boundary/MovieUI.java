@@ -57,17 +57,17 @@ public class MovieUI {
             if (curr < 3) {
                 if (curr == 0) {
                     if (m.getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
-                        System.out.println("--------Now Showing--------");
+                        System.out.println("--------Now Showing----------------------------------");
                         curr++;
                     }
                 } else if (curr == 1) {
                     if (m.getShowStatus() == Movie.showStatusOptions.PREVIEW) {
-                        System.out.println("--------Preview--------");
+                        System.out.println("--------Preview--------------------------------------");
                         curr++;
                     }
                 } else if (curr == 2) {
                     if (m.getShowStatus() == Movie.showStatusOptions.COMING_SOON) {
-                        System.out.println("--------Coming Soon--------");
+                        System.out.println("--------Coming Soon----------------------------------");
                         curr++;
                     }
                 }

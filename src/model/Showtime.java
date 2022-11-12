@@ -50,8 +50,9 @@ public class Showtime {
     //Method Override
     public int compareTo(Object o) {
         Showtime s = (Showtime) o;
+        // No Duplicate dates so no need check equals
         if (this.date.before(s.getDate())) {
-            return -1; // Try to prevent duplicate timeslots when booking!
+            return -1;
         } else {
             return 1;
         }

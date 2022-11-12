@@ -41,12 +41,16 @@ public class ReviewController {
     }
 
     public void displayReviews() {
-        System.out.println("Displaying all " + this.reviews.size() + " reviews:");
-        System.out.println("-------------------------");
-        for (int i = 0; i < this.reviews.size(); i++) {
-            System.out.print(this.reviews.get(i));
+        if (this.reviews.size() == 0) {
+            System.out.println("No reviews yet.");
+        }else {
+            System.out.println("Displaying all " + this.reviews.size() + " reviews:");
+            System.out.println("-----------------------------------------------------");
+            for (int i = 0; i < this.reviews.size(); i++) {
+                System.out.print(this.reviews.get(i));
+            }
+            System.out.println("");
         }
-        System.out.println("");
     }
 
     // public void createReview(String movieName, int userId) {

@@ -311,6 +311,50 @@ public class ShowtimeController {
          this.showtimes.add(s);
      }
 
+     public void sortShowtimeEdited(int index) {
+        if (index == 0) {
+            // Can only go up
+            sortShowtimeUpwards(index);
+        }else if(index == this.showtimes.size()-1) {
+            // Can only go down
+            sortShowtimeDownwards(index);
+        }else {
+            // Can go up or down, check neighbours first
+            if (this.showtimes.get(index).compareTo(this.showtimes.get(index-1)) < 0) {
+                // Smaller than below neighbour, go down
+                sortShowtimeDownwards(index);
+            }else {
+                sortShowtimeUpwards(index);
+            }
+        }
+     }
+
+     public void sortShowtimeDownwards(int index) {
+         for (int i=index-1; i >= 0 ; i--) {
+             if (this.showtimes.get(index).compareTo(this.showtimes.get(i)) < 0) {
+                 if (i != 0) { // Not first item yet, if reach first item, then index is smallest item
+                     continue;
+                 }
+             }
+             Showtime temp = this.showtimes.get(index);
+             this.showtimes.remove(index);
+             this.showtimes.add(i, temp);
+             break;
+         }
+     }
+    public void sortShowtimeUpwards(int index) {
+        for (int i=index+1; i < this.showtimes.size() ; i++) {
+            if (this.showtimes.get(index).compareTo(this.showtimes.get(i)) > 0) {
+                if (i != 0) { // Not first item yet, if reach first item, then index is smallest item
+                    continue;
+                }
+            }
+            Showtime temp = this.showtimes.get(index);
+            this.showtimes.remove(index);
+            this.showtimes.add(i, temp);
+            break;
+        }
+    }
     public void removeShowtimeById(int showtimeId) {
         this.showtimes.remove(showtimeId);
     }

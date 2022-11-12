@@ -110,14 +110,26 @@ public class MovieController {
             }
         });
 
-        for (int i = 0; i < num; i++) {
+        int ranking = 1;
+        for (int i = 0; ranking <= 5 && i < sortedMovies.size() ; i++) {
             Movie movie = sortedMovies.get(i);
+            if (movie.getController().getAllReviews().size() <= 1) {
+                // If only 1 review or no reviews, skip
+                continue;
+            }
+
             System.out.println(String.format(
-                "Movie ID %d: %s (Average Rating: %.1f, by %d users)",
-                movie.getMovieId(), movie.getTitle(),
+                "Rank %d: %-20s (Average Rating: %.1f, by %d users)",
+                ranking, movie.getTitle(),
                 movie.getRating(), movie.getController().getNumReviews()
             ));
+            ranking++;
         }
+
+        if (ranking == 1) {
+            System.out.println("Not enough movie reviews created yet.");
+        }
+
         System.out.println("");
     }
 

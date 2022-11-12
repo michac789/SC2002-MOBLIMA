@@ -81,6 +81,7 @@ public class ShowtimeUI {
                 case 2:
                     int movieId = MovieUI.promptValidMovieId();
                     shc.getShowtimeById(showtimeId).setMovieId(movieId);
+                    shc.sortShowtimeEdited(showtimeId);
                     break;
                 case 3:
                     shc.removeShowtimeById(showtimeId);
@@ -94,7 +95,7 @@ public class ShowtimeUI {
     public static void displayShowtimes(ShowtimeController shc) {
         ArrayList<Showtime> showtimes = shc.getAllShowtimes();
         for (int i = 0; i < showtimes.size(); i++) {
-            System.out.println(i + ": " + showtimes.get(i));
+            System.out.printf("%3d: %s\n", (i+1), showtimes.get(i));
             // TODO - print available seats
         }
     }
@@ -105,7 +106,7 @@ public class ShowtimeUI {
         while (true) {
             showtimeId = UtilUI.getInt("Enter showtime id: (enter -1 to exit)");
             if (showtimeId == -1) { return -1;}
-            if (showtimeId >= 0 && showtimeId <= shc.getShowtimeCount()) {
+            if (showtimeId >= 1 && showtimeId <= shc.getShowtimeCount()) {
                 break;
             }
             System.out.println("Invalid Showtime ID");
