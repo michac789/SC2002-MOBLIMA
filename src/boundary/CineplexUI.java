@@ -41,7 +41,7 @@ public class CineplexUI {
     /*
      * Display all cineplexes (ID & location)
      */
-    private static void displayAllCineplexes() {
+    public static void displayAllCineplexes() {
         ArrayList<Cineplex> cineplexes = AppController.cc.getAllCineplexes();
         UtilUI.printBlue(String.format("Displaying all " +
             Cineplex.getNumCineplex() + " cineplexes:"));

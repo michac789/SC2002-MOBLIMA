@@ -8,9 +8,9 @@ public class ReviewUI {
     public static void main(int movieGoerId) {
         while (true) {
             System.out.print(
-                "1. View All My Reviews\n" +
-                "2. Create New Review\n" +
-                "3. Exit\n");
+                "(1) View All My Reviews\n" +
+                "(2) Create New Review\n" +
+                "(3) Exit\n");
             System.out.print("Select action: ");  
             int choice = sc.nextInt();
             switch (choice) { 
@@ -45,8 +45,7 @@ public class ReviewUI {
                 break;
             }
         } while (true);
-        System.out.print("Enter your comment: ");
-        String comment = sc.nextLine();
+        String comment = UtilUI.getStrSafe("Enter your comment: ");
         AppController.mc.getMovieById(movieId).getController()
             .createReview(movieGoerId, reviewScore, comment);
         System.out.println("Review successfully created");

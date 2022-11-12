@@ -61,6 +61,9 @@ public class MovieController {
         return showingMovies;
     }
 
+    /*
+     * Return a movie object given its id
+     */
     public Movie getMovieById(int id) {
         for (Movie m: this.movies) {
             if (m.getMovieId() == id) {
@@ -75,13 +78,13 @@ public class MovieController {
      * Perform necessary action on database
      */
     public void createMovie(
-            String title, int durationMinutes, String director, String cast,
+            String title, int durationMinutes, String synopsis, String director, String cast,
             Movie.showStatusOptions showStatus, Movie.ageRatingOptions ageRating,
             boolean is3D, boolean isBlockbuster) {
         String BASEPATH = "src/database/Movie/Review/";
         int newMovieId = movies.size() + 1;
         UtilDAO.createFile(BASEPATH + newMovieId + ".csv");
-        Movie m = new Movie(title, durationMinutes, director, cast,
+        Movie m = new Movie(title, durationMinutes, synopsis, director, cast,
             showStatus, ageRating, is3D, isBlockbuster, 0);
         movies.add(m);
     }

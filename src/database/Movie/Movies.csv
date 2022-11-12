@@ -1,13 +1,13 @@
-movieId,title,duration,director,cast,showStatus,ageRating,is3D,isBlockbuster,sales
-1,Batman,300,Bobby Smith,Norman Harvey,NOW_SHOWING,PG,0,0,9
-2,a Quiet Place,150,Donald Malan,Kotaro Hans,PREVIEW,PG,0,0,0
-3,The Terrible,180,John Smith,Bobby Junior Sam Smith,NOW_SHOWING,PG,0,0,1
-4,Insidious,120,Brian Yu,Justin T.,NOW_SHOWING,PG,0,0,2
-5,Anabelle,142,Jamal Crawford,Kevin Love,NOW_SHOWING,PG,0,0,0
-6,Inception,120,Joandy,Kevin K,NOW_SHOWING,M18,0,0,0
-7,True Love,150,Malika Mada,Sean Owen,NOW_SHOWING,NC16,0,0,5
-8,Animal Crossing,75,Bryan,Kenneth,PREVIEW,R21,0,0,0
-9,Superman,120,Hans Ziemer,Steve Eagle,NOW_SHOWING,NC16,0,0,0
-10,Infinity War,90,Sanderson,Leonrich,COMING_SOON,PG,0,0,0
-11,Final Fantasy,100,Agung,Matthew Osvaldo,END_OF_SHOWING,G,0,0,0
-12,Interstellar,120,Regina Nauli,Carisa Irene,COMING_SOON,R21,0,0,0
+movieId,title,duration,synopsis,director,cast,showStatus,ageRating,is3D,isBlockbuster,sales
+1,Batman,300,synopsissss,Bobby Smith,cast1\cast2\cast3,NOW_SHOWING,PG,0,0,9
+2,a Quiet Place,150,synopsissss,Donald Malan,Kotaro Hans,PREVIEW,PG,0,0,0
+3,The Terrible,180,synopsissss,John Smith,Bobby Junior Sam Smith,NOW_SHOWING,PG,0,0,1
+4,Insidious,120,synopsissss,Brian Yu,Justin T.,NOW_SHOWING,PG,0,0,2
+5,Anabelle,142,synopsissss,Jamal Crawford,Kevin Love,NOW_SHOWING,PG,0,0,0
+6,Inception,120,synopsissss,Joandy,Kevin K,NOW_SHOWING,M18,0,0,0
+7,True Love,150,synopsissss,Malika Mada,Sean Owen,NOW_SHOWING,NC16,0,0,5
+8,Animal Crossing,75,synopsissss,Bryan,Kenneth,PREVIEW,R21,0,0,0
+9,Superman,120,synopsissss,Hans Ziemer,Steve Eagle,NOW_SHOWING,NC16,0,0,0
+10,Infinity War,90,synopsissss,Sanderson,Leonrich,COMING_SOON,PG,0,0,0
+11,Final Fantasy,100,synopsissss,Agung,Matthew Osvaldo,END_OF_SHOWING,G,0,0,0
+12,Interstellar,120,synopsissss,Regina Nauli,Carisa Irene,COMING_SOON,R21,0,0,0

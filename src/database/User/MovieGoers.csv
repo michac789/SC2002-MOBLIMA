@@ -1,4 +1,4 @@
-id,username,email,phoneNumber,age
+id,username,password,email,phoneNumber,age
 1,Kristian,123,kristian@gmail.com,82800443,19
 2,Ivan,123,ivan@gmail.com,8234533,22
 3,Elizabeth,123,elizabeth@gmail.com, 8288382,61

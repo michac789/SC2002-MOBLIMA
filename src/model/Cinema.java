@@ -40,14 +40,14 @@ public class Cinema {
     }
 
     public static void printCinemaLayout(int height, int width, String s) {
-        System.out.println("TODOOOOO"); // TODO
-        for(int i = 0; i<s.length(); i++){
-            if(s.charAt(i) == 'S'){
+        System.out.println("Cinema Seat Configuration:");
+        for (int i = 0; i < s.length(); i++){
+            if (s.charAt(i) == 'S') {
                 System.out.print(ANSI_GREEN + 'S' + ANSI_RESET);
             } else { 
                 System.out.print(" ");
             }
-            if ((i+1)%width == 0)
+            if ((i + 1) % width == 0)
                 System.out.println();
         }
     }

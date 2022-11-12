@@ -10,15 +10,15 @@ public class SettingsUI {
 
     public static void admin() {
         while (true) {
-            System.out.println("|=========|Settings Configuration Admin Panel|=========|");
+            UtilUI.printBlue("|=========|Settings Configuration Admin Panel|=========|");
             System.out.print(
-                "1. Display Price Settings\n" +
-                "2. Display Holiday Dates\n" +
-                "3. Edit Price Settings\n" +
-                "4. Edit Holiday Dates\n" +
-                "5. Exit\n\n");
+                "(1) Display Price Settings\n" +
+                "(2) Display Holiday Dates\n" +
+                "(3) Edit Price Settings\n" +
+                "(4) Edit Holiday Dates\n" +
+                "(5) Exit\n\n");
             int choice = UtilUI.getInt("Select action: ");
-            switch (choice) { 
+            switch (choice) {
                 case 1:
                     displayPriceSettings();
                     break;
@@ -34,30 +34,39 @@ public class SettingsUI {
                 case 5:
                     return;
                 default:
-                    System.out.println("Invalid action, try again!");
+                    UtilUI.printRed("Invalid action, try again!");
                     break;
             }
         }
     }
 
     private static void displayPriceSettings() {
-        System.out.println("### Displaying Price Settings ###\n" +
+        UtilUI.printBlue("### Displaying Price Settings ###\n" +
             String.format(
-                "Silver Class Cinema Price: $%.2f\n" +
-                "Gold Class Cinema Price: $%.2f\n" +
-                "Platinum Class Cinema Price: $%.2f\n" +
-                "3D Movie Extra Charge: $%.2f\n" +
+                "Silver Class Cinema Price     : $%.2f\n" +
+                "Gold Class Cinema Price       : $%.2f\n" +
+                "Platinum Class Cinema Price   : $%.2f\n" +
+                "3D Movie Extra Charge         : $%.2f\n" +
                 "Blockbuster Movie Extra Charge: $%.2f\n" +
-                "Holiday Extra Charge: $%.2f\n\n",
+                "Holiday Extra Charge          : $%.2f\n" +
+                "Child Discount                : %d%%\n" +
+                "Senior Citizen Discount       : %d%%\n" +
+                "Afternoon Showtime Discount   : %d%%\n" +
+                "Midnight Showtime Discount    : %d%%\n" +
+                "Promo Code Discount           : %d%%\n" +
+                "Promo Code                    : %d\n\n",
                 Settings.silverPrice, Settings.goldPrice,
                 Settings.platinumPrice, Settings.charge3D,
-                Settings.chargeBlockbuster, Settings.chargeHoliday
+                Settings.chargeBlockbuster, Settings.chargeHoliday,
+                Settings.childDiscount, Settings.seniorDiscount,
+                Settings.afternoonDiscount, Settings.midnightDiscount,
+                Settings.promoDiscount, Settings.promoCode
             )
         );
     }
 
     private static void displayHolidayDates() {
-        System.out.println("### Displaying Holiday Dates ###");
+        UtilUI.printBlue("### Displaying Holiday Dates ###");
         for (int i = 0; i < Settings.holidayDates.size(); i++) {
             System.out.println(dateFormat.format(Settings.holidayDates.get(i)));
         }
@@ -66,17 +75,24 @@ public class SettingsUI {
 
     private static void editPriceSettings() {
         while (true) {
-            System.out.println("### Edit Price Configuration ###");
+            UtilUI.printBlue("### Edit Price Configuration ###");
             System.out.print(
-                "1. Edit Silver Class Price\n" +
-                "2. Edit Gold Class Price\n" +
-                "3. Edit Platinum Price\n" +
-                "4. Edit 3D Movie Extra Charge\n" +
-                "5. Edit Blockbuster Movie Extra Charge\n" +
-                "6. Edit Holiday Extra Charge\n" +
-                "7. Exit\n\n");
+                "(1) Edit Silver Class Price\n" +
+                "(2) Edit Gold Class Price\n" +
+                "(3) Edit Platinum Price\n" +
+                "(4) Edit 3D Movie Extra Charge\n" +
+                "(5) Edit Blockbuster Movie Extra Charge\n" +
+                "(6) Edit Holiday Extra Charge\n" +
+                "(7) Edit Child Discount\n" +
+                "(8) Edit Senior Citizen Discount\n" +
+                "(9) Edit Afternoon Showtime Discount\n" +
+                "(10) Edit Midnight Showtime Discount\n" +
+                "(11) Edit Promo Code Discount\n" +
+                "(12) Edit Promo Code\n" +
+                "(13) Exit\n\n");
             int choice = UtilUI.getInt("Select action: ");
             float newPrice;
+            int newDiscount;
             switch (choice) { 
                 case 1:
                     System.out.println(String.format(
@@ -127,9 +143,57 @@ public class SettingsUI {
                     Settings.chargeHoliday = newPrice;
                     break;
                 case 7:
+                    System.out.println(String.format(
+                        "Current Child Discount: %d%%",
+                        Settings.childDiscount
+                    ));
+                    newDiscount = UtilUI.getDiscount();
+                    Settings.childDiscount = newDiscount;
+                    break;
+                case 8:
+                    System.out.println(String.format(
+                        "Current Senior Citizen Discount: %d%%",
+                        Settings.seniorDiscount
+                    ));
+                    newDiscount = UtilUI.getDiscount();
+                    Settings.seniorDiscount = newDiscount;
+                    break;
+                case 9:
+                    System.out.println(String.format(
+                        "Current Afternoon Showtime Discount: %d%%",
+                        Settings.afternoonDiscount
+                    ));
+                    newDiscount = UtilUI.getDiscount();
+                    Settings.afternoonDiscount = newDiscount;
+                    break;
+                case 10:
+                    System.out.println(String.format(
+                        "Current Midnight Showtime Discount: %d%%",
+                        Settings.midnightDiscount
+                    ));
+                    newDiscount = UtilUI.getDiscount();
+                    Settings.midnightDiscount = newDiscount;
+                    break;
+                case 11:
+                    System.out.println(String.format(
+                        "Current Promo Code Discount: %d%%",
+                        Settings.promoDiscount
+                    ));
+                    newDiscount = UtilUI.getDiscount();
+                    Settings.promoDiscount = newDiscount;
+                    break;
+                case 12:
+                    System.out.println(String.format(
+                        "Current Promo Code: %d",
+                        Settings.promoCode
+                    ));
+                    newDiscount = UtilUI.getInt("Enter new code: ");
+                    Settings.promoCode = newDiscount;
+                    break;
+                case 13:
                     return;
                 default:
-                    System.out.println("Invalid action, try again!");
+                    UtilUI.printRed("Invalid action, try again!");
                     break;
             }
             System.out.println("Changes saved\n");
@@ -138,12 +202,12 @@ public class SettingsUI {
 
     private static void editHolidayDates() {
         while (true) {
-            System.out.println("### Edit Holiday Dates ###");
+            UtilUI.printBlue("### Edit Holiday Dates ###");
             System.out.print(
-                "1. Display All Holiday Dates (with ID)\n" +
-                "2. Add Holiday Date\n" +
-                "3. Remove Holiday Date\n" +
-                "4. Exit\n\n");
+                "(1) Display All Holiday Dates (with ID)\n" +
+                "(2) Add Holiday Date\n" +
+                "(3) Remove Holiday Date\n" +
+                "(4) Exit\n\n");
             int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
@@ -159,28 +223,28 @@ public class SettingsUI {
                     int status = SettingsController.addHoliday(date);
                     switch (status) {
                         case 0:
-                            System.out.println("Successfully added");
+                            UtilUI.printGreen("Successfully added");
                             break;
                         case 1:
-                            System.out.println("Incorrect format (DD/MM/YY required)");
+                            UtilUI.printRed("Incorrect format (DD/MM/YY required)");
                             break;
                         case 2:
-                            System.out.println("No duplicate dates allowed");
+                        UtilUI.printRed("No duplicate dates allowed");
                             break;
                     }
                     break;
                 case 3:
                     int id = UtilUI.getInt("Enter Date ID (to be deleted): ");
                     if (SettingsController.removeHoliday(id)) {
-                        System.out.println("Date successfully deleted!");
+                        UtilUI.printGreen("Date successfully deleted!");
                     } else {
-                        System.out.println("Invalid holiday ID");
+                        UtilUI.printRed("Invalid holiday ID");
                     }
                     break;
                 case 4:
                     return;
                 default:
-                    System.out.println("Invalid action, try again!");
+                    UtilUI.printRed("Invalid action, try again!");
                     break;
             }
         }

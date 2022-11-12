@@ -68,7 +68,7 @@ public class BookingUI {
 
                                             // display all booking information
                                             DateFormat dtFormat = new SimpleDateFormat("dd/MM/yy,HH:mm");
-                                            float price = BookingController.calculatePrice(cinema, showtime, numSeats);
+                                            float price = BookingController.calculatePrice(cinema, showtime, numSeats, movieGoerId, true);
                                             displayBookingInformation(
                                                 AppController.mgc.getMovieGoerById(movieGoerId).getUsername(),
                                                 AppController.mc.getMovieById(showtime.getMovieId()).getTitle(),
@@ -80,7 +80,7 @@ public class BookingUI {
                                             );
 
                                             // ask for booking confirmation
-                                            boolean confirm = UtilUI.getBool("Confirm booking? (true/false) ");
+                                            boolean confirm = UtilUI.getBool("Confirm booking? ");
                                             if (!confirm) { break;}
     
                                             // create booking model and add to users booking
@@ -103,7 +103,7 @@ public class BookingUI {
 
                                             // show success, prompt to make another booking or return
                                             UtilUI.printGreen("Booking successful, please check your booking history!");
-                                            boolean anotherBooking = UtilUI.getBool("Create another booking? (true/false) ");
+                                            boolean anotherBooking = UtilUI.getBool("Create another booking? ");
                                             if (!anotherBooking) { return;}
                                         }
                                     } else {

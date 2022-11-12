@@ -59,6 +59,7 @@ public class MovieUI {
         String searchQuery = UtilUI.getStr("Search movie by its title: ");
         ArrayList<Movie> movies = mc.searchMovie(searchQuery);
         displayBasicInfoMovies(movies);
+        System.out.println("");
     }
 
     /*
@@ -175,8 +176,14 @@ public class MovieUI {
         UtilUI.printBlue("Movie Creation");
         String title = UtilUI.getStr("Enter Movie Title: ");
         int duration = UtilUI.getInt("Enter Movie Duration (mins): ");
-        String director = UtilUI.getStr("Enter Movie Director: ");
-        String cast = UtilUI.getStr("Enter Movie Cast: "); // TODO
+        String synopsis = UtilUI.getStrSafe("Enter Movie Synopsis: ");
+        String director = UtilUI.getStrSafe("Enter Movie Director: ");
+        String cast;
+        while (true) {
+            cast = UtilUI.getStrSafe("Enter new cast: (at least 2 needed, seperate by comma)\n");
+            if (cast.contains(",")) { break;}
+            UtilUI.printRed("At least 2 casts needed, seperate your cast using comma!");
+        }
 
         System.out.println("Select Movie Status: ");
         int i = 0;
@@ -194,10 +201,10 @@ public class MovieUI {
         }
         int ageRating = UtilUI.getInt("\n");
 
-        boolean is3D = UtilUI.getBool("Is Movie 3D (true/false): ");
-        boolean isBlockbuster = UtilUI.getBool("Is Movie Blockbuster (true/false): ");
+        boolean is3D = UtilUI.getBool("Is Movie 3D: ");
+        boolean isBlockbuster = UtilUI.getBool("Is Movie Blockbuster: ");
         mc.createMovie(
-            title, duration, director, cast, Movie.showStatusOptions.values()[status],
+            title, duration, synopsis, director, cast, Movie.showStatusOptions.values()[status],
             Movie.ageRatingOptions.values()[ageRating], is3D, isBlockbuster
         );
     }
@@ -215,15 +222,16 @@ public class MovieUI {
             System.out.print(
                     "(1) Edit Title\n" +
                     "(2) Edit Duration\n" +
-                    "(3) Edit Director\n" +
-                    "(4) Edit Cast\n" +
-                    "(5) Edit Showing Status\n" +
-                    "(6) Edit Age Rating\n" +
-                    "(7) Edit is3D\n" +
-                    "(8) Edit is Blockbuster\n" +
-                    "(9) Exit\n");
+                    "(3) Edit Synopsis\n" +
+                    "(4) Edit Director\n" +
+                    "(5) Edit Cast\n" +
+                    "(6) Edit Showing Status\n" +
+                    "(7) Edit Age Rating\n" +
+                    "(8) Edit is3D\n" +
+                    "(9) Edit is Blockbuster\n" +
+                    "(10) Exit\n");
             option = UtilUI.getInt("Select action: ");
-            if (option == 9) {break;}
+            if (option == 10) { break;}
 
             switch (option) {
                 case 1:
@@ -235,14 +243,23 @@ public class MovieUI {
                     mc.getMovieById(movieId).setDurationMinutes(duration);
                     break;
                 case 3:
-                    String director = UtilUI.getStr("Enter new director: ");
+                    String synopsis = UtilUI.getStr("Enter new synopsis: ");
+                    mc.getMovieById(movieId).setSynopsis(synopsis);
+                    break;
+                case 4:
+                    String director = UtilUI.getStrSafe("Enter new director: ");
                     mc.getMovieById(movieId).setDirector(director);
                     break;
-                case 4: // TODO: min 2 or more casts
-                    String cast = UtilUI.getStr("Enter new cast: ");
+                case 5:
+                    String cast;
+                    while (true) {
+                        cast = UtilUI.getStrSafe("Enter new cast: (at least 2 needed, seperate by comma)\n");
+                        if (cast.contains(",")) { break;}
+                        UtilUI.printRed("At least 2 casts needed, seperate your cast using comma!");
+                    }
                     mc.getMovieById(movieId).setCast(cast);
                     break;
-                case 5:
+                case 6:
                     int j = 0;
                     for (Movie.showStatusOptions m: Movie.showStatusOptions.values()) {
                         System.out.print(j + ": " + m + "\t");
@@ -252,7 +269,7 @@ public class MovieUI {
                     int status = UtilUI.getInt("");
                     mc.getMovieById(movieId).setShowStatus(Movie.showStatusOptions.values()[status]);
                     break;
-                case 6:
+                case 7:
                     System.out.println("Enter Movie Age Rating: ");
                     int i = 0;
                     for (Movie.ageRatingOptions m: Movie.ageRatingOptions.values()) {
@@ -263,15 +280,15 @@ public class MovieUI {
                     int ageRating = UtilUI.getInt("");
                     mc.getMovieById(movieId).setAgeRating(Movie.ageRatingOptions.values()[ageRating]);
                     break;
-                case 7:
+                case 8:
                     boolean is3D = UtilUI.getBool("Is Movie 3D? ");
                     mc.getMovieById(movieId).setIs3D(is3D);
                     break;
-                case 8:
+                case 9:
                     boolean isBlockbuster = UtilUI.getBool("Is Movie Blockbuster? ");
                     mc.getMovieById(movieId).setIsBlockbuster(isBlockbuster);
                     break;
-                case 9:
+                case 10:
                     break;
             }
             UtilUI.printGreen("Movie editing successful!");

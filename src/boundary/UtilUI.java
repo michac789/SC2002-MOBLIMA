@@ -63,6 +63,26 @@ public class UtilUI {
         return number;
     }
 
+    public static int getDiscount() {
+        int number;
+        while (true) {
+            System.out.print("Enter new discount: ");
+            try {
+                number = sc.nextInt();
+                sc.nextLine();
+                if (number <= 0 || number > 100) {
+                    printRed("Discount should only be from 1 to 100 percent!");
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                printRed("Input must be an integer!");
+                sc.nextLine();
+            }
+        }
+        return number;
+    }
+
     /*
      * Utility function to get a valid positive float, used mainly in edit pricings
      * - Display error message and prevent crashing if input is not a float,
@@ -108,6 +128,12 @@ public class UtilUI {
             }
             printRed("Comma is not allowed as it might cause parsing issues!");
         }
+        return str;
+    }
+
+    public static String getStrSafe(String msg) {
+        System.out.print(msg);
+        String str = sc.nextLine().trim();
         return str;
     }
 

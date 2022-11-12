@@ -9,6 +9,7 @@ public class Movie {
     private int movieId;
     private String title;
     private int durationMinutes;
+    private String synopsis;
     private String director;
     private String cast;
 
@@ -25,7 +26,7 @@ public class Movie {
     private int sales;
 
     public Movie(
-            String title, int durationMinutes, String director, String cast,
+            String title, int durationMinutes, String synopsis, String director, String cast,
             showStatusOptions showStatus, ageRatingOptions ageRating,
             boolean is3D, boolean isBlockbuster, int sales
         ) {
@@ -33,6 +34,7 @@ public class Movie {
         this.movieId = numMovies;
         this.title = title;
         this.durationMinutes = durationMinutes;
+        this.synopsis = synopsis;
         this.director = director;
         this.cast = cast;
         this.showStatus = showStatus;
@@ -46,6 +48,7 @@ public class Movie {
     public void setMovieId(int id) { this.movieId = id;}
     public void setTitle(String title) { this.title = title;}
     public void setDurationMinutes(int durationMinutes) { this.durationMinutes = durationMinutes;}
+    public void setSynopsis(String synopsis) { this.synopsis = synopsis;}
     public void setDirector(String director) { this.director = director;}
     public void setCast(String cast) { this.cast = cast;}
     public void setShowStatus(showStatusOptions showStatus) { this.showStatus = showStatus;}
@@ -56,13 +59,14 @@ public class Movie {
 
     public int getMovieId() { return this.movieId;}
     public String getTitle() { return this.title;}
-    public String getDirector() { return director;}
-    public String getCast() { return cast;}
-    public int getDurationMinutes() { return durationMinutes;}
-    public showStatusOptions getShowStatus() { return showStatus;}
-    public ageRatingOptions getAgeRating() { return ageRating;}
-    public boolean is3D() { return is3D;}
-    public boolean isBlockbuster() { return isBlockbuster;}
+    public String getDirector() { return this.director;}
+    public String getCast() { return this.cast;}
+    public int getDurationMinutes() { return this.durationMinutes;}
+    public String getSynopsis() { return this.synopsis;}
+    public showStatusOptions getShowStatus() { return this.showStatus;}
+    public ageRatingOptions getAgeRating() { return this.ageRating;}
+    public boolean is3D() { return this.is3D;}
+    public boolean isBlockbuster() { return this.isBlockbuster;}
     public String getIs3D() { return this.is3D ? "yes" : "no";}
     public String getIsBlockbuster() { return this.isBlockbuster ? "yes": "no";}
     public int getSalesCount() { return this.sales;}
@@ -75,16 +79,16 @@ public class Movie {
     
     public String toString() {
         return "-----------------------------------------------------\n" +
-            "Movie ID: " + this.movieId + "\n" +
-            "Movie Title: " + this.title + "\n" +
-            "Duration: " + this.durationMinutes + "\n" +
-            "Director: " + this.director + "\n" +
-            "Cast: " + this.cast + "\n" +
-            "Show Status: " + this.showStatus + "\n" +
-            "Age Rating: " + this.ageRating + "\n" +
-            "3D: " + this.getIs3D() + "\n" +
-            "Blockbuster: " + this.getIsBlockbuster() + "\n" +
-            "Rating: " + (isNaN(this.reviewController.getAverageRating()) ? "NA\n" :
+            "Movie ID      : " + this.movieId + "\n" +
+            "Movie Title   : " + this.title + "\n" +
+            "Duration      : " + this.durationMinutes + "\n" +
+            "Director      : " + this.director + "\n" +
+            "Cast          : " + this.cast + "\n" +
+            "Show Status   : " + this.showStatus + "\n" +
+            "Age Rating    : " + this.ageRating + "\n" +
+            "3D            : " + this.getIs3D() + "\n" +
+            "Blockbuster   : " + this.getIsBlockbuster() + "\n" +
+            "Average Rating: " + (isNaN(this.reviewController.getAverageRating()) ? "NA\n" :
                 String.format("%.1f (by %d users)\n",
                 this.reviewController.getAverageRating(), this.reviewController.getNumReviews())) +
             "-----------------------------------------------------";
