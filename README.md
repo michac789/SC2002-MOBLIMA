@@ -35,6 +35,6 @@ Then, proceed to take a look at the **_Project Files_** to go find App.java. It 
 <br>
 <br>
 
-Firstly, you have to setup JDK first in order to be able to run this project on your device. Click **_setup SDK below the tab of App.java_** and choose **_1.8 Open OracleJDK version 18.0.2_** (version used around October 2022). And Voila! Now you good to go! You can run your project by clicking green play icon on top and you can test the application.
+You have to setup JDK first in order to be able to run this project on your device. Click **_setup SDK below the tab of App.java_** and choose **_1.8 Open OracleJDK version 18.0.2_** (version used around October 2022). And Voila! Now you good to go! You can run your project by clicking green play icon on top and you can test the application.
 
 Tutorial on how to use/test the application will be explained further in the report and video. Thank you.
