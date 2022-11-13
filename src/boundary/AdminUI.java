@@ -1,13 +1,22 @@
 package boundary;
 import controller.AdminController;
 
-public class AdminUI { 
+/**
+ * Represents the boundary of admin functionalities
+ * Consisting of multiple methods which interact directly with adminController
+ * @version 1.0
+ * @since 2022-11-13
+ */
+public class AdminUI {
+    /**
+     * AdminController which interact directly with database
+     */
     public static AdminController adminController;
     
-    /*
+    /**
      * Main function that is called when log in as admin
      * Authenticate admin before calling 'AdministratorAction' function
-     */
+     */ 
     public static void main() {
         adminController = new AdminController();
         String username, password;
@@ -30,9 +39,11 @@ public class AdminUI {
         administratorAction(username);
     } 
 
-    /*
-     * Admin UI dashboard after authentication,
-     * displays list of options to setup as an admin
+    
+    /** 
+     * Admin UI dashboard after authentication, 
+     * display list of options to set up as an admin
+     * @param username Admin username who is currently logged in
      */
     private static void administratorAction(String username) {
         while (true) {
@@ -79,7 +90,7 @@ public class AdminUI {
         }
     }
     
-    /*
+    /**`
      * Create another admin account function
      */
     private static void createAdminAccount(){

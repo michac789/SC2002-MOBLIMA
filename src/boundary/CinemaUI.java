@@ -2,8 +2,17 @@ package boundary;
 import controller.AppController;
 import controller.CinemaController;
 import model.Cinema;
-
+/**
+ * Represents the boundary of cinema viewing & editing
+ * Consisting of multiple methods which interact directly with cinemaController
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class CinemaUI {
+    /**
+     * Main function that is called when admin wants to look for cinema detailed view and create new cinema
+     * Admin must be authenticated first before proceed further here
+     */
     public static void admin() {
         CineplexUI.displayAllCineplexes();
         int id = CineplexUI.promptValidCineplexId();
@@ -32,7 +41,13 @@ public class CinemaUI {
             }
         }
     }
-    
+
+    /**
+     * Prompts the admin to enter  cinema ID,
+     * Reprompt if the cinema ID is not valid
+     * @param cc Cinema controller that contains all cinemas of particular cineplex
+     * @return The valid cinema code
+     */
     public static int promptValidCinemaId(CinemaController cc) {
         int cinemaCode;
         while (true) {
@@ -47,6 +62,10 @@ public class CinemaUI {
         return cinemaCode;
     }
 
+    /**
+     * Displaying the detailed information about cinemas of particular cineplexes
+     * @param cc Cinema controller that contains all cinemas of particular cineplexes
+     */
     private static void displayDetailedCinemaInfo(CinemaController cc) {
         int cinemaCode = promptValidCinemaId(cc);
         if (cinemaCode == -1) { return;}
@@ -63,6 +82,11 @@ public class CinemaUI {
         Cinema.printCinemaLayout(c.getHeight(), c.getWidth(), c.getSeatConfiguration());
     }
 
+    /**
+     * Creates new cinema with the ability to customize cinema's property such as its height, width, class, and detailed
+     * configuration of its seating.
+     * @param cc Cinema controller that contains all cinemas of particular cineplexes
+     */
     private static void createCinema(CinemaController cc) {
         UtilUI.printBlue("### Creating New Cinema ####");
         int height = UtilUI.getInt("Enter height: (enter -1 to cancel) ");

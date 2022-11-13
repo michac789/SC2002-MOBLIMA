@@ -3,8 +3,17 @@ import java.util.ArrayList;
 import controller.AppController;
 import controller.ReviewController;
 import model.Movie;
-
+/**
+ * Represents the boundary of moviegoer's platform to review movie review
+ * Consisting of multiple methods which interact directly with reviewController
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class ReviewUI {
+    /**
+     * Displays UI for moviegoer to interact with his/her past reviews and create new review
+     * @param movieGoerId The moviegoer's ID whoose logged in
+     */
     public static void main(int movieGoerId) {
         while (true) {
             UtilUI.printBlue("Review Panel");
@@ -29,14 +38,13 @@ public class ReviewUI {
         }
     }
 
+    /**
+     * Display UI for moviegoer to input his/her past review
+     * @param movieGoerId The moviegoer's ID whoose logged in
+     */
     private static void newReview(int movieGoerId) {
         UtilUI.printBlue("|=========|Review Movie|=========|");
-        // ArrayList<Integer> validIds = ReviewController.bookedMovies(movieGoerId);
-        // int movieId = UtilUI.promptInt(validIds, "Enter a movie ID: ");
-        // if (ReviewController.hasReviewed(movieId, movieGoerId)) {
-        //     UtilUI.printRed("You have reviewed this movie before! You cannot review more than once!");
-        //     return;
-        // } TODO - buggy
+
 
         int movieId = UtilUI.getInt("Enter movie ID: ");
 

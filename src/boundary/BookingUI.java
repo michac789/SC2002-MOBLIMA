@@ -13,7 +13,18 @@ import model.Cineplex;
 import model.Settings;
 import model.Showtime;
 
+/**
+ * Represents the boundary of booking flow
+ * Consisting of multiple methods which interact directly with cineplexController, movieController, and movieGoerController
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class BookingUI {
+    /**
+     * Main function that is called when user wants to book a ticket
+     * User already logged in as a movieGoer
+     * @param movieGoerId MovieGoer's ID
+     */
     public static void main(int movieGoerId){
         UtilUI.printBlue("### Booking System ###");
 
@@ -152,6 +163,12 @@ public class BookingUI {
         }
     }
 
+    /**
+     * Generates seat code in a form of String
+     * @param startCode The starting code of seat
+     * @param seatCount The number of seats
+     * @return Seat code string ready to be printed
+     */
     private static String generateSeatCodeString(String startCode, int seatCount) {
         String rowLetter = startCode.substring(0, 1);
         String columnNumber = startCode.substring(1);
@@ -167,8 +184,18 @@ public class BookingUI {
         return returnVal;
     }
 
+    /**
+     * Displays the booking information of user with its particulars
+     * @param username MovieGoer username
+     * @param title The movie's title
+     * @param location The location of cineplex
+     * @param cinemaCode The cinema code in a chosen cineplex
+     * @param dt Date and time of showtimes
+     * @param seats The choice of seats
+     * @param price The calculated price based on moviegoer's choice
+     */
     private static void displayBookingInformation(String username, String title, String location,
-            int cinemaCode, String dt, String seats, float price) {
+        int cinemaCode, String dt, String seats, float price) {
         UtilUI.printPurple("MovieGoer Username: " + username);
         UtilUI.printPurple("Movie Title: " + title);
         UtilUI.printPurple("Cineplex Location: " + location);
@@ -178,6 +205,10 @@ public class BookingUI {
         UtilUI.printPurple("Total Price: " + String.format("$%.2f", price));
     }
 
+    /**
+     * Displays user's booking history
+     * @param movieGoerId MovieGoer's ID
+     */
     public static void history(int movieGoerId) {
         UtilUI.printBlue("### Booking History ###");
         ArrayList<Booking> bookings = AppController.mgc

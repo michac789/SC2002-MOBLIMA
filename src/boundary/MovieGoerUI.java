@@ -1,9 +1,14 @@
 package boundary;
 import controller.AppController;
-
+/**
+ * Represents the boundary of moviegoer functionalities
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class MovieGoerUI {
-    /*
-     * Main UI when asking to login or register as MovieGoer
+    /**
+     * Main UI when asking to log in or register as MovieGoer
+     * @return The id of movieGoer if succeed to login
      */
     public static int main() {
         while (true) {
@@ -30,10 +35,10 @@ public class MovieGoerUI {
         }
     }
 
-    /*
+    /**
      * Prompts the user for username and password to login
-     * Returns movieGoerId if authentication successful, else return -1
      * Automatically return after 3 unsuccessful attempts
+     * @return MovieGoerId if authentication successful, else return -1
      */
     private static int movieGoerLogin() {
         int movieGoerId, attempts = 0;
@@ -53,7 +58,7 @@ public class MovieGoerUI {
         return movieGoerId;
     }
 
-    /*
+    /**
      * Prompts unique username, password, email, phone number, age
      * Register the information above as a new Movie Goer User
      */
