@@ -1,5 +1,5 @@
 movieId,title,duration,synopsis,director,cast,showStatus,ageRating,is3D,isBlockbuster,sales
-1,Batman,300,synopsissss,Bobby Smith,cast1\cast2\cast3,NOW_SHOWING,PG,0,0,9
+1,Batman,300,synopsissss,Bobby Smith,cast1\cast2\cast3,NOW_SHOWING,PG,0,0,12
 2,a Quiet Place,150,synopsissss,Donald Malan,Kotaro Hans,PREVIEW,PG,0,0,0
 3,The Terrible,180,synopsissss,John Smith,Bobby Junior Sam Smith,NOW_SHOWING,PG,0,0,1
 4,Insidious,120,synopsissss,Brian Yu,Justin T.,NOW_SHOWING,PG,0,0,2

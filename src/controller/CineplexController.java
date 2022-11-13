@@ -1,7 +1,6 @@
 package controller;
 import java.util.ArrayList;
 import DAO.CineplexDAO;
-import DAO.UtilDAO;
 import model.Cineplex;
 
 public class CineplexController {

@@ -2,7 +2,6 @@ package controller;
 import java.util.*;
 import java.util.ArrayList;
 import DAO.MovieDAO;
-import DAO.UtilDAO;
 import model.Movie;
 
 public class MovieController {

@@ -1,6 +1,5 @@
 package controller;
 import java.util.*;
-import DAO.UtilDAO;
 import DAO.CinemaDAO;
 import model.Cinema;
 import model.Cinema.showClassOptions;

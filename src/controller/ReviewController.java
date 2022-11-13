@@ -2,7 +2,6 @@ package controller;
 import java.util.ArrayList;
 import DAO.ReviewDAO;
 import model.Booking;
-import model.Movie;
 import model.Review;
 
 public class ReviewController {

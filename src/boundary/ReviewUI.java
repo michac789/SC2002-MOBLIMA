@@ -1,6 +1,7 @@
 package boundary;
-
+import java.util.ArrayList;
 import controller.AppController;
+import controller.ReviewController;
 
 public class ReviewUI {
     public static void main(int movieGoerId) {
@@ -29,7 +30,8 @@ public class ReviewUI {
 
     private static void newReview(int movieGoerId) {
         UtilUI.printBlue("|=========|Review Movie|=========|");
-        // ArrayList<Integer> validIds = ReviewController.bookedMovies(movieGoerId);
+
+        ArrayList<Integer> validIds = ReviewController.bookedMovies(movieGoerId);
         // int movieId = UtilUI.promptInt(validIds, "Enter a movie ID: ");
         // if (ReviewController.hasReviewed(movieId, movieGoerId)) {
         //     UtilUI.printRed("You have reviewed this movie before! You cannot review more than once!");
