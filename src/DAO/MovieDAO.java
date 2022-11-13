@@ -47,4 +47,9 @@ public class MovieDAO extends BaseDAO {
         }
         return returnList;
     }
+
+    public void createMovieReviewFile(int movieId) {
+        String BASEPATH = "src/database/Movie/Review/";
+        UtilDAO.createFile(BASEPATH + movieId + ".csv");
+    }
 }

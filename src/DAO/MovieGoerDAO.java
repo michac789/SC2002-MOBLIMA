@@ -35,4 +35,9 @@ public class MovieGoerDAO extends BaseDAO {
         }
         return returnList;
     }
+
+    public void createUserBookingFile(int movieGoerId) {
+        String BASEPATH = "src/database/User/Booking/";
+        UtilDAO.createFile(BASEPATH + movieGoerId + ".csv");
+    }
 }

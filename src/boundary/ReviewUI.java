@@ -9,6 +9,7 @@ import model.Movie;
  * @version 1.0
  * @since 2022-11-13
  */
+
 public class ReviewUI {
     /**
      * Displays UI for moviegoer to interact with his/her past reviews and create new review
@@ -45,8 +46,21 @@ public class ReviewUI {
     private static void newReview(int movieGoerId) {
         UtilUI.printBlue("|=========|Review Movie|=========|");
 
-
-        int movieId = UtilUI.getInt("Enter movie ID: ");
+        ArrayList<Integer> validIds = ReviewController.bookedMovies(movieGoerId);
+        if (validIds == null) {
+            UtilUI.printRed("You have not booked any movies yet, you can only review movies you have booked!");
+            return;
+        }
+        int movieId;
+        while (true) {
+            movieId = UtilUI.promptInt(validIds, "Enter a movie ID: (enter -1 to exit) ");
+            if (movieId == -1) { return;}
+            if (ReviewController.hasReviewed(movieId, movieGoerId)) {
+                UtilUI.printRed("You have reviewed this movie before! You cannot review more than once!");
+            } else {
+                break;
+            }
+        }
 
         if (movieId == -1) { return;}
         int reviewScore;

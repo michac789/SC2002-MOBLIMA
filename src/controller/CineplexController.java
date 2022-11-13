@@ -1,7 +1,6 @@
 package controller;
 import java.util.ArrayList;
 import DAO.CineplexDAO;
-import DAO.UtilDAO;
 import model.Cineplex;
 
 public class CineplexController {
@@ -25,15 +24,9 @@ public class CineplexController {
     }
 
     public void createCineplex(String location) {
-        String BASEPATH = "src/database/Cineplex/";
         int newCineplexId = Cineplex.getNumCineplex() + 1;
-        UtilDAO.createFolder(BASEPATH + newCineplexId);
-        UtilDAO.createFile(BASEPATH + newCineplexId + "/Cinemas.csv");
-        UtilDAO.writeFile(
-            BASEPATH + "Cineplexes.csv",
-            String.format("%d,%s", newCineplexId, location),
-            true
-        );
+        cineplexDao.createCineplexFolder(newCineplexId, location);
+
         Cineplex newCineplex = new Cineplex(location);
         this.cineplexes.add(newCineplex);
     }

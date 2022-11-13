@@ -162,8 +162,64 @@ public class MovieUI {
         }
         System.out.println("");
     }
+  
+    /*
+     * Display the first 'num' movie based on the highest sales count
+     * Given that there has been 1 movie sale
+     */
+    public static void rankMoviesBySales(int num) {
+        ArrayList<Movie> sortedMovies = mc.getMoviesBySales();
+        int ranking = 1;
+        for (int i = 0;ranking <= num && i < sortedMovies.size(); i++) {
+            Movie movie = sortedMovies.get(i);
+            if (movie.getSalesCount() == 0) {
+                continue;
+            }
 
-    /**
+            System.out.println(String.format(
+                    "Rank %d) Movie ID %d: %-20s (Total sales: %d)",
+                    ranking, movie.getMovieId(), movie.getTitle(), movie.getSalesCount()
+            ));
+            ranking++;
+        }
+
+        if (ranking == 1) {
+            System.out.println("No movie tickets sold yet.");
+        }
+
+        System.out.println("");
+    }
+
+    /*
+     * Display the first 'num' movie based on Highest rating,
+     * given that there are at least 2 reviews
+     */
+    public static void rankMoviesByRating(int num) {
+        ArrayList<Movie> sortedMovies = mc.getMoviesByRating();
+        int ranking = 1;
+        for (int i = 0; ranking <= num && i < sortedMovies.size() ; i++) {
+            Movie movie = sortedMovies.get(i);
+            if (movie.getController().getAllReviews().size() <= 1) {
+                // If only 1 review or no reviews, skip
+                continue;
+            }
+
+            System.out.println(String.format(
+                    "Rank %d) Movie ID %d: %-20s (Average Rating: %.1f, by %d users)",
+                    ranking, movie.getMovieId(), movie.getTitle(),
+                    movie.getRating(), movie.getController().getNumReviews()
+            ));
+            ranking++;
+        }
+
+        if (ranking == 1) {
+            System.out.println("Not enough movie reviews created yet.");
+        }
+
+        System.out.println("");
+    }
+
+    /*
      * Utility function that takes in an arraylist of movies,
      * and display basic movie information in a tidy column view
      * (id, title, show status)

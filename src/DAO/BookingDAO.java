@@ -17,7 +17,8 @@ public class BookingDAO extends BaseDAO {
             writeStr = String.format("%d,%s,%s,%d,%s,%s,%.2f",
                 instance.getUserId(), instance.getTitle(),
                 instance.getLocation(), instance.getCinemaCode(),
-                instance.getDatetime(), instance.getSeat(), instance.getPrice()
+                instance.getDatetime().replace(",", "\\"),
+                instance.getSeat(), instance.getPrice()
             );
             writeLine(FILEPATH, writeStr);
         }
@@ -31,8 +32,9 @@ public class BookingDAO extends BaseDAO {
             String[] x = instances.get(i).split(",");
             Booking newInstance = new Booking(
                 Integer.parseInt(x[0]), x[1], x[2],
-                Integer.parseInt(x[3]), x[4], x[5],
-                Float.parseFloat(x[6])
+                Integer.parseInt(x[3]),
+                x[4].replace("\\", ","),
+                x[5], Float.parseFloat(x[6])
             );
             returnList.add(newInstance);
         }

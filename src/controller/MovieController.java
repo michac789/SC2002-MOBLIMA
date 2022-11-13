@@ -2,7 +2,6 @@ package controller;
 import java.util.*;
 import java.util.ArrayList;
 import DAO.MovieDAO;
-import DAO.UtilDAO;
 import model.Movie;
 
 public class MovieController {
@@ -75,7 +74,7 @@ public class MovieController {
 
     public Movie getMovieByTitle(String title) {
         for (Movie m: this.movies) {
-            if (m.getTitle() == title) {
+            if (m.getTitle().equals(title)) {
                 return m;
             }
         }
@@ -90,18 +89,18 @@ public class MovieController {
             String title, int durationMinutes, String synopsis, String director, String cast,
             Movie.showStatusOptions showStatus, Movie.ageRatingOptions ageRating,
             boolean is3D, boolean isBlockbuster) {
-        String BASEPATH = "src/database/Movie/Review/";
         int newMovieId = movies.size() + 1;
-        UtilDAO.createFile(BASEPATH + newMovieId + ".csv");
+        movieDAO.createMovieReviewFile(newMovieId);
+
         Movie m = new Movie(title, durationMinutes, synopsis, director, cast,
             showStatus, ageRating, is3D, isBlockbuster, 0);
         movies.add(m);
     }
 
     /*
-     * Display the first 'num' movie that has the highest sales count
+     * Get List of movies sorted by Sales
      */
-    public void rankMovieBySales(int num) {
+    public ArrayList<Movie> getMoviesBySales() {
         @SuppressWarnings("unchecked")
         ArrayList<Movie> sortedMovies = (ArrayList<Movie>) getAllMovies().clone();
         Collections.sort(sortedMovies, new Comparator<Movie>() {
@@ -110,21 +109,15 @@ public class MovieController {
                 return - m1.getSalesCount() + m2.getSalesCount();
             }
         });
-        for (int i = 0; i < num; i++) {
-            Movie movie = sortedMovies.get(i);
-            System.out.println(String.format(
-                "Movie ID %d: %-20s (Total sales: %d)",
-                movie.getMovieId(), movie.getTitle(), movie.getSalesCount()
-            ));
-        }
-        System.out.println("");
+
+        return sortedMovies;
     }
 
     /*
      * Display the first 'num' movie that has the highest rating,
      * given that there are at least 2 reviews
      */
-    public void rankMovieByRating(int num) {
+    public ArrayList<Movie> getMoviesByRating() {
         @SuppressWarnings("unchecked")
         ArrayList<Movie> sortedMovies = (ArrayList<Movie>) getAllMovies().clone();
         Collections.sort(sortedMovies, new Comparator<Movie>() {
@@ -137,27 +130,7 @@ public class MovieController {
             }
         });
 
-        int ranking = 1;
-        for (int i = 0; ranking <= 5 && i < sortedMovies.size() ; i++) {
-            Movie movie = sortedMovies.get(i);
-            if (movie.getController().getAllReviews().size() <= 1) {
-                // If only 1 review or no reviews, skip
-                continue;
-            }
-
-            System.out.println(String.format(
-                "Movie ID %d: %-20s (Average Rating: %.1f, by %d users)",
-                movie.getMovieId(), movie.getTitle(),
-                movie.getRating(), movie.getController().getNumReviews()
-            ));
-            ranking++;
-        }
-
-        if (ranking == 1) {
-            System.out.println("Not enough movie reviews created yet.");
-        }
-
-        System.out.println("");
+        return sortedMovies;
     }
 
     /*

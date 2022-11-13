@@ -21,7 +21,7 @@ public class CineplexUI {
             System.out.print(
                 "(1) Display All Cineplexes\n" +
                 "(2) Create New Cineplex\n" +
-                "(3) Edit Existing Cineplex\n" +
+                "(3) Change Existing Cineplex Location Name\n" +
                 "(4) Exit\n");
             int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
@@ -71,11 +71,11 @@ public class CineplexUI {
      * Edit the location of that cineplex ID and save it
      */
     private static void editCineplex() {
-        UtilUI.printBlue("Edit Cineplex");
+        UtilUI.printBlue("Edit Cineplex Location Name");
         int cineplexId = promptValidCineplexId();
         if (cineplexId == -1) { return;}
         System.out.println(AppController.cc.getCineplexById(cineplexId));
-        String newLocation = UtilUI.getStr("Enter new cineplex location: (enter -1 to cancel) ");
+        String newLocation = UtilUI.getStr("Enter new location name: (enter -1 to cancel) ");
         if (newLocation.equals("-1")) { return;}
         AppController.cc.editLocation(cineplexId, newLocation);
         UtilUI.printGreen("Cineplex editing successful!");
