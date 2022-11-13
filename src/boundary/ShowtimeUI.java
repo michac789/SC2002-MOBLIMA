@@ -87,13 +87,16 @@ public class ShowtimeUI {
                     Date formattedDate = promptValidShowtimeDate(shc);
                     shc.getShowtimeById(showtimeId).setDate(formattedDate);
                     showtimeId = shc.sortShowtimeEdited(showtimeId) + 1; //Get new sorted index for this showtime, add 1 as we reference showtime index from 1
+                    System.out.println("Showtime data and time successfully edited.");
                     break;
                 case 2:
                     int movieId = MovieUI.promptValidMovieId(true, true, true); // TODO - careful!
                     shc.getShowtimeById(showtimeId).setMovieId(movieId);
+                    System.out.println("Showing movie successfully changed.");
                     break;
                 case 3:
                     shc.removeShowtimeById(showtimeId);
+                    System.out.println("Showtime successfully removed.");
                     return;
                 case 4:
                     return;
@@ -151,6 +154,7 @@ public class ShowtimeUI {
 
         Showtime s = new Showtime(m.getMovieId(), formattedDate, height, width, cineplexId, cinemaId, seatConfiguration);
         shc.addShowtime(s);
+        System.out.println("Showtime successfully created.");
     }
 
     /**
