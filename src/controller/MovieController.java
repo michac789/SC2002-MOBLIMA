@@ -4,11 +4,22 @@ import java.util.ArrayList;
 import DAO.MovieDAO;
 import model.Movie;
 
+/**
+ * Controller for all Movie objects
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class MovieController {
+    /**
+     * Contain an arraylist of all movies
+     */
     private ArrayList<Movie> movies = new ArrayList<Movie>();
+    /**
+     * MovieDAO to get and save data to database
+     */
     private MovieDAO movieDAO = new MovieDAO();
 
-    /*
+    /**
      * Load necessary information regarding movies from database
      * Trigger the loading of all reviews on each movie
      * Called at the start of the program
@@ -17,7 +28,7 @@ public class MovieController {
         this.movies = this.movieDAO.load();
     }
 
-    /*
+    /**
      * Save all local changes regarding movies to the database
      * Call the 'save' method for review controllers on all movies
      * Called when terminating the program
@@ -26,18 +37,19 @@ public class MovieController {
         this.movieDAO.save(movies);
     }
 
-    /*
-     * Return an arraylist of all movies
-     * Used in admin functionality
+    /**
+     * Used in admin functionality to get all movies
+     * @return Arraylist of all movies
      */
     public ArrayList<Movie> getAllMovies() {
         return movies;
     }
 
-    /*
+    /**
      * Return an arraylist of all movies,
-     * except movies that has status of 'END_OF_SHOWING'
-     * Used in movie goer functionality
+     * except movies that has status of 'END_OF_SHOWING',
+     * used in movie goer functionality
+     * @return Arraylis of movies
      */
     public ArrayList<Movie> getShowingMovies() {
         int nowShowingIndex = 0;
@@ -60,8 +72,10 @@ public class MovieController {
         return showingMovies;
     }
 
-    /*
-     * Return a movie object given its id
+    /**
+     * Get a movie object by its ID
+     * @param id MovieID to be retrieved
+     * @return Movie object that has that id, or null if not found
      */
     public Movie getMovieById(int id) {
         for (Movie m: this.movies) {
@@ -72,6 +86,11 @@ public class MovieController {
         return null;
     }
 
+    /**
+     * Get a movie given its title, assuming all movie titles are unique
+     * @param title Title of movie to be retrieved
+     * @return Movie object that has that title, or null if not found
+     */
     public Movie getMovieByTitle(String title) {
         for (Movie m: this.movies) {
             if (m.getTitle().equals(title)) {
@@ -81,9 +100,18 @@ public class MovieController {
         return null;
     }
     
-    /*
-     * Create new movie given information of the movie
-     * Perform necessary action on database
+    /**
+     * Create new movie given information of the movie,
+     * perform necessary action on database
+     * @param title Title of the new movie
+     * @param durationMinutes Duration (in minutes) of the new movie
+     * @param synopsis Synopsis of the new movie
+     * @param director Director of the new movie
+     * @param cast Cast of the new movie, should be at least 2 casts, seperated by comma
+     * @param showStatus Show status of the movie based on showStatusOptions enum
+     * @param ageRating Age rating of the movie based on ageRatingOptions enum
+     * @param is3D Boolean value whether the movie is shown in 3D or not
+     * @param isBlockbuster Boolean value whether the movie is a blockbuster or not
      */
     public void createMovie(
             String title, int durationMinutes, String synopsis, String director, String cast,
@@ -97,8 +125,10 @@ public class MovieController {
         movies.add(m);
     }
 
-    /*
-     * Get List of movies sorted by Sales
+    /**
+     * Get List of movies sorted by Sales,
+     * do not modify the original movies array
+     * @return Arraylist deep copy containing movies sorted by sale
      */
     public ArrayList<Movie> getMoviesBySales() {
         @SuppressWarnings("unchecked")
@@ -109,13 +139,13 @@ public class MovieController {
                 return - m1.getSalesCount() + m2.getSalesCount();
             }
         });
-
         return sortedMovies;
     }
 
-    /*
-     * Display the first 'num' movie that has the highest rating,
-     * given that there are at least 2 reviews
+    /**
+     * Get List of movies sorted by Average Rating,
+     * do not modify the original movies array
+     * @return Arraylist deep copy containing movies sorted by average rating
      */
     public ArrayList<Movie> getMoviesByRating() {
         @SuppressWarnings("unchecked")
@@ -129,14 +159,14 @@ public class MovieController {
                 else { return 0;} //equal
             }
         });
-
         return sortedMovies;
     }
 
-    /*
-     * Returns an arraylist of movies where 'str' is a substring in its title
+    /**
+     * Returns an arraylist of movies where 'str' is a substring in its title,
      * Upper case, lower case, blank space are ignored
-     * Used for search feature
+     * @param str Query string for search input
+     * @return Arraylist of movies corresponding to search results
      */
     public ArrayList<Movie> searchMovie(String str) {
         ArrayList<Movie> searchResults = new ArrayList<Movie>();
