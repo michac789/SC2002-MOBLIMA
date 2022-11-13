@@ -60,7 +60,7 @@ public class BookingController {
     }
 
     /**
-     * Display price calculation process & calculate price for a particular booking
+     * Display price calculation process and calculate price for a particular booking
      * @param c Cinema where the MovieGoer by ticket from
      * @param s Showtime that contains date of showing of the movie
      * @param seatsCount Number of seats booked in this particular showtime
@@ -149,7 +149,7 @@ public class BookingController {
     
     /**
      * Indicate whether a showtime is considered afternoon showtime or not
-     * @param date Date & Time object of the showtime booking
+     * @param date Date and Time object of the showtime booking
      * @return True if the showtime that starts before 8am-6pm (exclusive 6pm), otherwise false
      */
     private static boolean isAfternoonShowtime(Date date) {
@@ -163,7 +163,7 @@ public class BookingController {
 
     /**
      * Indicate whether a showtime is considered midnight showtime or not
-     * @param date Date & Time object of the showtime booking
+     * @param d Date and Time object of the showtime booking
      * @return True if the showtime that starts at 6pm onwards, otherwise false
      */
     private static boolean isMidnightShowtime(Date d) {

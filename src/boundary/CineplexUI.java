@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import controller.AppController;
 import model.Cineplex;
 /**
- * Represents the boundary of cineplex viewing & editing
+ * Represents the boundary of cineplex viewing and editing
  * Consisting of multiple methods which interact directly with cineplexController
  * @version 1.0
  * @since 2022-11-13
