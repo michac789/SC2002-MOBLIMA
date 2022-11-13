@@ -8,14 +8,41 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
+/**
+ * Represents data access object related to showtimes
+ * @version 1.0
+ * @since 2022-11-13
+ *
+ */
 public class ShowtimeDAO extends BaseDAO {
+    /**
+     * Base path of showtime database for readability
+     */
     String BASEPATH = "src/database/Cineplex/";
+    /**
+     * File path for showtime of particular cinema 
+     */
     String FILEPATH;
 
+    /**
+     * DateFormat object to format the input date 
+     */
     private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    /**
+     * DateFormat object to format time 
+     */
     private static DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    /**
+     * DateFormat object to format compact data of date and time 
+     */
     private static DateFormat daoFormat = new SimpleDateFormat("dd/MM/yy,HH:mm");
 
+    /**
+     * Saves updated showtime state of particular cinema
+     * @param instances The array of Showtime object that represents one showtime of specific cinema
+     * @param cineplexId The cineplex ID
+     * @param cinemaId The cinema ID
+     */
     public void save(ArrayList<Showtime> instances, int cineplexId, int cinemaId) {
         FILEPATH = BASEPATH + cineplexId + "/Showtime_" + cinemaId + ".csv";
         emptyFile(FILEPATH);
@@ -34,7 +61,15 @@ public class ShowtimeDAO extends BaseDAO {
             writeLine(FILEPATH, writeStr);
         }
     }
-    
+
+    /**
+     * Loads showtimes of particular cinema and put it in an array of ShowTime obect
+     * @param cineplexId The cineplex ID
+     * @param cinemaId The cinema ID
+     * @param height The height of the cinema seating
+     * @param width The width of the cinema seating
+     * @return
+     */
     public ArrayList<Showtime> load(int cineplexId, int cinemaId, int height, int width) {
         FILEPATH = BASEPATH + cineplexId + "/Showtime_" + cinemaId + ".csv";
         LinkedList<String> instances = this.getData(FILEPATH);

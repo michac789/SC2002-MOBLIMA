@@ -4,18 +4,20 @@ import java.util.LinkedList;
 import model.Admin;
 
 /**
- * Represents data access related to admin account
+ * Represents data access object related to admin account
+ * @version 1.0
+ * @since 2022-11-13
  *
  */
 public class AdminDAO extends BaseDAO {
     /**
-     * For readability, we declare FILEPATH
+     * Filepath for admin database for readability
      */
     String FILEPATH = "src/database/User/Admins.csv";
 
     /**
-     * Saves updated state of the application to the database
-     * @param instances The admin object that contains admin account
+     * Saves updated admin account state of the application to the database
+     * @param instances The array of admin object that represents admin account
      */
     public void save(ArrayList<Admin> instances) {
         emptyFile(FILEPATH);
@@ -32,8 +34,8 @@ public class AdminDAO extends BaseDAO {
     }
 
     /**
-     * Loads admin account and put it in array of Admin object
-     * @return The admin object fetched from database
+     * Loads admin account and put it in an array of Admin object
+     * @return ArrayList of admin object fetched from database
      */
     public ArrayList<Admin> load() {
         LinkedList<String> instances = this.getData(FILEPATH);

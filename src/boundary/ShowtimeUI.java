@@ -11,7 +11,15 @@ import model.Cinema;
 import model.Movie;
 import model.Showtime;
 
+/**
+ * Represents the boundary of showtime related functionalities
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class ShowtimeUI {
+    /**
+     * Represents UI to configure showtime
+     */
     public static void admin() {
         while (true) {
             int cineplexId = CineplexUI.promptValidCineplexId();
@@ -56,6 +64,10 @@ public class ShowtimeUI {
         }
     }
 
+    /**
+     * Edits showtime state in Showtime controller
+     * @param shc ShowtimeController object
+     */
     public static void editShowtime(ShowtimeController shc) {
         int showtimeId = promptValidShowtimeId(shc);
         if (showtimeId == -1) {
@@ -89,6 +101,10 @@ public class ShowtimeUI {
         }
     }
 
+    /**
+     * displays all available showtimes
+     * @param shc ShowtimeController object
+     */
     public static void displayShowtimes(ShowtimeController shc) {
         ArrayList<Showtime> showtimes = shc.getAllShowtimes();
         for (int i = 0; i < showtimes.size(); i++) {
@@ -96,6 +112,11 @@ public class ShowtimeUI {
         }
     }
 
+    /**
+     * Prompts user to enter valid ShowTime ID and reprompt in the case of invalid ID
+     * @param shc The showtimeController object
+     * @return The showtime ID
+     */
     public static int promptValidShowtimeId(ShowtimeController shc) {
         displayShowtimes(shc);
         int showtimeId;
@@ -110,6 +131,15 @@ public class ShowtimeUI {
         return showtimeId;
     }
 
+    /**
+     * Creates a new shotime in specific cineplex
+     * @param shc The ShowtimeController object
+     * @param cinemaId The cinema ID
+     * @param cineplexId The cineplex ID
+     * @param height The height of cinema
+     * @param width The width of cinema
+     * @param seatConfiguration The desired seat configuration of cinema
+     */
     public static void createShowtime(ShowtimeController shc, int cinemaId, int cineplexId, int height, int width, String seatConfiguration) {
         // Cinemahall should be given
         System.out.println("Creating new showtime:");
@@ -123,6 +153,11 @@ public class ShowtimeUI {
         shc.addShowtime(s);
     }
 
+    /**
+     * Prompots user to enter ShowTime date and reprompt in the case of invalid date
+     * @param shc The ShowtimeController object
+     * @return The valid date of new Showtime
+     */
     public static Date promptValidShowtimeDate(ShowtimeController shc) {
         String timeslot, movieDate;
         DateFormat checkValidDate = new SimpleDateFormat("ddMMyyyy");

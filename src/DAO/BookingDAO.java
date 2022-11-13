@@ -3,9 +3,24 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Booking;
 
+/**
+ * Represents data access object related to booking information
+ * @version 1.0
+ * @since 2022-11-13
+ *
+ */
 public class BookingDAO extends BaseDAO {
+    /**
+     * Base path of booking database for readability
+     */
     private String BASEPATH = "src/database/User/Booking/";
 
+
+    /**
+     * Saves updated booking state of the application to the database
+     * @param instances The array of Booking object that represents one booking history of specific moviegoer
+     * @param movieGoerId The ID of movie goer
+     */
     public void save(ArrayList<Booking> instances, int movieGoerId) {
         String FILEPATH = BASEPATH + movieGoerId + ".csv";
         emptyFile(FILEPATH);
@@ -23,7 +38,12 @@ public class BookingDAO extends BaseDAO {
             writeLine(FILEPATH, writeStr);
         }
     }
-    
+
+    /**
+     * Loads booking of particular moviegoer and put it in an array of Booking object
+     * @param movieGoerId The moviegoer's ID whose data which to be fetched
+     * @return ArrayList of Booking object fetched from database
+     */
     public ArrayList<Booking> load(int movieGoerId) {
         String FILEPATH = BASEPATH + movieGoerId + ".csv";
         LinkedList<String> instances = this.getData(FILEPATH);

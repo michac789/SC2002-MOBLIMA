@@ -3,10 +3,26 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Cinema;
 
+/**
+ * Represents data access object related to cinemas
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class CinemaDAO extends BaseDAO {
+    /**
+     * Base path of cinema database for readability
+     */
     String BASEPATH = "src/database/Cineplex/";
+    /**
+     * File path for particular cinemas database in one cineplex
+     */
     String FILEPATH;
 
+    /**
+     * Saves updated cinema state of the application to the database
+     * @param instances The array of Cinema object that represents one cinema of specific cineplex
+     * @param cineplexId The ID of cineplex
+     */
     public void save(ArrayList<Cinema> instances, int cineplexId) {
         FILEPATH = BASEPATH + cineplexId + "/Cinemas.csv";
         emptyFile(FILEPATH);
@@ -24,7 +40,12 @@ public class CinemaDAO extends BaseDAO {
             instance.getController().save();
         }
     }
-    
+
+    /**
+     * Loads cinema of particular cineplex and put it in array of Cinema object
+     * @param cineplexId The ID of cineplex
+     * @return ArrayList of Cinema object fetched from database
+     */
     public ArrayList<Cinema> load(int cineplexId) {
         FILEPATH = BASEPATH + cineplexId + "/Cinemas.csv";
         LinkedList<String> instances = getData(FILEPATH);

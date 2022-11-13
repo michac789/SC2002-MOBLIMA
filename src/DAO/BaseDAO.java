@@ -2,49 +2,16 @@ package DAO;
 import java.io.*;
 import java.util.LinkedList;
 
+/**
+ * Represents the superclass of all DAO class that serves common functionalities
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public abstract class BaseDAO {
-    /*
-        You should specify the file path on where to store the database
-        in form of csv files.
-    */
-    // private String FILEPATH = "some-path";
-
-    /*
-        The 'save' method saves all the changes from objects into database.
-        You should define this method and change 'BaseModel' with whatever your
-        class name is. Then, replace the string 'todo' with the accessors
-        from the object instance using csv format. The commented code below
-        provides a template for you to copy paste this method defintion.
-    */
-    // public <T> void save(ArrayList<T> instances) {
-    //     emptyFile(FILEPATH);
-    //     String writeStr = "";
-    //     for (int i = 0; i < instances.size(); i++) {
-    //         T instance = instances.get(i);
-    //         writeStr = String.format("todo", instance);
-    //         writeLine(FILEPATH, writeStr);
-    //     }
-    // }
-
-    /*
-        The 'load' method loads all the data from the database into objects.
-        You should define this method and change 'BaseModel' with whatever
-        your class name is. Then, replace the string 'todo' with creating
-        your new class, converting however many fields you have from string
-        to the appropriate data types. The commented code below provides a
-        template for you to copy paste this method defintion.
-    */
-    // public <T> ArrayList<T> load(Class<T> obj) {
-    //     LinkedList<String> instances = this.getData(FILEPATH);
-    //     ArrayList<T> returnList = new ArrayList<T>();
-    //     for (int i = 0; i < instances.size(); i++) {
-    //         String[] x = instances.get(i).split(",");
-    //         T newInstance = obj.newInstance("todo");
-    //         returnList.add(newInstance);
-    //     }
-    //     return returnList;
-    // }
-
+    /**
+     * Empties the database csv file
+     * @param path The path of database file
+     */
     public void emptyFile(String path) {
         BufferedWriter bw;
         try {
@@ -56,6 +23,11 @@ public abstract class BaseDAO {
         }
     }
 
+    /**
+     * Writes a line in database in the file specified in the path
+     * @param path The path of database file
+     * @param str The string that is about to be written in database
+     */
     public void writeLine(String path, String str) {
         BufferedWriter bw;
         try {
@@ -74,6 +46,11 @@ public abstract class BaseDAO {
         }
     }
 
+    /**
+     * Gets data from the file specified in the path
+     * @param path The path of database file
+     * @return Linked list containing each line of data read
+     */
     public LinkedList<String> getData(String path) {
         BufferedReader br;
         try {

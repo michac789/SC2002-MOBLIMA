@@ -3,9 +3,22 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Review;
 
+/**
+ * Represeents data access object related to review
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class ReviewDAO extends BaseDAO {
+    /**
+     * Base path of review database for readability
+     */
     String BASEPATH = "src/database/Movie/Review/";
 
+    /**
+     * Save update review state of the application to the database
+     * @param instances The array of Review object that represents one review of specific movie
+     * @param movieId The ID of the movie
+     */
     public void save(ArrayList<Review> instances, int movieId) {
         String FILEPATH = BASEPATH + movieId + ".csv";
         emptyFile(FILEPATH);
@@ -23,6 +36,11 @@ public class ReviewDAO extends BaseDAO {
         }
     }
 
+    /**
+     * Loads reviews of particular movie anb put it on array of Review object
+     * @param movieId The ID of the movie
+     * @return ArrayList of Review object fetched from database
+     */
     public ArrayList<Review> load(int movieId) {
         String FILEPATH = BASEPATH + movieId + ".csv";
         LinkedList<String> instances = this.getData(FILEPATH);

@@ -14,7 +14,7 @@ public class AdminUI {
     public static AdminController adminController;
     
     /**
-     * Main function that is called when log in as admin
+     * Main function that is called when logged in as admin
      * Authenticate admin before calling 'AdministratorAction' function
      */ 
     public static void main() {
