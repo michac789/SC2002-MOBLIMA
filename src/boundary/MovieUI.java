@@ -156,8 +156,10 @@ public class MovieUI {
         ArrayList<Movie> movies = mc.getAllMovies();
         for (int i = 0; i < movies.size(); i++) {
             Movie m = movies.get(i);
-            if (m.getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
-                System.out.println("Movie ID " + m.getMovieId() + ": " + m.getTitle());
+            if (m.getShowStatus() == Movie.showStatusOptions.NOW_SHOWING ||
+                m.getShowStatus() == Movie.showStatusOptions.PREVIEW) {
+                System.out.println("Movie ID " + m.getMovieId() + ": " + m.getTitle() +
+                    "(" + m.getShowStatus() +")");
             }
         }
         System.out.println("");

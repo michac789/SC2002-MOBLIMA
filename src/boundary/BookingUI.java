@@ -31,7 +31,7 @@ public class BookingUI {
         while (true) {
             // prompt user for movie id
             MovieUI.displayAllShowingMovies();
-            int movieId = MovieUI.promptValidMovieId(false, false, false);
+            int movieId = MovieUI.promptValidMovieId(true, false, false);
             if (movieId == -1) { break;}
 
             while (true) {
