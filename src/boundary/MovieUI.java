@@ -159,7 +159,7 @@ public class MovieUI {
             if (m.getShowStatus() == Movie.showStatusOptions.NOW_SHOWING ||
                 m.getShowStatus() == Movie.showStatusOptions.PREVIEW) {
                 System.out.println("Movie ID " + m.getMovieId() + ": " + m.getTitle() +
-                    "(" + m.getShowStatus() +")");
+                    " (" + m.getShowStatus() +")");
             }
         }
         System.out.println("");

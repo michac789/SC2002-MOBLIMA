@@ -110,24 +110,24 @@ public class BookingController {
 
         // discount if movie goer is a child or senior citizen
         MovieGoer.Category mgoer = AppController.mgc.getMovieGoerById(movieGoerId).getAgeCategory();
-        if (mgoer == MovieGoer.Category.CHILD) {
+        if (mgoer == MovieGoer.Category.CHILD && Settings.childDiscount != 0) {
             UtilUI.printCyan("Child Discount (" + Settings.childDiscount + "%) (-$" +
                     String.format("%.2f", price * ((float) Settings.childDiscount / 100)) + ")");
             price = price * (1 - (float) Settings.childDiscount / 100);
         }
-        if (mgoer == MovieGoer.Category.SENIOR_CITIZEN) {
+        if (mgoer == MovieGoer.Category.SENIOR_CITIZEN && Settings.seniorDiscount != 0) {
             UtilUI.printCyan("Senior Citizen Discount (" + Settings.seniorDiscount + "%) (-$" +
                     String.format("%.2f", price * ((float) Settings.seniorDiscount / 100)) + ")");
             price = price * (1 - (float) Settings.seniorDiscount / 100);
         }
 
         // afternoon and midnight discount
-        if (isAfternoonShowtime(s.getDate())) {
+        if (isAfternoonShowtime(s.getDate()) && Settings.afternoonDiscount != 0) {
             UtilUI.printCyan("Afternoon Showtime Discount (" + Settings.afternoonDiscount + "%) (-$" +
                     String.format("%.2f", price * ((float) Settings.afternoonDiscount / 100)) + ")");
             price = price * (1 - ((float) Settings.afternoonDiscount / 100));
         }
-        if (isMidnightShowtime(s.getDate())) {
+        if (isMidnightShowtime(s.getDate()) && Settings.midnightDiscount != 0) {
             UtilUI.printCyan("Midnight Showtime Discount (" + Settings.midnightDiscount + "%) (-$" +
                     String.format("%.2f", price * ((float) Settings.midnightDiscount / 100)) + ")");
             price = price * (1 - ((float) Settings.midnightDiscount / 100));

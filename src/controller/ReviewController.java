@@ -126,7 +126,7 @@ public class ReviewController {
             validIds.add(m.getMovieId());
             System.out.println(
                 String.format("Movie ID %d: %s ", m.getMovieId(), m.getTitle()) +
-                (hasReviewed(m.getMovieId(), movieGoerId) ? "(reviewed)" : "(not reviewed")
+                (hasReviewed(m.getMovieId(), movieGoerId) ? "(reviewed)" : "(not reviewed)")
             );
         }
         return validIds;
