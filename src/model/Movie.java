@@ -82,6 +82,7 @@ public class Movie {
             "Movie ID      : " + this.movieId + "\n" +
             "Movie Title   : " + this.title + "\n" +
             "Duration      : " + this.durationMinutes + "\n" +
+            "Synopsis      : \n" + this.synopsis + "\n" +
             "Director      : " + this.director + "\n" +
             "Cast          : " + this.cast + "\n" +
             "Show Status   : " + this.showStatus + "\n" +
