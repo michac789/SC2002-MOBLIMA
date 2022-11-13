@@ -1,2 +1,2 @@
-silverPrice,goldPrice,platinumPrice,charge3D,chargeBlockbuster,chargeHolidaychildDiscount,seniorDiscount,afternoonDiscount,midnightDiscount,promoDiscount,promoCode
-8.00,10.50,15.00,4.30,3.00,1.90,10,15,20,25,32,123456
+silverPrice,goldPrice,platinumPrice,charge3D,chargeBlockbuster,chargeHoliday,childDiscount,seniorDiscount,afternoonDiscount,midnightDiscount,promoDiscount,promoCode
+8.00,10.50,15.00,4.30,3.00,1.90,10,15,20,0,32,123456
