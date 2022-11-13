@@ -56,27 +56,51 @@ public class Booking {
     }
 
     /**
-     * Getter for user ID related to booking object
+     * Gets user ID related to booking object
      * @return The user ID
      */
     public int getUserId() { return this.userId;}
 
     /**
-     * Getter for movie title related to booking object
+     * Gets movie title related to booking object
      * @return The title of the movie
      */
     public String getTitle() { return this.title;}
 
     /**
-     * Getter for location of the booking
-     * @return
+     * Gets location of the booking
+     * @return The location of the booking
      */
     public String getLocation() { return this.location;}
+
+    /**
+     * Gets the cinema code of the booking
+     * @return The cinema code of the booking
+     */
     public int getCinemaCode() { return this.cinemaCode;}
+
+    /**
+     * Gets the date and time of the booking
+     * @return The string of date and time of booking
+     */
     public String getDatetime() { return this.datetime;}
+
+    /**
+     * Gets the seat of the booking
+     * @return The string of booked seat number
+     */
     public String getSeat() { return this.seat;}
+
+    /**
+     * Gets the price of one specific booking
+     * @return
+     */
     public float getPrice() { return this.price;}
 
+    /**
+     * Formats the printing of booking information consisting of title, location, cinemaCode, datetime, seat, and price
+     * @return The String representation of booking meta information
+     */
     public String toString() {
         return
             "Movie Title           : " + this.title + "\n" +
