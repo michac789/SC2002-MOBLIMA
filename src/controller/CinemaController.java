@@ -41,9 +41,9 @@ public class CinemaController {
     }
 
     public void createCinema(int height, int width, showClassOptions c, String s) {
-        String BASEPATH = "src/database/Cineplex/" + cineplexId + "/Showtime_";
         int newCode = this.cinemas.size() + 1;
-        UtilDAO.createFile(BASEPATH + newCode + ".csv");
+        cinemaDao.createCinemaShowtimeFile(this.cineplexId, newCode);
+
         Cinema cinema = new Cinema(cineplexId, newCode, height, width, c, s);
         this.cinemas.add(cinema);
     }

@@ -90,9 +90,9 @@ public class MovieController {
             String title, int durationMinutes, String synopsis, String director, String cast,
             Movie.showStatusOptions showStatus, Movie.ageRatingOptions ageRating,
             boolean is3D, boolean isBlockbuster) {
-        String BASEPATH = "src/database/Movie/Review/";
         int newMovieId = movies.size() + 1;
-        UtilDAO.createFile(BASEPATH + newMovieId + ".csv");
+        movieDAO.createMovieReviewFile(newMovieId);
+
         Movie m = new Movie(title, durationMinutes, synopsis, director, cast,
             showStatus, ageRating, is3D, isBlockbuster, 0);
         movies.add(m);

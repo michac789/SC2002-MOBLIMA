@@ -43,4 +43,10 @@ public class CinemaDAO extends BaseDAO {
         }
         return returnList;
     }
+
+    public void createCinemaShowtimeFile(int cineplexId, int cinemaId) {
+        String BASEPATH = "src/database/Cineplex/" + cineplexId + "/Showtime_";
+        UtilDAO.createFile(BASEPATH + cinemaId + ".csv");
+
+    }
 }

@@ -43,9 +43,9 @@ public class MovieGoerController {
 
     public void createNewMovieGoer(String username, String password,
             String email, String phoneNumber, int age) {
-        String BASEPATH = "src/database/User/Booking/";
         int newMovieGoerId = MovieGoer.movieGoerCount + 1;
-        UtilDAO.createFile(BASEPATH + newMovieGoerId + ".csv");
+        movieGoerDao.createUserBookingFile(newMovieGoerId);
+        
         MovieGoer mg = new MovieGoer(username, password, phoneNumber, email, age);
         movieGoers.add(mg);
     }

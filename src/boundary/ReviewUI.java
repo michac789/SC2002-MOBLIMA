@@ -1,8 +1,6 @@
 package boundary;
-import java.util.ArrayList;
+
 import controller.AppController;
-import controller.ReviewController;
-import model.Movie;
 
 public class ReviewUI {
     public static void main(int movieGoerId) {
