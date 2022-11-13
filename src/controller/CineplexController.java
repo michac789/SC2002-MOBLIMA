@@ -25,15 +25,9 @@ public class CineplexController {
     }
 
     public void createCineplex(String location) {
-        String BASEPATH = "src/database/Cineplex/";
         int newCineplexId = Cineplex.getNumCineplex() + 1;
-        UtilDAO.createFolder(BASEPATH + newCineplexId);
-        UtilDAO.createFile(BASEPATH + newCineplexId + "/Cinemas.csv");
-        UtilDAO.writeFile(
-            BASEPATH + "Cineplexes.csv",
-            String.format("%d,%s", newCineplexId, location),
-            true
-        );
+        cineplexDao.createCineplexFolder(newCineplexId, location);
+
         Cineplex newCineplex = new Cineplex(location);
         this.cineplexes.add(newCineplex);
     }
@@ -42,12 +36,14 @@ public class CineplexController {
         this.cineplexes.get(cineplexId - 1).setLocation(newLocation);
     }
 
-    public void displayCineplexesByMovieId(int movieId) {
+    public ArrayList<Integer> displayCineplexesByMovieId(int movieId) {
+        ArrayList<Integer> validIds = new ArrayList<Integer>();
         int count = 0;
         for (int i = 0; i < cineplexes.size(); i++) {
             Cineplex cineplex = cineplexes.get(i);
             CinemaController cinemaController = cineplexes.get(i).getController();
             if (cinemaController.isMovieExist(movieId)) {
+                validIds.add(i + 1);
                 System.out.println(cineplex);
                 count++;
             }
@@ -55,6 +51,7 @@ public class CineplexController {
         if (count == 0){
             System.out.println("No cinema are currently showing this movie");
         }
+        return validIds;
     }
 
     public int getCineplexIdByLocation(String location){

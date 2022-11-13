@@ -1,18 +1,16 @@
 package boundary;
-import java.util.Scanner;
+
 import controller.AppController;
 
 public class ReviewUI {
-    private static Scanner sc = new Scanner(System.in);
-
     public static void main(int movieGoerId) {
         while (true) {
+            UtilUI.printBlue("Review Panel");
             System.out.print(
-                "1. View All My Reviews\n" +
-                "2. Create New Review\n" +
-                "3. Exit\n");
-            System.out.print("Select action: ");  
-            int choice = sc.nextInt();
+                "(1) View All My Reviews\n" +
+                "(2) Create New Review\n" +
+                "(3) Exit\n");
+            int choice = UtilUI.getInt("Select action: ");  
             switch (choice) { 
                 case 1:
                     AppController.mgc.displayAllReviewsByMovieGoerId(movieGoerId);
@@ -23,32 +21,37 @@ public class ReviewUI {
                 case 3:
                     return;
                 default:
-                    System.out.println("Invalid action, try again!");
+                    UtilUI.printRed("Invalid action, try again!");
                     break;
             }
         }
     }
 
     private static void newReview(int movieGoerId) {
-        System.out.println("|=========|Review Movie|=========|");
-        System.out.print("Enter a movie ID: ");
-        // TODO - validate valid movie id, make sure user haven't review before
-        int movieId = sc.nextInt();
+        UtilUI.printBlue("|=========|Review Movie|=========|");
+        // ArrayList<Integer> validIds = ReviewController.bookedMovies(movieGoerId);
+        // int movieId = UtilUI.promptInt(validIds, "Enter a movie ID: ");
+        // if (ReviewController.hasReviewed(movieId, movieGoerId)) {
+        //     UtilUI.printRed("You have reviewed this movie before! You cannot review more than once!");
+        //     return;
+        // } TODO - buggy
+
+        int movieId = UtilUI.getInt("Enter movie ID: ");
+
+        if (movieId == -1) { return;}
         int reviewScore;
         do {
-            System.out.print("Enter Movie Rating (1-5): ");
-            reviewScore = sc.nextInt();
-            sc.nextLine();
+            reviewScore = UtilUI.getInt("Enter Movie Rating (1-5): ");
             if (reviewScore < 1 || reviewScore > 5) {
-                System.out.println("Invalid Entry!");
+                UtilUI.printRed("Invalid entry, only integer 1 to 5 are allowed!");
             } else {
                 break;
             }
         } while (true);
-        System.out.print("Enter your comment: ");
-        String comment = sc.nextLine();
+        String comment = UtilUI.getStrSafe("Enter your comment: ");
+        if (comment.equals("-1")) { return;}
         AppController.mc.getMovieById(movieId).getController()
             .createReview(movieGoerId, reviewScore, comment);
-        System.out.println("Review successfully created");
+        UtilUI.printGreen("Review successfully created");
     }
 }

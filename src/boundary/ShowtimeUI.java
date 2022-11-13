@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 import controller.AppController;
 import controller.CinemaController;
 import controller.ShowtimeController;
@@ -13,8 +12,6 @@ import model.Movie;
 import model.Showtime;
 
 public class ShowtimeUI {
-    private static Scanner sc = new Scanner(System.in);
-    
     public static void admin() {
         while (true) {
             int cineplexId = CineplexUI.promptValidCineplexId();
@@ -31,12 +28,12 @@ public class ShowtimeUI {
                 Cinema selectedCinema =  cc.getCinemaByCode(cinemaId);
                 ShowtimeController shc = selectedCinema.getController();
                 while (true) {
-                    System.out.println("|=========|Showtime Admin Panel|=========|");
+                    UtilUI.printBlue("|=========|Showtime Admin Panel|=========|");
                     System.out.print(
-                                    "1. Display All Showtimes\n" +
-                                    "2. Create new Showtime\n" +
-                                    "3. Edit Showtime\n" +
-                                    "4. Exit\n");
+                                    "(1) Display All Showtimes\n" +
+                                    "(2) Create new Showtime\n" +
+                                    "(3) Edit Showtime\n" +
+                                    "(4) Exit\n");
                     int choice = UtilUI.getInt("Select Action: ");
                     switch (choice) {
                         case 1:
@@ -51,7 +48,7 @@ public class ShowtimeUI {
                         case 4:
                             return;
                         default:
-                            System.out.println("Invalid action, try again!");
+                            UtilUI.printRed("Invalid action, try again!");
                             break;
                     }
                 }
@@ -68,10 +65,10 @@ public class ShowtimeUI {
         int option;
         while (true) {
             System.out.print(
-                    "1. Edit Showtime Date & Time\n" +
-                            "2. Edit Showing Movie\n" +
-                            "3. Remove Showtime\n" +
-                            "4. Exit\n");
+                    "(1) Edit Showtime Date & Time\n" +
+                    "(2) Edit Showing Movie\n" +
+                    "(3) Remove Showtime\n" +
+                    "(4) Exit\n");
             option = UtilUI.getInt("Select action: ");
             switch (option) {
                 case 1:
@@ -96,12 +93,11 @@ public class ShowtimeUI {
         ArrayList<Showtime> showtimes = shc.getAllShowtimes();
         for (int i = 0; i < showtimes.size(); i++) {
             System.out.printf("%3d: %s\n", (i+1), showtimes.get(i));
-            // TODO - print available seats
         }
     }
 
     public static int promptValidShowtimeId(ShowtimeController shc) {
-        // display showtime
+        displayShowtimes(shc);
         int showtimeId;
         while (true) {
             showtimeId = UtilUI.getInt("Enter showtime id: (enter -1 to exit)");
@@ -109,7 +105,7 @@ public class ShowtimeUI {
             if (showtimeId >= 1 && showtimeId <= shc.getShowtimeCount()) {
                 break;
             }
-            System.out.println("Invalid Showtime ID");
+            UtilUI.printRed("Invalid Showtime ID");
         }
         return showtimeId;
     }
@@ -118,7 +114,7 @@ public class ShowtimeUI {
         // Cinemahall should be given
         System.out.println("Creating new showtime:");
 
-        int movieId = MovieUI.promptValidMovieId(true, true, true); // TODO - careful!
+        int movieId = MovieUI.promptValidMovieId(true, true, false);
         Movie m = AppController.mc.getMovieById(movieId);
 
         Date formattedDate = promptValidShowtimeDate(shc);
@@ -138,14 +134,14 @@ public class ShowtimeUI {
                 try {
                     testDate = checkValidDate.parse(movieDate);
                 } catch (ParseException e) {
-                    System.out.println("Invalid Date Entry");
+                    UtilUI.printRed("Invalid Date Entry");
                     continue;
                 }
 
                 if (testDate != null) {
                     break;
                 }
-                System.out.println("Invalid movie date entered.");
+                UtilUI.printRed("Invalid movie date entered.");
             }
 
             while (true) {
@@ -164,7 +160,7 @@ public class ShowtimeUI {
                         break;
                     }
                 }
-                System.out.println("Invalid movie time entered.");
+                UtilUI.printRed("Invalid movie time entered.");
             }
 
             DateFormat formatDate = new SimpleDateFormat("ddMMyyyy:HHmm");
@@ -180,7 +176,7 @@ public class ShowtimeUI {
             if (!shc.checkDuplicateShowtime(formattedDate)) {
                 return formattedDate;
             }
-            System.out.println("Existing Showtime with same Time and Date already exist."); // Rerun prompts
+            UtilUI.printRed("Existing Showtime with same Time and Date already exist."); // Rerun prompts
         }
     }
 }

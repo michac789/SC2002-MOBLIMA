@@ -1,8 +1,3 @@
-/*
- * MovieGoerUI.java
- * 
- * This file is used for MovieGoer login/register functionality
- */
 package boundary;
 import controller.AppController;
 

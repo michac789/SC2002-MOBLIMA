@@ -1,13 +1,13 @@
 package model;
 import controller.BookingController;
 
-enum Category {
-    ADULT,
-    SENIOR_CITIZEN,
-    CHILD
-};
-
 public class MovieGoer extends User {
+    public enum Category {
+        ADULT,
+        SENIOR_CITIZEN,
+        CHILD
+    }
+
     public static int movieGoerCount = 0;
     private int id;
     private String email; 

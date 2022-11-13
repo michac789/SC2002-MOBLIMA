@@ -41,9 +41,9 @@ public class CinemaController {
     }
 
     public void createCinema(int height, int width, showClassOptions c, String s) {
-        String BASEPATH = "src/database/Cineplex/" + cineplexId + "/Showtime_";
         int newCode = this.cinemas.size() + 1;
-        UtilDAO.createFile(BASEPATH + newCode + ".csv");
+        cinemaDao.createCinemaShowtimeFile(this.cineplexId, newCode);
+
         Cinema cinema = new Cinema(cineplexId, newCode, height, width, c, s);
         this.cinemas.add(cinema);
     }
@@ -58,7 +58,8 @@ public class CinemaController {
         return false;
     }
     
-    public void displayCinemaAndShowtimeByMovieId(int movieId){
+    public ArrayList<Integer> displayCinemaAndShowtimeByMovieId(int movieId){
+        ArrayList<Integer> validIds = new ArrayList<Integer>();
         for (int i = 0; i < cinemas.size(); i++) {
             ArrayList<Showtime> showtimes = cinemas.get(i).getController().getAllShowtimes();
             boolean temp = true;
@@ -66,11 +67,13 @@ public class CinemaController {
                 if (showtimes.get(j).getMovieId() == movieId) {
                     if (temp) {
                         System.out.println(cinemas.get(i));
+                        validIds.add(i + 1);
                         temp = false;
                     }
                     System.out.println(showtimes.get(j));
                 }
             }
         }
+        return validIds;
     }
 }

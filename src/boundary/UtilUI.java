@@ -1,12 +1,5 @@
-/*
- * UtilUI.java
- * 
- * This file contains utility functions to:
- * - display welcome & goodbye message
- * - getting and validate various inputs from the user
- * - print message using color
- */
 package boundary;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -71,6 +64,26 @@ public class UtilUI {
         return number;
     }
 
+    public static int getDiscount() {
+        int number;
+        while (true) {
+            System.out.print("Enter new discount: ");
+            try {
+                number = sc.nextInt();
+                sc.nextLine();
+                if (number <= 0 || number > 100) {
+                    printRed("Discount should only be from 1 to 100 percent!");
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                printRed("Input must be an integer!");
+                sc.nextLine();
+            }
+        }
+        return number;
+    }
+
     /*
      * Utility function to get a valid positive float, used mainly in edit pricings
      * - Display error message and prevent crashing if input is not a float,
@@ -116,6 +129,12 @@ public class UtilUI {
             }
             printRed("Comma is not allowed as it might cause parsing issues!");
         }
+        return str;
+    }
+
+    public static String getStrSafe(String msg) {
+        System.out.print(msg);
+        String str = sc.nextLine().trim();
         return str;
     }
 
@@ -165,5 +184,22 @@ public class UtilUI {
      */
     public static void printPurple(String msg) {
         System.out.println(ANSI_PURPLE + msg + ANSI_RESET);
+    }
+
+    public static void printCyan(String msg) {
+        System.out.println(ANSI_CYAN + msg + ANSI_RESET);
+    }
+
+    public static int promptInt(ArrayList<Integer> list, String str) {
+        list.add(-1);
+        while (true) {
+            int input = getInt(str);
+            for (int i = 0; i < list.size(); i++) {
+                if (input == list.get(i)) {
+                    return input;
+                }
+            }
+            printRed("Invalid input!");
+        }
     }
 }

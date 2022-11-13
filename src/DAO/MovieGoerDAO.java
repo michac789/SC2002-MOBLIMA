@@ -8,7 +8,7 @@ public class MovieGoerDAO extends BaseDAO {
 
     public void save(ArrayList<MovieGoer> instances) {
         emptyFile(FILEPATH);
-        String header = "id,username,email,phoneNumber,age";
+        String header = "id,username,password,email,phoneNumber,age";
         writeLine(FILEPATH, header);
         String writeStr = "";
         for (int i = 0; i < instances.size(); i++) {
@@ -34,5 +34,10 @@ public class MovieGoerDAO extends BaseDAO {
             returnList.add(newInstance);
         }
         return returnList;
+    }
+
+    public void createUserBookingFile(int movieGoerId) {
+        String BASEPATH = "src/database/User/Booking/";
+        UtilDAO.createFile(BASEPATH + movieGoerId + ".csv");
     }
 }

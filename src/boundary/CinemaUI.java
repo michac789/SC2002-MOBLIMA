@@ -5,46 +5,44 @@ import model.Cinema;
 
 public class CinemaUI {
     public static void admin() {
+        CineplexUI.displayAllCineplexes();
         int id = CineplexUI.promptValidCineplexId();
         if (id == -1) { return;}
         CinemaController cc = AppController.cc.getCineplexById(id).getController();
         while (true) {
-            System.out.println("|=========|Cinema Admin Panel|=========|");
+            UtilUI.printBlue("\n|=========|Cinema Admin Panel|=========|");
             System.out.println(AppController.cc.getCineplexById(id));
             System.out.print(
-                "1. Display All Cinemas\n" +
-                "2. Cinema Detailed View\n" +
-                "3. Create New Cinema\n" +
-                "4. Exit\n");
+                "(1) Cinema Detailed View\n" +
+                "(2) Create New Cinema\n" +
+                "(3) Exit\n");
             int choice = UtilUI.getInt("Select action: ");
             switch (choice) { 
                 case 1:
-                    cc.displayAllCinemas();
-                    break;
-                case 2:
                     displayDetailedCinemaInfo(cc);
                     break;
-                case 3:
+                case 2:
                     createCinema(cc);
                     break;
-                case 4:
+                case 3:
                     return;
                 default:
-                    System.out.println("Invalid action, try again!");
+                    UtilUI.printRed("Invalid action, try again!");
                     break;
             }
         }
     }
-
+    
     public static int promptValidCinemaId(CinemaController cc) {
         int cinemaCode;
         while (true) {
+            cc.displayAllCinemas();
             cinemaCode = UtilUI.getInt("Enter cinema code: (enter -1 to exit) ");
             if (cinemaCode == -1) { return -1;}
             if (1 <= cinemaCode && cinemaCode <= cc.getCinemasCount()) {
                 break;
             }
-            System.out.println("Invalid Cinema Code");
+            UtilUI.printRed("Invalid Cinema Code");
         }
         return cinemaCode;
     }
@@ -54,11 +52,11 @@ public class CinemaUI {
         if (cinemaCode == -1) { return;}
         Cinema c = cc.getCinemaByCode(cinemaCode);
         System.out.println(String.format(
-            "Cineplex ID: %d\n" +
-            "Cinema Code: %d\n" +
-            "Cinema Height: %d\n" +
-            "Cinema Width: %d\n" +
-            "Cinema Class: %d\n",
+            "Cineplex ID   : %d\n" +
+            "Cinema Code   : %d\n" +
+            "Cinema Height : %d\n" +
+            "Cinema Width  : %d\n" +
+            "Cinema Class  : %s",
             c.getCineplexId(), c.getCinemaCode(),
             c.getHeight(), c.getWidth(), c.getCinemaClass()
         ));
@@ -66,22 +64,28 @@ public class CinemaUI {
     }
 
     private static void createCinema(CinemaController cc) {
-        System.out.println("### Creating New Cinema ####");
-        int height = UtilUI.getInt("Enter height: ");
+        UtilUI.printBlue("### Creating New Cinema ####");
+        int height = UtilUI.getInt("Enter height: (enter -1 to cancel) ");
+        if (height == -1) { return;}
         int width = UtilUI.getInt("Enter width: ");
+        if (width == -1) { return;}
         String cinemaClass;
         do {
             cinemaClass = UtilUI.getStr("Enter class (SILVER/GOLD/PLATINUM): ");
             if (cinemaClass.equals("SILVER") || cinemaClass.equals("GOLD") ||
                 cinemaClass.equals("PLATINUM")) { break;}
-            System.out.println("Invalid cinema class");
+            UtilUI.printRed("Invalid cinema class");
         } while (true);
         String seatConfiguration, error = "";
         while (true) {
             System.out.println("Enter seat configuration below");
             System.out.println("Write 'X' for not a seat, 'S' for seat");
             System.out.println("The length of string should be equal to width times height");
-            seatConfiguration = UtilUI.getStr("");
+            UtilUI.printPurple("For example, if you have a cinema with height 3, width 4, and the configuration 'XSXSSSXSXXSX'");
+            UtilUI.printPurple("It means you will have a cinema configuration like this:");
+            Cinema.printCinemaLayout(3, 4, "XSXSSSXSSSXS");
+            
+            seatConfiguration = UtilUI.getStr("Enter configuration: ");
             if (seatConfiguration.length() != height * width) {
                 error = "Invalid length";
             }
@@ -92,12 +96,12 @@ public class CinemaUI {
                 }
             }
             if (error.length() == 0) { break;}
-            System.out.println(error);
+            UtilUI.printRed(error);
         }
+        Cinema.printCinemaLayout(height, width, seatConfiguration);
         cc.createCinema(height, width,
             Cinema.showClassOptions.valueOf(cinemaClass),
             seatConfiguration);
-        Cinema.printCinemaLayout(height, width, seatConfiguration);
-        System.out.println("Cinema Layout Successfully Created!");
+        UtilUI.printGreen("Cinema Layout Successfully Created!");
     }
 }

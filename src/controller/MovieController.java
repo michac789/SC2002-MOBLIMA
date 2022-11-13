@@ -1,5 +1,6 @@
 package controller;
 import java.util.*;
+import java.util.ArrayList;
 import DAO.MovieDAO;
 import DAO.UtilDAO;
 import model.Movie;
@@ -7,23 +8,38 @@ import model.Movie;
 public class MovieController {
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private MovieDAO movieDAO = new MovieDAO();
-    private Scanner sc;
 
-    private int[] movieIdList; //??
-
+    /*
+     * Load necessary information regarding movies from database
+     * Trigger the loading of all reviews on each movie
+     * Called at the start of the program
+     */
     public MovieController() {
         this.movies = this.movieDAO.load();
-        this.sc = new Scanner(System.in);
     }
 
+    /*
+     * Save all local changes regarding movies to the database
+     * Call the 'save' method for review controllers on all movies
+     * Called when terminating the program
+     */
     public void save() {
         this.movieDAO.save(movies);
     }
 
+    /*
+     * Return an arraylist of all movies
+     * Used in admin functionality
+     */
     public ArrayList<Movie> getAllMovies() {
         return movies;
     }
 
+    /*
+     * Return an arraylist of all movies,
+     * except movies that has status of 'END_OF_SHOWING'
+     * Used in movie goer functionality
+     */
     public ArrayList<Movie> getShowingMovies() {
         int nowShowingIndex = 0;
         int previewIndex = 0;
@@ -35,15 +51,19 @@ public class MovieController {
                 showingMovies.add(nowShowingIndex, m);
                 nowShowingIndex++;
                 previewIndex++;
-            }else if (m.getShowStatus() == Movie.showStatusOptions.PREVIEW) {
+            } else if (m.getShowStatus() == Movie.showStatusOptions.PREVIEW) {
                 showingMovies.add(previewIndex, m);
                 previewIndex++;
-            }else if (m.getShowStatus() == Movie.showStatusOptions.COMING_SOON) {
+            } else if (m.getShowStatus() == Movie.showStatusOptions.COMING_SOON) {
                 showingMovies.add(m); // Add to last index
             }
         }
         return showingMovies;
     }
+
+    /*
+     * Return a movie object given its id
+     */
     public Movie getMovieById(int id) {
         for (Movie m: this.movies) {
             if (m.getMovieId() == id) {
@@ -52,36 +72,38 @@ public class MovieController {
         }
         return null;
     }
+
+    public Movie getMovieByTitle(String title) {
+        for (Movie m: this.movies) {
+            if (m.getTitle() == title) {
+                return m;
+            }
+        }
+        return null;
+    }
     
+    /*
+     * Create new movie given information of the movie
+     * Perform necessary action on database
+     */
     public void createMovie(
-            String title, int durationMinutes, String director, String cast,
+            String title, int durationMinutes, String synopsis, String director, String cast,
             Movie.showStatusOptions showStatus, Movie.ageRatingOptions ageRating,
             boolean is3D, boolean isBlockbuster) {
-        String BASEPATH = "src/database/Movie/Review/";
         int newMovieId = movies.size() + 1;
-        UtilDAO.createFile(BASEPATH + newMovieId + ".csv");
-        Movie m = new Movie(title, durationMinutes, director, cast,
+        movieDAO.createMovieReviewFile(newMovieId);
+
+        Movie m = new Movie(title, durationMinutes, synopsis, director, cast,
             showStatus, ageRating, is3D, isBlockbuster, 0);
         movies.add(m);
     }
 
-    public int displayShowingMovies() {
-        int i = 0;
-        int[] movieIdList = new int[movies.size()];
-        for (int j = 0; j < movies.size(); j++) {
-            if (movies.get(j).getShowStatus() == Movie.showStatusOptions.NOW_SHOWING) {
-                System.out.printf("%d: %s\n", i, movies.get(j).getTitle());
-                movieIdList[i] = j;
-                i++;
-            }
-        }
-        this.movieIdList = movieIdList;
-
-        return i;
-    }
-
+    /*
+     * Display the first 'num' movie that has the highest sales count
+     */
     public void rankMovieBySales(int num) {
-        ArrayList<Movie> sortedMovies = getAllMovies();
+        @SuppressWarnings("unchecked")
+        ArrayList<Movie> sortedMovies = (ArrayList<Movie>) getAllMovies().clone();
         Collections.sort(sortedMovies, new Comparator<Movie>() {
             @Override
             public int compare(Movie m1, Movie m2) {
@@ -91,14 +113,19 @@ public class MovieController {
         for (int i = 0; i < num; i++) {
             Movie movie = sortedMovies.get(i);
             System.out.println(String.format(
-                "Movie ID %d: %s (Total sales: %d)",
+                "Movie ID %d: %-20s (Total sales: %d)",
                 movie.getMovieId(), movie.getTitle(), movie.getSalesCount()
             ));
         }
         System.out.println("");
     }
 
+    /*
+     * Display the first 'num' movie that has the highest rating,
+     * given that there are at least 2 reviews
+     */
     public void rankMovieByRating(int num) {
+        @SuppressWarnings("unchecked")
         ArrayList<Movie> sortedMovies = (ArrayList<Movie>) getAllMovies().clone();
         Collections.sort(sortedMovies, new Comparator<Movie>() {
             @Override
@@ -119,8 +146,8 @@ public class MovieController {
             }
 
             System.out.println(String.format(
-                "Rank %d: %-20s (Average Rating: %.1f, by %d users)",
-                ranking, movie.getTitle(),
+                "Movie ID %d: %-20s (Average Rating: %.1f, by %d users)",
+                movie.getMovieId(), movie.getTitle(),
                 movie.getRating(), movie.getController().getNumReviews()
             ));
             ranking++;
@@ -133,40 +160,19 @@ public class MovieController {
         System.out.println("");
     }
 
-    public int searchMovie(String title) {
-        int i = 0;
-        int[] movieIdList = new int[movies.size()];
-        for (int j=0; j < movies.size();j++) {
-            if (movies.get(j).getTitle().contains(title)) {
-                System.out.printf("%d: %s\n", i, movies.get(j).getTitle());
-                movieIdList[i] = j;
-                i++;
+    /*
+     * Returns an arraylist of movies where 'str' is a substring in its title
+     * Upper case, lower case, blank space are ignored
+     * Used for search feature
+     */
+    public ArrayList<Movie> searchMovie(String str) {
+        ArrayList<Movie> searchResults = new ArrayList<Movie>();
+        for (int i = 0; i < this.movies.size(); i++) {
+            if (this.movies.get(i).getTitle().toLowerCase()
+                    .contains(str.toLowerCase().trim())) {
+                searchResults.add(this.movies.get(i));
             }
         }
-        if (i == 0) {
-            System.out.println("No movies with \"" + title + "\" found.");
-            return -1;
-        }
-        int option;
-        while (true) {
-            System.out.print("Select a movie: ");
-            option = sc.nextInt();
-            if (!(option < 0 || option >= i)) {
-                break;
-            }
-            System.out.println("Invalid Option.");
-        }
-
-        // Navigate to movie
-        return movieIdList[option]; // Return Movie Id
-    }
-
-    public void displayReviews(int movieId) {
-        for (Movie m: this.movies) {
-            if (m.getMovieId() == movieId) {
-                m.getController().displayReviews();
-                break;
-            }
-        }
+        return searchResults;
     }
 }

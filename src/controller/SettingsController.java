@@ -21,7 +21,14 @@ public class SettingsController {
             Settings.platinumPrice,
             Settings.charge3D,
             Settings.chargeBlockbuster,
-            Settings.chargeHoliday
+            Settings.chargeHoliday,
+
+            Settings.childDiscount,
+            Settings.seniorDiscount,
+            Settings.afternoonDiscount,
+            Settings.midnightDiscount,
+            Settings.promoDiscount,
+            Settings.promoCode
         );
         settingsDao.saveHolidayDates(
             Settings.holidayDates
