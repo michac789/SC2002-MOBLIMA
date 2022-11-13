@@ -2,7 +2,6 @@ package controller;
 import java.util.*;
 import java.util.ArrayList;
 import DAO.MovieDAO;
-import DAO.UtilDAO;
 import model.Movie;
 
 public class MovieController {
@@ -75,7 +74,7 @@ public class MovieController {
 
     public Movie getMovieByTitle(String title) {
         for (Movie m: this.movies) {
-            if (m.getTitle() == title) {
+            if (m.getTitle().equals(title)) {
                 return m;
             }
         }

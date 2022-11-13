@@ -31,6 +31,7 @@ public class CineplexDAO extends BaseDAO {
         }
         return returnList;
     }
+    
     public void createCineplexFolder(int cineplexId, String location) {
         String BASEPATH = "src/database/Cineplex/";
         UtilDAO.createFolder(BASEPATH + cineplexId);

@@ -108,10 +108,12 @@ public class BookingController {
     }
     
     private static boolean isAfternoonShowtime(Date d) {
+        // return true if the showtime that starts before 12am-6pm, otherwise false
         return false; // TODO
     }
 
     private static boolean isMidnightShowtime(Date d) {
+        // return true if the showtime that starts at 6pm onwards, otherwise false
         return false; // TODO
     }
 

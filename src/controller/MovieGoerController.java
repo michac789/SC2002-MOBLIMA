@@ -1,7 +1,6 @@
 package controller;
 import java.util.*;
 import DAO.MovieGoerDAO;
-import DAO.UtilDAO;
 import model.Movie;
 import model.MovieGoer;
 import model.Review;
