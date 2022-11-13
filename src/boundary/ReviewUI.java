@@ -32,13 +32,20 @@ public class ReviewUI {
         UtilUI.printBlue("|=========|Review Movie|=========|");
 
         ArrayList<Integer> validIds = ReviewController.bookedMovies(movieGoerId);
-        // int movieId = UtilUI.promptInt(validIds, "Enter a movie ID: ");
-        // if (ReviewController.hasReviewed(movieId, movieGoerId)) {
-        //     UtilUI.printRed("You have reviewed this movie before! You cannot review more than once!");
-        //     return;
-        // } TODO - buggy
-
-        int movieId = UtilUI.getInt("Enter movie ID: ");
+        if (validIds == null) {
+            UtilUI.printRed("You have not booked any movies yet, you can only review movies you have booked!");
+            return;
+        }
+        int movieId;
+        while (true) {
+            movieId = UtilUI.promptInt(validIds, "Enter a movie ID: (enter -1 to exit) ");
+            if (movieId == -1) { return;}
+            if (ReviewController.hasReviewed(movieId, movieGoerId)) {
+                UtilUI.printRed("You have reviewed this movie before! You cannot review more than once!");
+            } else {
+                break;
+            }
+        }
 
         if (movieId == -1) { return;}
         int reviewScore;

@@ -2,6 +2,7 @@ package controller;
 import java.util.ArrayList;
 import DAO.ReviewDAO;
 import model.Booking;
+import model.Movie;
 import model.Review;
 
 public class ReviewController {
@@ -72,8 +73,12 @@ public class ReviewController {
         ArrayList<Booking> bookings = AppController.mgc.getMovieGoerById(movieGoerId).getController().getBookings();
         ArrayList<Integer> validIds = new ArrayList<Integer>();
         for (int i = 0; i < bookings.size(); i++) {
-            validIds.add(i + 1);
-            System.out.println(AppController.mc.getMovieByTitle(bookings.get(i).getTitle()));
+            Movie m = AppController.mc.getMovieByTitle(bookings.get(i).getTitle());
+            validIds.add(m.getMovieId());
+            System.out.println(
+                String.format("Movie ID %d: %s ", m.getMovieId(), m.getTitle()) +
+                (hasReviewed(m.getMovieId(), movieGoerId) ? "(reviewed)" : "(not reviewed")
+            );
         }
         return validIds;
     }

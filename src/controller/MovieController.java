@@ -74,7 +74,7 @@ public class MovieController {
 
     public Movie getMovieByTitle(String title) {
         for (Movie m: this.movies) {
-            if (m.getTitle() == title) {
+            if (m.getTitle().equals(title)) {
                 return m;
             }
         }
