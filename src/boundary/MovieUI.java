@@ -319,7 +319,7 @@ public class MovieUI {
                     mc.getMovieById(movieId).setDurationMinutes(duration);
                     break;
                 case 3:
-                    String synopsis = UtilUI.getStr("Enter new synopsis: ");
+                    String synopsis = UtilUI.getStrSafe("Enter new synopsis: ");
                     mc.getMovieById(movieId).setSynopsis(synopsis);
                     break;
                 case 4:
