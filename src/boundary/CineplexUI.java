@@ -2,9 +2,14 @@ package boundary;
 import java.util.ArrayList;
 import controller.AppController;
 import model.Cineplex;
-
+/**
+ * Represents the boundary of cineplex viewing & editing
+ * Consisting of multiple methods which interact directly with cineplexController
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class CineplexUI {
-    /*
+    /**
      * Called from Admin UI, provide cineplex configuration for admin as follows:
      * - Displaying all current cineplexes
      * - Create new cineplex
@@ -38,8 +43,8 @@ public class CineplexUI {
         }
     }
 
-    /*
-     * Display all cineplexes (ID & location)
+    /**
+     * Displays all cineplexes with its ID and location
      */
     public static void displayAllCineplexes() {
         ArrayList<Cineplex> cineplexes = AppController.cc.getAllCineplexes();
@@ -50,8 +55,8 @@ public class CineplexUI {
         }
     }
 
-    /*
-     * Create new cineplex
+    /**
+     * Creates new cineplex with its validation
      */
     private static void createCineplex() {
         UtilUI.printBlue("Create Cineplex");
@@ -61,7 +66,7 @@ public class CineplexUI {
         UtilUI.printGreen("Cineplex successfully created!");
     }
 
-    /*
+    /**
      * Prompt admin of a valid cineplex ID
      * Edit the location of that cineplex ID and save it
      */
@@ -76,9 +81,10 @@ public class CineplexUI {
         UtilUI.printGreen("Cineplex editing successful!");
     }
 
-    /*
-     * Utility funtion to prompt user for valid cineplex ID
-     * Return the CineplexId
+    /**
+     * Utility funtion to prompt user for cineplex ID.
+     * Able to validate and reprompt the user in case it is given an invalid input
+     * @return The ID of valid cineplex
      */
     public static int promptValidCineplexId() {
         int id;

@@ -3,11 +3,19 @@ import java.util.ArrayList;
 import controller.AppController;
 import controller.MovieController;
 import model.Movie;
-
+/**
+ * Represents the boundary of movie
+ * Consisting of multiple methods which interact directly with movieController to display movies and related information
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class MovieUI {
+    /**
+     * MovieController which interact directly with database
+     */
     private static MovieController mc = AppController.mc;
 
-    /*
+    /**
      * Called in App.java to show all movies except sorted by category,
      * except the category 'END_OF_SHOWING' should not be showed here.
      * It then prompts the user for a valid movie ID, then show a detailed
@@ -49,7 +57,7 @@ public class MovieUI {
         }
     }
 
-    /*
+    /**
      * Prompts user for a searchQuery
      * Displays all movies whose title is a substring of the searchQuery (case insensitive)
      * It can search for movies with any show status (including end_of_showing)
@@ -62,7 +70,7 @@ public class MovieUI {
         System.out.println("");
     }
 
-    /*
+    /**
      * Prompt the user for a valid movie ID, and return the movie ID selected
      * Display appropriate error message if movie ID is invalid or if access not allowed
      * It takes three boolean arguments: prev, comingSoon, end
@@ -93,7 +101,7 @@ public class MovieUI {
         return movieId;
     }
 
-    /*
+    /**
      * Called from AdminUI, provide admin configuration for movies as follows:
      * 1) Displaying all movies (all show status), and detailed view for each movie
      * 2) Create new movie
@@ -127,7 +135,7 @@ public class MovieUI {
         }
     }
 
-    /*
+    /**
      * Display all movies regardless of the show status, used by admin.
      * It then prompts the admin for a movie ID to show detailed view.
      */
@@ -154,7 +162,7 @@ public class MovieUI {
         }
         System.out.println("");
     }
-
+  
     /*
      * Display the first 'num' movie based on the highest sales count
      * Given that there has been 1 movie sale
@@ -227,7 +235,7 @@ public class MovieUI {
         }
     }
 
-    /*
+    /**
      * Display detailed movie information and its reviews
      */
     private static void displayDetailMovieInfo(int movieId) {
@@ -237,7 +245,7 @@ public class MovieUI {
         m.getController().displayReviews();
     }
     
-    /*
+    /**
      * Admin function to create new movie
      */
     private static void createMovie() {
@@ -277,7 +285,7 @@ public class MovieUI {
         );
     }
 
-    /*
+    /**
      * Admin function to edit existing movie
      */
     private static void editMovie() {
