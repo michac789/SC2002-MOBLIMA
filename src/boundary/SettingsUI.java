@@ -5,9 +5,21 @@ import java.text.SimpleDateFormat;
 import controller.SettingsController;
 import model.Settings;
 
+/**
+ * Represents the boundary of settings configuration for admin
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class SettingsUI {
+    /**
+     * Date format object to format date
+     */
     private static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
+    /**
+     * Main function that is called when logged in as admin
+     * Allows to interact with Settings controller directly
+     */
     public static void admin() {
         while (true) {
             UtilUI.printBlue("|=========|Settings Configuration Admin Panel|=========|");
@@ -40,6 +52,9 @@ public class SettingsUI {
         }
     }
 
+    /**
+     * Display the current price settings configuration
+     */
     private static void displayPriceSettings() {
         UtilUI.printBlue("### Displaying Price Settings ###\n" +
             String.format(
@@ -65,6 +80,9 @@ public class SettingsUI {
         );
     }
 
+    /**
+     * Display current holiday dates from database
+     */
     private static void displayHolidayDates() {
         UtilUI.printBlue("### Displaying Holiday Dates ###");
         for (int i = 0; i < Settings.holidayDates.size(); i++) {
@@ -73,6 +91,9 @@ public class SettingsUI {
         System.out.println("");
     }
 
+    /**
+     * Display UI to choose action to edit price configuration
+     */
     private static void editPriceSettings() {
         while (true) {
             UtilUI.printBlue("### Edit Price Configuration ###");
@@ -200,6 +221,9 @@ public class SettingsUI {
         }
     }
 
+    /**
+     * Display UI to choose action to configure holiday dates
+     */
     private static void editHolidayDates() {
         while (true) {
             UtilUI.printBlue("### Edit Holiday Dates ###");

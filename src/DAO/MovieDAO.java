@@ -3,9 +3,21 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Movie;
 
+/**
+ * Represents data access object related ot movie
+ * @version 1.0
+ * @since 2022-11-13
+ */
 public class MovieDAO extends BaseDAO {
+    /**
+     * File path for movie database for readability
+     */
     private static String FILEPATH = "src/database/Movie/Movies.csv";
 
+    /**
+     * Saves updated movie state of the application to the database
+     * @param instances The array of Movie object that represents one movie
+     */
     public void save(ArrayList<Movie> instances) {
         emptyFile(FILEPATH);
         String header = "movieId,title,duration,synopsis,director,cast,showStatus,ageRating,is3D,isBlockbuster,sales";
@@ -28,6 +40,10 @@ public class MovieDAO extends BaseDAO {
         }
     }
 
+    /**
+     * Loads movies and put it in array of Movie object
+     * @return ArrayList of movie object fetched from database
+     */
     public ArrayList<Movie> load() {
         LinkedList<String> instances = getData(FILEPATH);
         ArrayList<Movie> returnList = new ArrayList<Movie>();
