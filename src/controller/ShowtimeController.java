@@ -129,6 +129,6 @@ public class ShowtimeController {
     }
 
     public void removeShowtimeById(int showtimeId) {
-        this.showtimes.remove(showtimeId);
+        this.showtimes.remove(showtimeId-1);
     }
 }

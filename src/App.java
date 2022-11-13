@@ -53,11 +53,11 @@ public class App {
                     break;
                 
                 case 3:
-                    AppController.mc.rankMovieBySales(5);
+                    MovieUI.rankMoviesBySales(5);
                     break;
                 
                 case 4:
-                    AppController.mc.rankMovieByRating(5);
+                    MovieUI.rankMoviesByRating(5);
                     break;
                 
                 case 5:

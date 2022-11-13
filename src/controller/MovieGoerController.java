@@ -45,7 +45,7 @@ public class MovieGoerController {
             String email, String phoneNumber, int age) {
         int newMovieGoerId = MovieGoer.movieGoerCount + 1;
         movieGoerDao.createUserBookingFile(newMovieGoerId);
-        
+
         MovieGoer mg = new MovieGoer(username, password, phoneNumber, email, age);
         movieGoers.add(mg);
     }
