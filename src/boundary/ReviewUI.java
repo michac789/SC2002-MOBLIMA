@@ -2,7 +2,6 @@ package boundary;
 import java.util.ArrayList;
 import controller.AppController;
 import controller.ReviewController;
-import model.Movie;
 /**
  * Represents the boundary of moviegoer's platform to review movie review
  * Consisting of multiple methods which interact directly with reviewController

@@ -2,6 +2,7 @@ package controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import DAO.BookingDAO;
 import boundary.UtilUI;
@@ -43,17 +44,19 @@ public class BookingController {
         } else {
             price += Settings.platinumPrice;
         }
-        UtilUI.printCyan("Single Seat Price: " + price);
+        UtilUI.printCyan("Single Seat Price: $" + String.format("%.2f", price));
 
         // extra charge if movie is in 3D or blockbuster
         Movie m = AppController.mc.getMovieById(s.getMovieId());
         if (m.is3D()) {
             price += Settings.charge3D;
-            UtilUI.printCyan("3D Extra Charge (+$" + Settings.charge3D + ")");
+            UtilUI.printCyan("3D Extra Charge (+$" +
+                String.format("$.2f", Settings.charge3D) + ")");
         }
         if (m.isBlockbuster()) {
             price += Settings.chargeBlockbuster;
-            UtilUI.printCyan("Blockbuster Extra Charge (+$" + Settings.chargeBlockbuster + ")");
+            UtilUI.printCyan("Blockbuster Extra Charge (+$" +
+                String.format("%.2f", Settings.chargeBlockbuster) + ")");
         }
         
         // extra charge if showtime is in holiday date
@@ -63,7 +66,8 @@ public class BookingController {
             String holidayDateFormat = dateFormat.format(Settings.holidayDates.get(i));
             if (showtimeDateFormat.equals(holidayDateFormat)) {
                 price += Settings.chargeHoliday;
-                UtilUI.printCyan("Holiday Date Extra Charge (+$" + Settings.chargeHoliday + ")");
+                UtilUI.printCyan("Holiday Date Extra Charge (+$" +
+                    String.format("%.2f", Settings.chargeHoliday) + ")");
                 break;
             }
         }
@@ -107,16 +111,27 @@ public class BookingController {
         return price * seatsCount;
     }
     
+    // return true if the showtime that starts before 8am-6pm (exclusive 6pm), otherwise false
     private static boolean isAfternoonShowtime(Date d) {
-        // return true if the showtime that starts before 12am-6pm, otherwise false
-        return false; // TODO
+        DateFormat dtFormat = new SimpleDateFormat("dd/MM/yy,HH:mm");
+        try {
+            Date c = dtFormat.parse("01/01/2001,18:00");
+            return compareTimes(c, d);
+        } catch (ParseException e) {}
+        return false;
     }
 
+    // return true if the showtime that starts at 6pm onwards, otherwise false
     private static boolean isMidnightShowtime(Date d) {
-        // return true if the showtime that starts at 6pm onwards, otherwise false
-        return false; // TODO
+        DateFormat dtFormat = new SimpleDateFormat("dd/MM/yy,HH:mm");
+        try {
+            Date c = dtFormat.parse("01/01/2001,18:00");
+            return compareTimes(d, c);
+        } catch (ParseException e) {}
+        return false;
     }
 
+    // utility function to compare the time only of two date objects
     public static boolean compareTimes(Date d1, Date d2) {
         int t1, t2;
         t1 = (int) (d1.getTime() % (24*60*60*1000L));
