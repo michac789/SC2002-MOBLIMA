@@ -1,14 +1,14 @@
 movieId,title,duration,synopsis,director,cast,showStatus,ageRating,is3D,isBlockbuster,sales
-1,Superman,120,synopsissss\sdfds\sdfdsfsd,Hans Ziemer\cast2\cast3,Steve Eagle,NOW_SHOWING,NC16,0,0,553
-2,Final Fantasy,100,synopsissss,Agung,Matthew Osvaldo,END_OF_SHOWING,G,0,0,340
-3,True Love,150,synopsissss,Malika Mada,Sean Owen,NOW_SHOWING,NC16,0,0,276
-4,Insidious,120,synopsissss,Brian Yu,Justin T.,NOW_SHOWING,PG,0,0,105
-5,Inception,120,synopsissss,Joandy,Kevin K,NOW_SHOWING,M18,0,0,99
-6,Batman,300,synopsissss,Bobby Smith,Paul Dano,NOW_SHOWING,PG,0,0,90
-7,Anabelle,142,synopsissss,Jamal Crawford,Kevin Love,NOW_SHOWING,PG,0,0,67
-8,The Terrible,180,synopsissss,John Smith,Bobby Junior Sam Smith,NOW_SHOWING,PG,0,0,28
-9,Animal Crossing,75,synopsissss,Bryan,Kenneth,PREVIEW,R21,0,0,9
-10,a Quiet Place,150,synopsissss,Donald Malan,Kotaro Hans,PREVIEW,PG,0,0,7
-11,Infinity War,90,synopsissss,Sanderson,Leonrich,COMING_SOON,PG,0,0,0
-12,Interstellar,120,synopsissss,Regina Nauli,Carisa Irene,COMING_SOON,R21,0,0,0
-13,Crazy Rich Asians,120,synopsissss,John M Chu,Henry Golding,NOW_SHOWING,PG13,0,0,0
+1,Superman,120,Just before his planet got destroyed\scientist Jor El sends his infant son on a spaceship to Earth,Hans Ziemer,Marlon Brando\Christopher Reeve,NOW_SHOWING,NC16,0,0,553
+2,Final Fantasy,100,This story follows four youths called the Warriors of Light,Agung,Matthew Osvaldo\Alec Baldwin,END_OF_SHOWING,G,0,0,340
+3,True Love,150,A classic love story involving complicated expectations from family and friends,Malika Mada,Sean Owen\Gemma Chan,NOW_SHOWING,NC16,0,0,276
+4,Insidious,120,A story of a haunted house and a comatose son,Brian Yu,Justin T.\Lin Shaye,NOW_SHOWING,PG,0,0,105
+5,Inception,120,A thief steals corporate secrets through dream sharing technology,Joandy,Kevin K\Tom Hardy,NOW_SHOWING,M18,0,0,99
+6,Batman,300,Batman returns to bring justice once again,Bobby Smith,Paul Dano\Robert Pattinson,NOW_SHOWING,PG,0,0,90
+7,Anabelle,142,A horror movie based on a true story that will certainly give you nightmares,Jamal Crawford,Kevin Love\LeBron James,NOW_SHOWING,PG,0,0,67
+8,The Terrible,180,A story of betrayal from the aristocracy,John Smith,Bobby Junior Sam Smith\Mustache Man,NOW_SHOWING,PG,0,0,28
+9,Animal Crossing,75,Film rendition of the classic childhood game,Bryan,Kenneth Lu\Austin Reeves,PREVIEW,R21,0,0,9
+10,a Quiet Place,150,An atypical film that explores different forms of sense,Donald Malan,Kotaro Hans\Owaldi Jr,PREVIEW,PG,0,0,7
+11,Infinity War,90,A culmination of everything involving chaos and war,Sanderson,Leonrich\Tyson Kempton,COMING_SOON,PG,0,0,0
+12,Interstellar,120,An exploration into space takes a dark turn,Regina Nauli,Carisa Irene\Cara Copenhagen,COMING_SOON,R21,0,0,0
+13,Crazy Rich Asians,120,A film that explores the hilarious cultural features of growing up in an Asian household,John M Chu,Henry Golding\Constance Wu,NOW_SHOWING,PG13,0,0,2
