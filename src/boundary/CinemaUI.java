@@ -3,7 +3,7 @@ import controller.AppController;
 import controller.CinemaController;
 import model.Cinema;
 /**
- * Represents the boundary of cinema viewing & editing
+ * Represents the boundary of cinema viewing and editing
  * Consisting of multiple methods which interact directly with cinemaController
  * @version 1.0
  * @since 2022-11-13
