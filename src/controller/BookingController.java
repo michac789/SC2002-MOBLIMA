@@ -76,31 +76,31 @@ public class BookingController {
         MovieGoer.Category mgoer = AppController.mgc.getMovieGoerById(movieGoerId).getAgeCategory();
         if (mgoer == MovieGoer.Category.CHILD) {
             UtilUI.printCyan("Child Discount (" + Settings.childDiscount + "%) (-$" +
-                String.format("%.2f", price * ((float) Settings.childDiscount / 100)) + ")");
+                    String.format("%.2f", price * ((float) Settings.childDiscount / 100)) + ")");
             price = price * (1 - (float) Settings.childDiscount / 100);
         }
         if (mgoer == MovieGoer.Category.SENIOR_CITIZEN) {
             UtilUI.printCyan("Senior Citizen Discount (" + Settings.seniorDiscount + "%) (-$" +
-                String.format("%.2f", price * ((float) Settings.seniorDiscount / 100)) + ")");
+                    String.format("%.2f", price * ((float) Settings.seniorDiscount / 100)) + ")");
             price = price * (1 - (float) Settings.seniorDiscount / 100);
         }
 
         // afternoon and midnight discount
         if (isAfternoonShowtime(s.getDate())) {
             UtilUI.printCyan("Afternoon Showtime Discount (" + Settings.afternoonDiscount + "%) (-$" +
-                String.format("%.2f", price * ((float) Settings.afternoonDiscount / 100)) + ")");
+                    String.format("%.2f", price * ((float) Settings.afternoonDiscount / 100)) + ")");
             price = price * (1 - ((float) Settings.afternoonDiscount / 100));
         }
         if (isMidnightShowtime(s.getDate())) {
             UtilUI.printCyan("Midnight Showtime Discount (" + Settings.midnightDiscount + "%) (-$" +
-                String.format("%.2f", price * ((float) Settings.midnightDiscount / 100)) + ")");
+                    String.format("%.2f", price * ((float) Settings.midnightDiscount / 100)) + ")");
             price = price * (1 - ((float) Settings.midnightDiscount / 100));
         }
 
         // promo code discount
         if (disc) {
             UtilUI.printCyan("Promo Code Discount (" + Settings.seniorDiscount + "%) (-$" +
-                String.format("%.2f", price * (float) Settings.promoDiscount / 100) + ")");
+                    String.format("%.2f", price * (float) Settings.promoDiscount / 100) + ")");
             price = price * (1 - (float) Settings.promoDiscount / 100);
         }
 
