@@ -1,165 +1,99 @@
-/*
-    'App' class
-
-    Master file to be executed to launch the program
-*/
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import boundary.AdminUI;
+import boundary.BookingUI;
+import boundary.MovieGoerUI;
+import boundary.MovieUI;
+import boundary.ReviewUI;
+import boundary.UtilUI;
+import controller.AppController;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Welcome to MOBLIMA !!!\n");
-        // Testing Area
-//        MovieController mct = new MovieController();
-//        mct.getMovies();
-//        mct.createMovie();
-
-//        ShowtimeController stc = new ShowtimeController(0);
-//        stc.getShowtime();
-//        stc.createShowtime();
-//
-//        stc.displayShowtime();
-
-
-
-//        System.exit(0);
-        // Testing Area End
-
-
-        // create sample movies
-        MovieController mc = new MovieController();
-        mc.displayAllMovies();
-
-        // sample cineplexes
-        Cineplex cx1 = new Cineplex("location1");
-        Cineplex cx2 = new Cineplex("location2");
-        cx1.printCineplexInfo();
-        cx2.printCineplexInfo();
-
-        // add sample cinemas to cineplex
-        cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        cx1.addCinema(10, 16, Cinema.showClassOptions.CLASS1);
-        cx1.addCinema(8, 12, Cinema.showClassOptions.CLASS1);
-        cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS2);
-        cx2.addCinema(12, 20, Cinema.showClassOptions.CLASS3);
-        cx1.printCinemasList();
-        cx2.printCinemasList();
-
-        // get cinemas and add showtimes
-        Cinema c1 = cx1.getCinema(1);
-        Cinema c2 = cx1.getCinema(2);
-        Cinema c3 = cx1.getCinema(3);
-
-        int choice;
-        Scanner sc = new Scanner(System.in);
-
+        UtilUI.printWelcomeMessage();
+        AppController.init();
+        
+        int choice, movieGoerId = -1;
         do {
+            UtilUI.printBlue(">>>>> MAIN MENU <<<<<");
+            if (movieGoerId == -1) {
+                UtilUI.printPurple("You are currently not logged in.");
+                System.out.println("(0) MovieGoer Login/Register");
+            } else {
+                UtilUI.printPurple("You are logged in as \'" +
+                    AppController.mgc.getMovieGoerById(movieGoerId).getUsername() + "\'");
+                System.out.println("(0) Logout");
+            }
             System.out.println("(1) List All Movies");
-            // display a list of all movies with their id,
-            // prompt the user for a movie id or exit,
-            // display all cineplex & cinema & date & showtime & type of cinema/seats that shows that movie with that id,
-            // prompt the user to click on a cineplex or exit,
-            // clicking a cineplex will display the cinemas and showtime,
-            // prompt for a cinema and showtime or exit,
-            // show the available seats
-            // allow user to book tickets or exit
-
-            System.out.println("(2) Search Movies");
-            // search movie by title, then do the same thing as (1)
-
+            System.out.println("(2) Search Movie");
             System.out.println("(3) Top 5 Movies based on Ticket Sales");
             System.out.println("(4) Top 5 Movies based on Ratings");
-            // top 5 ratings by:
-            // 1) ticket sales
-            // 2) ratings
-            // then do the same thing as (1)
-
-            // list cineplex feature -> NOT REQUIRED
-            // can add later if you want
-            // ...
-
-            System.out.println("(5) Booking History");
-            // see booking history
-            // rate booked tickets
-
-            System.out.println("(6) Admin Login");
-            // login as admin to admin module
-            
-            System.out.println("(7) Exit Application");
-
-            choice = sc.nextInt();
+            System.out.println("(5) Book Ticket (login required)");
+            System.out.println("(6) Booking History (login required)");
+            System.out.println("(7) Review Movie (login required)");
+            System.out.println("(8) Admin Login");
+            System.out.println("(9) Exit Application");
+            choice = UtilUI.getInt("Select action: ");
+            System.out.println("");
 
             switch (choice) {
+                case 0:
+                    if (movieGoerId == -1) {
+                        movieGoerId = MovieGoerUI.main();
+                    } else {
+                        movieGoerId = -1;
+                        UtilUI.printGreen("Successfully Logged Out!\n");
+                    }
+                    break;
+                
                 case 1:
-                    mc.displayAllMovies();
-                    bookingFlow(sc);
+                    MovieUI.main();
                     break;
                 
                 case 2:
-                    System.out.println("Type movie title");
-                    String searchQuery = sc.nextLine();
-                    mc.searchMovie(searchQuery); // TODO
-                    bookingFlow(sc);
+                    MovieUI.searchMovie();
                     break;
                 
                 case 3:
-                    mc.rankMovieBySales(5); // TODO
-                    bookingFlow(sc);
+                    MovieUI.rankMoviesBySales(5);
                     break;
                 
                 case 4:
-                    mc.rankMovieByRating(5); // TODO
-                    bookingFlow(sc);
+                    MovieUI.rankMoviesByRating(5);
                     break;
                 
                 case 5:
-                    historyFlow(); // TODO
+                    if (movieGoerId == -1) {
+                        UtilUI.printRed("Please login/register first!\n");
+                        movieGoerId = MovieGoerUI.main();
+                    }
+                    if (movieGoerId == -1) { break;}
+                    BookingUI.main(movieGoerId);
                     break;
 
                 case 6:
-                    adminFlow(); // TODO
+                    if (movieGoerId == -1) {
+                        UtilUI.printRed("Please login/register first!\n");
+                        movieGoerId = MovieGoerUI.main();
+                    }
+                    if (movieGoerId == -1) { break;}
+                    BookingUI.history(movieGoerId);
+                    break;
+
+                case 7:
+                    if (movieGoerId == -1) {
+                        UtilUI.printRed("Please login/register first!\n");
+                        movieGoerId = MovieGoerUI.main();
+                    }
+                    if (movieGoerId == -1) { break;}
+                    ReviewUI.main(movieGoerId);
+                    break;
+
+                case 8:
+                    AdminUI.main();
+                    break;
             }
         }
-        while (choice != 7);
-        sc.close();
-    }
-
-    private static void bookingFlow(Scanner sc) {
-        // prompt the user for a movie id or exit,
-        // display all cineplex & cinema & date & showtime & type of cinema/seats that shows that movie with that id,
-        // prompt the user to click on a cineplex or exit,
-        // clicking a cineplex will display the cinemas and showtime,
-        // prompt for a cinema and showtime or exit,
-        // show the available seats
-        // allow user to book tickets or exit
-
-        System.out.println("Enter Movie ID: ");
-        System.out.println("Enter (-1) to go back");
-
-        int movieId = sc.nextInt();
-        if (movieId == -1) { return;}
-
-        // TODO... continue
-        // maybe consider creating CineplexController class??
-        // to stores an array of cineplexes, then
-        // contain methods to loop through every cineplex
-        // and check stuff
-
-        System.out.println("BLABLABLA");
-    }
-
-    private static void historyFlow() {
-        // TODO
-        // enter user id / name
-        // show a list of booking history for that user
-        // add options to add review for movies watched
-    }
-
-    private static void adminFlow() {
-        // TODO
-        // maybe can create seperate class for admin
+        while (choice != 9);
+        UtilUI.printGoodbyeMessage();
+        AppController.save();
     }
 }

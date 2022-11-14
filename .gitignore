@@ -1,0 +1,9 @@
+.vscode
+venv
+.idea
+bin
+out
+*.class
+*.iml
+command.txt
+sample
